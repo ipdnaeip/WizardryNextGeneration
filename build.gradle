@@ -1,0 +1,160 @@
+buildscript {
+    repositories {
+        maven { url = 'https://maven.minecraftforge.net' } // old url was 'https://files.minecraftforge.net/maven'
+        mavenCentral()
+        maven { url = "https://ajoberstar.org/bintray-backup/" }
+        maven {
+            name = 'FancyGradle'
+            url = 'https://gitlab.com/api/v4/projects/26758973/packages/maven'
+        }
+    }
+    dependencies {
+        classpath 'net.minecraftforge.gradle:ForgeGradle:5.+'
+        classpath 'org.ajoberstar.grgit:grgit-gradle:3.1.1'
+        classpath group: 'wtf.gofancy.fancygradle', name: 'wtf.gofancy.fancygradle.gradle.plugin', version: '1.1.2-0'
+    }
+    repositories.each {
+        if (it instanceof MavenArtifactRepository && it.url.toString() == "https://files.minecraftforge.net/maven") {
+            it.url = "https://maven.minecraftforge.net"
+        }
+    }
+}
+
+apply plugin: 'net.minecraftforge.gradle'
+apply plugin: 'idea'
+apply plugin: 'maven-publish'
+apply plugin: org.ajoberstar.grgit.gradle.GrgitPlugin
+apply plugin: 'wtf.gofancy.fancygradle'
+
+group = "${project.maven_group}" // groupId
+archivesBaseName = "${project.jar_name}" // artifactId - modid
+version = "${project.mc_version}-${project.mod_version}"
+
+
+sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8' // Need this here so eclipse task generates correctly.
+
+minecraft {
+
+    mappings channel: project.mappings_channel, version: "${project.mappings_version}-${project.mappings_mc_version}"
+
+    runs {
+        client {
+            workingDirectory project.file('run')
+
+            // Recommended logging data for a userdev environment
+            property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
+
+            // Recommended logging level for the console
+            property 'forge.logging.console.level', 'info'
+        }
+
+        server {
+
+            // Recommended logging data for a userdev environment
+            property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
+
+            // Recommended logging level for the console
+            property 'forge.logging.console.level', 'info'
+        }
+    }
+}
+
+repositories {
+    maven {
+        name 'Curseforge Maven'
+        url 'https://minecraft.curseforge.com/api/maven/'
+    }
+    maven {
+        url 'https://maven.blamejared.com'
+    }
+    maven {
+        url "https://www.cursemaven.com"
+    }
+    maven {
+        // location of the maven that hosts JEI files
+        name = "Progwml6 maven"
+        url = "http://dvs1.progwml6.com/files/maven"
+        allowInsecureProtocol = true
+    }
+    flatDir {
+        // location for sources
+        dirs 'libs'
+    }
+}
+
+dependencies {
+    //// MC version ////
+    // Specify the version of Minecraft to use, If this is any group other then 'net.minecraft' it is assumed
+    // that the dep is a ForgeGradle 'patcher' dependency. And it's patches will be applied.
+    // The userdev artifact is a special name and will get all sorts of transformations applied to it.
+    minecraft "net.minecraftforge:forge:${project.mc_version}-${project.forge_version}"
+    //// MC version ////
+
+    // CurseForge Maven
+    // Currently unused
+    // CurseForge Maven usage: https://support.curseforge.com/en/support/solutions/articles/9000197321-curseforge-api
+    // Format: compile '{projectSlug}:{mavenArtifact}:{mavenVersion}:{projectFileNameTag}'
+
+    // CurseMaven - https://www.cursemaven.com/
+    // Format: curse.maven:<descriptor>-<projectid>:<fileid>
+    // Fields:
+    // curse.maven -> Required. Marks the dependency to be resolved by the curse maven website.
+    // <descriptor> -> Can be anything you want. This file downloaded will have this in it's name, so it's good to use this to show which files are what. A good practice would be to have this as the project slug.
+    // <projectid> -> The project id of the file you want to add as a dependency.
+    // <fileid> -> The file id of the file you want to add as a dependency.
+    // Test link: https://www.cursemaven.com/test/<projectid>/<fileid>/<Classifier?>
+
+    //// Dependencies ////
+
+    implementation fg.deobf("curse.maven:ElectroblobsWizardry-${wizardry_projectid}:${wizardry_fileid}")
+    implementation fg.deobf("curse.maven:baubles-${baubles_projectid}:${baubles_fileid}")
+    implementation fg.deobf("mezz.jei:jei_${mc_version}:${jei_version}")
+
+    //// Dependencies ////
+}
+
+fancyGradle {
+    patches {
+        resources
+        coremods
+        asm
+    }
+}
+
+/*jar {
+    manifest {
+        attributes([
+                //"Maven-Artifact": "${project.maven_group}:${project.archivesBaseName}:${project.version}",
+                "Specification-Title": "wizardrynextgeneration",
+                "Specification-Vendor": "ipdnaeip",
+                "Specification-Version": "1", // We are version 1 of ourselves
+                "Implementation-Title": project.name,
+                "Implementation-Version": "${version}",
+                "Implementation-Vendor" :"ipdnaeip",
+                "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),
+                "Built-On-Java": "${System.getProperty('java.vm.version')} (${System.getProperty('java.vm.vendor')})",
+                "Built-On": "${project.mc_version}-${project.forge_version}"
+        ])
+    }
+}*/
+
+/*task sourceJar(type: Jar, dependsOn: classes) {
+    description = 'Creates a JAR containing the source code.'
+    classifier = 'sources'
+    from sourceSets.main.allSource
+    manifest {
+        attributes([
+                "Maven-Artifact": "${project.maven_group}:${project.archivesBaseName}:${project.version}",
+                "Specification-Title": archivesBaseName,
+                "Specification-Vendor": "ipdnaeip",
+                "Specification-Version": "1",
+                "Implementation-Title": archivesBaseName + '-sources',
+                "Implementation-Version": "${project.mod_version}",
+                "Implementation-Vendor": "ipdnaeip",
+                "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),
+                "Built-On-Java": "${System.getProperty('java.vm.version')} (${System.getProperty('java.vm.vendor')})",
+                "Built-On": "${project.mc_version}-${project.forge_version}"
+        ])
+    }
+}*/
+

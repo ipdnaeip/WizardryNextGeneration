@@ -1,0 +1,112 @@
+#misc
+
+item.wizardrynextgeneration:blessed_meat.name=Blessed Meat
+
+#magical item
+
+item.wizardrynextgeneration:scroll_wng.name=Scroll of %1$s
+item.wizardrynextgeneration:spell_book_wng.name=Spell Book
+
+#amulet
+
+item.wizardrynextgeneration:amulet_halfmoon.name=Halfmoon Amulet
+item.wizardrynextgeneration:amulet_halfmoon.desc=The blessing of the moon grants you another chance at life (2 left!)
+
+#head
+
+item.wizardrynextgeneration:head_ra.name=Sun-Disk of Ra
+item.wizardrynextgeneration:head_ra.desc=The crown of the sun god allows you to have better horizontal control in solar winds.
+
+#ring
+
+item.wizardrynextgeneration:ring_9th_circle.name=Ring of the 9th Circle
+item.wizardrynextgeneration:ring_9th_circle.desc=Ice spells are 30%% more potent in the Nether
+item.wizardrynextgeneration:ring_anodized.name=Anodized Ring
+item.wizardrynextgeneration:ring_anodized.desc=Casting lightning spells hardens your exterior, providing resistance.
+item.wizardrynextgeneration:ring_static_shock.name=Ring of Static Shock
+item.wizardrynextgeneration:ring_static_shock.desc=Damaging a creature with a lightning spell applies shock vulnerability to them for 10 seconds, up to shock vulnerability III
+
+#potion
+
+potion.wizardrynextgeneration:cleansing_flames=Cleansing Flames
+potion.wizardrynextgeneration:disempowerment=Disempowerment
+potion.wizardrynextgeneration:disempowerment.failed_cast=Your potency was too low to cast the spell
+potion.wizardrynextgeneration:divine_shield=Divine Shield
+potion.wizardrynextgeneration:magic_weakness=Magic Weakness
+potion.wizardrynextgeneration:pacify=Pacify
+potion.wizardrynextgeneration:solar_sentinel=Solar Sentinel
+potion.wizardrynextgeneration:solar_winds=Solar Winds
+
+#spell
+
+spell.wizardrynextgeneration:accelerated_mass=Accelerated Mass
+spell.wizardrynextgeneration:accelerated_mass.desc=Launch a chunk of metal that increases in velocity and damage as it travels.
+spell.wizardrynextgeneration:bless_meat=Bless Meat
+spell.wizardrynextgeneration:bless_meat.desc=Bless rotten flesh into a highly nutritious substitute.
+spell.wizardrynextgeneration:blood_infusion=Blood Infusion
+spell.wizardrynextgeneration:blood_infusion.desc=Turn a portion of your health into absorption hearts.
+spell.wizardrynextgeneration:blood_infusion.full_shield=You cannot convert anymore health
+spell.wizardrynextgeneration:blood_infusion.low_health=You do not have enough health to convert
+spell.wizardrynextgeneration:bones_to_apples=Bones to Apples
+spell.wizardrynextgeneration:bones_to_apples.desc=Convert bones into apples.
+spell.wizardrynextgeneration:cleansing_flames=Cleansing Flames
+spell.wizardrynextgeneration:cleansing_flames.desc=Engulf yourself in holy fire, providing fire immunity and healing.
+spell.wizardrynextgeneration:conduction=Conduction
+spell.wizardrynextgeneration:conduction.desc=Zap a creature, dealing bonus damage and paralyzing them if they are in water.
+spell.wizardrynextgeneration:divine_shield=Divine Shield
+spell.wizardrynextgeneration:divine_shield.desc=Become immune to the next instance of damage you take.
+spell.wizardrynextgeneration:equality=Equality
+spell.wizardrynextgeneration:equality.desc=Reduce the target's health to your missing health.
+spell.wizardrynextgeneration:equality.high_health=The target resisted some of the damage
+spell.wizardrynextgeneration:equality.no_effect=The target is unaffected
+spell.wizardrynextgeneration:frenzy=Frenzy
+spell.wizardrynextgeneration:frenzy.desc=Anger targets within an area, causing them to attack each other.
+spell.wizardrynextgeneration:haste=Haste
+spell.wizardrynextgeneration:haste.desc=Increase your arm swinging speed.
+spell.wizardrynextgeneration:humility=Humility
+spell.wizardrynextgeneration:humility.desc=Humble your target, weaking their attacks.
+spell.wizardrynextgeneration:ice_barrage=Ice Barrage
+spell.wizardrynextgeneration:ice_barrage.desc=Sit.
+spell.wizardrynextgeneration:ice_blitz=Ice Blitz
+spell.wizardrynextgeneration:ice_blitz.desc=Freeze a creature in ice and damage it.
+spell.wizardrynextgeneration:justice=Justice
+spell.wizardrynextgeneration:justice.desc=Justice for all!
+spell.wizardrynextgeneration:justice.high_health=The target resisted some of the damage
+spell.wizardrynextgeneration:justice.no_effect=The target is unaffected
+spell.wizardrynextgeneration:migraine=Migraine
+spell.wizardrynextgeneration:migraine.desc=Make your target suffer continuous mental suffering.
+spell.wizardrynextgeneration:moonlight=Moonlight
+spell.wizardrynextgeneration:moonlight.desc=Embrace the light of the moon to heal your wounds.
+spell.wizardrynextgeneration:moonlight.no_moonlight=You do not have direct moonlight
+spell.wizardrynextgeneration:pacify=Pacify
+spell.wizardrynextgeneration:pacify.desc=Remove a creature's will to fight.
+spell.wizardrynextgeneration:photosynthesis=Photosynthesis
+spell.wizardrynextgeneration:photosynthesis.desc=Channel the power of sunlight to restore your health.
+spell.wizardrynextgeneration:photosynthesis.no_sunlight=You do not have direct sunlight
+spell.wizardrynextgeneration:sap_intellect=Sap Intellect
+spell.wizardrynextgeneration:sap_intellect.desc=Drain the life from your enemies, dealing damage them and weaking their magic potency.
+spell.wizardrynextgeneration:sap_strength=Sap Strength
+spell.wizardrynextgeneration:sap_strength.desc=Drain the life from your enemies, dealing damage and weakening them.
+spell.wizardrynextgeneration:scapegoat=Scapegoat
+spell.wizardrynextgeneration:scapegoat.desc=Make a creature the target of other creatures around it.
+spell.wizardrynextgeneration:scorch=Scorch
+spell.wizardrynextgeneration:scorch.desc=Damage an enemy, dealing critical damage if they are on fire.
+spell.wizardrynextgeneration:smite=Smite
+spell.wizardrynextgeneration:smite.desc=Strike a creature with holy light, burning undead creatures.
+spell.wizardrynextgeneration:smoke_barrage=Smoke Barrage
+spell.wizardrynextgeneration:smoke_barrage.desc=Until their last breath.
+spell.wizardrynextgeneration:smoke_blitz=Smoke Blitz
+spell.wizardrynextgeneration:smoke_blitz.desc=Engulf a creature in smoke, blinding, damaging, and suffocating it.
+spell.wizardrynextgeneration:smokescreen=Smokescreen
+spell.wizardrynextgeneration:smokescreen.desc=Disappear in a cloud of smoke.
+spell.wizardrynextgeneration:solar_winds=Solar Winds
+spell.wizardrynextgeneration:solar_winds.desc=Ride a wave of the sun's energy.
+spell.wizardrynextgeneration:solar_sentinel=Solar Sentinel
+spell.wizardrynextgeneration:solar_sentinel.desc=Rise to the heights of the gods themselves.
+spell.wizardrynextgeneration:tase=Tase
+spell.wizardrynextgeneration:tase.desc=Channel lightning into a creature, restricting its movement.
+spell.wizardrynextgeneration:tranquility=Tranquility
+spell.wizardrynextgeneration:tranquility.desc=Calm the creatures around you.
+
+
+
