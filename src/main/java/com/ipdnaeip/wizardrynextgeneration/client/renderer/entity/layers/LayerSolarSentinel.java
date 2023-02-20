@@ -18,7 +18,7 @@ public class LayerSolarSentinel extends LayerTiledOverlay<EntityLivingBase> {
         }
 
     public boolean shouldRender(EntityLivingBase entity, float partialTicks) {
-        return !entity.isInvisible() && entity.isPotionActive(WNGPotions.solar_sentinel);
+        return !entity.isInvisible() && entity.isPotionActive(WNGPotions.solar_winds) && entity.isPotionActive(WNGPotions.cleansing_flames);
     }
 
     public ResourceLocation getTexture(EntityLivingBase entity, float partialTicks) {

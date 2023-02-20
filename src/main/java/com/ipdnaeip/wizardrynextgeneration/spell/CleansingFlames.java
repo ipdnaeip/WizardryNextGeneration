@@ -27,7 +27,7 @@ public class CleansingFlames extends Spell {
     public boolean cast(World world, EntityPlayer caster, EnumHand hand, int ticksInUse, SpellModifiers modifiers) {
         caster.addPotionEffect(new PotionEffect(WNGPotions.cleansing_flames, (int)(this.getProperty(EFFECT_DURATION).floatValue() * modifiers.get(WizardryItems.duration_upgrade)), (int)((modifiers.get("potency") - 1) * 3.5)));
         this.playSound(world, caster, ticksInUse, -1, modifiers);
-        ParticleBuilder.create(ParticleBuilder.Type.BUFF).entity(caster).clr(255, 200, 60).spawn(world);
+        if (world.isRemote) ParticleBuilder.create(ParticleBuilder.Type.BUFF).entity(caster).clr(255, 200, 60).spawn(world);
         return true;
     }
 

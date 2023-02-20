@@ -28,7 +28,7 @@ public class DivineShield extends Spell {
     public boolean cast(World world, EntityPlayer caster, EnumHand hand, int ticksInUse, SpellModifiers modifiers) {
         caster.addPotionEffect(new PotionEffect(WNGPotions.divine_shield, (int)(this.getProperty(EFFECT_DURATION).floatValue() * modifiers.get(WizardryItems.duration_upgrade)), 0));
         this.playSound(world, caster, ticksInUse, -1, modifiers);
-        ParticleBuilder.create(ParticleBuilder.Type.BUFF).entity(caster).clr(255, 255, 85).spawn(world);
+        if (world.isRemote) ParticleBuilder.create(ParticleBuilder.Type.BUFF).entity(caster).clr(255, 255, 85).spawn(world);
         return true;
     }
 

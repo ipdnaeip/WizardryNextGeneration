@@ -17,6 +17,6 @@
   "chargeup": 20,
   "cooldown": 50,
   "base_properties": {
-    "health": 5
+    "health": 2.5
   }
 }

@@ -1,15 +1,15 @@
 package com.ipdnaeip.wizardrynextgeneration.registry;
 
 import com.ipdnaeip.wizardrynextgeneration.WizardryNextGeneration;
-import com.ipdnaeip.wizardrynextgeneration.item.ItemBlessedMeat;
-import com.ipdnaeip.wizardrynextgeneration.item.ItemWNGArtefact;
-import com.ipdnaeip.wizardrynextgeneration.item.ItemWNGSpellBook;
+import com.ipdnaeip.wizardrynextgeneration.item.*;
 import electroblob.wizardry.block.BlockBookshelf;
 import electroblob.wizardry.inventory.ContainerBookshelf;
 import electroblob.wizardry.item.ItemArtefact;
 import electroblob.wizardry.item.ItemScroll;
 import electroblob.wizardry.item.ItemSpellBook;
+import electroblob.wizardry.misc.BehaviourSpellDispense;
 import electroblob.wizardry.registry.WizardryTabs;
+import net.minecraft.block.BlockDispenser;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -43,19 +43,25 @@ public final class WNGItems {
     public static final Item spell_book_wng = placeholder();
 
     //amulet
-    public static final Item amulet_halfmoon = placeholder();
+    public static final Item amulet_moon = placeholder();
+
+    //body
+    public static final Item body_hashashin = placeholder();
 
     //charm
+    public static final Item charm_dice = placeholder();
 
     //head
-
+    public static final Item head_hashashin = placeholder();
     public static final Item head_ra = placeholder();
+    public static final Item head_raijin = placeholder();
 
     //ring
     public static final Item ring_9th_circle = placeholder();
     public static final Item ring_anodized = placeholder();
+    public static final Item ring_nullification = placeholder();
     public static final Item ring_static_shock = placeholder();
-
+    public static final Item ring_void = placeholder();
 
     // below registry methods are courtesy of EB
     public static void registerItem(IForgeRegistry<Item> registry, String name, Item item) {
@@ -108,19 +114,31 @@ public final class WNGItems {
         registerItem(registry,"spell_book_wng", new ItemWNGSpellBook());
 
         //amulet
-        registerItem(registry, "amulet_halfmoon", new ItemWNGArtefact(EnumRarity.UNCOMMON, ItemArtefact.Type.AMULET));
+        registerItem(registry, "amulet_moon", new ItemAmuletMoon(EnumRarity.EPIC, ItemArtefact.Type.AMULET));
+
+        //body
+        registerItem(registry, "body_hashashin", new ItemNewArtefact(EnumRarity.RARE, ItemNewArtefact.AdditionalType.BODY));
 
         //charm
+        registerItem(registry, "charm_dice", new ItemWNGArtefact(EnumRarity.EPIC, ItemArtefact.Type.CHARM));
 
         //head
-        registerItem(registry, "head_ra", new ItemWNGArtefact(EnumRarity.EPIC, ItemArtefact.Type.AMULET));
-
+        registerItem(registry, "head_hashashin", new ItemNewArtefact(EnumRarity.RARE, ItemNewArtefact.AdditionalType.HEAD));
+        registerItem(registry, "head_ra", new ItemNewArtefact(EnumRarity.EPIC, ItemNewArtefact.AdditionalType.HEAD));
+        registerItem(registry, "head_raijin", new ItemNewArtefact(EnumRarity.EPIC, ItemNewArtefact.AdditionalType.HEAD));
 
         //ring
         registerItem(registry, "ring_9th_circle", new ItemWNGArtefact(EnumRarity.UNCOMMON, ItemArtefact.Type.RING));
         registerItem(registry, "ring_anodized", new ItemWNGArtefact(EnumRarity.RARE, ItemArtefact.Type.RING));
+        registerItem(registry, "ring_nullification", new ItemWNGArtefact(EnumRarity.RARE, ItemArtefact.Type.RING));
         registerItem(registry, "ring_static_shock", new ItemWNGArtefact(EnumRarity.RARE, ItemArtefact.Type.RING));
+        registerItem(registry, "ring_void", new ItemWNGArtefact(EnumRarity.UNCOMMON, ItemArtefact.Type.RING));
 
+
+    }
+
+    public static void registerDispenseBehaviours(){
+        BlockDispenser.DISPENSE_BEHAVIOR_REGISTRY.putObject(scroll_wng, new BehaviourSpellDispense());
     }
 
     public static void registerBookItems(){

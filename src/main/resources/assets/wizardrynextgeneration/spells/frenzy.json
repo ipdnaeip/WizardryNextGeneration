@@ -12,12 +12,13 @@
   },
   "tier": "advanced",
   "element": "necromancy",
-  "type": "attack",
+  "type": "alteration",
   "cost": 40,
   "chargeup": 10,
   "cooldown": 100,
   "base_properties": {
     "range": 10,
-    "effect_radius": 5
+    "effect_radius": 5,
+    "effect_duration": 200
   }
 }

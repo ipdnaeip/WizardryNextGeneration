@@ -32,8 +32,6 @@ import java.util.Random;
 
 public class EntityWebspitter extends EntitySpider
 {
-    private static final DataParameter<Byte> CLIMBING = EntityDataManager.<Byte>createKey(net.minecraft.entity.monster.EntitySpider.class, DataSerializers.BYTE);
-
     public EntityWebspitter(World worldIn)
     {
         super(worldIn);

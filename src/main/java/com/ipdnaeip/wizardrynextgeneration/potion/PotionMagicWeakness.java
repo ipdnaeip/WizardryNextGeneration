@@ -30,7 +30,7 @@ public class PotionMagicWeakness extends PotionMagicEffect {
     public static void onLivingHurtEvent(LivingHurtEvent event) {
         float increase = 0.15F;
 
-        if (event.getEntityLiving().isPotionActive(WNGPotions.magic_weakness) && event != null && event.getSource().isMagicDamage()) {
+        if (event.getEntityLiving().isPotionActive(WNGPotions.magic_weakness) && event.getSource().isMagicDamage()) {
             int multiplier = event.getEntityLiving().getActivePotionEffect(WNGPotions.magic_weakness).getAmplifier() + 1;
                 event.setAmount(event.getAmount() * (1 + (increase * multiplier)));
         }

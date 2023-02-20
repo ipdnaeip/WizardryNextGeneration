@@ -1,8 +1,11 @@
 package com.ipdnaeip.wizardrynextgeneration.registry;
 
 import com.ipdnaeip.wizardrynextgeneration.WizardryNextGeneration;
+import com.ipdnaeip.wizardrynextgeneration.entity.construct.EntityAntiGravitationalField;
+import com.ipdnaeip.wizardrynextgeneration.entity.construct.EntityGravitationalField;
 import com.ipdnaeip.wizardrynextgeneration.entity.living.EntityWebspitter;
 import com.ipdnaeip.wizardrynextgeneration.entity.projectile.EntityAcceleratedMass;
+import electroblob.wizardry.entity.construct.EntityHealAura;
 import electroblob.wizardry.registry.WizardryEntities;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
@@ -37,7 +40,7 @@ public class WNGEntities {
     }
 
 
-    static enum TrackingType {
+    enum TrackingType {
         LIVING(80, 3, true),
         PROJECTILE(64, 10, true),
         CONSTRUCT(160, 10, false);
@@ -46,7 +49,7 @@ public class WNGEntities {
         int interval;
         boolean trackVelocity;
 
-        private TrackingType(int range, int interval, boolean trackVelocity) {
+        TrackingType(int range, int interval, boolean trackVelocity) {
             this.range = range;
             this.interval = interval;
             this.trackVelocity = trackVelocity;
@@ -58,8 +61,12 @@ public class WNGEntities {
 
         IForgeRegistry<EntityEntry> registry = event.getRegistry();
 
+        //construct
+        registry.register(createEntry(EntityAntiGravitationalField.class, "anti_gravitational_field", WNGEntities.TrackingType.CONSTRUCT).build());
+        registry.register(createEntry(EntityGravitationalField.class, "gravitational_field", WNGEntities.TrackingType.CONSTRUCT).build());
+
         //living
-        registry.register(createEntry(EntityWebspitter.class, "webspitter", TrackingType.LIVING).egg(3357763, 960667).build());
+        registry.register(createEntry(EntityWebspitter.class, "webspitter", WNGEntities.TrackingType.LIVING).egg(3357763, 960667).build());
 
         //projectile
         registry.register(createEntry(EntityAcceleratedMass.class, "accelerated_mass", WNGEntities.TrackingType.PROJECTILE).build());

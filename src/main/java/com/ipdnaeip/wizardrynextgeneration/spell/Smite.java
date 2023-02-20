@@ -43,7 +43,7 @@ public class Smite extends SpellRay {
     @Override
     protected void spawnParticle(World world, double x, double y, double z, double vx, double vy, double vz) {
         ParticleBuilder.create(ParticleBuilder.Type.MAGIC_FIRE).pos(x, y, z).time(20 + world.rand.nextInt(10)).spawn(world);
-        ParticleBuilder.create(ParticleBuilder.Type.SPARKLE).pos(x, y, z).time(20 + world.rand.nextInt(10)).spawn(world);
+        ParticleBuilder.create(ParticleBuilder.Type.SPARKLE).pos(x, y, z).time(20 + world.rand.nextInt(10)).clr(255, 255, 85).spawn(world);
     }
 
     @Override

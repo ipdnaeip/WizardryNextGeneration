@@ -29,7 +29,7 @@ public class IceBlitz extends SpellRay {
     public IceBlitz() {
         super(WizardryNextGeneration.MODID, "ice_blitz", SpellActions.POINT, false);
         this.soundValues(1.0F, 1.0F, 0.1F);
-        this.addProperties(DAMAGE, RANGE, EFFECT_DURATION, ICE_DURATION);
+        this.addProperties(DAMAGE, EFFECT_DURATION, ICE_DURATION);
     }
 
     @Override

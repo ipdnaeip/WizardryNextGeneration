@@ -11,7 +11,7 @@
     "looting": true
   },
   "tier": "apprentice",
-  "element": "healing",
+  "element": "sorcery",
   "type": "defence",
   "cost": 10,
   "chargeup": 10,

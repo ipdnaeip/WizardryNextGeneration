@@ -38,25 +38,23 @@ public class EntityAcceleratedMass extends EntityMagicArrow {
     @Override
     public void onEntityHit(EntityLivingBase entityHit) {
         ParticleBuilder.create(ParticleBuilder.Type.DUST, this).time(10 + this.rand.nextInt(5)).spawn(this.world);
-            this.playSound(SoundEvents.BLOCK_ANVIL_PLACE, 0.5F, 0.5F / (this.rand.nextFloat() * 0.2F + 0.4F));
+        this.playSound(SoundEvents.BLOCK_ANVIL_PLACE, 0.5F, 0.5F / (this.rand.nextFloat() * 0.2F + 0.4F));
     }
 
     @Override
     public void onBlockHit(RayTraceResult hit) {
         ParticleBuilder.create(ParticleBuilder.Type.DUST, this).time(10 + this.rand.nextInt(5)).spawn(this.world);
-            this.playSound(SoundEvents.BLOCK_ANVIL_LAND, 0.5F, 0.7F / (this.rand.nextFloat() * 0.2F + 0.4F));
+        this.playSound(SoundEvents.BLOCK_ANVIL_LAND, 0.5F, 0.7F / (this.rand.nextFloat() * 0.2F + 0.4F));
     }
 
     @Override
     public void onUpdate() {
         super.onUpdate();
-        if (this.world.isRemote) {
-            this.motionX *= 1.01;
-            this.motionY *= 1.01;
-            this.motionZ *= 1.01;
-            accelerated_damage = Math.min(accelerated_damage * 1.1, 10);
-            ParticleBuilder.create(ParticleBuilder.Type.DUST, this).time(10 + this.rand.nextInt(5)).spawn(this.world);
-        }
+        this.motionX *= 1.1;
+        this.motionY *= 1.1;
+        this.motionZ *= 1.1;
+        accelerated_damage = Math.min(accelerated_damage * 1.2, WNGSpells.accelerated_mass.getProperty("damage").doubleValue() * 3);
+        ParticleBuilder.create(ParticleBuilder.Type.DUST, this).time(10 + this.rand.nextInt(5)).spawn(this.world);
     }
 
     protected void entityInit() {

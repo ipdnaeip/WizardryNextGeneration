@@ -36,8 +36,7 @@ public class Justice extends SpellAreaEffect  {
             float low_health = target.getHealth() - (target.getMaxHealth() / caster.getMaxHealth() * caster.getHealth());
             float high_health = Math.min(target.getHealth() - (target.getMaxHealth() / caster.getMaxHealth() * caster.getHealth()), (caster.getMaxHealth() - caster.getHealth()) * (1 + modifiers.get("potency")));
             if (target.getHealth() / target.getMaxHealth() <= caster.getHealth() / caster.getMaxHealth() || caster.getHealth() == caster.getMaxHealth()) {
-                if (!world.isRemote)
-                    castertemp.sendStatusMessage(new TextComponentTranslation("spell." + this.getUnlocalisedName() + ".no_effect"), true);
+                if (!world.isRemote) castertemp.sendStatusMessage(new TextComponentTranslation("spell." + this.getUnlocalisedName() + ".no_effect"), true);
                 return false;
             }
             if (target.getMaxHealth() <= caster.getMaxHealth()) {
@@ -45,8 +44,7 @@ public class Justice extends SpellAreaEffect  {
                 EntityUtils.attackEntityWithoutKnockback(target, MagicDamage.causeDirectMagicDamage(caster, MagicDamage.DamageType.RADIANT), low_health);
             }
             if (target.getMaxHealth() > caster.getMaxHealth()) {
-                if (!world.isRemote)
-                    castertemp.sendStatusMessage(new TextComponentTranslation("spell." + this.getUnlocalisedName() + ".high_health"), true);
+                if (!world.isRemote) castertemp.sendStatusMessage(new TextComponentTranslation("spell." + this.getUnlocalisedName() + ".high_health"), true);
                 this.soundValues(1F, 0.4F, 0.1F);
                 EntityUtils.attackEntityWithoutKnockback(target, MagicDamage.causeDirectMagicDamage(caster, MagicDamage.DamageType.RADIANT), high_health);
             }

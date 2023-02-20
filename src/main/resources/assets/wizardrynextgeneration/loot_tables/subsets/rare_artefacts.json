@@ -1,0 +1,35 @@
+{
+  "pools": [
+    {
+      "name": "main",
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "item",
+          "name": "wizardrynextgeneration:body_hashashin",
+          "weight": 1
+        },
+        {
+          "type": "item",
+          "name": "wizardrynextgeneration:head_hashashin",
+          "weight": 1
+        },
+        {
+          "type": "item",
+          "name": "wizardrynextgeneration:ring_anodized",
+          "weight": 1
+        },
+        {
+          "type": "item",
+          "name": "wizardrynextgeneration:ring_nullification",
+          "weight": 1
+        },
+        {
+          "type": "item",
+          "name": "wizardrynextgeneration:ring_static_shock",
+          "weight": 1
+        }
+      ]
+    }
+  ]
+}

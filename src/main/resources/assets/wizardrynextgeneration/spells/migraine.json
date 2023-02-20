@@ -15,10 +15,10 @@
   "type": "attack",
   "cost": 5,
   "chargeup": 5,
-  "cooldown": 5,
+  "cooldown": 30,
   "base_properties": {
     "range": 10,
     "damage": 2,
-    "effect_duration": 50
+    "effect_duration": 20
   }
 }

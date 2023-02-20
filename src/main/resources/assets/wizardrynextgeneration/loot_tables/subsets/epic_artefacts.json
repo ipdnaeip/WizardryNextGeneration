@@ -1,0 +1,30 @@
+{
+  "pools": [
+    {
+      "name": "main",
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "item",
+          "name": "wizardrynextgeneration:amulet_moon",
+          "weight": 1
+        },
+        {
+          "type": "item",
+          "name": "wizardrynextgeneration:charm_dice",
+          "weight": 1
+        },
+        {
+          "type": "item",
+          "name": "wizardrynextgeneration:head_ra",
+          "weight": 1
+        },
+        {
+          "type": "item",
+          "name": "wizardrynextgeneration:head_raijin",
+          "weight": 1
+        }
+      ]
+    }
+  ]
+}

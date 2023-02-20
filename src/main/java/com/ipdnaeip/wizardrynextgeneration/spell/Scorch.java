@@ -26,7 +26,7 @@ public class Scorch extends SpellRay {
     public Scorch() {
         super(WizardryNextGeneration.MODID, "scorch", SpellActions.POINT, false);
         this.soundValues(0.9F, 0.8F, 0.2F);
-        this.addProperties(DAMAGE, RANGE, MULTIPLIER_TAG);
+        this.addProperties(DAMAGE, MULTIPLIER_TAG);
     }
 
     @Override
@@ -42,8 +42,7 @@ public class Scorch extends SpellRay {
 
                 damage = damage * getProperty(MULTIPLIER_TAG).floatValue();
                 targetEntity.attackEntityFrom(MagicDamage.causeDirectMagicDamage(caster, MagicDamage.DamageType.FIRE), damage);
-                world.playSound(null, target.getPosition(), SoundEvents.ENTITY_PLAYER_ATTACK_CRIT, SoundCategory.BLOCKS, 1.0F, world.rand.nextFloat() * 0.4F + 0.8F);
-                world.spawnParticle(EnumParticleTypes.CRIT, target.posX, target.posY, target.posZ, 0, 0, 0);
+                world.playSound(null, target.getPosition(), SoundEvents.BLOCK_FIRE_EXTINGUISH, SoundCategory.BLOCKS, 1.0F, world.rand.nextFloat() * 0.2F + 0.9F);
             } else {
                 targetEntity.attackEntityFrom(MagicDamage.causeDirectMagicDamage(caster, MagicDamage.DamageType.FIRE), damage);
             }
