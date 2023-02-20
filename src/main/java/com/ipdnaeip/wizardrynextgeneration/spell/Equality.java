@@ -26,7 +26,7 @@ public class Equality extends SpellRay {
         super(WizardryNextGeneration.MODID, "equality", SpellActions.POINT, false);
         this.aimAssist(0.3F);
         this.soundValues(1F, 0.6F, 0.1F);
-        this.addProperties(RANGE);
+        this.addProperties();
     }
     @Override
     protected boolean onEntityHit(World world, Entity target, Vec3d hit, EntityLivingBase caster, Vec3d origin, int ticksInUse, SpellModifiers modifiers) {
@@ -39,8 +39,7 @@ public class Equality extends SpellRay {
             //float high_health = (float)Math.sqrt(enemy.getHealth() - (enemy.getMaxHealth() / caster.getMaxHealth() * caster.getHealth()));
             float high_health = Math.min(enemy.getHealth() - (enemy.getMaxHealth() / caster.getMaxHealth() * caster.getHealth()), (caster.getMaxHealth() - caster.getHealth()) * (1 + modifiers.get("potency")));
             if (enemy.getHealth() / enemy.getMaxHealth() <= caster.getHealth() / caster.getMaxHealth() || caster.getHealth() == caster.getMaxHealth()) {
-                if (!world.isRemote)
-                    castertemp.sendStatusMessage(new TextComponentTranslation("spell." + this.getUnlocalisedName() + ".no_effect"), true);
+                if (!world.isRemote) castertemp.sendStatusMessage(new TextComponentTranslation("spell." + this.getUnlocalisedName() + ".no_effect"), true);
                 return false;
             }
             if (enemy.getMaxHealth() <= caster.getMaxHealth()) {
@@ -48,8 +47,7 @@ public class Equality extends SpellRay {
                 EntityUtils.attackEntityWithoutKnockback(enemy, MagicDamage.causeDirectMagicDamage(caster, MagicDamage.DamageType.RADIANT), low_health);
             }
             if (enemy.getMaxHealth() > caster.getMaxHealth()) {
-                if (!world.isRemote)
-                    castertemp.sendStatusMessage(new TextComponentTranslation("spell." + this.getUnlocalisedName() + ".high_health"), true);
+                if (!world.isRemote) castertemp.sendStatusMessage(new TextComponentTranslation("spell." + this.getUnlocalisedName() + ".high_health"), true);
                 this.soundValues(1F, 0.4F, 0.1F);
                 EntityUtils.attackEntityWithoutKnockback(enemy, MagicDamage.causeDirectMagicDamage(caster, MagicDamage.DamageType.RADIANT), high_health);
             }

@@ -56,7 +56,7 @@ public class Photosynthesis extends Spell {
         if (caster.getHealth() < caster.getMaxHealth() && caster.getHealth() > 0.0F && ticksInUse % 10 == 0 && world.isDaytime() && world.canSeeSky(new BlockPos(caster.posX, caster.posY + (double)caster.getEyeHeight(), caster.posZ))) {
             caster.heal(this.getProperty("health").floatValue() * (1 + modifiers.get("potency")));
             this.playSound(world, caster, ticksInUse, -1, modifiers);
-            ParticleBuilder.create(ParticleBuilder.Type.BUFF).entity(caster).clr(0, 170, 0).spawn(world);
+            if (world.isRemote) ParticleBuilder.create(ParticleBuilder.Type.BUFF).entity(caster).clr(0, 170, 0).spawn(world);
             return true;
         }
         return false;

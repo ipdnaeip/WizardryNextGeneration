@@ -55,6 +55,18 @@ public final class WNGSpells {
     public static final Spell cleansing_flames = placeholder();
     public static final Spell solar_sentinel = placeholder();
     public static final Spell migraine = placeholder();
+    public static final Spell frostbite = placeholder();
+    public static final Spell righteous_defense = placeholder();
+    public static final Spell frostburn = placeholder();
+    public static final Spell veneficium = placeholder();
+    public static final Spell meditate = placeholder();
+    public static final Spell assassinate = placeholder();
+    public static final Spell anti_gravitational_push = placeholder();
+    public static final Spell gravitational_pull = placeholder();
+    public static final Spell cloak_of_the_void = placeholder();
+    public static final Spell gravitational_field = placeholder();
+    public static final Spell anti_gravitational_field = placeholder();
+    public static final Spell smite = placeholder();
 
     @SuppressWarnings("unchecked")
     @SubscribeEvent
@@ -92,7 +104,18 @@ public final class WNGSpells {
         registry.register(new CleansingFlames());
         registry.register(new SolarSentinel());
         registry.register(new Migraine());
-
+        registry.register(new Frostbite());
+        registry.register(new RighteousDefense());
+        registry.register(new Frostburn());
+        registry.register(new Veneficium());
+        registry.register(new Meditate());
+        registry.register(new Assassinate());
+        registry.register(new AntiGravitationalPush());
+        registry.register(new GravitationalPull());
+        registry.register(new CloakOfTheVoid());
+        registry.register(new GravitationalField());
+        registry.register(new AntiGravitationalField());
+        registry.register(new Smite());
     }
 }
 

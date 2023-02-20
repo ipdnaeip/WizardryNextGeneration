@@ -26,7 +26,7 @@ public class SmokeBlitz extends SpellRay {
     public SmokeBlitz() {
         super(WizardryNextGeneration.MODID, "smoke_blitz", SpellActions.POINT, false);
         this.soundValues(1F, 1F, 0.1F);
-        this.addProperties(DAMAGE, RANGE, EFFECT_DURATION);
+        this.addProperties(DAMAGE, EFFECT_DURATION);
     }
 
     @Override

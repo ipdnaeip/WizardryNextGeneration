@@ -37,11 +37,10 @@ public class PotionCleansingFlames extends PotionMagicEffect implements ICustomP
     @SubscribeEvent
     public static void onLivingUpdateEvent(LivingEvent.LivingUpdateEvent event) {
         EntityLivingBase entity = event.getEntityLiving();
-        if (entity.isBurning()) {
-            entity.extinguish();
-        }
         if (entity.isPotionActive(WNGPotions.cleansing_flames)) {
-            //entity.addPotionEffect(new PotionEffect(MobEffects.FIRE_RESISTANCE, 10, 0, false, false));
+            if (entity.isBurning()) {
+                entity.extinguish();
+            }
             if (entity.ticksExisted % 20 / (entity.getActivePotionEffect(WNGPotions.cleansing_flames).getAmplifier() + 1) == 0)  {
                 entity.getEntityWorld().playSound(null, entity.getPosition(), SoundEvents.ENTITY_BLAZE_BURN, SoundCategory.BLOCKS, 0.5F, entity.getEntityWorld().rand.nextFloat() * 0.2F + 0.9F);
                 entity.heal(0.5F);

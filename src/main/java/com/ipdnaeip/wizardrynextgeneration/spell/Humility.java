@@ -26,7 +26,7 @@ public class Humility extends SpellRay {
         super(WizardryNextGeneration.MODID, "humility", SpellActions.POINT, false);
         this.aimAssist(0.3F);
         this.soundValues(1F, 1F, 0.1F);
-        this.addProperties(RANGE, EFFECT_DURATION);
+        this.addProperties(EFFECT_DURATION);
     }
 
     @Override

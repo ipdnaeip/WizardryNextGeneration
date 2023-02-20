@@ -1,6 +1,7 @@
 package com.ipdnaeip.wizardrynextgeneration.potion;
 
 import com.ipdnaeip.wizardrynextgeneration.WizardryNextGeneration;
+import com.ipdnaeip.wizardrynextgeneration.item.ItemNewArtefact;
 import com.ipdnaeip.wizardrynextgeneration.registry.WNGItems;
 import com.ipdnaeip.wizardrynextgeneration.registry.WNGPotions;
 import electroblob.wizardry.Wizardry;
@@ -48,7 +49,7 @@ public class PotionSolarWinds extends PotionMagicEffect implements ICustomPotion
                 entity.getEntityWorld().playSound(null, entity.getPosition(), SoundEvents.ENTITY_BLAZE_BURN, SoundCategory.BLOCKS, 0.5F, entity.getEntityWorld().rand.nextFloat() * 0.2F + 0.9F);
                 if (!entity.onGround && entity.isSneaking()) {
                     entity.motionY += 0.1;
-                    if (ItemArtefact.isArtefactActive(entityPlayer, WNGItems.head_ra)) {
+                    if (ItemNewArtefact.isNewArtefactActive(entityPlayer, WNGItems.head_ra)) {
                         entity.jumpMovementFactor = 0.2F;
                     }
                 }

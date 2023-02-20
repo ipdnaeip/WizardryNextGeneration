@@ -29,7 +29,7 @@ public class Conduction extends SpellRay {
     public Conduction() {
         super(WizardryNextGeneration.MODID, "conduction", SpellActions.POINT, false);
         this.soundValues(1F, 1F, 0.1F);
-        this.addProperties(DAMAGE, RANGE, MULTIPLIER_TAG, EFFECT_DURATION);
+        this.addProperties(DAMAGE, MULTIPLIER_TAG, EFFECT_DURATION);
     }
 
     @Override

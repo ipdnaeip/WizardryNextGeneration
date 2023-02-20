@@ -44,8 +44,7 @@ public class BloodInfusion extends Spell {
         caster.setHealth(caster.getHealth() + caster.getAbsorptionAmount() - infuse);
         caster.setAbsorptionAmount(infuse);
         this.playSound(world, caster, ticksInUse, -1, modifiers, new String[0]);
-        if (world.isRemote)
-            ParticleBuilder.create(ParticleBuilder.Type.BUFF).entity(caster).clr(170, 0, 0).spawn(world);
+        if (world.isRemote) ParticleBuilder.create(ParticleBuilder.Type.BUFF).entity(caster).clr(170, 0, 0).spawn(world);
         return true;
     }
 

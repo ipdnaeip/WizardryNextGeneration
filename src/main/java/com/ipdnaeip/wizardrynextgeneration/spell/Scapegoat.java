@@ -2,6 +2,7 @@ package com.ipdnaeip.wizardrynextgeneration.spell;
 
 import com.ipdnaeip.wizardrynextgeneration.WizardryNextGeneration;
 import com.ipdnaeip.wizardrynextgeneration.registry.WNGItems;
+import com.ipdnaeip.wizardrynextgeneration.registry.WNGPotions;
 import com.ipdnaeip.wizardrynextgeneration.registry.WNGSpells;
 import electroblob.wizardry.item.SpellActions;
 import electroblob.wizardry.registry.WizardryItems;
@@ -13,6 +14,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.item.Item;
+import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
@@ -26,21 +28,13 @@ public class Scapegoat extends SpellRay {
     public Scapegoat() {
         super(WizardryNextGeneration.MODID, "scapegoat", SpellActions.POINT, false);
         this.soundValues(1F, 0.1F, 0.1F);
-        this.addProperties(EFFECT_RADIUS);
+        this.addProperties(EFFECT_DURATION);
     }
 
     @Override
     protected boolean onEntityHit(World world, Entity target, Vec3d hit, EntityLivingBase caster, Vec3d origin, int ticksInUse, SpellModifiers modifiers) {
-        if (!world.isRemote) {
-            EntityLivingBase targetEntity = (EntityLivingBase) target;
-            double range = (WNGSpells.scapegoat.getProperty(EFFECT_RADIUS).floatValue() * modifiers.get(WizardryItems.blast_upgrade));
-            List<EntityLivingBase> targets = EntityUtils.getLivingWithinRadius(range, target.posX, target.posY, target.posZ, world);
-            Iterator var6 = targets.iterator();
-            while (var6.hasNext()) {
-                EntityLivingBase tauntedTarget = (EntityLivingBase) var6.next();
-                tauntedTarget.setRevengeTarget(targetEntity);
-            }
-        }
+        EntityLivingBase targetEntity = (EntityLivingBase) target;
+        targetEntity.addPotionEffect(new PotionEffect(WNGPotions.taunt, (int)(this.getProperty(EFFECT_DURATION).floatValue() * modifiers.get(WizardryItems.duration_upgrade)), (int)((modifiers.get(SpellModifiers.POTENCY) -1) * 3.5)));
         return true;
     }
 

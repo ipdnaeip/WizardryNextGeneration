@@ -29,7 +29,7 @@ public class Tase extends SpellRay {
     public Tase() {
         super(WizardryNextGeneration.MODID, "tase", SpellActions.POINT, true);
         this.aimAssist(0.6F);
-        this.addProperties(DAMAGE, EFFECT_DURATION, RANGE);
+        this.addProperties(DAMAGE, EFFECT_DURATION);
     }
 
     @Override

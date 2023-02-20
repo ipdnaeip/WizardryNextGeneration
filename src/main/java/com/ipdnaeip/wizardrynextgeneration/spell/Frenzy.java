@@ -2,6 +2,7 @@ package com.ipdnaeip.wizardrynextgeneration.spell;
 
 import com.ipdnaeip.wizardrynextgeneration.WizardryNextGeneration;
 import com.ipdnaeip.wizardrynextgeneration.registry.WNGItems;
+import com.ipdnaeip.wizardrynextgeneration.registry.WNGPotions;
 import com.ipdnaeip.wizardrynextgeneration.registry.WNGSpells;
 import electroblob.wizardry.item.SpellActions;
 import electroblob.wizardry.registry.WizardryItems;
@@ -30,7 +31,7 @@ public class Frenzy extends SpellRay {
     public Frenzy() {
         super(WizardryNextGeneration.MODID, "frenzy", SpellActions.POINT, false);
         this.soundValues(1F, 0.1F, 0.1F);
-        this.addProperties(EFFECT_RADIUS);
+        this.addProperties(EFFECT_RADIUS, EFFECT_DURATION);
     }
 
     @Override
@@ -39,11 +40,10 @@ public class Frenzy extends SpellRay {
             double range = (WNGSpells.frenzy.getProperty(EFFECT_RADIUS).floatValue() * modifiers.get(WizardryItems.blast_upgrade));
             List<EntityLivingBase> targets = EntityUtils.getLivingWithinRadius(range, target.posX, target.posY, target.posZ, world);
             Iterator var6 = targets.iterator();
-
             while (var6.hasNext()) {
                 EntityLivingBase targetEntity = (EntityLivingBase) var6.next();
-                if (targetEntity != caster && targetEntity instanceof EntityMob) {
-                    targetEntity.setRevengeTarget(targets.get(world.rand.nextInt(targets.size() - 1)));
+                if (targetEntity != caster) {
+                    targetEntity.addPotionEffect(new PotionEffect(WNGPotions.frenzy, this.getProperty(EFFECT_DURATION).intValue(), (int)((modifiers.get(SpellModifiers.POTENCY) -1) * 3.5)));
                 }
             }
         }
@@ -60,7 +60,7 @@ public class Frenzy extends SpellRay {
             while (var6.hasNext()) {
                 EntityLivingBase targetEntity = (EntityLivingBase) var6.next();
                 if (targetEntity != caster) {
-                    targetEntity.setRevengeTarget(targets.get(world.rand.nextInt(targets.size() - 1)));
+                    targetEntity.addPotionEffect(new PotionEffect(WNGPotions.frenzy, (int)(this.getProperty(EFFECT_DURATION).floatValue() * modifiers.get(WizardryItems.duration_upgrade)), (int)((modifiers.get(SpellModifiers.POTENCY) -1) * 3.5)));
                 }
             }
         }

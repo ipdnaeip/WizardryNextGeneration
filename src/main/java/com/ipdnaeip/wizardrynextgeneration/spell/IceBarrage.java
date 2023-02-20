@@ -33,7 +33,7 @@ public class IceBarrage extends SpellRay {
     public IceBarrage() {
         super(WizardryNextGeneration.MODID, "ice_barrage", SpellActions.POINT, false);
         this.soundValues(1.0F, 7.0F, 0.1F);
-        this.addProperties(DAMAGE, RANGE, EFFECT_DURATION, ICE_DURATION, EFFECT_RADIUS);
+        this.addProperties(DAMAGE, EFFECT_DURATION, ICE_DURATION, EFFECT_RADIUS);
     }
 
     @Override

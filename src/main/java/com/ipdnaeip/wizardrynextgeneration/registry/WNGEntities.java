@@ -37,7 +37,7 @@ public class WNGEntities {
     }
 
 
-    static enum TrackingType {
+    enum TrackingType {
         LIVING(80, 3, true),
         PROJECTILE(64, 10, true),
         CONSTRUCT(160, 10, false);
@@ -46,7 +46,7 @@ public class WNGEntities {
         int interval;
         boolean trackVelocity;
 
-        private TrackingType(int range, int interval, boolean trackVelocity) {
+        TrackingType(int range, int interval, boolean trackVelocity) {
             this.range = range;
             this.interval = interval;
             this.trackVelocity = trackVelocity;
@@ -59,7 +59,7 @@ public class WNGEntities {
         IForgeRegistry<EntityEntry> registry = event.getRegistry();
 
         //living
-        registry.register(createEntry(EntityWebspitter.class, "webspitter", TrackingType.LIVING).egg(3357763, 960667).build());
+        registry.register(createEntry(EntityWebspitter.class, "webspitter", WNGEntities.TrackingType.LIVING).egg(3357763, 960667).build());
 
         //projectile
         registry.register(createEntry(EntityAcceleratedMass.class, "accelerated_mass", WNGEntities.TrackingType.PROJECTILE).build());
