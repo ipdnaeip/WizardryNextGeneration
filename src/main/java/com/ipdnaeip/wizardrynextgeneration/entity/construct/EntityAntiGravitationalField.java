@@ -34,7 +34,7 @@ public class EntityAntiGravitationalField extends EntityScaledConstruct {
 
             while(var2.hasNext()) {
                 EntityLivingBase target = (EntityLivingBase)var2.next();
-                target.addPotionEffect(new PotionEffect(MobEffects.LEVITATION, 10, WNGSpells.anti_gravitational_field.getProperty("effect_strength").intValue()));
+                target.addPotionEffect(new PotionEffect(MobEffects.LEVITATION, 10, (int)((damageMultiplier - 1) * 3.5)));
             }
         } else if (this.rand.nextInt(15) == 0) {
             double radius = (0.5 + this.rand.nextDouble() * 0.3) * (double)this.width / 2.0;

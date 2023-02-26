@@ -19,7 +19,6 @@
   "base_properties": {
     "range": 10,
     "duration": 600,
-    "effect_radius": 5,
-    "effect_strength": 0
+    "effect_radius": 5
   }
 }

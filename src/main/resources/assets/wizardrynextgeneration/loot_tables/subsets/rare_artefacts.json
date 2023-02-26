@@ -6,6 +6,11 @@
       "entries": [
         {
           "type": "item",
+          "name": "wizardrynextgeneration:belt_potion",
+          "weight": 1
+        },
+        {
+          "type": "item",
           "name": "wizardrynextgeneration:body_hashashin",
           "weight": 1
         },

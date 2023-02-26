@@ -12,10 +12,15 @@ item.wizardrynextgeneration:spell_book_wng.name=Spell Book
 item.wizardrynextgeneration:amulet_moon.name=Lunar Amulet
 item.wizardrynextgeneration:amulet_moon.desc=The lunar blessing prevents your next death. Recharges every full moon while equipped.
 
+#belt
+
+item.wizardrynextgeneration:belt_potion.name=Baba Yaga's Potion Belt
+item.wizardrynextgeneration:belt_potion.desc=Uses mana to extend the duration of your buff spells permanently.
+
 #body
 
 item.wizardrynextgeneration:body_hashashin.name=Chestplate of the Hashashin
-item.wizardrynextgeneration:body_hashashin.desc=The chestplate of an ancient assassin. It allows you to muffle your sounds in the dark while sneaking.
+item.wizardrynextgeneration:body_hashashin.desc=The chestplate of an ancient assassin. It allows you to stay quiet in the dark while sneaking.
 
 #charm
 
@@ -56,6 +61,7 @@ potion.wizardrynextgeneration:magic_weakness=Magic Weakness
 potion.wizardrynextgeneration:pacify=Pacify
 potion.wizardrynextgeneration:shock_weakness=Shock Weakness
 potion.wizardrynextgeneration:solar_winds=Solar Winds
+potion.wizardrynextgeneration:suffocation=Suffocation
 potion.wizardrynextgeneration:taunt=Taunt
 potion.wizardrynextgeneration:veneficium=Veneficium
 
@@ -137,7 +143,7 @@ spell.wizardrynextgeneration:scorch.desc=Damage an enemy, dealing critical damag
 spell.wizardrynextgeneration:smite=Smite
 spell.wizardrynextgeneration:smite.desc=Strike a creature with holy light, burning undead creatures.
 spell.wizardrynextgeneration:smoke_barrage=Smoke Barrage
-spell.wizardrynextgeneration:smoke_barrage.desc=They die in darkness.
+spell.wizardrynextgeneration:smoke_barrage.desc=Suffocate in darkness.
 spell.wizardrynextgeneration:smoke_blitz=Smoke Blitz
 spell.wizardrynextgeneration:smoke_blitz.desc=Engulf a creature in smoke, blinding, damaging, and suffocating it.
 spell.wizardrynextgeneration:smokescreen=Smokescreen
@@ -152,6 +158,11 @@ spell.wizardrynextgeneration:tranquility=Tranquility
 spell.wizardrynextgeneration:tranquility.desc=Calm the creatures around you.
 spell.wizardrynextgeneration:veneficium=Veneficium
 spell.wizardrynextgeneration:veneficium.desc=Until their last breath.
+
+#tabs
+
+itemGroup.wizardrynextgeneration=Wizardry Next Generation
+itemGroup.wizardrynextgenerationgear=Wizardry Next Generation Gear
 
 
 

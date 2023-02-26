@@ -16,7 +16,7 @@ public class AntiGravitationalField extends SpellConstructRanged<EntityAntiGravi
     public AntiGravitationalField() {
         super(WizardryNextGeneration.MODID, "anti_gravitational_field", EntityAntiGravitationalField::new, false);
         this.soundValues(1F, 1F, 0F);
-        this.addProperties(EFFECT_RADIUS, EFFECT_STRENGTH);
+        this.addProperties(EFFECT_RADIUS);
     }
 
     @Override

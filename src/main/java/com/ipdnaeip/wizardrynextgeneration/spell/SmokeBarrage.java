@@ -2,6 +2,7 @@ package com.ipdnaeip.wizardrynextgeneration.spell;
 
 import com.ipdnaeip.wizardrynextgeneration.WizardryNextGeneration;
 import com.ipdnaeip.wizardrynextgeneration.registry.WNGItems;
+import com.ipdnaeip.wizardrynextgeneration.registry.WNGPotions;
 import com.ipdnaeip.wizardrynextgeneration.registry.WNGSpells;
 import electroblob.wizardry.item.SpellActions;
 import electroblob.wizardry.registry.WizardryItems;
@@ -57,7 +58,7 @@ public class SmokeBarrage extends SpellRay {
                 if (targetEntity != caster) {
                     EntityUtils.attackEntityWithoutKnockback(targetEntity, MagicDamage.causeDirectMagicDamage(caster, MagicDamage.DamageType.FIRE), getProperty(DAMAGE).floatValue() * modifiers.get(SpellModifiers.POTENCY));
                     targetEntity.addPotionEffect(new PotionEffect(MobEffects.BLINDNESS, duration, 0));
-                    targetEntity.addPotionEffect(new PotionEffect(MobEffects.WITHER, duration, 2));
+                    targetEntity.addPotionEffect(new PotionEffect(WNGPotions.suffocation, duration, 0));
                 }
             }
         }

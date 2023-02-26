@@ -6,6 +6,7 @@ import electroblob.wizardry.potion.ICustomPotionParticles;
 import electroblob.wizardry.potion.PotionMagicEffect;
 import electroblob.wizardry.util.EntityUtils;
 import electroblob.wizardry.util.ParticleBuilder;
+import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.init.SoundEvents;
@@ -23,7 +24,7 @@ import java.util.List;
 public class PotionFrenzy extends PotionMagicEffect {
 
     public PotionFrenzy() {
-        super(false, 0xAA0000, new ResourceLocation(WizardryNextGeneration.MODID, "textures/gui/potion_icons/frenzy.png"));
+        super(true, 0xAA0000, new ResourceLocation(WizardryNextGeneration.MODID, "textures/gui/potion_icons/frenzy.png"));
         this.setPotionName("potion." + WizardryNextGeneration.MODID + ":frenzy");
     }
 
@@ -40,8 +41,11 @@ public class PotionFrenzy extends PotionMagicEffect {
             Iterator var6 = targets.iterator();
             while (var6.hasNext()) {
                 EntityLivingBase targetEntity = (EntityLivingBase) var6.next();
-                if (targetEntity != entity && entity instanceof EntityMob) {
+/*                if (targetEntity != entity && entity instanceof EntityMob) {
                     ((EntityMob) entity).setAttackTarget(targetEntity);
+                }*/
+                if (targetEntity != entity && entity instanceof EntityLiving) {
+                    ((EntityLiving) entity).setAttackTarget(targetEntity);
                 }
             }
         }

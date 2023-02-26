@@ -54,15 +54,14 @@ public class Migraine extends SpellRay {
             EntityUtils.attackEntityWithoutKnockback(target, MagicDamage.causeDirectMagicDamage(caster, MagicDamage.DamageType.SHOCK), this.getProperty(DAMAGE).floatValue() * modifiers.get(SpellModifiers.POTENCY));
             if (target instanceof EntityLivingBase) {
                 EntityLivingBase targetEntity = (EntityLivingBase) target;
-                if (ticksInUse % 40 == 0) {
-                    if (targetEntity instanceof EntityPlayer) {
-                        targetEntity.addPotionEffect(new PotionEffect(MobEffects.NAUSEA, this.getProperty(EFFECT_DURATION).intValue(), 0));
-                        targetEntity.addPotionEffect(new PotionEffect(MobEffects.SLOWNESS, this.getProperty(EFFECT_DURATION).intValue(), 0));
-                    }
-                    else {
-                        targetEntity.addPotionEffect(new PotionEffect(MobEffects.SLOWNESS, this.getProperty(EFFECT_DURATION).intValue(), 1));
-                    }
+                if (targetEntity instanceof EntityPlayer) {
+                    targetEntity.addPotionEffect(new PotionEffect(MobEffects.NAUSEA, this.getProperty(EFFECT_DURATION).intValue(), 0));
+                    targetEntity.addPotionEffect(new PotionEffect(MobEffects.SLOWNESS, this.getProperty(EFFECT_DURATION).intValue(), 0));
                 }
+                else {
+                    targetEntity.addPotionEffect(new PotionEffect(MobEffects.SLOWNESS, this.getProperty(EFFECT_DURATION).intValue(), 1));
+                }
+
             }
         }
         return true;

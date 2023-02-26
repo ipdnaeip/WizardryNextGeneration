@@ -30,6 +30,7 @@ public class WNGPotions {
     public static final Potion veneficium = placeholder();
     public static final Potion shock_weakness = placeholder();
     public static final Potion gravity = placeholder();
+    public static final Potion suffocation = placeholder();
 
     public static void registerPotion(IForgeRegistry<Potion> registry, String name, Potion potion) {
         potion.setRegistryName(WizardryNextGeneration.MODID, name);
@@ -45,13 +46,14 @@ public class WNGPotions {
         registerPotion(registry, "disempowerment", new PotionDisempowerment());
         registerPotion(registry, "magic_weakness", new PotionMagicWeakness());
         registerPotion(registry, "pacify", new PotionPacify());
-        registerPotion(registry, "divine_shield", new PotionDivineShield());
-        registerPotion(registry, "solar_winds", new PotionSolarWinds());
-        registerPotion(registry, "cleansing_flames", new PotionCleansingFlames());
+        registerPotion(registry, "divine_shield", new PotionDivineShield().setBeneficial());
+        registerPotion(registry, "solar_winds", new PotionSolarWinds().setBeneficial());
+        registerPotion(registry, "cleansing_flames", new PotionCleansingFlames().setBeneficial());
         registerPotion(registry, "frenzy", new PotionFrenzy());
         registerPotion(registry, "taunt", new PotionTaunt());
         registerPotion(registry, "veneficium", new PotionVeneficium());
         registerPotion(registry, "shock_weakness", new PotionShockWeakness());
         registerPotion(registry, "gravity", new PotionGravity());
+        registerPotion(registry, "suffocation", new PotionSuffocation());
     }
 }

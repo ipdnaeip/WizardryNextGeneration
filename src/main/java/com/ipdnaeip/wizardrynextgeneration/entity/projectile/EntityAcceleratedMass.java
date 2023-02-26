@@ -37,7 +37,7 @@ public class EntityAcceleratedMass extends EntityMagicArrow {
 
     @Override
     public void onEntityHit(EntityLivingBase entityHit) {
-        ParticleBuilder.create(ParticleBuilder.Type.DUST, this).time(10 + this.rand.nextInt(5)).spawn(this.world);
+        if (this.world.isRemote) ParticleBuilder.create(ParticleBuilder.Type.DUST, this).time(10 + this.rand.nextInt(5)).spawn(this.world);
         this.playSound(SoundEvents.BLOCK_ANVIL_PLACE, 0.5F, 0.5F / (this.rand.nextFloat() * 0.2F + 0.4F));
     }
 

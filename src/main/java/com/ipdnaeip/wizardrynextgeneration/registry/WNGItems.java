@@ -45,6 +45,9 @@ public final class WNGItems {
     //amulet
     public static final Item amulet_moon = placeholder();
 
+    //belt
+    public static final Item belt_potion = placeholder();
+
     //body
     public static final Item body_hashashin = placeholder();
 
@@ -115,6 +118,9 @@ public final class WNGItems {
 
         //amulet
         registerItem(registry, "amulet_moon", new ItemAmuletMoon(EnumRarity.EPIC, ItemArtefact.Type.AMULET));
+
+        //belt
+        registerItem(registry, "belt_potion", new ItemBeltPotion(EnumRarity.RARE, ItemNewArtefact.AdditionalType.BELT));
 
         //body
         registerItem(registry, "body_hashashin", new ItemNewArtefact(EnumRarity.RARE, ItemNewArtefact.AdditionalType.BODY));

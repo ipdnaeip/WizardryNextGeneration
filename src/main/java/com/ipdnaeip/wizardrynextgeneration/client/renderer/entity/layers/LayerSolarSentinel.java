@@ -31,6 +31,12 @@ public class LayerSolarSentinel extends LayerTiledOverlay<EntityLivingBase> {
         super.doRenderLayer(entity, limbSwing, limbSwingAmount, partialTicks, ageInTicks, netHeadYaw, headPitch, scale);
         GlStateManager.disableBlend();
     }
+
+    protected void applyTextureSpaceTransformations(EntityLivingBase entity, float partialTicks) {
+        float f = (float)entity.ticksExisted + partialTicks;
+        GlStateManager.translate(0.0F, f * 0.01F, 0.0F);
+    }
+
 }
 
 

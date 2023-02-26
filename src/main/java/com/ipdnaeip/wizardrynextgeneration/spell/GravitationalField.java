@@ -15,7 +15,7 @@ public class GravitationalField extends SpellConstructRanged<EntityGravitational
     public GravitationalField() {
         super(WizardryNextGeneration.MODID, "gravitational_field", EntityGravitationalField::new, false);
         this.soundValues(1F, 1F, 0F);
-        this.addProperties(EFFECT_RADIUS, EFFECT_STRENGTH);
+        this.addProperties(EFFECT_RADIUS);
     }
 
     @Override

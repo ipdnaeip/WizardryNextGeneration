@@ -19,6 +19,7 @@ public class ClientProxy extends CommonProxy {
 
     @Override
     public void initialiseLayers() {
+
         LayerTiledOverlay.initialiseLayers(LayerSolarSentinel::new);
     }
 

@@ -132,6 +132,15 @@ public class WNGEventHandler {
                 if (player.isSneaking() && player.getBrightness() < 0.5F) {
                 }
             }
+            if (ItemNewArtefact.isNewArtefactActive(player, WNGItems.belt_potion)) {
+                PotionEffect[] potionEffects = player.getActivePotionEffects().toArray(new PotionEffect[player.getActivePotionEffects().size()]);
+                if (player.ticksExisted % 10 ==0 ) {
+                    for (int i = 0; i < potionEffects.length; i++) {
+                        if (potionEffects[i].getPotion().isBeneficial()) player.addPotionEffect(new PotionEffect(potionEffects[i].getPotion(), potionEffects[i].getDuration() + 10, potionEffects[i].getAmplifier()));
+                        if (player.ticksExisted % 20 == 0) WNGBaublesIntegration.getBeltSlotItemStack(player).damageItem(1, player);
+                    }
+                }
+            }
         }
     }
 
