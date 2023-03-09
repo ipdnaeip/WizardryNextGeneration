@@ -36,10 +36,15 @@ public class Assassinate extends SpellRay {
     @Override
     protected boolean onEntityHit(World world, Entity target, Vec3d hit, EntityLivingBase caster, Vec3d origin, int ticksInUse, SpellModifiers modifiers) {
         float damage = getProperty(DAMAGE).floatValue() * modifiers.get(SpellModifiers.POTENCY);
-            if ((target instanceof EntityMob && ((EntityMob) target).getAttackTarget() != caster)) {
+        //checks the vector of your position relative to the target's position, checks the eyesight vector of the target and sees if you're within its vision range
+        Vec3d casterVecTemp = new Vec3d(target.posX - caster.posX, target.posY - caster.posY, target.posZ - caster.posZ);
+        Vec3d casterVec = casterVecTemp.normalize();
+        Vec3d targetVec = target.getLookVec();
+        double angle = Math.acos(casterVec.dotProduct(targetVec));
+        //check if you're out of the target's vision range or if the target has not noticed you
+        if ((target instanceof EntityMob && ((EntityMob) target).getAttackTarget() != caster) || angle < 1) {
             damage = damage * getProperty(MULTIPLIER_TAG).floatValue();
         }
-        System.out.println(damage);
         target.attackEntityFrom(MagicDamage.causeDirectMagicDamage(caster, MagicDamage.DamageType.WITHER), damage);
         return true;
     }

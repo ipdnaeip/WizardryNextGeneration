@@ -31,6 +31,7 @@ public class WNGPotions {
     public static final Potion shock_weakness = placeholder();
     public static final Potion gravity = placeholder();
     public static final Potion suffocation = placeholder();
+    public static final Potion bleed = placeholder();
 
     public static void registerPotion(IForgeRegistry<Potion> registry, String name, Potion potion) {
         potion.setRegistryName(WizardryNextGeneration.MODID, name);
@@ -55,5 +56,6 @@ public class WNGPotions {
         registerPotion(registry, "shock_weakness", new PotionShockWeakness());
         registerPotion(registry, "gravity", new PotionGravity());
         registerPotion(registry, "suffocation", new PotionSuffocation());
+        registerPotion(registry, "bleed", new PotionBleed());
     }
 }

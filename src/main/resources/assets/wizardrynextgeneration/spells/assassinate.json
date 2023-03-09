@@ -18,7 +18,7 @@
   "cooldown": 20,
   "base_properties": {
     "range": 3,
-    "damage": 7,
+    "damage": 5,
     "unseen_multiplier": 3
   }
 }

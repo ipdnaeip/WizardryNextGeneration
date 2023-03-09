@@ -5,6 +5,10 @@ public class CommonProxy {
     public CommonProxy() {
     }
 
+    public void registerParticles() {
+
+    }
+
     public void registerRenderers() {
     }
 

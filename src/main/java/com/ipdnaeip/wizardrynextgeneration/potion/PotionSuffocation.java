@@ -22,7 +22,7 @@ import java.util.List;
 public class PotionSuffocation extends PotionMagicEffect {
 
     public PotionSuffocation() {
-        super(false, 0x5555FF, new ResourceLocation(WizardryNextGeneration.MODID, "textures/gui/potion_icons/suffocation.png"));
+        super(true, 0x5555FF, new ResourceLocation(WizardryNextGeneration.MODID, "textures/gui/potion_icons/suffocation.png"));
         this.setPotionName("potion." + WizardryNextGeneration.MODID + ":suffocation");
     }
 
@@ -36,7 +36,7 @@ public class PotionSuffocation extends PotionMagicEffect {
         EntityLivingBase entity = event.getEntityLiving();
         if (entity.isPotionActive(WNGPotions.suffocation)) {
             if (entity.ticksExisted % 20 == 0) {
-                entity.attackEntityFrom(DamageSource.DROWN, 2F);
+                entity.attackEntityFrom(DamageSource.DROWN, 2F + entity.getActivePotionEffect(WNGPotions.suffocation).getAmplifier());
             }
         }
     }

@@ -1,6 +1,7 @@
 package com.ipdnaeip.wizardrynextgeneration.item;
 
 import com.ipdnaeip.wizardrynextgeneration.integration.baubles.WNGBaublesIntegration;
+import com.ipdnaeip.wizardrynextgeneration.registry.WNGTabs;
 import electroblob.wizardry.Wizardry;
 import electroblob.wizardry.integration.baubles.WizardryBaublesIntegration;
 import electroblob.wizardry.util.InventoryUtils;
@@ -41,7 +42,7 @@ public class ItemNewArtefact extends Item {
     public ItemNewArtefact(EnumRarity rarity, AdditionalType type) {
         super();
         setMaxStackSize(1);
-        //setCreativeTab(WNGTabs.WIZARDRYNEXTGENERATION_GEAR);
+        setCreativeTab(WNGTabs.WIZARDRYNEXTGENERATION_GEAR);
         this.rarity = rarity;
         this.type = type;
     }

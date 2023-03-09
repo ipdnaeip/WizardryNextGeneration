@@ -5,6 +5,7 @@ import electroblob.wizardry.constants.Constants;
 import electroblob.wizardry.item.IManaStoringItem;
 import electroblob.wizardry.item.IWorkbenchItem;
 import electroblob.wizardry.registry.WizardryItems;
+import electroblob.wizardry.registry.WizardryRecipes;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.EnumRarity;
@@ -18,6 +19,7 @@ public class ItemBeltPotion extends ItemNewArtefact implements IWorkbenchItem, I
         super(rarity, type);
         setMaxStackSize(1);
         setMaxDamage(MAX_MANA);
+        WizardryRecipes.addToManaFlaskCharging(this);
     }
 
     @Override

@@ -41,8 +41,8 @@ public class WizardryNextGeneration
     public void init(FMLInitializationEvent event) {
         WNGItems.registerDispenseBehaviours();
         WNGItems.registerBookItems();
-        // some example code
-        logger.info("DIRT BLOCK >> {}", Blocks.DIRT.getRegistryName());
+        proxy.registerParticles();
+
     }
 
     @EventHandler

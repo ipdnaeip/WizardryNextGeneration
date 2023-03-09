@@ -1,33 +1,35 @@
-#misc
+#item
+
+  #misc
 
 item.wizardrynextgeneration:blessed_meat.name=Blessed Meat
 
-#magical item
+  #magical item
 
 item.wizardrynextgeneration:scroll_wng.name=Scroll of %1$s
 item.wizardrynextgeneration:spell_book_wng.name=Spell Book
 
-#amulet
+  #amulet
 
 item.wizardrynextgeneration:amulet_moon.name=Lunar Amulet
 item.wizardrynextgeneration:amulet_moon.desc=The lunar blessing prevents your next death. Recharges every full moon while equipped.
 
-#belt
+  #belt
 
 item.wizardrynextgeneration:belt_potion.name=Baba Yaga's Potion Belt
 item.wizardrynextgeneration:belt_potion.desc=Uses mana to extend the duration of your buff spells permanently.
 
-#body
+  #body
 
 item.wizardrynextgeneration:body_hashashin.name=Chestplate of the Hashashin
 item.wizardrynextgeneration:body_hashashin.desc=The chestplate of an ancient assassin. It allows you to stay quiet in the dark while sneaking.
 
-#charm
+  #charm
 
 item.wizardrynextgeneration:charm_dice.name=Magical Dice
 item.wizardrynextgeneration:charm_dice.desc=Has a chance to increase or decrease the potency of your spells!
 
-#head
+  #head
 
 item.wizardrynextgeneration:head_hashashin.name=Hood of the Hashashin
 item.wizardrynextgeneration:head_hashashin.desc=The mask of an ancient assassin. It allows you to hide better in the dark while sneaking.
@@ -36,7 +38,7 @@ item.wizardrynextgeneration:head_ra.desc=The crown of the sun god allows you to 
 item.wizardrynextgeneration:head_raijin.name=Mask of Raijin
 item.wizardrynextgeneration:head_raijin.desc=The mask of the thunderlord allows high intensity lightning spells to paralyze creatures.
 
-#ring
+  #ring
 
 item.wizardrynextgeneration:ring_9th_circle.name=Ring of the 9th Circle
 item.wizardrynextgeneration:ring_9th_circle.desc=Ice spells are 30%% more potent in the Nether.
@@ -49,11 +51,25 @@ item.wizardrynextgeneration:ring_static_shock.desc=Damaging a creature with a li
 item.wizardrynextgeneration:ring_void.name=Ring of the Void
 item.wizardrynextgeneration:ring_void.desc=Sorcery spells are 30%% more potent in the End.
 
+#entity
+
+  #living
+
+entity.wizardrynextgeneration:webspitter.name=Webspitter
+
+  #construct
+
+  #projectile
+
+entity.wizardrynextgeneration:accelerated_mass=Magic
+entity.wizardrynextgeneration:fission_blast=Magic
+
 #potion
 
+potion.wizardrynextgeneration:bleed=Bleed
 potion.wizardrynextgeneration:cleansing_flames=Cleansing Flames
 potion.wizardrynextgeneration:disempowerment=Disempowerment
-potion.wizardrynextgeneration:disempowerment.failed_cast=Your potency was too low to cast the spell
+potion.wizardrynextgeneration:disempowerment.failed_cast=Your potency is too low to cast the spell
 potion.wizardrynextgeneration:divine_shield=Divine Shield
 potion.wizardrynextgeneration:frenzy=Frenzy
 potion.wizardrynextgeneration:gravity=Gravity
@@ -67,7 +83,7 @@ potion.wizardrynextgeneration:veneficium=Veneficium
 
 #spell
 
-spell.wizardrynextgeneration:accelerated_mass=Accelerated Mass
+spell.wizardrynextgeneration:accelerated_mass=Accelerating Mass
 spell.wizardrynextgeneration:accelerated_mass.desc=Launch a chunk of metal that increases in velocity and damage as it travels.
 spell.wizardrynextgeneration:anti_gravitational_field=Anti-Gravitational Field
 spell.wizardrynextgeneration:anti_gravitational_field.desc=Create an area of reversed gravity.
@@ -95,6 +111,8 @@ spell.wizardrynextgeneration:equality=Equality
 spell.wizardrynextgeneration:equality.desc=Reduce the target's health to your missing health.
 spell.wizardrynextgeneration:equality.high_health=The target resisted some of the damage
 spell.wizardrynextgeneration:equality.no_effect=The target is unaffected
+spell.wizardrynextgeneration:fission_blast=Fission Blast
+spell.wizardrynextgeneration:fission_blast.desc=Fire a cone of sharp metal.
 spell.wizardrynextgeneration:frenzy=Frenzy
 spell.wizardrynextgeneration:frenzy.desc=Anger hostile creatures within an area, causing them to attack each other.
 spell.wizardrynextgeneration:frostbite=Frostbite
@@ -130,6 +148,8 @@ spell.wizardrynextgeneration:pacify.desc=Remove a creature's will to fight.
 spell.wizardrynextgeneration:photosynthesis=Photosynthesis
 spell.wizardrynextgeneration:photosynthesis.desc=Channel the power of sunlight to restore your health.
 spell.wizardrynextgeneration:photosynthesis.no_sunlight=You do not have direct sunlight
+spell.wizardrynextgeneration:piercing_mass=Piercing Mass
+spell.wizardrynextgeneration:piercing_mass.desc=Launch a chunk of metal that penetrates through blocks.
 spell.wizardrynextgeneration:righteous_defense=Righteous Defense
 spell.wizardrynextgeneration:righteous_defense.desc=Make yourself the target of all hostile creatures for a time.
 spell.wizardrynextgeneration:sap_intellect=Sap Intellect

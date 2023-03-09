@@ -10,15 +10,14 @@
     "trades": true,
     "looting": true
   },
-  "tier": "apprentice",
-  "element": "ice",
-  "type": "attack",
-  "cost": 10,
+  "tier": "advanced",
+  "element": "earth",
+  "type": "projectile",
+  "cost": 15,
   "chargeup": 5,
-  "cooldown": 10,
+  "cooldown": 20,
   "base_properties": {
-    "range": 10,
-    "damage": 5,
-    "effect_duration": 5
+    "range": 50,
+    "damage": 1
   }
 }

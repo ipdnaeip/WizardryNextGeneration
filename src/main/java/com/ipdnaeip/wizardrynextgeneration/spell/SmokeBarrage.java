@@ -58,7 +58,7 @@ public class SmokeBarrage extends SpellRay {
                 if (targetEntity != caster) {
                     EntityUtils.attackEntityWithoutKnockback(targetEntity, MagicDamage.causeDirectMagicDamage(caster, MagicDamage.DamageType.FIRE), getProperty(DAMAGE).floatValue() * modifiers.get(SpellModifiers.POTENCY));
                     targetEntity.addPotionEffect(new PotionEffect(MobEffects.BLINDNESS, duration, 0));
-                    targetEntity.addPotionEffect(new PotionEffect(WNGPotions.suffocation, duration, 0));
+                    targetEntity.addPotionEffect(new PotionEffect(WNGPotions.suffocation, duration, 1));
                 }
             }
         }

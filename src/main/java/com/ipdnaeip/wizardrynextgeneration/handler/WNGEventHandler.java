@@ -28,6 +28,8 @@ import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.SoundCategory;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
@@ -72,14 +74,9 @@ public class WNGEventHandler {
             player = (EntityPlayer) event.getEntityLiving();
             if (ItemArtefact.isArtefactActive(player, WNGItems.amulet_moon)) {
                 ItemStack amulet = WNGBaublesIntegration.getAmuletSlotItemStack(player);
-                if (event.getAmount() > player.getHealth() && amulet.getItemDamage() == 0) {
+                if (event.getAmount() > player.getHealth() && ItemAmuletMoon.isReady(player.getEntityWorld(), amulet)) {
                     event.setCanceled(true);
-                    player.setHealth(0.5F);
-                    player.addPotionEffect(new PotionEffect(MobEffects.ABSORPTION, 100, 1));
-                    player.addPotionEffect(new PotionEffect(MobEffects.REGENERATION, 900, 1));
-                    player.addPotionEffect(new PotionEffect(MobEffects.FIRE_RESISTANCE, 900, 0));
-                    player.getEntityWorld().playSound(player, player.getPosition(), SoundEvents.ITEM_TOTEM_USE, SoundCategory.BLOCKS, 1F, 0F);
-                    amulet.damageItem(1, player);
+                    ItemAmuletMoon.performAction(player);
                 }
             }
         }
@@ -88,9 +85,7 @@ public class WNGEventHandler {
     @SubscribeEvent
     public static void onLivingDeathEvent(LivingDeathEvent event) {
         if (event.getSource().getTrueSource() instanceof EntityPlayer) {
-            EntityPlayer player = (EntityPlayer) event.getSource().getTrueSource();
-            EntityLivingBase entity = event.getEntityLiving();
-
+            event.setCanceled(true);
         }
     }
 
@@ -110,21 +105,21 @@ public class WNGEventHandler {
     public static void onLivingUpdateEvent(LivingEvent.LivingUpdateEvent event) {
         if (event.getEntity() instanceof EntityPlayer) {
             EntityPlayer player = (EntityPlayer)event.getEntity();
-            if (ItemArtefact.isArtefactActive(player, WNGItems.amulet_moon)) {
-                if (player.world.provider.getMoonPhase(player.world.getWorldTime()) == 0 && player.ticksExisted % 24000 == 0) {
-                    ItemStack amulet = WNGBaublesIntegration.getAmuletSlotItemStack(player);
+/*            if (ItemArtefact.isArtefactActive(player, WNGItems.amulet_moon)) {
+                ItemStack amulet = WNGBaublesIntegration.getAmuletSlotItemStack(player);
+                if (player.world.provider.getMoonPhase(player.world.getWorldTime()) == 0 && !player.getEntityWorld().isDaytime() && player.world.canSeeSky(new BlockPos(player.posX, player.posY + (double)player.getEyeHeight(), player.posZ)) && ItemAmuletMoon.isReady(player.getEntityWorld(), amulet)) {
                     amulet.setItemDamage(0);
                 }
-            }
+            }*/
             if (ItemNewArtefact.isNewArtefactActive(player, WNGItems.head_hashashin)) {
                 if (player.isSneaking() && player.getBrightness() < 0.5F) {
-                    player.addPotionEffect(new PotionEffect(MobEffects.INVISIBILITY, 10, 0));
+                    player.addPotionEffect(new PotionEffect(MobEffects.INVISIBILITY, 5, 0));
                     //player.setInvisible(true);
                 }
             }
             if (ItemNewArtefact.isNewArtefactActive(player, WNGItems.body_hashashin)) {
                 if (player.isSneaking() && player.getBrightness() < 0.5F) {
-                    player.addPotionEffect(new PotionEffect(WizardryPotions.muffle, 10, 0));
+                    player.addPotionEffect(new PotionEffect(WizardryPotions.muffle, 5, 0));
                     //player.setSilent(true);
                 }
             }
@@ -136,8 +131,10 @@ public class WNGEventHandler {
                 PotionEffect[] potionEffects = player.getActivePotionEffects().toArray(new PotionEffect[player.getActivePotionEffects().size()]);
                 if (player.ticksExisted % 10 ==0 ) {
                     for (int i = 0; i < potionEffects.length; i++) {
-                        if (potionEffects[i].getPotion().isBeneficial()) player.addPotionEffect(new PotionEffect(potionEffects[i].getPotion(), potionEffects[i].getDuration() + 10, potionEffects[i].getAmplifier()));
-                        if (player.ticksExisted % 20 == 0) WNGBaublesIntegration.getBeltSlotItemStack(player).damageItem(1, player);
+                        if (WNGBaublesIntegration.getBeltSlotItemStack(player).getMaxDamage() - WNGBaublesIntegration.getBeltSlotItemStack(player).getItemDamage() >= potionEffects[i].getAmplifier() + 1) {
+                            if (potionEffects[i].getPotion().isBeneficial()) player.addPotionEffect(new PotionEffect(potionEffects[i].getPotion(), potionEffects[i].getDuration() + 10, potionEffects[i].getAmplifier()));
+                            if (player.ticksExisted % 20 == 0) WNGBaublesIntegration.getBeltSlotItemStack(player).damageItem(potionEffects[i].getAmplifier() + 1, player);
+                        }
                     }
                 }
             }

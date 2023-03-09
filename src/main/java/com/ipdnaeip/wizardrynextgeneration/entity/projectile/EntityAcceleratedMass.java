@@ -21,9 +21,7 @@ public class EntityAcceleratedMass extends EntityMagicArrow {
         }
 
     @Override
-    public boolean doGravity() {
-            return true;
-        }
+    public boolean doGravity() { return true; }
 
     @Override
     public boolean doDeceleration() {
@@ -37,13 +35,11 @@ public class EntityAcceleratedMass extends EntityMagicArrow {
 
     @Override
     public void onEntityHit(EntityLivingBase entityHit) {
-        if (this.world.isRemote) ParticleBuilder.create(ParticleBuilder.Type.DUST, this).time(10 + this.rand.nextInt(5)).spawn(this.world);
         this.playSound(SoundEvents.BLOCK_ANVIL_PLACE, 0.5F, 0.5F / (this.rand.nextFloat() * 0.2F + 0.4F));
     }
 
     @Override
     public void onBlockHit(RayTraceResult hit) {
-        ParticleBuilder.create(ParticleBuilder.Type.DUST, this).time(10 + this.rand.nextInt(5)).spawn(this.world);
         this.playSound(SoundEvents.BLOCK_ANVIL_LAND, 0.5F, 0.7F / (this.rand.nextFloat() * 0.2F + 0.4F));
     }
 
@@ -54,7 +50,6 @@ public class EntityAcceleratedMass extends EntityMagicArrow {
         this.motionY *= 1.1;
         this.motionZ *= 1.1;
         accelerated_damage = Math.min(accelerated_damage * 1.2, WNGSpells.accelerated_mass.getProperty("damage").doubleValue() * 3);
-        ParticleBuilder.create(ParticleBuilder.Type.DUST, this).time(10 + this.rand.nextInt(5)).spawn(this.world);
     }
 
     protected void entityInit() {

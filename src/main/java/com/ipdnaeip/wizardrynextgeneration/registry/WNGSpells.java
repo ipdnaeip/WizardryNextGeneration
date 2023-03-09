@@ -67,6 +67,8 @@ public final class WNGSpells {
     public static final Spell gravitational_field = placeholder();
     public static final Spell anti_gravitational_field = placeholder();
     public static final Spell smite = placeholder();
+    public static final Spell fission_blast = placeholder();
+    public static final Spell piercing_mass = placeholder();
 
     @SuppressWarnings("unchecked")
     @SubscribeEvent
@@ -78,7 +80,7 @@ public final class WNGSpells {
         registry.register(new Photosynthesis());
         registry.register(new Scorch());
         registry.register(new BloodInfusion());
-        registry.register(new AcceleratedMass());
+        //registry.register(new AcceleratedMass());
         registry.register(new Moonlight());
         registry.register(new SapIntellect());
         registry.register(new SapStrength());
@@ -108,7 +110,7 @@ public final class WNGSpells {
         registry.register(new RighteousDefense());
         registry.register(new Frostburn());
         registry.register(new Veneficium());
-        registry.register(new Meditate());
+        //registry.register(new Meditate());
         registry.register(new Assassinate());
         registry.register(new AntiGravitationalPush());
         registry.register(new GravitationalPull());
@@ -116,6 +118,8 @@ public final class WNGSpells {
         registry.register(new GravitationalField());
         registry.register(new AntiGravitationalField());
         registry.register(new Smite());
+        //registry.register(new FissionBlast());
+        //registry.register(new PiercingMass());
     }
 }
 

@@ -31,18 +31,24 @@ public class WNGLoot {
 
     public static void register(){
 
+        //chests
         LootTableList.register(new ResourceLocation(WizardryNextGeneration.MODID, "chests/dungeon_additions"));
+
+        //subsets
         LootTableList.register(new ResourceLocation(WizardryNextGeneration.MODID, "subsets/uncommon_artefacts"));
         LootTableList.register(new ResourceLocation(WizardryNextGeneration.MODID, "subsets/rare_artefacts"));
         LootTableList.register(new ResourceLocation(WizardryNextGeneration.MODID, "subsets/epic_artefacts"));
         LootTableList.register(new ResourceLocation(WizardryNextGeneration.MODID, "subsets/wizardrynextgeneration_books_and_scrolls"));
+
+        //entities
+        LootTableList.register(new ResourceLocation(WizardryNextGeneration.MODID, "entities/webspitter"));
 
     }
 
     @SubscribeEvent
     public static void onLootTableLoadEvent(LootTableLoadEvent event) {
 
-        event.getTable().addPool(getAdditive(WizardryNextGeneration.MODID + ":chests/dungeon_additions", WizardryNextGeneration.MODID + "_WizardryNextGeneration_dungeon_additions"));
+        event.getTable().addPool(getAdditive(WizardryNextGeneration.MODID + ":chests/dungeon_additions", WizardryNextGeneration.MODID + "_wizardrynextgeneration_dungeon_additions"));
 
         // Fortunately the loot tables load before wizardry, so we can make a static reference to them and reuse it
         if (event.getName().toString().equals(WizardryNextGeneration.MODID + ":subsets/uncommon_artefacts")) {

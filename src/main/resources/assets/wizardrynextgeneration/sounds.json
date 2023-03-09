@@ -1,6 +1,6 @@
 {
   "spell.accelerated_mass":               {"category": "spells", "sounds": ["random/bow"]},
-  "spell.anti_gravitational_field": 	      {"category": "spells", "sounds": ["ebwizardry:effect1", "ebwizardry:effect2"]},
+  "spell.anti_gravitational_field": 	  {"category": "spells", "sounds": ["ebwizardry:effect1", "ebwizardry:effect2"]},
   "spell.anti_gravitational_push": 	      {"category": "spells", "sounds": ["ebwizardry:effect1", "ebwizardry:effect2"]},
   "spell.assassinate":                    {"category": "spells", "sounds": [""]},
   "spell.bless_meat":                     {"category": "spells", "sounds": ["ebwizardry:buff"]},
@@ -11,6 +11,7 @@
   "spell.conduction":                     {"category": "spells", "sounds": ["ebwizardry:arc1", "ebwizardry:arc2", "ebwizardry:arc3"]},
   "spell.divine_shield":                  {"category": "spells", "sounds": ["ebwizardry:buff"]},
   "spell.equality":                       {"category": "spells", "sounds": ["random/anvil_land"]},
+  "spell.fission_blast":                  {"category": "spells", "sounds": ["random/bow"]},
   "spell.frenzy":                         {"category": "spells", "sounds": ["mob/wither/idle1", "mob/wither/idle2", "mob/wither/idle3", "mob/wither/idle4"]},
   "spell.frostbite":                      {"category": "spells", "sounds": ["ebwizardry:ice"]},
   "spell.frostburn":                      {"category": "spells", "sounds": ["ebwizardry:ice"]},

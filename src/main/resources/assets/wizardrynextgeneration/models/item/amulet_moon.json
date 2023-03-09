@@ -1,6 +1,9 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "wizardrynextgeneration:items/amulet_moon"
-  }
+    "layer0": "wizardrynextgeneration:items/amulet_moon_charged"
+  },
+  "overrides": [
+    {"predicate": {"ready": 1.0}, "model": "wizardrynextgeneration:item/amulet_moon_uncharged"}
+  ]
 }
