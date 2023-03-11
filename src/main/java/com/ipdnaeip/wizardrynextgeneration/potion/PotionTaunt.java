@@ -31,7 +31,7 @@ public class PotionTaunt extends PotionMagicEffect {
     public static void onLivingUpdateEvent(LivingEvent.LivingUpdateEvent event) {
         EntityLivingBase entity = event.getEntityLiving();
         if (entity.isPotionActive(WNGPotions.taunt)) {
-            List<EntityLivingBase> targets = EntityUtils.getLivingWithinRadius(5 + (2.5 * entity.getActivePotionEffect(WNGPotions.taunt).getAmplifier()), entity.posX, entity.posY, entity.posZ, entity.getEntityWorld());
+            List<EntityLivingBase> targets = EntityUtils.getLivingWithinRadius(8 + (4 * entity.getActivePotionEffect(WNGPotions.taunt).getAmplifier()), entity.posX, entity.posY, entity.posZ, entity.getEntityWorld());
             Iterator var6 = targets.iterator();
             while (var6.hasNext()) {
                 EntityLivingBase targetEntity = (EntityLivingBase) var6.next();

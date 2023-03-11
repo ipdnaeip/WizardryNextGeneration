@@ -5,13 +5,10 @@ import electroblob.wizardry.Wizardry;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.storage.loot.*;
 import net.minecraft.world.storage.loot.conditions.LootCondition;
-import net.minecraft.world.storage.loot.conditions.LootConditionManager;
 import net.minecraftforge.event.LootTableLoadEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-
-import java.util.Arrays;
 import java.util.List;
 
 @Mod.EventBusSubscriber
@@ -47,8 +44,6 @@ public class WNGLoot {
 
     @SubscribeEvent
     public static void onLootTableLoadEvent(LootTableLoadEvent event) {
-
-        event.getTable().addPool(getAdditive(WizardryNextGeneration.MODID + ":chests/dungeon_additions", WizardryNextGeneration.MODID + "_wizardrynextgeneration_dungeon_additions"));
 
         // Fortunately the loot tables load before wizardry, so we can make a static reference to them and reuse it
         if (event.getName().toString().equals(WizardryNextGeneration.MODID + ":subsets/uncommon_artefacts")) {

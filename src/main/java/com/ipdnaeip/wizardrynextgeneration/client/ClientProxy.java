@@ -2,6 +2,7 @@ package com.ipdnaeip.wizardrynextgeneration.client;
 
 import com.ipdnaeip.wizardrynextgeneration.CommonProxy;
 import com.ipdnaeip.wizardrynextgeneration.WizardryNextGeneration;
+import com.ipdnaeip.wizardrynextgeneration.client.renderer.entity.RenderWebspitter;
 import com.ipdnaeip.wizardrynextgeneration.client.renderer.entity.layers.LayerSolarSentinel;
 import com.ipdnaeip.wizardrynextgeneration.entity.construct.EntityAntiGravitationalField;
 import com.ipdnaeip.wizardrynextgeneration.entity.construct.EntityGravitationalField;
@@ -10,14 +11,8 @@ import com.ipdnaeip.wizardrynextgeneration.entity.projectile.EntityAcceleratedMa
 import com.ipdnaeip.wizardrynextgeneration.entity.projectile.EntityFissionBlast;
 import com.ipdnaeip.wizardrynextgeneration.entity.projectile.EntityPiercingMass;
 import electroblob.wizardry.client.renderer.entity.RenderMagicArrow;
-import electroblob.wizardry.client.renderer.entity.RenderProjectile;
 import electroblob.wizardry.client.renderer.entity.RenderSigil;
 import electroblob.wizardry.client.renderer.entity.layers.LayerTiledOverlay;
-import electroblob.wizardry.entity.living.EntityIceWraith;
-import net.minecraft.client.renderer.entity.RenderBlaze;
-import net.minecraft.client.renderer.entity.RenderSpider;
-import net.minecraft.entity.monster.EntityBlaze;
-import net.minecraft.entity.monster.EntitySpider;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 
@@ -37,8 +32,8 @@ public class ClientProxy extends CommonProxy {
         RenderingRegistry.registerEntityRenderingHandler(EntityGravitationalField.class, manager -> new RenderSigil(manager, new ResourceLocation(WizardryNextGeneration.MODID, "textures/entity/gravitational_field.png"), 0.0F, false));
 
         //living
-        RenderingRegistry.registerEntityRenderingHandler(EntityWebspitter.class, (manager) -> {return new RenderSpider(manager) {
-                protected ResourceLocation getEntityTexture(EntitySpider entity) {
+        RenderingRegistry.registerEntityRenderingHandler(EntityWebspitter.class, (manager) -> {return new RenderWebspitter(manager) {
+                protected ResourceLocation getEntityTexture(EntityWebspitter entity) {
                     return new ResourceLocation("wizardrynextgeneration", "textures/entity/webspitter.png");
                 }
             };

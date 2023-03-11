@@ -4,7 +4,6 @@ import com.ipdnaeip.wizardrynextgeneration.integration.baubles.WNGBaublesIntegra
 import com.ipdnaeip.wizardrynextgeneration.registry.WNGItems;
 import com.ipdnaeip.wizardrynextgeneration.registry.WNGLoot;
 import electroblob.wizardry.util.SpellNetworkIDSorter;
-import net.minecraft.init.Blocks;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.SidedProxy;

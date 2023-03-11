@@ -23,8 +23,4 @@ public final class WNGTabs {
         }
     };
 
-
-
-
-
 }

@@ -83,13 +83,6 @@ public class WNGEventHandler {
     }
 
     @SubscribeEvent
-    public static void onLivingDeathEvent(LivingDeathEvent event) {
-        if (event.getSource().getTrueSource() instanceof EntityPlayer) {
-            event.setCanceled(true);
-        }
-    }
-
-    @SubscribeEvent
     public static void onSpellCastPostEvent(SpellCastEvent.Post event) {
         if (event.getCaster() instanceof EntityPlayer) {
             EntityPlayer player = (EntityPlayer) event.getCaster();
@@ -105,22 +98,14 @@ public class WNGEventHandler {
     public static void onLivingUpdateEvent(LivingEvent.LivingUpdateEvent event) {
         if (event.getEntity() instanceof EntityPlayer) {
             EntityPlayer player = (EntityPlayer)event.getEntity();
-/*            if (ItemArtefact.isArtefactActive(player, WNGItems.amulet_moon)) {
-                ItemStack amulet = WNGBaublesIntegration.getAmuletSlotItemStack(player);
-                if (player.world.provider.getMoonPhase(player.world.getWorldTime()) == 0 && !player.getEntityWorld().isDaytime() && player.world.canSeeSky(new BlockPos(player.posX, player.posY + (double)player.getEyeHeight(), player.posZ)) && ItemAmuletMoon.isReady(player.getEntityWorld(), amulet)) {
-                    amulet.setItemDamage(0);
-                }
-            }*/
             if (ItemNewArtefact.isNewArtefactActive(player, WNGItems.head_hashashin)) {
                 if (player.isSneaking() && player.getBrightness() < 0.5F) {
                     player.addPotionEffect(new PotionEffect(MobEffects.INVISIBILITY, 5, 0));
-                    //player.setInvisible(true);
                 }
             }
             if (ItemNewArtefact.isNewArtefactActive(player, WNGItems.body_hashashin)) {
                 if (player.isSneaking() && player.getBrightness() < 0.5F) {
                     player.addPotionEffect(new PotionEffect(WizardryPotions.muffle, 5, 0));
-                    //player.setSilent(true);
                 }
             }
             if (ItemNewArtefact.isNewArtefactActive(player, WNGItems.body_hashashin) && ItemNewArtefact.isNewArtefactActive(player, WNGItems.head_hashashin)) {

@@ -83,13 +83,13 @@ potion.wizardrynextgeneration:veneficium=Veneficium
 
 #spell
 
-spell.wizardrynextgeneration:accelerated_mass=Accelerating Mass
+spell.wizardrynextgeneration:accelerated_mass=Accelerated Mass
 spell.wizardrynextgeneration:accelerated_mass.desc=Launch a chunk of metal that increases in velocity and damage as it travels.
 spell.wizardrynextgeneration:anti_gravitational_field=Anti-Gravitational Field
 spell.wizardrynextgeneration:anti_gravitational_field.desc=Create an area of reversed gravity.
 spell.wizardrynextgeneration:anti_gravitational_push=Anti-Gravitational Push
 spell.wizardrynextgeneration:anti_gravitational_push.desc=Reverse your gravity.
-spell.wizardrynextgeneration:assassinate=Assassinate
+spell.wizardrynextgeneration:assassinate=Assassination
 spell.wizardrynextgeneration:assassinate.desc=Strike a creature with a deadly shadow, dealing bonus damage if they are unaware of your presence.
 spell.wizardrynextgeneration:bless_meat=Bless Meat
 spell.wizardrynextgeneration:bless_meat.desc=Bless rotten flesh into a highly nutritious substitute.
@@ -135,7 +135,7 @@ spell.wizardrynextgeneration:gravitational_field=Gravitational Field
 spell.wizardrynextgeneration:gravitational_field.desc=Create an area of increased gravity.
 spell.wizardrynextgeneration:gravitational_pull=Gravitational Pull
 spell.wizardrynextgeneration:gravitational_pull.desc=Increase a creature's gravity.
-spell.wizardrynextgeneration:meditate=Meditate
+spell.wizardrynextgeneration:meditate=Meditation
 spell.wizardrynextgeneration:meditate.desc=Heal your wounds through self-reflection.
 spell.wizardrynextgeneration:meditate.moving=You need to be still to meditate.
 spell.wizardrynextgeneration:migraine=Migraine
