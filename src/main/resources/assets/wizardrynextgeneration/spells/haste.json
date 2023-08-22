@@ -4,7 +4,7 @@
     "scroll": true,
     "wands": true,
     "npcs": true,
-    "dispensers": false,
+    "dispensers": true,
     "commands": true,
     "treasure": true,
     "trades": true,
@@ -17,6 +17,7 @@
   "chargeup": 5,
   "cooldown": 60,
   "base_properties": {
-    "effect_duration": 600
+    "haste_duration": 600,
+    "haste_strength": 0
   }
 }

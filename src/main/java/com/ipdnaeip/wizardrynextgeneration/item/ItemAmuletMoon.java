@@ -1,7 +1,6 @@
 package com.ipdnaeip.wizardrynextgeneration.item;
 
 import com.ipdnaeip.wizardrynextgeneration.integration.baubles.WNGBaublesIntegration;
-import electroblob.wizardry.client.DrawingUtils;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.MobEffects;
@@ -20,12 +19,14 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import javax.annotation.Nullable;
 
 //most of the code was copied from Windanesz's ItemDailyArtefact
-public class ItemAmuletMoon extends ItemWNGArtefact {
+public class ItemAmuletMoon extends ItemCooldownArtefact {
 
     private static final String LAST_TIME_ACTIVATED = "last_time_activated";
+    private static final String FULL_MOON = "has_been_full_moon";
 
     public ItemAmuletMoon(EnumRarity rarity, Type type) {
         super(rarity, type);
+        setCooldown(24000);
         addReadinessPropertyOverride();
     }
 
@@ -42,41 +43,36 @@ public class ItemAmuletMoon extends ItemWNGArtefact {
         });
     }
 
-    public static void performAction(EntityPlayer player) {
-        ItemStack amulet = WNGBaublesIntegration.getAmuletSlotItemStack(player);
-        player.setHealth(0.5F);
-        player.addPotionEffect(new PotionEffect(MobEffects.ABSORPTION, 100, 1));
-        player.addPotionEffect(new PotionEffect(MobEffects.REGENERATION, 900, 1));
-        player.getEntityWorld().playSound(player, player.getPosition(), SoundEvents.ITEM_TOTEM_USE, SoundCategory.BLOCKS, 1F, 0F);
-        setLastTimeActivated(amulet, player.getEntityWorld().getTotalWorldTime());
-    }
-
-    public static boolean isReady(World world, ItemStack stack) {
+    public boolean isReady(World world, ItemStack stack) {
         if (world != null && !stack.isEmpty() && stack.hasTagCompound() && stack.getTagCompound().hasKey(LAST_TIME_ACTIVATED)) {
             long currentWorldTime = world.getTotalWorldTime();
             long lastAccess = stack.getTagCompound().getLong(LAST_TIME_ACTIVATED);
-            //System.out.println(lastAccess + " " + currentWorldTime + " " + isFullDayBetween(lastAccess, currentWorldTime));
-            return isFullDayBetween(lastAccess, currentWorldTime);
+            return isCooldownReset(lastAccess, currentWorldTime) && stack.getTagCompound().getBoolean(FULL_MOON);
         }
         return true;
     }
 
-    public static boolean isFullDayBetween(long startTime, long endTime) {
-        long fullDay = 24000;
-        return (endTime - startTime) >= fullDay;
+    public void performAction(EntityPlayer player, ItemStack stack) {
+        if (isReady(player.world, stack)) {
+            player.setHealth(0.5F);
+            player.clearActivePotions();
+            player.addPotionEffect(new PotionEffect(MobEffects.ABSORPTION, 100, 1));
+            player.addPotionEffect(new PotionEffect(MobEffects.REGENERATION, 900, 1));
+            player.getEntityWorld().playSound(player, player.getPosition(), SoundEvents.ITEM_TOTEM_USE, SoundCategory.BLOCKS, 1F, 0F);
+            setLastTimeActivated(stack, player.getEntityWorld().getTotalWorldTime());
+            SetHasBeenFullMoon(stack, false);
+        }
     }
 
-    public static void setLastTimeActivated(ItemStack stack, long currentTime) {
+    public static void SetHasBeenFullMoon(ItemStack stack, boolean fullMoon) {
+        NBTTagCompound nbt;
         if (stack.hasTagCompound()) {
-            NBTTagCompound nbt = stack.getTagCompound();
-            nbt.setLong(LAST_TIME_ACTIVATED, currentTime);
-            stack.setTagCompound(nbt);
+            nbt = stack.getTagCompound();
         } else {
-            NBTTagCompound nbt = new NBTTagCompound();
-            nbt.setLong(LAST_TIME_ACTIVATED, currentTime);
-            stack.setTagCompound(nbt);
+            nbt = new NBTTagCompound();
         }
-
+        nbt.setBoolean(FULL_MOON, fullMoon);
+        stack.setTagCompound(nbt);
     }
 
 }

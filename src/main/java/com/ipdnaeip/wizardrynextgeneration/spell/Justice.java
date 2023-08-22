@@ -26,25 +26,19 @@ public class Justice extends SpellAreaEffect  {
         this.particleDensity(0.5F);
         this.targetAllies(false);
         this.alwaysSucceed(true);
-        this.addProperties(EFFECT_RADIUS);
+        this.addProperties();
     }
 
     @Override
-    protected boolean affectEntity(World world, Vec3d vec3d, @Nullable EntityLivingBase caster, EntityLivingBase target, int i, int i1, SpellModifiers modifiers) {
-        EntityPlayer castertemp = (EntityPlayer) caster;
+    protected boolean affectEntity(World world, Vec3d vec3d, @Nullable EntityLivingBase caster, EntityLivingBase target, int i, int ticksInUse, SpellModifiers modifiers) {
         if (caster != null) {
             float low_health = target.getHealth() - (target.getMaxHealth() / caster.getMaxHealth() * caster.getHealth());
             float high_health = Math.min(target.getHealth() - (target.getMaxHealth() / caster.getMaxHealth() * caster.getHealth()), (caster.getMaxHealth() - caster.getHealth()) * (1 + modifiers.get("potency")));
-            if (target.getHealth() / target.getMaxHealth() <= caster.getHealth() / caster.getMaxHealth() || caster.getHealth() == caster.getMaxHealth()) {
-                if (!world.isRemote) castertemp.sendStatusMessage(new TextComponentTranslation("spell." + this.getUnlocalisedName() + ".no_effect"), true);
-                return false;
-            }
             if (target.getMaxHealth() <= caster.getMaxHealth()) {
                 this.soundValues(1F, 0.6F, 0.1F);
                 EntityUtils.attackEntityWithoutKnockback(target, MagicDamage.causeDirectMagicDamage(caster, MagicDamage.DamageType.RADIANT), low_health);
             }
             if (target.getMaxHealth() > caster.getMaxHealth()) {
-                if (!world.isRemote) castertemp.sendStatusMessage(new TextComponentTranslation("spell." + this.getUnlocalisedName() + ".high_health"), true);
                 this.soundValues(1F, 0.4F, 0.1F);
                 EntityUtils.attackEntityWithoutKnockback(target, MagicDamage.causeDirectMagicDamage(caster, MagicDamage.DamageType.RADIANT), high_health);
             }

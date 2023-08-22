@@ -123,20 +123,30 @@ public final class WNGBaublesIntegration {
         return artefacts;
     }
 
-    public static ItemStack getBeltSlotItemStack(EntityPlayer player) {
+    public static ItemStack getAmuletSlotItemStack(EntityPlayer player) {
         IBaublesItemHandler baubles = BaublesApi.getBaublesHandler(player);
-        int beltSlot = 3; // from BaubleType.BELT
-        ItemStack stack = baubles.getStackInSlot(beltSlot);
+        int slot = 0; // from BaubleType.AMULET
+        ItemStack stack = baubles.getStackInSlot(slot);
         if (stack != null) {
             return stack;
         }
         return ItemStack.EMPTY;
     }
 
-    public static ItemStack getAmuletSlotItemStack(EntityPlayer player) {
+    public static ItemStack getBeltSlotItemStack(EntityPlayer player) {
         IBaublesItemHandler baubles = BaublesApi.getBaublesHandler(player);
-        int amuletSlot = 0; // from BaubleType.AMULET
-        ItemStack stack = baubles.getStackInSlot(amuletSlot);
+        int slot = 3; // from BaubleType.BELT
+        ItemStack stack = baubles.getStackInSlot(slot);
+        if (stack != null) {
+            return stack;
+        }
+        return ItemStack.EMPTY;
+    }
+
+    public static ItemStack getCharmSlotItemStack(EntityPlayer player) {
+        IBaublesItemHandler baubles = BaublesApi.getBaublesHandler(player);
+        int slot = 6; // from BaubleType.CHARM
+        ItemStack stack = baubles.getStackInSlot(slot);
         if (stack != null) {
             return stack;
         }

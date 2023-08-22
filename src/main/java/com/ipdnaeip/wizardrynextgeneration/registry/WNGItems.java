@@ -1,6 +1,7 @@
 package com.ipdnaeip.wizardrynextgeneration.registry;
 
 import com.ipdnaeip.wizardrynextgeneration.WizardryNextGeneration;
+import com.ipdnaeip.wizardrynextgeneration.constants.Discipline;
 import com.ipdnaeip.wizardrynextgeneration.item.*;
 import electroblob.wizardry.block.BlockBookshelf;
 import electroblob.wizardry.inventory.ContainerBookshelf;
@@ -36,11 +37,16 @@ public final class WNGItems {
     }
 
     //misc
+    public static final Item battleaxe_iron = placeholder();
     public static final Item blessed_meat = placeholder();
+    public static final Item spear_diamond = placeholder();
+    public static final Item spear_stone = placeholder();
 
     //magical items
     public static final Item scroll_wng = placeholder();
     public static final Item spell_book_wng = placeholder();
+    public static final Item spell_encyclopedia = placeholder();
+    public static final Item tablet_earth = placeholder();
 
     //amulet
     public static final Item amulet_moon = placeholder();
@@ -50,9 +56,11 @@ public final class WNGItems {
 
     //body
     public static final Item body_hashashin = placeholder();
+    public static final Item body_artemis = placeholder();
 
     //charm
     public static final Item charm_dice = placeholder();
+    public static final Item charm_horn = placeholder();
 
     //head
     public static final Item head_hashashin = placeholder();
@@ -115,6 +123,7 @@ public final class WNGItems {
         //magical items
         registerItem(registry, "scroll_wng", new ItemScroll());
         registerItem(registry,"spell_book_wng", new ItemWNGSpellBook());
+        registerItem(registry, "spell_encyclopedia", new ItemSpellEncyclopedia());
 
         //amulet
         registerItem(registry, "amulet_moon", new ItemAmuletMoon(EnumRarity.EPIC, ItemArtefact.Type.AMULET));
@@ -123,10 +132,12 @@ public final class WNGItems {
         registerItem(registry, "belt_potion", new ItemBeltPotion(EnumRarity.RARE, ItemNewArtefact.AdditionalType.BELT));
 
         //body
+        registerItem(registry, "body_artemis", new ItemNewArtefact(EnumRarity.RARE, ItemNewArtefact.AdditionalType.BODY));
         registerItem(registry, "body_hashashin", new ItemNewArtefact(EnumRarity.RARE, ItemNewArtefact.AdditionalType.BODY));
 
         //charm
         registerItem(registry, "charm_dice", new ItemWNGArtefact(EnumRarity.EPIC, ItemArtefact.Type.CHARM));
+        registerItem(registry, "charm_horn", new ItemCharmHorn(EnumRarity.EPIC, ItemArtefact.Type.CHARM));
 
         //head
         registerItem(registry, "head_hashashin", new ItemNewArtefact(EnumRarity.RARE, ItemNewArtefact.AdditionalType.HEAD));

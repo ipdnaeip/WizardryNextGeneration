@@ -10,14 +10,15 @@
     "trades": true,
     "looting": true
   },
-  "tier": "advanced",
+  "tier": "apprentice",
   "element": "earth",
   "type": "projectile",
   "cost": 15,
   "chargeup": 5,
   "cooldown": 20,
   "base_properties": {
-    "range": 50,
-    "damage": 1
+    "range": 25,
+    "damage": 1,
+    "shots": 8
   }
 }

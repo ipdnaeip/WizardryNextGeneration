@@ -1,10 +1,9 @@
 package com.ipdnaeip.wizardrynextgeneration.spell;
 
 import com.ipdnaeip.wizardrynextgeneration.WizardryNextGeneration;
-import com.ipdnaeip.wizardrynextgeneration.entity.projectile.EntityAcceleratedMass;
 import com.ipdnaeip.wizardrynextgeneration.entity.projectile.EntityFissionBlast;
 import com.ipdnaeip.wizardrynextgeneration.registry.WNGItems;
-import electroblob.wizardry.entity.projectile.EntityMagicArrow;
+import electroblob.wizardry.registry.WizardryItems;
 import electroblob.wizardry.spell.SpellArrow;
 import electroblob.wizardry.util.SpellModifiers;
 import net.minecraft.entity.player.EntityPlayer;
@@ -16,23 +15,21 @@ public class FissionBlast extends SpellArrow<EntityFissionBlast> {
 
     public FissionBlast() {
         super(WizardryNextGeneration.MODID, "fission_blast", EntityFissionBlast::new);
-        this.soundValues(1F, 1F, 0.1F);
-        this.addProperties("damage");
+        this.addProperties(DAMAGE, "shots");
     }
 
     @Override
     public boolean cast(World world, EntityPlayer caster, EnumHand hand, int ticksInUse, SpellModifiers modifiers) {
-        for (int i = 0; i < 8; i++) {
-        if (!world.isRemote) {
-            EntityFissionBlast projectile = this.arrowFactory.apply(world);
-            projectile.aim(caster, this.calculateVelocity(projectile, modifiers, caster.getEyeHeight() - 0.1F));
-            projectile.damageMultiplier = modifiers.get("potency");
-            this.addArrowExtras(projectile, caster, modifiers);
-            world.spawnEntity(projectile);
+        for (int i = 0; i < this.getProperty("shots").floatValue() * modifiers.get(WizardryItems.blast_upgrade); i++) {
+            if (!world.isRemote) {
+                EntityFissionBlast projectile = this.arrowFactory.apply(world);
+                projectile.aim(caster, this.calculateVelocity(projectile, modifiers, caster.getEyeHeight() - 0.1F));
+                projectile.damageMultiplier = modifiers.get("potency");
+                this.addArrowExtras(projectile, caster, modifiers);
+                world.spawnEntity(projectile);
+            }
         }
-        }
-
-        this.playSound(world, caster, ticksInUse, -1, modifiers, new String[0]);
+        this.playSound(world, caster, ticksInUse, -1, modifiers);
         return true;
     }
 

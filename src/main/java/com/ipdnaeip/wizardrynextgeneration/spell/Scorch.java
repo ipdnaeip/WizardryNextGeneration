@@ -31,15 +31,11 @@ public class Scorch extends SpellRay {
 
     @Override
     protected boolean onEntityHit(World world, Entity target, Vec3d hit, EntityLivingBase caster, Vec3d origin, int ticksInUse, SpellModifiers modifiers) {
-
         if (target instanceof EntityLivingBase) {
-
             EntityLivingBase targetEntity = (EntityLivingBase) target;
             float damage = getProperty(DAMAGE).floatValue() * modifiers.get(SpellModifiers.POTENCY);
             boolean burning = targetEntity.isBurning();
-
             if (burning) {
-
                 damage = damage * getProperty(MULTIPLIER_TAG).floatValue();
                 targetEntity.attackEntityFrom(MagicDamage.causeDirectMagicDamage(caster, MagicDamage.DamageType.FIRE), damage);
                 world.playSound(null, target.getPosition(), SoundEvents.BLOCK_FIRE_EXTINGUISH, SoundCategory.BLOCKS, 1.0F, world.rand.nextFloat() * 0.2F + 0.9F);
@@ -50,10 +46,12 @@ public class Scorch extends SpellRay {
         }
         return false;
     }
+
     @Override
     protected boolean onBlockHit(World world, BlockPos pos, EnumFacing side, Vec3d hit, EntityLivingBase caster, Vec3d origin, int ticksInUse, SpellModifiers modifiers) {
         return true;
     }
+
     @Override
     protected boolean onMiss(World world, EntityLivingBase caster, Vec3d origin, Vec3d direction, int ticksInUse, SpellModifiers modifiers) {
         return true;

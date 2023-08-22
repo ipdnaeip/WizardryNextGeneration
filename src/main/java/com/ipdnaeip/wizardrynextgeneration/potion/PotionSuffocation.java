@@ -35,6 +35,7 @@ public class PotionSuffocation extends PotionMagicEffect {
     public static void onLivingUpdateEvent(LivingEvent.LivingUpdateEvent event) {
         EntityLivingBase entity = event.getEntityLiving();
         if (entity.isPotionActive(WNGPotions.suffocation)) {
+            entity.setAir(0);
             if (entity.ticksExisted % 20 == 0) {
                 entity.attackEntityFrom(DamageSource.DROWN, 2F + entity.getActivePotionEffect(WNGPotions.suffocation).getAmplifier());
             }

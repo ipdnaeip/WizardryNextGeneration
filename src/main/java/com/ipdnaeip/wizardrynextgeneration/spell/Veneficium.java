@@ -7,10 +7,7 @@ import com.ipdnaeip.wizardrynextgeneration.registry.WNGSpells;
 import electroblob.wizardry.item.SpellActions;
 import electroblob.wizardry.registry.WizardryItems;
 import electroblob.wizardry.spell.SpellRay;
-import electroblob.wizardry.util.EntityUtils;
-import electroblob.wizardry.util.MagicDamage;
-import electroblob.wizardry.util.ParticleBuilder;
-import electroblob.wizardry.util.SpellModifiers;
+import electroblob.wizardry.util.*;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.init.MobEffects;
@@ -44,11 +41,9 @@ public class Veneficium extends SpellRay {
             double range = (WNGSpells.veneficium.getProperty(EFFECT_RADIUS).floatValue() * modifiers.get(WizardryItems.blast_upgrade));
             List<EntityLivingBase> targets = EntityUtils.getLivingWithinRadius(range, target.posX, target.posY, target.posZ, world);
             int duration = (int)(WNGSpells.veneficium.getProperty(EFFECT_DURATION).floatValue() * modifiers.get(WizardryItems.duration_upgrade));
-            Iterator var6 = targets.iterator();
-            while (var6.hasNext()) {
-                EntityLivingBase targetEntity = (EntityLivingBase) var6.next();
-                if (targetEntity != caster) {
-                    targetEntity.addPotionEffect(new PotionEffect(WNGPotions.veneficium, duration, (int)((modifiers.get("potency") - 1) * 3.5)));
+            for (EntityLivingBase targetEntity : targets) {
+                if (AllyDesignationSystem.isValidTarget(caster, targetEntity)) {
+                    targetEntity.addPotionEffect(new PotionEffect(WNGPotions.veneficium, duration, (int) ((modifiers.get("potency") - 1) * 3.5)));
                 }
             }
         }
@@ -64,10 +59,8 @@ public class Veneficium extends SpellRay {
                 double range = (WNGSpells.veneficium.getProperty(EFFECT_RADIUS).floatValue() * modifiers.get(WizardryItems.blast_upgrade));
                 List<EntityLivingBase> targets = EntityUtils.getLivingWithinRadius(range, target.x, target.y, target.z, world);
                 int duration = (int)(WNGSpells.veneficium.getProperty(EFFECT_DURATION).floatValue() * modifiers.get(WizardryItems.duration_upgrade));
-                Iterator var6 = targets.iterator();
-                while (var6.hasNext()) {
-                    EntityLivingBase targetEntity = (EntityLivingBase) var6.next();
-                    if (targetEntity != caster) {
+                for (EntityLivingBase targetEntity : targets) {
+                    if (AllyDesignationSystem.isValidTarget(caster, targetEntity)) {
                         targetEntity.addPotionEffect(new PotionEffect(WNGPotions.veneficium, duration, (int) ((modifiers.get("potency") - 1) * 3.5)));
                     }
                 }

@@ -33,11 +33,6 @@ public class Tase extends SpellRay {
     }
 
     @Override
-    public boolean canBeCastBy(TileEntityDispenser dispenser) {
-        return false;
-    }
-
-    @Override
     protected SoundEvent[] createSounds() {
         return this.createContinuousSpellSounds();
     }
@@ -55,31 +50,22 @@ public class Tase extends SpellRay {
 
     @Override
     protected boolean onEntityHit(World world, Entity target, Vec3d hit, EntityLivingBase caster, Vec3d origin, int ticksInUse, SpellModifiers modifiers) {
-        if (EntityUtils.isLiving(target)) {
-            if (MagicDamage.isEntityImmune(MagicDamage.DamageType.SHOCK, target)) {
-                if (!world.isRemote && ticksInUse == 1 && caster instanceof EntityPlayer) {
-                    ((EntityPlayer)caster).sendStatusMessage(new TextComponentTranslation("spell.resist", new Object[]{target.getName(), this.getNameForTranslationFormatted()}), true);
-                }
-            } else if (ticksInUse % 10 == 0) {
-                EntityUtils.attackEntityWithoutKnockback(target, MagicDamage.causeDirectMagicDamage(caster, MagicDamage.DamageType.SHOCK), this.getProperty(DAMAGE).floatValue() * modifiers.get(SpellModifiers.POTENCY));
-                if (target instanceof EntityLivingBase && Math.random() < 0.3F * (1 + modifiers.get(SpellModifiers.POTENCY))) {
-                    EntityLivingBase targetEntity = (EntityLivingBase) target;
-                    targetEntity.addPotionEffect(new PotionEffect(WizardryPotions.paralysis, WNGSpells.tase.getProperty(EFFECT_DURATION).intValue(), 0));
-                    world.playSound(null, target.getPosition(), WizardrySounds.ENTITY_LIGHTNING_ARROW_HIT, SoundCategory.BLOCKS, 1.0F, world.rand.nextFloat() * 0.2F + 1.2F);
-                }
-            }
-
-            if (world.isRemote) {
-                if (ticksInUse % 3 == 0) {
-                    ParticleBuilder.create(ParticleBuilder.Type.LIGHTNING).entity(caster).pos(caster != null ? origin.subtract(caster.getPositionVector()) : origin).target(target).spawn(world);
-                }
-
-                for(int i = 0; i < 5; ++i) {
-                    ParticleBuilder.create(ParticleBuilder.Type.SPARK, target).spawn(world);
-                }
+        if (target instanceof EntityLivingBase && ticksInUse % 10 == 0) {
+            EntityLivingBase targetEntity = (EntityLivingBase) target;
+            EntityUtils.attackEntityWithoutKnockback(target, MagicDamage.causeDirectMagicDamage(caster, MagicDamage.DamageType.SHOCK), this.getProperty(DAMAGE).floatValue() * modifiers.get(SpellModifiers.POTENCY));
+            if (Math.random() < 0.3F * (1 + modifiers.get(SpellModifiers.POTENCY))) {
+                targetEntity.addPotionEffect(new PotionEffect(WizardryPotions.paralysis, WNGSpells.tase.getProperty(EFFECT_DURATION).intValue(), 0));
+                world.playSound(null, target.getPosition(), WizardrySounds.ENTITY_LIGHTNING_ARROW_HIT, SoundCategory.BLOCKS, 1.0F, world.rand.nextFloat() * 0.2F + 1.2F);
             }
         }
-
+        if (world.isRemote) {
+            if (ticksInUse % 3 == 0) {
+                ParticleBuilder.create(ParticleBuilder.Type.LIGHTNING).entity(caster).pos(caster != null ? origin.subtract(caster.getPositionVector()) : origin).target(target).spawn(world);
+            }
+            for(int i = 0; i < 5; ++i) {
+                ParticleBuilder.create(ParticleBuilder.Type.SPARK, target).spawn(world);
+            }
+        }
         return true;
     }
 
@@ -92,13 +78,9 @@ public class Tase extends SpellRay {
     protected boolean onMiss(World world, EntityLivingBase caster, Vec3d origin, Vec3d direction, int ticksInUse, SpellModifiers modifiers) {
         if (world.isRemote && ticksInUse % 4 == 0) {
             double freeRange = 0.8 * this.getRange(world, origin, direction, caster, ticksInUse, modifiers);
-            if (caster != null) {
-                ParticleBuilder.create(ParticleBuilder.Type.LIGHTNING).entity(caster).pos(origin.subtract(caster.getPositionVector())).length(freeRange).spawn(world);
-            } else {
-                ParticleBuilder.create(ParticleBuilder.Type.LIGHTNING).pos(origin).target(origin.add(direction.scale(freeRange))).spawn(world);
-            }
+            ParticleBuilder.create(ParticleBuilder.Type.LIGHTNING).entity(caster).pos(caster != null ? origin.subtract(caster.getPositionVector()) : origin).length(freeRange).spawn(world);
+            ParticleBuilder.create(ParticleBuilder.Type.LIGHTNING).pos(origin).target(origin.add(direction.scale(freeRange))).spawn(world);
         }
-
         return true;
     }
 

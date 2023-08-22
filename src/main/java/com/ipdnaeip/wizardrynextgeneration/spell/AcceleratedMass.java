@@ -14,8 +14,7 @@ public class AcceleratedMass extends SpellArrow<EntityAcceleratedMass> {
 
     public AcceleratedMass() {
         super(WizardryNextGeneration.MODID, "accelerated_mass", EntityAcceleratedMass::new);
-        this.soundValues(1F, 0.6F, 0.2F);
-        this.addProperties("damage");
+        this.addProperties("damage", "damage_max_range_multiplier");
     }
 
     @Override

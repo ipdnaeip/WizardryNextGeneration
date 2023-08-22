@@ -33,9 +33,12 @@ public class Scapegoat extends SpellRay {
 
     @Override
     protected boolean onEntityHit(World world, Entity target, Vec3d hit, EntityLivingBase caster, Vec3d origin, int ticksInUse, SpellModifiers modifiers) {
-        EntityLivingBase targetEntity = (EntityLivingBase) target;
-        targetEntity.addPotionEffect(new PotionEffect(WNGPotions.taunt, (int)(this.getProperty(EFFECT_DURATION).floatValue() * modifiers.get(WizardryItems.duration_upgrade)), (int)((modifiers.get(SpellModifiers.POTENCY) -1) * 3.5)));
-        return true;
+        if (target instanceof EntityLivingBase) {
+            EntityLivingBase targetEntity = (EntityLivingBase) target;
+            targetEntity.addPotionEffect(new PotionEffect(WNGPotions.taunt, (int) (this.getProperty(EFFECT_DURATION).floatValue() * modifiers.get(WizardryItems.duration_upgrade)), (int) ((modifiers.get(SpellModifiers.POTENCY) - 1) * 3.5)));
+            return true;
+        }
+        return false;
     }
 
     @Override

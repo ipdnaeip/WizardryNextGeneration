@@ -10,6 +10,8 @@ import electroblob.wizardry.potion.ICustomPotionParticles;
 import electroblob.wizardry.potion.PotionMagicEffect;
 import electroblob.wizardry.registry.WizardrySounds;
 import electroblob.wizardry.util.ParticleBuilder;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.settings.GameSettings;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.MobEffects;
@@ -47,10 +49,13 @@ public class PotionSolarWinds extends PotionMagicEffect implements ICustomPotion
             EntityPlayer entityPlayer = (EntityPlayer) event.getEntityLiving();
             if (entity.isPotionActive(WNGPotions.solar_winds)) {
                 entity.getEntityWorld().playSound(null, entity.getPosition(), SoundEvents.ENTITY_BLAZE_BURN, SoundCategory.BLOCKS, 0.5F, entity.getEntityWorld().rand.nextFloat() * 0.2F + 0.9F);
-                if (!entity.onGround && entity.isSneaking()) {
-                    entity.motionY += 0.1;
+                if (!entity.onGround && GameSettings.isKeyDown(Minecraft.getMinecraft().gameSettings.keyBindJump)) {
+                    if (!Wizardry.settings.replaceVanillaFallDamage) {
+                        entity.fallDistance = 0.0F;
+                    }
+                    entity.motionY = entity.motionY < 0.5F ? entity.motionY + 0.1F : entity.motionY;
                     if (ItemNewArtefact.isNewArtefactActive(entityPlayer, WNGItems.head_ra)) {
-                        entity.jumpMovementFactor = 0.2F;
+                        entity.jumpMovementFactor = 0.05F;
                     }
                 }
             }

@@ -1,24 +1,16 @@
-/*
 package com.ipdnaeip.wizardrynextgeneration.client.gui;
 
 import electroblob.wizardry.Wizardry;
-import electroblob.wizardry.block.BlockBookshelf;
 import electroblob.wizardry.client.DrawingUtils;
 import electroblob.wizardry.client.gui.GuiButtonInvisible;
 import electroblob.wizardry.client.gui.GuiButtonSpellSort;
 import electroblob.wizardry.client.gui.GuiButtonTurnPage;
 import electroblob.wizardry.client.gui.GuiSpellInfo;
 import electroblob.wizardry.data.SpellGlyphData;
-import electroblob.wizardry.item.ItemSpellBook;
-import electroblob.wizardry.packet.PacketLectern;
-import electroblob.wizardry.packet.WizardryPacketHandler;
 import electroblob.wizardry.registry.Spells;
 import electroblob.wizardry.registry.WizardrySounds;
 import electroblob.wizardry.spell.Spell;
-import electroblob.wizardry.tileentity.TileEntityLectern;
-import electroblob.wizardry.util.GeometryUtils;
 import electroblob.wizardry.util.ISpellSortable;
-import electroblob.wizardry.util.ParticleBuilder;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.PositionedSoundRecord;
 import net.minecraft.client.audio.SoundHandler;
@@ -27,16 +19,10 @@ import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.GuiTextField;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.resources.I18n;
-import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.play.client.CPacketCloseWindow;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.text.Style;
 import net.minecraft.util.text.TextFormatting;
 import org.lwjgl.input.Keyboard;
@@ -71,8 +57,8 @@ public class GuiSpellEncyclopedia extends GuiSpellInfo implements ISpellSortable
     private GuiButton[] sortButtons = new GuiButton[3];
     private GuiButtonSpell[] spellButtons = new GuiButtonSpell[18];
     private Spell currentSpell;
-    private List<Spell> availableSpells = new ArrayList();
-    private List<Spell> matchingSpells;
+    private final List<Spell> availableSpells = Spell.getAllSpells();
+    private List matchingSpells;
     private ISpellSortable.SortType sortType;
     private boolean sortDescending;
     private GuiTextField searchField;
@@ -80,13 +66,12 @@ public class GuiSpellEncyclopedia extends GuiSpellInfo implements ISpellSortable
     private int searchBarHoverTime;
     private int currentPage;
 
-    public GuiSpellEncyclopedia(TileEntityLectern lectern) {
+    public GuiSpellEncyclopedia() {
         super(288, 180);
-        this.sortType = SortType.TIER;
+        this.sortType = SortType.ALPHABETICAL;
         this.sortDescending = false;
         this.currentPage = 0;
-        this.lectern = lectern;
-        this.currentSpell = lectern.currentSpell;
+        this.currentSpell = Spells.none;
         this.setTextureSize(512, 512);
     }
 
@@ -176,7 +161,7 @@ public class GuiSpellEncyclopedia extends GuiSpellInfo implements ISpellSortable
 
     protected void drawForegroundLayer(int left, int top, int mouseX, int mouseY) {
         if (this.currentSpell == Spells.none) {
-            this.fontRenderer.drawString(I18n.format("gui.ebwizardry:lectern.title", new Object[0]), left + 20, top + 20, 0);
+            this.fontRenderer.drawString(I18n.format("gui.ebwizardry:lectern.title"), left + 20, top + 20, 0);
         } else {
             super.drawForegroundLayer(left, top, mouseX, mouseY);
         }
@@ -228,7 +213,7 @@ public class GuiSpellEncyclopedia extends GuiSpellInfo implements ISpellSortable
         } else if (button == this.locateButton) {
             this.mc.player.connection.sendPacket(new CPacketCloseWindow(this.mc.player.openContainer.windowId));
             this.mc.displayGuiScreen((GuiScreen)null);
-            Iterator var3 = BlockBookshelf.findNearbyBookshelves(this.lectern.getWorld(), this.lectern.getPos(), new TileEntity[0]).iterator();
+            /*Iterator var3 = BlockBookshelf.findNearbyBookshelves(this.lectern.getWorld(), this.lectern.getPos(), new TileEntity[0]).iterator();
 
             label72:
             while(true) {
@@ -259,7 +244,7 @@ public class GuiSpellEncyclopedia extends GuiSpellInfo implements ISpellSortable
                         }
                     }
                 }
-            }
+            }*/
         } else if (button == this.nextPageButton) {
             if (this.currentPage < lastPage) {
                 ++this.currentPage;
@@ -344,13 +329,11 @@ public class GuiSpellEncyclopedia extends GuiSpellInfo implements ISpellSortable
     }
 
     private void updateMatchingSpells() {
-        this.matchingSpells = (List)this.availableSpells.stream().filter((s) -> {
-            return s.matches(this.searchField.getText().toLowerCase(Locale.ROOT));
-        }).sorted(this.sortDescending ? this.sortType.comparator.reversed() : this.sortType.comparator).collect(Collectors.toList());
+        this.matchingSpells = (List)this.availableSpells.stream().filter((s) -> s.matches(this.searchField.getText().toLowerCase(Locale.ROOT))).sorted(this.sortDescending ? this.sortType.comparator.reversed() : this.sortType.comparator).collect(Collectors.toList());
     }
 
     public void refreshAvailableSpells() {
-        this.availableSpells.clear();
+/*        this.availableSpells.clear();
         Iterator var1 = BlockBookshelf.findNearbyBookshelves(this.lectern.getWorld(), this.lectern.getPos(), new TileEntity[0]).iterator();
 
         while(var1.hasNext()) {
@@ -369,7 +352,7 @@ public class GuiSpellEncyclopedia extends GuiSpellInfo implements ISpellSortable
 
         if (!this.availableSpells.contains(this.currentSpell)) {
             this.currentSpell = Spells.none;
-        }
+        }*/
 
         this.updateMatchingSpells();
         this.updateButtonVisiblity();
@@ -398,8 +381,8 @@ public class GuiSpellEncyclopedia extends GuiSpellInfo implements ISpellSortable
             if (this.visible) {
                 super.drawButton(minecraft, mouseX, mouseY, partialTicks);
                 if (this.hovered) {
-                    this.mc.renderEngine.bindTexture(this.getTexture());
-                    DrawingUtils.drawTexturedRect(this.x, this.y, 40, 180, this.width, this.height, this.textureWidth, this.textureHeight);
+                    GuiSpellEncyclopedia.this.mc.renderEngine.bindTexture(GuiSpellEncyclopedia.this.getTexture());
+                    DrawingUtils.drawTexturedRect(this.x, this.y, 40, 180, this.width, this.height, GuiSpellEncyclopedia.this.textureWidth, GuiSpellEncyclopedia.this.textureHeight);
                 }
             }
 
@@ -407,11 +390,11 @@ public class GuiSpellEncyclopedia extends GuiSpellInfo implements ISpellSortable
 
         public void drawButtonForegroundLayer(int mouseX, int mouseY) {
             if (this.visible && this.hovered) {
-                Spell spell = this.getSpellForButton(this);
+                Spell spell = GuiSpellEncyclopedia.this.getSpellForButton(this);
                 if (Wizardry.proxy.shouldDisplayDiscovered(spell, (ItemStack)null)) {
-                    this.drawHoveringText(Collections.singletonList(spell.getDisplayName()), mouseX, mouseY, this.fontRenderer);
+                    GuiSpellEncyclopedia.this.drawHoveringText(Collections.singletonList(spell.getDisplayName()), mouseX, mouseY, GuiSpellEncyclopedia.this.fontRenderer);
                 } else {
-                    this.drawHoveringText(Collections.singletonList(SpellGlyphData.getGlyphName(spell, this.mc.world)), mouseX, mouseY, this.mc.standardGalacticFontRenderer);
+                    GuiSpellEncyclopedia.this.drawHoveringText(Collections.singletonList(SpellGlyphData.getGlyphName(spell, GuiSpellEncyclopedia.this.mc.world)), mouseX, mouseY, GuiSpellEncyclopedia.this.mc.standardGalacticFontRenderer);
                 }
             }
 
@@ -428,11 +411,10 @@ public class GuiSpellEncyclopedia extends GuiSpellInfo implements ISpellSortable
                 boolean flag = mouseX >= this.x && mouseY >= this.y && mouseX < this.x + this.width && mouseY < this.y + this.height;
                 GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
                 minecraft.getTextureManager().bindTexture(TEXTURE);
-                DrawingUtils.drawTexturedRect(this.x, this.y, flag ? this.width : 0, 184, this.width, this.height, this.textureWidth, this.textureHeight);
+                DrawingUtils.drawTexturedRect(this.x, this.y, flag ? this.width : 0, 184, this.width, this.height, GuiSpellEncyclopedia.this.textureWidth, GuiSpellEncyclopedia.this.textureHeight);
             }
 
         }
     }
 }
 
-*/

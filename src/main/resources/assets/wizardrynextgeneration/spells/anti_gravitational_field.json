@@ -12,7 +12,7 @@
   },
   "tier": "advanced",
   "element": "sorcery",
-  "type": "alteration",
+  "type": "construct",
   "cost": 50,
   "chargeup": 20,
   "cooldown": 100,

@@ -1,0 +1,20 @@
+{
+    "display": {
+        "title": {
+            "translate": "advancement.wizardrynextgeneration:accelerated_mass_max_damage"
+        },
+        "description": {
+            "translate": "advancement.wizardrynextgeneration:accelerated_mass_max_damage.desc"
+        },
+        "icon": {
+            "item": "minecraft:arrow"
+        },
+		"frame": "challenge"
+    },
+    "parent": "ebwizardry:discover_spell",
+    "criteria": {
+        "criteria_0": {
+            "trigger": "wizardrynextgeneration:accelerated_mass_max_damage"
+        }
+    }
+}

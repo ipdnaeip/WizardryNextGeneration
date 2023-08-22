@@ -51,7 +51,7 @@ public class PotionVeneficium extends PotionMagicEffect {
             EntityPlayer player = (EntityPlayer) event.getSource().getTrueSource();
             EntityLivingBase entity = event.getEntityLiving();
             if (entity.isPotionActive(WNGPotions.veneficium)) {
-                List<EntityLivingBase> targets = EntityUtils.getLivingWithinRadius(3 + (1.5 * entity.getActivePotionEffect(WNGPotions.veneficium).getAmplifier()), entity.posX, entity.posY, entity.posZ, entity.getEntityWorld());
+                List<EntityLivingBase> targets = EntityUtils.getLivingWithinRadius(4 + (2 * entity.getActivePotionEffect(WNGPotions.veneficium).getAmplifier()), entity.posX, entity.posY, entity.posZ, entity.getEntityWorld());
                 Iterator var6 = targets.iterator();
                 while (var6.hasNext()) {
                     EntityLivingBase targetEntity = (EntityLivingBase) var6.next();
@@ -61,7 +61,7 @@ public class PotionVeneficium extends PotionMagicEffect {
                                 ParticleBuilder.create(ParticleBuilder.Type.CLOUD, player.getEntityWorld().rand, entity.posX, entity.posY + entity.getEyeHeight() - 0.5F, entity.posZ, (2.0F), false).clr(0, 100, 0).fade(0, 170, 0).time(10 + player.getEntityWorld().rand.nextInt(10)).shaded(true).spawn(player.getEntityWorld());
                             }
                         }
-                        targetEntity.addPotionEffect(new PotionEffect(WNGPotions.veneficium, Math.max(100, entity.getActivePotionEffect(WNGPotions.veneficium).getDuration()), entity.getActivePotionEffect(WNGPotions.veneficium).getAmplifier()));
+                        targetEntity.addPotionEffect(new PotionEffect(WNGPotions.veneficium, entity.getActivePotionEffect(WNGPotions.veneficium).getDuration(), entity.getActivePotionEffect(WNGPotions.veneficium).getAmplifier()));
                     }
                 }
             }

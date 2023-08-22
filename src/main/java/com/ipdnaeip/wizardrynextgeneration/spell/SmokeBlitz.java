@@ -32,19 +32,23 @@ public class SmokeBlitz extends SpellRay {
 
     @Override
     protected boolean onEntityHit(World world, Entity target, Vec3d hit, EntityLivingBase caster, Vec3d origin, int ticksInUse, SpellModifiers modifiers) {
-        ParticleBuilder.create(ParticleBuilder.Type.FLASH).pos(target.posX, target.posY + target.getEyeHeight() - 0.5F, target.posZ).scale(1F).clr(0, 0, 0).spawn(world);
-        world.spawnParticle(EnumParticleTypes.EXPLOSION_LARGE, target.posX, target.posY + target.getEyeHeight() - 0.5F, target.posZ, 0.0, 0.0, 0.0);
-        for (int i = 0; (float) i < 20F; ++i) {
-            float brightness = world.rand.nextFloat() * 0.1F + 0.1F;
-            ParticleBuilder.create(ParticleBuilder.Type.CLOUD, world.rand, target.posX, target.posY + target.getEyeHeight() - 0.5F, target.posZ, 1F, false).clr(brightness, brightness, brightness).time(WNGSpells.smoke_blitz.getProperty(EFFECT_DURATION).intValue() + world.rand.nextInt(12)).shaded(true).spawn(world);
-            brightness = world.rand.nextFloat() * 0.3F;
-            ParticleBuilder.create(ParticleBuilder.Type.DARK_MAGIC, world.rand, target.posX, target.posY + target.getEyeHeight() - 0.5F, target.posZ, (1F), false).clr(brightness, brightness, brightness).spawn(world);
+        if (world.isRemote) {
+            ParticleBuilder.create(ParticleBuilder.Type.FLASH).pos(target.posX, target.posY + target.getEyeHeight() - 0.5F, target.posZ).scale(1F).clr(0, 0, 0).spawn(world);
+            world.spawnParticle(EnumParticleTypes.EXPLOSION_LARGE, target.posX, target.posY + target.getEyeHeight() - 0.5F, target.posZ, 0.0, 0.0, 0.0);
+            for (int i = 0; (float) i < 20F; ++i) {
+                float brightness = world.rand.nextFloat() * 0.1F + 0.1F;
+                ParticleBuilder.create(ParticleBuilder.Type.CLOUD, world.rand, target.posX, target.posY + target.getEyeHeight() - 0.5F, target.posZ, 1F, false).clr(brightness, brightness, brightness).time(WNGSpells.smoke_blitz.getProperty(EFFECT_DURATION).intValue() + world.rand.nextInt(12)).shaded(true).spawn(world);
+                brightness = world.rand.nextFloat() * 0.3F;
+                ParticleBuilder.create(ParticleBuilder.Type.DARK_MAGIC, world.rand, target.posX, target.posY + target.getEyeHeight() - 0.5F, target.posZ, (1F), false).clr(brightness, brightness, brightness).spawn(world);
+            }
         }
-        EntityLivingBase targetEntity = (EntityLivingBase) target;
-        int duration = (int)(WNGSpells.smoke_blitz.getProperty(EFFECT_DURATION).floatValue() * modifiers.get(WizardryItems.duration_upgrade));
-        EntityUtils.attackEntityWithoutKnockback(targetEntity, MagicDamage.causeDirectMagicDamage(caster, MagicDamage.DamageType.FIRE), getProperty(DAMAGE).floatValue() * modifiers.get(SpellModifiers.POTENCY));
-        targetEntity.addPotionEffect(new PotionEffect(MobEffects.BLINDNESS, duration, 0));
-        targetEntity.addPotionEffect(new PotionEffect(WNGPotions.suffocation, duration, 0));
+        if (target instanceof EntityLivingBase) {
+            EntityLivingBase targetEntity = (EntityLivingBase) target;
+            int duration = (int) (WNGSpells.smoke_blitz.getProperty(EFFECT_DURATION).floatValue() * modifiers.get(WizardryItems.duration_upgrade));
+            EntityUtils.attackEntityWithoutKnockback(targetEntity, MagicDamage.causeDirectMagicDamage(caster, MagicDamage.DamageType.FIRE), getProperty(DAMAGE).floatValue() * modifiers.get(SpellModifiers.POTENCY));
+            targetEntity.addPotionEffect(new PotionEffect(MobEffects.BLINDNESS, duration, 0));
+            targetEntity.addPotionEffect(new PotionEffect(WNGPotions.suffocation, duration, 0));
+        }
         return true;
     }
     @Override

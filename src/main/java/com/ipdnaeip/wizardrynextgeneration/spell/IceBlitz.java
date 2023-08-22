@@ -34,11 +34,13 @@ public class IceBlitz extends SpellRay {
 
     @Override
     protected boolean onEntityHit(World world, Entity target, Vec3d hit, EntityLivingBase caster, Vec3d origin, int ticksInUse, SpellModifiers modifiers) {
-        EntityUtils.attackEntityWithoutKnockback(target, MagicDamage.causeDirectMagicDamage(caster, MagicDamage.DamageType.FROST), getProperty(DAMAGE).floatValue() * modifiers.get(SpellModifiers.POTENCY));
-        if (target instanceof EntityLiving && !world.isRemote && ((BlockStatue) WizardryBlocks.ice_statue).convertToStatue((EntityLiving)target, caster, (int)(this.getProperty("ice_duration").floatValue() * modifiers.get(WizardryItems.duration_upgrade)))) {
+        if (target instanceof EntityLivingBase) {
+            EntityUtils.attackEntityWithoutKnockback(target, MagicDamage.causeDirectMagicDamage(caster, MagicDamage.DamageType.FROST), getProperty(DAMAGE).floatValue() * modifiers.get(SpellModifiers.POTENCY));
+            if (target instanceof EntityLiving && !world.isRemote && ((BlockStatue) WizardryBlocks.ice_statue).convertToStatue((EntityLiving) target, caster, (int) (this.getProperty("ice_duration").floatValue() * modifiers.get(WizardryItems.duration_upgrade)))) {
+            }
+            EntityLivingBase targetEntity = (EntityLivingBase) target;
+            targetEntity.addPotionEffect(new PotionEffect(WizardryPotions.frost, (int) (this.getProperty("effect_duration").intValue() * modifiers.get(WizardryItems.duration_upgrade)), 1));
         }
-        EntityLivingBase targetEntity = (EntityLivingBase) target;
-        targetEntity.addPotionEffect(new PotionEffect(WizardryPotions.frost, (int)(this.getProperty("effect_duration").intValue() * modifiers.get(WizardryItems.duration_upgrade)), 1));
         return true;
     }
 

@@ -9,10 +9,7 @@ import electroblob.wizardry.registry.WizardryBlocks;
 import electroblob.wizardry.registry.WizardryItems;
 import electroblob.wizardry.registry.WizardryPotions;
 import electroblob.wizardry.spell.SpellRay;
-import electroblob.wizardry.util.EntityUtils;
-import electroblob.wizardry.util.MagicDamage;
-import electroblob.wizardry.util.ParticleBuilder;
-import electroblob.wizardry.util.SpellModifiers;
+import electroblob.wizardry.util.*;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
@@ -27,61 +24,22 @@ import net.minecraft.world.World;
 import java.util.Iterator;
 import java.util.List;
 
-public class IceBarrage extends SpellRay {
+public class IceBarrage extends SpellBarrage {
 
     public static final String ICE_DURATION = "ice_duration";
     public IceBarrage() {
         super(WizardryNextGeneration.MODID, "ice_barrage", SpellActions.POINT, false);
         this.soundValues(1.0F, 7.0F, 0.1F);
-        this.addProperties(DAMAGE, EFFECT_DURATION, ICE_DURATION, EFFECT_RADIUS);
+        this.addProperties(DAMAGE, EFFECT_DURATION, ICE_DURATION);
     }
 
     @Override
-    protected boolean onEntityHit(World world, Entity target, Vec3d hit, EntityLivingBase caster, Vec3d origin, int ticksInUse, SpellModifiers modifiers) {
-        if (!world.isRemote) {
-            double range = (WNGSpells.ice_barrage.getProperty(EFFECT_RADIUS).floatValue() * modifiers.get(WizardryItems.blast_upgrade));
-            List<EntityLivingBase> targets = EntityUtils.getLivingWithinRadius(range, target.posX, target.posY, target.posZ, world);
-            int duration = (int) (WNGSpells.ice_barrage.getProperty(EFFECT_DURATION).floatValue() * modifiers.get(WizardryItems.duration_upgrade));
-            Iterator var6 = targets.iterator();
+    protected void barrageEffect(World world, EntityLivingBase target, EntityLivingBase caster, int ticksInUse, SpellModifiers modifiers) {
 
-            while (var6.hasNext()) {
-                EntityLivingBase targetEntity = (EntityLivingBase) var6.next();
-                if (targetEntity != caster) {
-                    EntityUtils.attackEntityWithoutKnockback(targetEntity, MagicDamage.causeDirectMagicDamage(caster, MagicDamage.DamageType.FROST), getProperty(DAMAGE).floatValue() * modifiers.get(SpellModifiers.POTENCY));
-                    if (targetEntity instanceof EntityLiving && ((BlockStatue) WizardryBlocks.ice_statue).convertToStatue((EntityLiving)targetEntity, caster, (int)(this.getProperty("ice_duration").floatValue() * modifiers.get(WizardryItems.duration_upgrade)))) {
-                    }
-                    targetEntity.addPotionEffect(new PotionEffect(WizardryPotions.frost, duration, 1));
-                }
-            }
+        EntityUtils.attackEntityWithoutKnockback(target, MagicDamage.causeDirectMagicDamage(caster, MagicDamage.DamageType.FROST), getProperty(DAMAGE).floatValue() * modifiers.get(SpellModifiers.POTENCY));
+        if (target instanceof EntityLiving && !world.isRemote && ((BlockStatue) WizardryBlocks.ice_statue).convertToStatue((EntityLiving) target, caster, (int) (this.getProperty("ice_duration").floatValue() * modifiers.get(WizardryItems.duration_upgrade)))) {
         }
-        return true;
-    }
-
-    @Override
-    protected boolean onBlockHit(World world, BlockPos pos, EnumFacing side, Vec3d hit, EntityLivingBase caster, Vec3d origin, int ticksInUse, SpellModifiers modifiers) {
-        Vec3d target = new Vec3d(pos);
-        if (!world.isRemote) {
-            double range = (WNGSpells.ice_barrage.getProperty(EFFECT_RADIUS).floatValue() * modifiers.get(WizardryItems.blast_upgrade));
-            List<EntityLivingBase> targets = EntityUtils.getLivingWithinRadius(range, target.x, target.y, target.z, world);
-            int duration = (int) (WNGSpells.ice_barrage.getProperty(EFFECT_DURATION).floatValue() * modifiers.get(WizardryItems.duration_upgrade));
-            Iterator var6 = targets.iterator();
-
-            while (var6.hasNext()) {
-                EntityLivingBase targetEntity = (EntityLivingBase) var6.next();
-                if (targetEntity != caster) {
-                    EntityUtils.attackEntityWithoutKnockback(targetEntity, MagicDamage.causeDirectMagicDamage(caster, MagicDamage.DamageType.FROST), getProperty(DAMAGE).floatValue() * modifiers.get(SpellModifiers.POTENCY));
-                    if (targetEntity instanceof EntityLiving && ((BlockStatue) WizardryBlocks.ice_statue).convertToStatue((EntityLiving)targetEntity, caster, (int)(this.getProperty("ice_duration").floatValue() * modifiers.get(WizardryItems.duration_upgrade)))) {
-                    }
-                    targetEntity.addPotionEffect(new PotionEffect(WizardryPotions.frost, duration, 1));
-                }
-            }
-        }
-        return true;
-    }
-
-    @Override
-    protected boolean onMiss(World world, EntityLivingBase caster, Vec3d origin, Vec3d direction, int ticksInUse, SpellModifiers modifiers) {
-        return true;
+        target.addPotionEffect(new PotionEffect(WizardryPotions.frost, (int)(this.getProperty(EFFECT_DURATION).floatValue() * modifiers.get(WizardryItems.duration_upgrade)), 1));
     }
 
     @Override

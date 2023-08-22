@@ -1,22 +1,23 @@
 package com.ipdnaeip.wizardrynextgeneration.spell;
 
 import com.ipdnaeip.wizardrynextgeneration.WizardryNextGeneration;
-import com.ipdnaeip.wizardrynextgeneration.entity.projectile.EntityAcceleratedMass;
-import com.ipdnaeip.wizardrynextgeneration.entity.projectile.EntityPiercingMass;
+import com.ipdnaeip.wizardrynextgeneration.entity.construct.EntityAntiGravitationalField;
+import com.ipdnaeip.wizardrynextgeneration.entity.construct.EntityGravitationalField;
+import com.ipdnaeip.wizardrynextgeneration.entity.construct.EntityWhirlpool;
 import com.ipdnaeip.wizardrynextgeneration.registry.WNGItems;
-import electroblob.wizardry.spell.SpellArrow;
+import electroblob.wizardry.spell.SpellConstructRanged;
 import electroblob.wizardry.util.SpellModifiers;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.util.EnumHand;
 import net.minecraft.world.World;
 
-public class PiercingMass extends SpellArrow<EntityPiercingMass> {
+public class Whirlpool extends SpellConstructRanged<EntityWhirlpool> {
 
-    public PiercingMass() {
-        super(WizardryNextGeneration.MODID, "piercing_mass", EntityPiercingMass::new);
-        this.soundValues(1F, 0.6F, 0.2F);
-        this.addProperties("damage");
+    public Whirlpool() {
+        super(WizardryNextGeneration.MODID, "whirlpool", EntityWhirlpool::new, false);
+        this.soundValues(1F, 1F, 0F);
+        this.addProperties(EFFECT_RADIUS, DAMAGE);
     }
 
     @Override
@@ -30,3 +31,4 @@ public class PiercingMass extends SpellArrow<EntityPiercingMass> {
         return item == WNGItems.spell_book_wng || item == WNGItems.scroll_wng;
     }
 }
+

@@ -30,29 +30,35 @@ public class Equality extends SpellRay {
     }
     @Override
     protected boolean onEntityHit(World world, Entity target, Vec3d hit, EntityLivingBase caster, Vec3d origin, int ticksInUse, SpellModifiers modifiers) {
-        EntityLivingBase enemy = (EntityLivingBase)target;
-        EntityPlayer castertemp = (EntityPlayer) caster;
-        if (caster != null) {
-            //l = tC - (tM/cM) * cC)
-            float low_health = enemy.getHealth() - (enemy.getMaxHealth() / caster.getMaxHealth() * caster.getHealth());
-            //float high_health = (float)Math.pow(enemy.getHealth() - (enemy.getMaxHealth() / caster.getMaxHealth() * caster.getHealth()), 0.65);
-            //float high_health = (float)Math.sqrt(enemy.getHealth() - (enemy.getMaxHealth() / caster.getMaxHealth() * caster.getHealth()));
-            float high_health = Math.min(enemy.getHealth() - (enemy.getMaxHealth() / caster.getMaxHealth() * caster.getHealth()), (caster.getMaxHealth() - caster.getHealth()) * (1 + modifiers.get("potency")));
-            if (enemy.getHealth() / enemy.getMaxHealth() <= caster.getHealth() / caster.getMaxHealth() || caster.getHealth() == caster.getMaxHealth()) {
-                if (!world.isRemote) castertemp.sendStatusMessage(new TextComponentTranslation("spell." + this.getUnlocalisedName() + ".no_effect"), true);
-                return false;
+        if (target instanceof EntityLivingBase) {
+            EntityLivingBase enemy = (EntityLivingBase)target;
+            if (caster != null) {
+                //l = tC - (tM/cM) * cC)
+                float low_health = enemy.getHealth() - (enemy.getMaxHealth() / caster.getMaxHealth() * caster.getHealth());
+                //float high_health = (float)Math.pow(enemy.getHealth() - (enemy.getMaxHealth() / caster.getMaxHealth() * caster.getHealth()), 0.65);
+                //float high_health = (float)Math.sqrt(enemy.getHealth() - (enemy.getMaxHealth() / caster.getMaxHealth() * caster.getHealth()));
+                float high_health = Math.min(enemy.getHealth() - (enemy.getMaxHealth() / caster.getMaxHealth() * caster.getHealth()), (caster.getMaxHealth() - caster.getHealth()) * (1 + modifiers.get("potency")));
+                if (enemy.getHealth() / enemy.getMaxHealth() <= caster.getHealth() / caster.getMaxHealth() || caster.getHealth() == caster.getMaxHealth()) {
+                    if (!world.isRemote && caster instanceof EntityPlayer) {
+                        ((EntityPlayer) caster).sendStatusMessage(new TextComponentTranslation("spell." + this.getUnlocalisedName() + ".no_effect"), true);
+                    }
+                    return false;
+                }
+                if (enemy.getMaxHealth() <= caster.getMaxHealth()) {
+                    this.soundValues(1F, 0.6F, 0.1F);
+                    EntityUtils.attackEntityWithoutKnockback(enemy, MagicDamage.causeDirectMagicDamage(caster, MagicDamage.DamageType.RADIANT), low_health);
+                }
+                if (enemy.getMaxHealth() > caster.getMaxHealth()) {
+                    if (!world.isRemote && caster instanceof EntityPlayer) {
+                        ((EntityPlayer) caster).sendStatusMessage(new TextComponentTranslation("spell." + this.getUnlocalisedName() + ".high_health"), true);
+                    }
+                    this.soundValues(1F, 0.4F, 0.1F);
+                    EntityUtils.attackEntityWithoutKnockback(enemy, MagicDamage.causeDirectMagicDamage(caster, MagicDamage.DamageType.RADIANT), high_health);
+                }
             }
-            if (enemy.getMaxHealth() <= caster.getMaxHealth()) {
-                this.soundValues(1F, 0.6F, 0.1F);
-                EntityUtils.attackEntityWithoutKnockback(enemy, MagicDamage.causeDirectMagicDamage(caster, MagicDamage.DamageType.RADIANT), low_health);
-            }
-            if (enemy.getMaxHealth() > caster.getMaxHealth()) {
-                if (!world.isRemote) castertemp.sendStatusMessage(new TextComponentTranslation("spell." + this.getUnlocalisedName() + ".high_health"), true);
-                this.soundValues(1F, 0.4F, 0.1F);
-                EntityUtils.attackEntityWithoutKnockback(enemy, MagicDamage.causeDirectMagicDamage(caster, MagicDamage.DamageType.RADIANT), high_health);
-            }
+            return true;
         }
-        return true;
+        return false;
     }
     @Override
     protected boolean onBlockHit(World world, BlockPos pos, EnumFacing side, Vec3d hit, EntityLivingBase caster, Vec3d origin, int ticksInUse, SpellModifiers modifiers) {

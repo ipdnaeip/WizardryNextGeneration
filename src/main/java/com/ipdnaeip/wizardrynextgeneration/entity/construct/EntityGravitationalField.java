@@ -28,11 +28,9 @@ public class EntityGravitationalField extends EntityScaledConstruct {
         super.onUpdate();
         if (!this.world.isRemote) {
             List<EntityLivingBase> targets = EntityUtils.getLivingWithinRadius((this.width / 2.0F), this.posX, this.posY, this.posZ, this.world);
-            Iterator var2 = targets.iterator();
 
-            while(var2.hasNext()) {
-                EntityLivingBase target = (EntityLivingBase)var2.next();
-                target.addPotionEffect(new PotionEffect(WNGPotions.gravity, 10, (int)((damageMultiplier - 1) * 3.5)));
+            for (EntityLivingBase target : targets) {
+                target.addPotionEffect(new PotionEffect(WNGPotions.gravity, 10, (int) ((damageMultiplier - 1) * 3.5)));
             }
         } else if (this.rand.nextInt(15) == 0) {
             double radius = (0.5 + this.rand.nextDouble() * 0.3) * (double)this.width / 2.0;
