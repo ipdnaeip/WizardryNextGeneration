@@ -1,6 +1,7 @@
 package com.ipdnaeip.wizardrynextgeneration.entity.living;
 
 import com.ipdnaeip.wizardrynextgeneration.WizardryNextGeneration;
+import com.ipdnaeip.wizardrynextgeneration.registry.WNGSpells;
 import electroblob.wizardry.registry.Spells;
 import electroblob.wizardry.util.SpellModifiers;
 import net.minecraft.entity.*;

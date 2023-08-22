@@ -8,6 +8,7 @@ import electroblob.wizardry.item.SpellActions;
 import electroblob.wizardry.spell.Spell;
 import electroblob.wizardry.util.ParticleBuilder;
 import electroblob.wizardry.util.SpellModifiers;
+import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -24,11 +25,6 @@ public class Moonlight extends Spell {
         super(WizardryNextGeneration.MODID, "moonlight", SpellActions.POINT_UP, true);
         this.soundValues(1F, 1.2F, 0.4F);
         addProperties(HEALTH);
-    }
-
-    @Override
-    public boolean canBeCastBy(TileEntityDispenser dispenser) {
-        return false;
     }
 
     @Override
@@ -62,7 +58,20 @@ public class Moonlight extends Spell {
         return false;
     }
 
-
+    @Override
+    public boolean cast(World world, EntityLiving caster, EnumHand hand, int ticksInUse, EntityLivingBase target, SpellModifiers modifiers) {
+        if (world.isDaytime() || !world.canSeeSky(new BlockPos(caster.posX, caster.posY + (double)caster.getEyeHeight(), caster.posZ))) {
+            return false;
+        }
+        //check if the player can be healed and if the moon is out and visible by the player
+        if (caster.getHealth() < caster.getMaxHealth() && caster.getHealth() > 0.0F && ticksInUse % 10 == 0 && !world.isDaytime() && world.canSeeSky(new BlockPos(caster.posX, caster.posY + (double)caster.getEyeHeight(), caster.posZ))) {
+            caster.heal(this.getProperty("health").floatValue() * (1 + modifiers.get("potency")));
+            this.playSound(world, caster, ticksInUse, -1, modifiers);
+            if (world.isRemote) ParticleBuilder.create(ParticleBuilder.Type.BUFF).entity(caster).clr(204, 255, 255).spawn(world);
+            return true;
+        }
+        return false;
+    }
 
     @Override
     public boolean applicableForItem(Item item) {

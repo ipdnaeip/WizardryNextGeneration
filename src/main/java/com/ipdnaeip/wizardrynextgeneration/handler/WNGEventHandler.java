@@ -1,54 +1,41 @@
 package com.ipdnaeip.wizardrynextgeneration.handler;
 
-import com.google.common.collect.Streams;
 import com.ipdnaeip.wizardrynextgeneration.integration.baubles.WNGBaublesIntegration;
 import com.ipdnaeip.wizardrynextgeneration.item.ItemAmuletMoon;
+import com.ipdnaeip.wizardrynextgeneration.item.ItemCharmHorn;
 import com.ipdnaeip.wizardrynextgeneration.item.ItemNewArtefact;
-import com.ipdnaeip.wizardrynextgeneration.potion.PotionMagicWeakness;
 import com.ipdnaeip.wizardrynextgeneration.registry.WNGItems;
 import com.ipdnaeip.wizardrynextgeneration.registry.WNGPotions;
 import electroblob.wizardry.constants.Element;
-import electroblob.wizardry.entity.projectile.EntityDart;
 import electroblob.wizardry.event.SpellCastEvent;
-import electroblob.wizardry.item.ISpellCastingItem;
 import electroblob.wizardry.item.ItemArtefact;
-import electroblob.wizardry.registry.WizardryItems;
 import electroblob.wizardry.registry.WizardryPotions;
-import electroblob.wizardry.spell.Spell;
 import electroblob.wizardry.util.EntityUtils;
 import electroblob.wizardry.util.IElementalDamage;
 import electroblob.wizardry.util.MagicDamage;
 import electroblob.wizardry.util.SpellModifiers;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
 import net.minecraft.init.MobEffects;
-import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.BiomeDictionary;
-import net.minecraftforge.event.entity.living.LivingDeathEvent;
+import net.minecraftforge.event.entity.ProjectileImpactEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
-import net.minecraftforge.event.entity.living.LivingSetAttackTargetEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.eventhandler.Event;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
-import java.util.Iterator;
-import java.util.List;
 
 @Mod.EventBusSubscriber
 public class WNGEventHandler {
 
     private WNGEventHandler() {}
-
 
     @SubscribeEvent
     public static void onLivingHurtEvent(LivingHurtEvent event) {
@@ -74,9 +61,15 @@ public class WNGEventHandler {
             player = (EntityPlayer) event.getEntityLiving();
             if (ItemArtefact.isArtefactActive(player, WNGItems.amulet_moon)) {
                 ItemStack amulet = WNGBaublesIntegration.getAmuletSlotItemStack(player);
-                if (event.getAmount() > player.getHealth() && ItemAmuletMoon.isReady(player.getEntityWorld(), amulet)) {
+                if (event.getAmount() > player.getHealth() && ((ItemAmuletMoon)amulet.getItem()).isReady(player.getEntityWorld(), amulet)) {
                     event.setCanceled(true);
-                    ItemAmuletMoon.performAction(player);
+                    ((ItemAmuletMoon)amulet.getItem()).performAction(player, amulet);
+                }
+            }
+            if (ItemArtefact.isArtefactActive(player, WNGItems.charm_horn)) {
+                ItemStack charm = WNGBaublesIntegration.getCharmSlotItemStack(player);
+                if (player.getHealth() / player.getMaxHealth() <= 0.2F && EntityUtils.getEntitiesWithinRadius(4, player.posX, player.posY, player.posZ, player.world, EntityMob.class).size() >= 3) {
+                    ((ItemCharmHorn)charm.getItem()).performAction(player, charm);
                 }
             }
         }
@@ -110,10 +103,26 @@ public class WNGEventHandler {
             }
             if (ItemNewArtefact.isNewArtefactActive(player, WNGItems.body_hashashin) && ItemNewArtefact.isNewArtefactActive(player, WNGItems.head_hashashin)) {
                 if (player.isSneaking() && player.getBrightness() < 0.5F) {
+                    player.motionX *= 1.25F;
+                    player.motionZ *= 1.25F;
                 }
             }
-            if (ItemNewArtefact.isNewArtefactActive(player, WNGItems.belt_potion)) {
+/*            if (ItemNewArtefact.isNewArtefactActive(player, WNGItems.belt_potion)) {
                 PotionEffect[] potionEffects = player.getActivePotionEffects().toArray(new PotionEffect[player.getActivePotionEffects().size()]);
+                for (int i = 0; i < potionEffects.length; i++) {
+                    if (player.ticksExisted % potionEffects[i].getDuration() == potionEffects[i].getDuration() - 1) {
+                        int damageAmount = (potionEffects[i].getAmplifier() + 1) * potionEffects[i].getDuration();
+                        if (WNGBaublesIntegration.getBeltSlotItemStack(player).getMaxDamage() - WNGBaublesIntegration.getBeltSlotItemStack(player).getItemDamage() >= damageAmount) {
+                            if (potionEffects[i].getPotion().isBeneficial()) {
+                                player.addPotionEffect(new PotionEffect(potionEffects[i].getPotion(), potionEffects[i].getDuration(), potionEffects[i].getAmplifier()));
+                                WNGBaublesIntegration.getBeltSlotItemStack(player).damageItem(damageAmount, player);
+                            }
+                        }
+                    }
+                }
+            }*/
+            if (ItemNewArtefact.isNewArtefactActive(player, WNGItems.belt_potion)) {
+                PotionEffect[] potionEffects = player.getActivePotionEffects().toArray(new PotionEffect[0]);
                 if (player.ticksExisted % 10 ==0 ) {
                     for (int i = 0; i < potionEffects.length; i++) {
                         if (WNGBaublesIntegration.getBeltSlotItemStack(player).getMaxDamage() - WNGBaublesIntegration.getBeltSlotItemStack(player).getItemDamage() >= potionEffects[i].getAmplifier() + 1) {
@@ -123,8 +132,29 @@ public class WNGEventHandler {
                     }
                 }
             }
+            if (ItemArtefact.isArtefactActive(player, WNGItems.amulet_moon)) {
+                ItemStack amulet = WNGBaublesIntegration.getAmuletSlotItemStack(player);
+                if (!player.world.isDaytime() && player.world.provider.getMoonPhase(player.world.getWorldTime()) == 0) {
+                    ItemAmuletMoon.SetHasBeenFullMoon(amulet, true);
+                }
+            }
         }
     }
+
+/*    @SubscribeEvent
+    public static void onPotionExpiryEvent(PotionEvent.PotionExpiryEvent event) {
+        PotionEffect potionEffect = event.getPotionEffect();
+        if (event.getEntity() instanceof EntityPlayer) {
+            EntityPlayer player = (EntityPlayer) event.getEntity();
+            if (ItemNewArtefact.isNewArtefactActive(player, WNGItems.belt_potion)) {
+                int damageAmount = (potionEffect.getAmplifier() + 1) * potionEffect.getDuration();
+                if (potionEffect.getPotion().isBeneficial() && WNGBaublesIntegration.getBeltSlotItemStack(player).getMaxDamage() - WNGBaublesIntegration.getBeltSlotItemStack(player).getItemDamage() >= damageAmount) {
+                    player.addPotionEffect(new PotionEffect (potionEffect.getPotion(), potionEffect.getDuration(), potionEffect.getAmplifier()));
+                    WNGBaublesIntegration.getBeltSlotItemStack(player).damageItem(damageAmount, player);
+                }
+            }
+        }
+    }*/
 
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void onSpellCastPreEvent(SpellCastEvent.Pre event) {
@@ -139,8 +169,13 @@ public class WNGEventHandler {
                     modifiers.set("potency", 1.3F * potency, false);
                 }
             } else if (ItemArtefact.isArtefactActive(player, WNGItems.ring_nullification)) {
-                if (event.getSpell().getElement() == Element.SORCERY && player.getEntityWorld().rand.nextFloat() <= 0.25F) {
-                    modifiers.set("cost", 0.0F, false);
+                if (event.getSpell().getElement() == Element.SORCERY) {
+                    if (player.getEntityWorld().rand.nextFloat() <= 0.25F && !event.getSpell().isContinuous) {
+                        modifiers.set("cost", 0.0F, false);
+                    }
+                    if (event.getSpell().isContinuous) {
+                        modifiers.set("cost", 0.75F, false);
+                    }
                 }
             } else if (ItemArtefact.isArtefactActive(player, WNGItems.ring_void)) {
                 if (event.getSpell().getElement() == Element.SORCERY && BiomeDictionary.hasType(biome, BiomeDictionary.Type.END)) {
@@ -148,6 +183,26 @@ public class WNGEventHandler {
                 }
             } else if (ItemArtefact.isArtefactActive(player, WNGItems.charm_dice)) {
                 modifiers.set("potency", (0.8F + player.getEntityWorld().rand.nextFloat() * 0.8F) * potency, false);
+            }
+        }
+    }
+
+    @SubscribeEvent
+    public static void onProjectileImpactArrowEvent(ProjectileImpactEvent.Arrow event) {
+        if (!event.getArrow().world.isRemote) {
+            if (event.getArrow().shootingEntity instanceof EntityPlayer) {
+                EntityPlayer player = (EntityPlayer) event.getArrow().shootingEntity;
+                if (ItemNewArtefact.isNewArtefactActive(player, WNGItems.body_artemis) && !player.isCreative()) {
+                    if (event.getRayTraceResult().entityHit instanceof EntityLivingBase) {
+                        if (player.world.rand.nextFloat() < 0.5F) {
+                            player.addItemStackToInventory(new ItemStack(Items.ARROW, 1));
+                        }
+                    }
+                    else {
+                        player.addItemStackToInventory(new ItemStack(Items.ARROW, 1));
+                        event.getArrow().setDead();
+                    }
+                }
             }
         }
     }

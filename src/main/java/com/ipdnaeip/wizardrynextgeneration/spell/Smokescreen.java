@@ -8,6 +8,7 @@ import electroblob.wizardry.registry.Spells;
 import electroblob.wizardry.registry.WizardryItems;
 import electroblob.wizardry.registry.WizardrySounds;
 import electroblob.wizardry.spell.Spell;
+import electroblob.wizardry.util.AllyDesignationSystem;
 import electroblob.wizardry.util.EntityUtils;
 import electroblob.wizardry.util.ParticleBuilder;
 import electroblob.wizardry.util.SpellModifiers;
@@ -37,7 +38,6 @@ public class Smokescreen extends Spell {
         if (world.isRemote) {
             ParticleBuilder.create(ParticleBuilder.Type.FLASH).pos(caster.posX, caster.posY, caster.posZ).scale(5.0F * modifiers.get(WizardryItems.blast_upgrade)).clr(0, 0, 0).spawn(world);
             world.spawnParticle(EnumParticleTypes.EXPLOSION_LARGE, caster.posX, caster.posY, caster.posZ, 0.0, 0.0, 0.0);
-
             for (int i = 0; (float) i < 60.0F * this.getProperty(EFFECT_RADIUS).floatValue(); ++i) {
                 float brightness = world.rand.nextFloat() * 0.1F + 0.1F;
                 ParticleBuilder.create(ParticleBuilder.Type.CLOUD, world.rand, caster.posX, caster.posY, caster.posZ, (2.0F * modifiers.get(WizardryItems.blast_upgrade)), false).clr(brightness, brightness, brightness).time(80 + world.rand.nextInt(12)).shaded(true).spawn(world);
@@ -45,16 +45,12 @@ public class Smokescreen extends Spell {
                 ParticleBuilder.create(ParticleBuilder.Type.DARK_MAGIC, world.rand, caster.posX, caster.posY, caster.posZ, (2.0F * modifiers.get(WizardryItems.blast_upgrade)), false).clr(brightness, brightness, brightness).spawn(world);
             }
         }
-
         if (!world.isRemote) {
             double range = (WNGSpells.smokescreen.getProperty(EFFECT_RADIUS).floatValue() * modifiers.get(WizardryItems.blast_upgrade));
             List<EntityLivingBase> targets = EntityUtils.getLivingWithinRadius(range, caster.posX, caster.posY, caster.posZ, world);
             int duration = (int)(WNGSpells.smokescreen.getProperty(EFFECT_DURATION).floatValue() * modifiers.get(WizardryItems.duration_upgrade));
-            Iterator var6 = targets.iterator();
-
-            while (var6.hasNext()) {
-                EntityLivingBase target = (EntityLivingBase) var6.next();
-                if (target != caster) {
+            for (EntityLivingBase target : targets) {
+                if (AllyDesignationSystem.isValidTarget(caster, target)) {
                     target.addPotionEffect(new PotionEffect(MobEffects.BLINDNESS, duration, 0));
                 }
             }

@@ -1,0 +1,24 @@
+{
+  "enabled": {
+    "book": true,
+    "scroll": true,
+    "wands": true,
+    "npcs": true,
+    "dispensers": true,
+    "commands": true,
+    "treasure": true,
+    "trades": true,
+    "looting": true
+  },
+  "tier": "apprentice",
+  "element": "necromancy",
+  "type": "attack",
+  "cost": 10,
+  "chargeup": 5,
+  "cooldown": 10,
+  "base_properties": {
+    "range": 3,
+    "damage": 6,
+    "effect_duration": 100
+  }
+}

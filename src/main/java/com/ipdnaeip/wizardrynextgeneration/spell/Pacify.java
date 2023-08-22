@@ -30,17 +30,20 @@ public class Pacify extends SpellRay {
 
     @Override
     protected boolean onEntityHit(World world, Entity target, Vec3d hit, EntityLivingBase caster, Vec3d origin, int ticksInUse, SpellModifiers modifiers) {
-        EntityLiving targetEntity = (EntityLiving)target;
-        targetEntity.addPotionEffect(new PotionEffect(WNGPotions.pacify, (int)(WNGSpells.pacify.getProperty(EFFECT_DURATION).floatValue() * modifiers.get(WizardryItems.duration_upgrade)), 0));
-        return true;
+        if (target instanceof EntityLivingBase) {
+            EntityLiving targetEntity = (EntityLiving) target;
+            targetEntity.addPotionEffect(new PotionEffect(WNGPotions.pacify, (int) (WNGSpells.pacify.getProperty(EFFECT_DURATION).floatValue() * modifiers.get(WizardryItems.duration_upgrade)), 0));
+            return true;
+        }
+        return false;
     }
     @Override
     protected boolean onBlockHit(World world, BlockPos pos, EnumFacing side, Vec3d hit, EntityLivingBase caster, Vec3d origin, int ticksInUse, SpellModifiers modifiers) {
-        return true;
+        return false;
     }
     @Override
     protected boolean onMiss(World world, EntityLivingBase caster, Vec3d origin, Vec3d direction, int ticksInUse, SpellModifiers modifiers) {
-        return true;
+        return false;
     }
 
     @Override

@@ -1,71 +1,109 @@
+#advancement
+
+advancement.wizardrynextgeneration:accelerated_mass_max_damage=Maximum Velocity!
+advancement.wizardrynextgeneration:accelerated_mass_max_damage.desc=Deal the maximum damage of an accelerated mass projectile!
+
+
+#enchantment
+
+enchantment.wizardrynextgeneration:ranger=Ranger
+enchantment.wizardrynextgeneration:ranger.desc=Reduces the movement penalty for channeling a bow.
+enchantment.wizardrynextgeneration:phalanx=Phalanx
+enchantment.wizardrynextgeneration:phalanx.desc=Reduces the movement penalty for blocking with a shield.
+
 #item
 
   #misc
 
+item.wizardrynextgeneration:battleaxe_iron.name=Iron Battleaxe
 item.wizardrynextgeneration:blessed_meat.name=Blessed Meat
+item.wizardrynextgeneration:spear_diamond.name=Diamond spear
+item.wizardrynextgeneration:spear_stone.name=Stone Spear
 
   #magical item
 
 item.wizardrynextgeneration:scroll_wng.name=Scroll of %1$s
 item.wizardrynextgeneration:spell_book_wng.name=Spell Book
+item.wizardrynextgeneration:spell_encyclopedia.name=Spell Encyclopedia
+item.wizardrynextgeneration:tablet_earth.name=Tablet of the Earth
+item.wizardrynextgeneration:tablet.buff=+%1$s%% %2$s potency
+item.wizardrynextgeneration:tablet.level=Level: %1$s
+item.wizardrynextgeneration:tablet.spell=Current Spell: %1$s
+item.wizardrynextgeneration:tablet.mana=Mana: %1$s/%2$s
+item.wizardrynextgeneration:tablet.progression=Progression: %1$s/%2$s
+item.wizardrynextgeneration:tablet.levelup=Your %1$s tablet has increased in level
 
   #amulet
 
 item.wizardrynextgeneration:amulet_moon.name=Lunar Amulet
-item.wizardrynextgeneration:amulet_moon.desc=The lunar blessing prevents your next death. Recharges every full moon while equipped.
+item.wizardrynextgeneration:amulet_moon.desc=The lunar blessing prevents your next death. Recharges every full moon while equipped
 
   #belt
 
 item.wizardrynextgeneration:belt_potion.name=Baba Yaga's Potion Belt
-item.wizardrynextgeneration:belt_potion.desc=Uses mana to extend the duration of your buff spells permanently.
+item.wizardrynextgeneration:belt_potion.desc=Uses mana to extend the duration of your buff spells permanently
 
   #body
 
 item.wizardrynextgeneration:body_hashashin.name=Chestplate of the Hashashin
-item.wizardrynextgeneration:body_hashashin.desc=The chestplate of an ancient assassin. It allows you to stay quiet in the dark while sneaking.
+item.wizardrynextgeneration:body_hashashin.desc=The chestplate of an ancient assassin. It allows you to stay quiet in the dark while sneaking
+item.wizardrynextgeneration:body_artemis.name=Artemis's Quiver
+item.wizardrynextgeneration:body_artemis.desc=Arrows have a chance to return to your inventory. Arrows that miss will always return to your inventory
 
   #charm
 
 item.wizardrynextgeneration:charm_dice.name=Magical Dice
 item.wizardrynextgeneration:charm_dice.desc=Has a chance to increase or decrease the potency of your spells!
+item.wizardrynextgeneration:charm_horn.name=Holy Horn
+item.wizardrynextgeneration:charm_horn.desc=While you take damage at low health and are surrounded by enemies, summon a Righteous Defender to aid you. Can only occur once a day
 
   #head
 
 item.wizardrynextgeneration:head_hashashin.name=Hood of the Hashashin
-item.wizardrynextgeneration:head_hashashin.desc=The mask of an ancient assassin. It allows you to hide better in the dark while sneaking.
+item.wizardrynextgeneration:head_hashashin.desc=The mask of an ancient assassin. It allows you to hide better in the dark while sneaking
 item.wizardrynextgeneration:head_ra.name=Sun-Disk of Ra
-item.wizardrynextgeneration:head_ra.desc=The crown of the sun god allows you to have better horizontal control in solar winds.
+item.wizardrynextgeneration:head_ra.desc=The crown of the sun god allows you to have better horizontal control in solar winds
 item.wizardrynextgeneration:head_raijin.name=Mask of Raijin
-item.wizardrynextgeneration:head_raijin.desc=The mask of the thunderlord allows high intensity lightning spells to paralyze creatures.
+item.wizardrynextgeneration:head_raijin.desc=The mask of the thunderlord allows high intensity lightning spells to paralyze creatures
 
   #ring
 
 item.wizardrynextgeneration:ring_9th_circle.name=Ring of the 9th Circle
-item.wizardrynextgeneration:ring_9th_circle.desc=Ice spells are 30%% more potent in the Nether.
+item.wizardrynextgeneration:ring_9th_circle.desc=Ice spells are 30%% more potent in the Nether
 item.wizardrynextgeneration:ring_anodized.name=Anodized Ring
-item.wizardrynextgeneration:ring_anodized.desc=Casting lightning spells hardens your exterior, providing resistance.
+item.wizardrynextgeneration:ring_anodized.desc=Casting lightning spells hardens your exterior, providing resistance
 item.wizardrynextgeneration:ring_nullification.name=Ring of Nullification
-item.wizardrynextgeneration:ring_nullification.desc=Sorcery spells have a chance to not cost any mana.
+item.wizardrynextgeneration:ring_nullification.desc=Sorcery spells have a chance to not cost any mana
 item.wizardrynextgeneration:ring_static_shock.name=Ring of Static Shock
-item.wizardrynextgeneration:ring_static_shock.desc=Damaging a creature with a lightning spell applies shock weakness, up to shock weakness 3.
+item.wizardrynextgeneration:ring_static_shock.desc=Damaging a creature with a lightning spell applies shock weakness, up to shock weakness 3
 item.wizardrynextgeneration:ring_void.name=Ring of the Void
-item.wizardrynextgeneration:ring_void.desc=Sorcery spells are 30%% more potent in the End.
+item.wizardrynextgeneration:ring_void.desc=Sorcery spells are 30%% more potent in the End
 
 #entity
 
-  #living
+   #construct
 
+entity.wizardrynextgeneration:anti_grativational_field.name=Anti-gravitational Field
+entity.wizardrynextgeneration:grativational_field.name=Gravitational Field
+
+   #living
+
+entity.wizardrynextgeneration:bat_minion.name=Bat
+entity.wizardrynextgeneration:bat_mob.name=Bat
+entity.wizardrynextgeneration:righteous_defender.name=Righteous Defender
+entity.wizardrynextgeneration:righteous_defender_minion.name=Righteous Defender
 entity.wizardrynextgeneration:webspitter.name=Webspitter
+entity.wizardrynextgeneration:webspitter_minion.name=Webspitter
 
-  #construct
+   #projectile
 
-  #projectile
-
-entity.wizardrynextgeneration:accelerated_mass=Magic
-entity.wizardrynextgeneration:fission_blast=Magic
+entity.wizardrynextgeneration:accelerated_mass.name=Magic
+entity.wizardrynextgeneration:fission_blast.name=Magic
+entity.wizardrynextgeneration:piercing_mass.name=Magic
 
 #potion
 
+potion.wizardrynextgeneration:betrayal=Betrayal
 potion.wizardrynextgeneration:bleed=Bleed
 potion.wizardrynextgeneration:cleansing_flames=Cleansing Flames
 potion.wizardrynextgeneration:disempowerment=Disempowerment
@@ -75,11 +113,36 @@ potion.wizardrynextgeneration:frenzy=Frenzy
 potion.wizardrynextgeneration:gravity=Gravity
 potion.wizardrynextgeneration:magic_weakness=Magic Weakness
 potion.wizardrynextgeneration:pacify=Pacify
+potion.wizardrynextgeneration:preparation=Preparation
 potion.wizardrynextgeneration:shock_weakness=Shock Weakness
 potion.wizardrynextgeneration:solar_winds=Solar Winds
 potion.wizardrynextgeneration:suffocation=Suffocation
 potion.wizardrynextgeneration:taunt=Taunt
 potion.wizardrynextgeneration:veneficium=Veneficium
+
+#discipline
+
+discipline.all=All
+discipline.demon=Demon
+discipline.draco=Draco
+discipline.druid=Druid
+discipline.earth=Earth
+discipline.fire=Fire
+discipline.healing=Healing
+discipline.holy=Holy
+discipline.ice=Ice
+discipline.lich=Lich
+discipline.lightning=Lightning
+discipline.lunar=Lunar
+discipline.nature=Nature
+discipline.necromancy=Necromancy
+discipline.occult=Occult
+discipline.shaman=Shaman
+discipline.sorcery=Sorcery
+discipline.terra=Terra
+discipline.vampire=Vampire
+discipline.void=Void
+discipline.witch=Witch
 
 #spell
 
@@ -87,12 +150,20 @@ spell.wizardrynextgeneration:accelerated_mass=Accelerated Mass
 spell.wizardrynextgeneration:accelerated_mass.desc=Launch a chunk of metal that increases in velocity and damage as it travels.
 spell.wizardrynextgeneration:anti_gravitational_field=Anti-Gravitational Field
 spell.wizardrynextgeneration:anti_gravitational_field.desc=Create an area of reversed gravity.
-spell.wizardrynextgeneration:anti_gravitational_push=Anti-Gravitational Push
-spell.wizardrynextgeneration:anti_gravitational_push.desc=Reverse your gravity.
+spell.wizardrynextgeneration:anti_gravitational_push=Anti-Gravity
+spell.wizardrynextgeneration:anti_gravitational_push.desc=Charge and release to gain temporary levitation.
 spell.wizardrynextgeneration:assassinate=Assassination
 spell.wizardrynextgeneration:assassinate.desc=Strike a creature with a deadly shadow, dealing bonus damage if they are unaware of your presence.
+spell.wizardrynextgeneration:betrayal=Betrayal
+spell.wizardrynextgeneration:betrayal.desc=Trust no one.
+spell.wizardrynextgeneration:biden_blast=Biden Blast
+spell.wizardrynextgeneration:biden_blast.desc=Biden Blast, Jack!
 spell.wizardrynextgeneration:bless_meat=Bless Meat
 spell.wizardrynextgeneration:bless_meat.desc=Bless rotten flesh into a highly nutritious substitute.
+spell.wizardrynextgeneration:blood_barrage=Blood Barrage
+spell.wizardrynextgeneration:blood_barrage.desc=The ancient magician's blood bank.
+spell.wizardrynextgeneration:blood_blitz=Blood Blitz
+spell.wizardrynextgeneration:blood_blitz.desc=Use your blood to drain the life essence of a creature!
 spell.wizardrynextgeneration:blood_infusion=Blood Infusion
 spell.wizardrynextgeneration:blood_infusion.desc=Turn a portion of your health into absorption hearts.
 spell.wizardrynextgeneration:blood_infusion.full_shield=You cannot convert anymore health
@@ -103,38 +174,56 @@ spell.wizardrynextgeneration:cleansing_flames=Cleansing Flames
 spell.wizardrynextgeneration:cleansing_flames.desc=Engulf yourself in holy fire, providing fire immunity and healing.
 spell.wizardrynextgeneration:cloak_of_the_void=Cloak of the Void
 spell.wizardrynextgeneration:cloak_of_the_void.desc=Cloak yourself in the void, becoming invisible and silent.
+spell.wizardrynextgeneration:combustion=Combustion
+spell.wizardrynextgeneration:combustion.desc=Strike a creature with such intense heat that if it dies, it explodes, dealing damage to and burning nearby creatures.
 spell.wizardrynextgeneration:conduction=Conduction
 spell.wizardrynextgeneration:conduction.desc=Zap a creature, dealing bonus damage and paralyzing them if they are in water.
 spell.wizardrynextgeneration:divine_shield=Divine Shield
 spell.wizardrynextgeneration:divine_shield.desc=Become immune to the next instance of damage you take.
+spell.wizardrynextgeneration:domesticate=Domesticate
+spell.wizardrynextgeneration:domesticate.desc=Have an animal follow you.
+spell.wizardrynextgeneration:domesticate.following=%1$s is following you
+spell.wizardrynextgeneration:domesticate.no_longer_following=%1$s is no longer following you
 spell.wizardrynextgeneration:equality=Equality
 spell.wizardrynextgeneration:equality.desc=Reduce the target's health to your missing health.
 spell.wizardrynextgeneration:equality.high_health=The target resisted some of the damage
 spell.wizardrynextgeneration:equality.no_effect=The target is unaffected
 spell.wizardrynextgeneration:fission_blast=Fission Blast
 spell.wizardrynextgeneration:fission_blast.desc=Fire a cone of sharp metal.
+spell.wizardrynextgeneration:flesh_feed=Flesh Feed
+spell.wizardrynextgeneration:flesh_feed.desc=Consume an animal's flesh, leaving them with a bleeding wound.
 spell.wizardrynextgeneration:frenzy=Frenzy
-spell.wizardrynextgeneration:frenzy.desc=Anger hostile creatures within an area, causing them to attack each other.
+spell.wizardrynextgeneration:frenzy.desc=Anger creatures within an area, causing them to attack each other.
 spell.wizardrynextgeneration:frostbite=Frostbite
 spell.wizardrynextgeneration:frostbite.desc=Strike a creature, dealing bonus damage if they are frozen.
 spell.wizardrynextgeneration:frostburn=Frostburn
 spell.wizardrynextgeneration:frostburn.desc=Freeze a creature with a cold so harsh that their flesh burns.
+spell.wizardrynextgeneration:fusion_beam=Fusion Beam
+spell.wizardrynextgeneration:fusion_beam.desc=Fire a charged beam of energy that passes through blocks and creatures.
+spell.wizardrynextgeneration:gravitational_field=Gravitational Field
+spell.wizardrynextgeneration:gravitational_field.desc=Create an area of increased gravity.
+spell.wizardrynextgeneration:gravitational_pull=Gravity
+spell.wizardrynextgeneration:gravitational_pull.desc=Increase a creature's gravity.
 spell.wizardrynextgeneration:haste=Haste
 spell.wizardrynextgeneration:haste.desc=Increase your arm swinging speed.
+spell.wizardrynextgeneration:home_teleport=Home Teleport
+spell.wizardrynextgeneration:home_teleport.desc=Teleport to your bed location.
+spell.wizardrynextgeneration:home_teleport.missing=Your bed is missing or obstructed...
+spell.wizardrynextgeneration:home_teleport.wrongdimension=No remembered home in this dimension...
 spell.wizardrynextgeneration:humility=Humility
 spell.wizardrynextgeneration:humility.desc=Humble a creature, weakening their attacks.
+spell.wizardrynextgeneration:hyper_beam=Hyper Beam
+spell.wizardrynextgeneration:hyper_beam.desc=What happens when you use more than 10% of your magical might?
 spell.wizardrynextgeneration:ice_barrage=Ice Barrage
-spell.wizardrynextgeneration:ice_barrage.desc=Sit.
+spell.wizardrynextgeneration:ice_barrage.desc=Useful for collecting shovels.
 spell.wizardrynextgeneration:ice_blitz=Ice Blitz
-spell.wizardrynextgeneration:ice_blitz.desc=Freeze a creature in ice and damage it.
+spell.wizardrynextgeneration:ice_blitz.desc=Freeze a creature in a block of ice and damage it.
 spell.wizardrynextgeneration:justice=Justice
 spell.wizardrynextgeneration:justice.desc=Justice for all!
 spell.wizardrynextgeneration:justice.high_health=The target resisted some of the damage
 spell.wizardrynextgeneration:justice.no_effect=The target is unaffected
-spell.wizardrynextgeneration:gravitational_field=Gravitational Field
-spell.wizardrynextgeneration:gravitational_field.desc=Create an area of increased gravity.
-spell.wizardrynextgeneration:gravitational_pull=Gravitational Pull
-spell.wizardrynextgeneration:gravitational_pull.desc=Increase a creature's gravity.
+spell.wizardrynextgeneration:lunar_salve=Lunar Salve
+spell.wizardrynextgeneration:lunar_salve.desc=Remove all negative status effects.
 spell.wizardrynextgeneration:meditate=Meditation
 spell.wizardrynextgeneration:meditate.desc=Heal your wounds through self-reflection.
 spell.wizardrynextgeneration:meditate.moving=You need to be still to meditate.
@@ -150,6 +239,10 @@ spell.wizardrynextgeneration:photosynthesis.desc=Channel the power of sunlight t
 spell.wizardrynextgeneration:photosynthesis.no_sunlight=You do not have direct sunlight
 spell.wizardrynextgeneration:piercing_mass=Piercing Mass
 spell.wizardrynextgeneration:piercing_mass.desc=Launch a chunk of metal that penetrates through blocks.
+spell.wizardrynextgeneration:preparation=Preparation
+spell.wizardrynextgeneration:preparation.desc=Focus your mind to reduce the chargeup time and mana consumption of your next spell.
+spell.wizardrynextgeneration:pull=Pull
+spell.wizardrynextgeneration:pull.desc=Pull a target toward you.
 spell.wizardrynextgeneration:righteous_defense=Righteous Defense
 spell.wizardrynextgeneration:righteous_defense.desc=Make yourself the target of all hostile creatures for a time.
 spell.wizardrynextgeneration:sap_intellect=Sap Intellect
@@ -160,6 +253,10 @@ spell.wizardrynextgeneration:scapegoat=Scapegoat
 spell.wizardrynextgeneration:scapegoat.desc=Make a creature the target of other creatures around it.
 spell.wizardrynextgeneration:scorch=Scorch
 spell.wizardrynextgeneration:scorch.desc=Damage an enemy, dealing critical damage if they are on fire.
+spell.wizardrynextgeneration:shadow_blitz=Shadow Blitz
+spell.wizardrynextgeneration:shadow_blitz.desc=Strike a creature with shadows, blinding it and dealing bonus in the dark.
+spell.wizardrynextgeneration:shadow_barrage=Shadow Barrage
+spell.wizardrynextgeneration:shadow_barrage.desc=Ancient magicians used this technique for night operations.
 spell.wizardrynextgeneration:smite=Smite
 spell.wizardrynextgeneration:smite.desc=Strike a creature with holy light, burning undead creatures.
 spell.wizardrynextgeneration:smoke_barrage=Smoke Barrage
@@ -172,12 +269,24 @@ spell.wizardrynextgeneration:solar_winds=Solar Winds
 spell.wizardrynextgeneration:solar_winds.desc=Ride a wave of the sun's energy.
 spell.wizardrynextgeneration:solar_sentinel=Solar Sentinel
 spell.wizardrynextgeneration:solar_sentinel.desc=Rise to the heights of the gods themselves.
+spell.wizardrynextgeneration:spit_web=Spit Web
+spell.wizardrynextgeneration:spit_web.desc=Spit a ball of webs at a target, exploding on contact with a block.
+spell.wizardrynextgeneration:summon_righteous_defender=Summon Righteous Defender
+spell.wizardrynextgeneration:summon_righteous_defender.desc=Summons a righteous defender to fight for you. The zombie will disappear after 30 seconds or if it is killed.
+spell.wizardrynextgeneration:summon_webspitter=Summon Webspitter
+spell.wizardrynextgeneration:summon_webspitter.desc=Summons a webspitter to fight for you. The zombie will disappear after 30 seconds or if it is killed.
 spell.wizardrynextgeneration:tase=Tase
 spell.wizardrynextgeneration:tase.desc=Channel lightning into a creature, restricting its movement.
 spell.wizardrynextgeneration:tranquility=Tranquility
 spell.wizardrynextgeneration:tranquility.desc=Calm the creatures around you.
+spell.wizardrynextgeneration:tremors=Tremors
+spell.wizardrynextgeneration:tremors.desc=Shake the earth around you.
 spell.wizardrynextgeneration:veneficium=Veneficium
 spell.wizardrynextgeneration:veneficium.desc=Until their last breath.
+spell.wizardrynextgeneration:vicious_bite=Vicious Bite
+spell.wizardrynextgeneration:vicious_bite.desc=Bite into a creature, causing them to bleed.
+spell.wizardrynextgeneration:whirlpool=Whirlpool
+spell.wizardrynextgeneration:whirlpool.desc=Create a whirlpool on the ground, dragging in and damaging creatures in its area.
 
 #tabs
 

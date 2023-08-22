@@ -4,6 +4,7 @@ package com.ipdnaeip.wizardrynextgeneration.spell;
 
 import com.ipdnaeip.wizardrynextgeneration.WizardryNextGeneration;
 import com.ipdnaeip.wizardrynextgeneration.registry.WNGItems;
+import com.ipdnaeip.wizardrynextgeneration.util.WNGEntityUtils;
 import electroblob.wizardry.item.SpellActions;
 import electroblob.wizardry.spell.Spell;
 import electroblob.wizardry.util.ParticleBuilder;
@@ -29,11 +30,6 @@ public class Meditate extends Spell {
     }
 
     @Override
-    public boolean canBeCastBy(TileEntityDispenser dispenser) {
-        return false;
-    }
-
-    @Override
     protected SoundEvent[] createSounds() {
         return this.createContinuousSpellSounds();
     }
@@ -50,40 +46,21 @@ public class Meditate extends Spell {
 
     @Override
     public boolean cast(World world, EntityPlayer caster, EnumHand hand, int ticksInUse, SpellModifiers modifiers) {
-        System.out.println(caster.motionX + " " + caster.motionZ + " " + caster.onGround);
-        if (caster.motionX != 0.0 || caster.motionZ != 0.0 || !caster.onGround) {
-            if (!world.isRemote) caster.sendStatusMessage(new TextComponentTranslation("spell." + this.getUnlocalisedName() + ".moving"), true);
+        System.out.println(WNGEntityUtils.isEntityStill(caster) + " s m " + WNGEntityUtils.isEntityMoving(caster));
+        if (WNGEntityUtils.isEntityMoving(caster)) {
+            caster.sendStatusMessage(new TextComponentTranslation("spell." + this.getUnlocalisedName() + ".moving"), true);
             return false;
         }
         //check if the player can be healed and if the player is standing still
-        if (caster.getHealth() < caster.getMaxHealth() && caster.getHealth() > 0.0F && ticksInUse % 10 == 0) {
-            caster.addPotionEffect(new PotionEffect(MobEffects.BLINDNESS, 30, 0));
+        if (WNGEntityUtils.isEntityStill(caster) && caster.getHealth() < caster.getMaxHealth() && caster.getHealth() > 0.0F && ticksInUse % 10 == 0) {
+            //caster.addPotionEffect(new PotionEffect(MobEffects.BLINDNESS, 30, 0));
             caster.heal(this.getProperty("health").floatValue() * (1 + modifiers.get("potency")));
             this.playSound(world, caster, ticksInUse, -1, modifiers);
-            if (world.isRemote) ParticleBuilder.create(ParticleBuilder.Type.BUFF).entity(caster).clr(170, 250, 250).spawn(world);
+            ParticleBuilder.create(ParticleBuilder.Type.BUFF).entity(caster).clr(170, 250, 250).spawn(world);
             return true;
         }
         return false;
     }
-
-/*    @Override
-    public boolean cast(World world, EntityPlayer caster, EnumHand hand, int ticksInUse, SpellModifiers modifiers) {
-        //check if the player can be healed and if the player is standing still
-        System.out.println(caster.motionX + " " + caster.motionZ + " " + caster.onGround);
-        if (caster.getHealth() < caster.getMaxHealth() && caster.getHealth() > 0.0F && ticksInUse % 10 == 0) {
-            while (caster.motionX == 0 && caster.motionZ == 0 && caster.onGround) {
-                caster.addPotionEffect(new PotionEffect(MobEffects.BLINDNESS, 30, 0));
-                caster.heal(this.getProperty("health").floatValue() * (1 + modifiers.get("potency")));
-                this.playSound(world, caster, ticksInUse, -1, modifiers);
-                if (world.isRemote) ParticleBuilder.create(ParticleBuilder.Type.BUFF).entity(caster).clr(170, 250, 250).spawn(world);
-                return true;
-            }
-            if (!world.isRemote) caster.sendStatusMessage(new TextComponentTranslation("spell." + this.getUnlocalisedName() + ".moving"), true);
-            return false;
-        }
-    return false;
-    }*/
-
 
     @Override
     public boolean applicableForItem(Item item) {

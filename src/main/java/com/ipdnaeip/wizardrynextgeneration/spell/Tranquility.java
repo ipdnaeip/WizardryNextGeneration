@@ -29,7 +29,7 @@ public class Tranquility extends SpellAreaEffect  {
         this.particleDensity(0.5F);
         this.targetAllies(false);
         this.alwaysSucceed(true);
-        this.addProperties(EFFECT_RADIUS, EFFECT_DURATION);
+        this.addProperties(EFFECT_DURATION);
     }
 
     @Override

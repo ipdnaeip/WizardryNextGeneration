@@ -1,4 +1,4 @@
-package com.ipdnaeip.wizardrynextgeneration.spell;
+/*package com.ipdnaeip.wizardrynextgeneration.spell;
 
 import com.ipdnaeip.wizardrynextgeneration.WizardryNextGeneration;
 import com.ipdnaeip.wizardrynextgeneration.registry.WNGItems;
@@ -6,6 +6,7 @@ import com.ipdnaeip.wizardrynextgeneration.registry.WNGPotions;
 import electroblob.wizardry.item.SpellActions;
 import electroblob.wizardry.registry.WizardryItems;
 import electroblob.wizardry.spell.Spell;
+import electroblob.wizardry.spell.SpellBuff;
 import electroblob.wizardry.util.ParticleBuilder;
 import electroblob.wizardry.util.SpellModifiers;
 import net.minecraft.entity.player.EntityPlayer;
@@ -36,4 +37,25 @@ public class SolarWinds extends Spell {
         return item == WNGItems.spell_book_wng || item == WNGItems.scroll_wng;
     }
 
+}*/
+
+package com.ipdnaeip.wizardrynextgeneration.spell;
+
+import com.ipdnaeip.wizardrynextgeneration.WizardryNextGeneration;
+import com.ipdnaeip.wizardrynextgeneration.registry.WNGItems;
+import com.ipdnaeip.wizardrynextgeneration.registry.WNGPotions;
+import electroblob.wizardry.spell.SpellBuff;
+import net.minecraft.item.Item;
+
+public class SolarWinds extends SpellBuff {
+
+    public SolarWinds() {
+        super(WizardryNextGeneration.MODID, "solar_winds", 1f, 0.706f, 0.196f, () -> WNGPotions.solar_winds);
+    }
+
+    @Override
+    public boolean applicableForItem(Item item) {
+        return item == WNGItems.spell_book_wng || item == WNGItems.scroll_wng;
+    }
 }
+

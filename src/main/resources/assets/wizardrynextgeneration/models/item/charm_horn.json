@@ -1,0 +1,9 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "wizardrynextgeneration:items/charm_horn"
+  },
+  "overrides": [
+    {"predicate": {"ready": 1.0}, "model": "wizardrynextgeneration:item/charm_horn_uncharged"}
+  ]
+}

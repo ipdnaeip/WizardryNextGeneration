@@ -4,6 +4,7 @@ import com.ipdnaeip.wizardrynextgeneration.WizardryNextGeneration;
 import com.ipdnaeip.wizardrynextgeneration.registry.WNGPotions;
 import electroblob.wizardry.potion.PotionMagicEffect;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.living.LivingFallEvent;
@@ -26,8 +27,11 @@ public class PotionGravity extends PotionMagicEffect {
     @SubscribeEvent
     public static void onLivingUpdateEvent(LivingEvent.LivingUpdateEvent event) {
         EntityLivingBase entity = event.getEntityLiving();
-        if (entity.isPotionActive(WNGPotions.gravity)) {
-            entity.motionY -= 0.025 * (2 << (entity.getActivePotionEffect(WNGPotions.gravity).getAmplifier()));
+        if (entity instanceof EntityPlayer) {
+            EntityPlayer entityPlayer = (EntityPlayer) event.getEntityLiving();
+            if (entity.isPotionActive(WNGPotions.gravity) && !entityPlayer.capabilities.isFlying) {
+                entity.motionY -= 0.025 * (2 << (entity.getActivePotionEffect(WNGPotions.gravity).getAmplifier()));
+            }
         }
     }
 

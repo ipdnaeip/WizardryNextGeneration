@@ -1,0 +1,23 @@
+{
+  "enabled": {
+    "book": true,
+    "scroll": true,
+    "wands": true,
+    "npcs": true,
+    "dispensers": true,
+    "commands": true,
+    "treasure": true,
+    "trades": true,
+    "looting": true
+  },
+  "tier": "novice",
+  "element": "magic",
+  "type": "alteration",
+  "cost": 10,
+  "chargeup": 10,
+  "cooldown": 50,
+  "base_properties": {
+    "preparation_duration": 200,
+    "preparation_strength": 0
+  }
+}

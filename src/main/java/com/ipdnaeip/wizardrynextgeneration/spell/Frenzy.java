@@ -36,7 +36,7 @@ public class Frenzy extends SpellRay {
 
     @Override
     protected boolean onEntityHit(World world, Entity target, Vec3d hit, EntityLivingBase caster, Vec3d origin, int ticksInUse, SpellModifiers modifiers) {
-        if (!world.isRemote) {
+        if (!world.isRemote && target instanceof EntityLivingBase) {
             double range = (WNGSpells.frenzy.getProperty(EFFECT_RADIUS).floatValue() * modifiers.get(WizardryItems.blast_upgrade));
             List<EntityLivingBase> targets = EntityUtils.getLivingWithinRadius(range, target.posX, target.posY, target.posZ, world);
             Iterator var6 = targets.iterator();

@@ -4,7 +4,7 @@
     "scroll": true,
     "wands": true,
     "npcs": true,
-    "dispensers": false,
+    "dispensers": true,
     "commands": true,
     "treasure": true,
     "trades": true,
@@ -17,6 +17,7 @@
   "chargeup": 10,
   "cooldown": 600,
   "base_properties": {
-    "effect_duration": 300
+    "solar_winds_duration": 300,
+    "solar_winds_strength": 0
   }
 }

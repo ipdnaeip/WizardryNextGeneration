@@ -34,8 +34,9 @@ public class Humility extends SpellRay {
         if (target instanceof EntityLivingBase) {
             EntityLivingBase targetEntity = (EntityLivingBase) target;
             targetEntity.addPotionEffect(new PotionEffect(MobEffects.WEAKNESS, (int)(WNGSpells.humility.getProperty(EFFECT_DURATION).floatValue() * modifiers.get(WizardryItems.duration_upgrade)),2, false, false));
+            return true;
         }
-        return true;
+        return false;
     }
 
     @Override

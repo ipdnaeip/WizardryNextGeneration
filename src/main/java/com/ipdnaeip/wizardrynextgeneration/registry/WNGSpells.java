@@ -26,6 +26,7 @@ public final class WNGSpells {
     @SuppressWarnings("ConstantConditions")
     private static <T> T placeholder() { return null; }
 
+    // WNG 1.0.0 Spells
     public static final Spell photosynthesis = placeholder();
     public static final Spell scorch = placeholder();
     public static final Spell blood_infusion = placeholder();
@@ -70,13 +71,36 @@ public final class WNGSpells {
     public static final Spell fission_blast = placeholder();
     public static final Spell piercing_mass = placeholder();
 
+    // WNG 1.0.2 Spells
+    public static final Spell summon_webspitter = placeholder();
+    public static final Spell vicious_bite = placeholder();
+    public static final Spell betrayal = placeholder();
+    public static final Spell summon_righteous_defender = placeholder();
+    public static final Spell preparation = placeholder();
+    public static final Spell flesh_feed = placeholder();
+    public static final Spell lunar_salve = placeholder();
+    public static final Spell home_teleport = placeholder();
+    public static final Spell hyper_beam = placeholder();
+    public static final Spell spit_web = placeholder();
+    public static final Spell domesticate = placeholder();
+    public static final Spell tremors = placeholder();
+    public static final Spell biden_blast = placeholder();
+    public static final Spell blood_barrage = placeholder();
+    public static final Spell blood_blitz = placeholder();
+    public static final Spell shadow_blitz = placeholder();
+    public static final Spell shadow_barrage = placeholder();
+    public static final Spell fusion_beam = placeholder();
+    public static final Spell pull = placeholder();
+    public static final Spell whirlpool = placeholder();
+    public static final Spell combustion = placeholder();
+
     @SuppressWarnings("unchecked")
     @SubscribeEvent
     public static void register(RegistryEvent.Register<Spell> event) {
 
         IForgeRegistry<Spell> registry = event.getRegistry();
 
-        // WNG 1.0 Spells
+        // WNG 1.0.0 Spells
         registry.register(new Photosynthesis());
         registry.register(new Scorch());
         registry.register(new BloodInfusion());
@@ -119,7 +143,28 @@ public final class WNGSpells {
         registry.register(new AntiGravitationalField());
         registry.register(new Smite());
         registry.register(new FissionBlast());
-        registry.register(new PiercingMass());
+
+        // WNG 1.0.2 Spells
+
+        registry.register(new SummonWebspitter());
+        registry.register(new ViciousBite());
+        registry.register(new Betrayal());
+        registry.register(new SummonRighteousDefender());
+        registry.register(new Preparation());
+        registry.register(new FleshFeed());
+        registry.register(new LunarSalve());
+        registry.register(new HyperBeam());
+        registry.register(new Domesticate());
+        registry.register(new Tremors());
+        registry.register(new BidenBlast());
+        registry.register(new BloodBarrage());
+        registry.register(new BloodBlitz());
+        registry.register(new ShadowBlitz());
+        registry.register(new ShadowBarrage());
+        registry.register(new FusionBeam());
+        registry.register(new Pull());
+        registry.register(new Whirlpool());
+        registry.register(new Combustion());
     }
 }
 

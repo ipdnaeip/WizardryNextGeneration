@@ -50,10 +50,10 @@ public class Migraine extends SpellRay {
 
     @Override
     protected boolean onEntityHit(World world, Entity target, Vec3d hit, EntityLivingBase caster, Vec3d origin, int ticksInUse, SpellModifiers modifiers) {
-        if (ticksInUse % 10 == 0) {
-            EntityUtils.attackEntityWithoutKnockback(target, MagicDamage.causeDirectMagicDamage(caster, MagicDamage.DamageType.SHOCK), this.getProperty(DAMAGE).floatValue() * modifiers.get(SpellModifiers.POTENCY));
-            if (target instanceof EntityLivingBase) {
-                EntityLivingBase targetEntity = (EntityLivingBase) target;
+        if (target instanceof EntityLivingBase) {
+            EntityLivingBase targetEntity = (EntityLivingBase) target;
+            if (ticksInUse % 10 == 0) {
+                EntityUtils.attackEntityWithoutKnockback(targetEntity, MagicDamage.causeDirectMagicDamage(caster, MagicDamage.DamageType.SHOCK), this.getProperty(DAMAGE).floatValue() * modifiers.get(SpellModifiers.POTENCY));
                 if (targetEntity instanceof EntityPlayer) {
                     targetEntity.addPotionEffect(new PotionEffect(MobEffects.NAUSEA, this.getProperty(EFFECT_DURATION).intValue(), 0));
                     targetEntity.addPotionEffect(new PotionEffect(MobEffects.SLOWNESS, this.getProperty(EFFECT_DURATION).intValue(), 0));

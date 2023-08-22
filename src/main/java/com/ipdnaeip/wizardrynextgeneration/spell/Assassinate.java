@@ -30,7 +30,6 @@ public class Assassinate extends SpellRay {
     public Assassinate() {
         super(WizardryNextGeneration.MODID, "assassinate", SpellActions.POINT, false);
         this.aimAssist(0.3F);
-        this.soundValues(1F, 0.1F, 0.1F);
         this.addProperties(DAMAGE, MULTIPLIER_TAG);
     }
     @Override
