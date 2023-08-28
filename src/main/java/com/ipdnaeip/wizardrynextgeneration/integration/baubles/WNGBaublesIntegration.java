@@ -7,6 +7,7 @@ import baubles.api.cap.BaublesCapabilities;
 import baubles.api.cap.IBaublesItemHandler;
 import com.ipdnaeip.wizardrynextgeneration.item.ITickableArtefact;
 import com.ipdnaeip.wizardrynextgeneration.item.ItemNewArtefact;
+import electroblob.wizardry.Wizardry;
 import electroblob.wizardry.item.ItemArtefact;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -55,8 +56,7 @@ public final class WNGBaublesIntegration {
     }
 
     public static boolean enabled() {
-        //return Settings.generalSettings.baubles_integration && baublesLoaded;
-        return true;
+        return Wizardry.settings.baublesIntegration && baublesLoaded;
     }
 
     // Wrappers for BaublesApi methods
