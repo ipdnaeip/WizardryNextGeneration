@@ -29,11 +29,11 @@ public class EntityWhirlpool extends EntityScaledConstruct {
             for (EntityLivingBase target : targets) {
                 if (this.isValidTarget(target) && target.onGround) {
                     if (this.ticksExisted % 10 == 0) {
-                        //if (this.getCaster() != null) {
-                        EntityUtils.attackEntityWithoutKnockback(target, MagicDamage.causeIndirectMagicDamage(this, this.getCaster(), MagicDamage.DamageType.RADIANT), WNGSpells.whirlpool.getProperty("damage").floatValue() * this.damageMultiplier);
-/*                        } else {
+                        if (this.getCaster() != null) {
+                        EntityUtils.attackEntityWithoutKnockback(target, MagicDamage.causeIndirectMagicDamage(this, this.getCaster(), MagicDamage.DamageType.FORCE), WNGSpells.whirlpool.getProperty("damage").floatValue() * this.damageMultiplier);
+                        } else {
                             target.attackEntityFrom(DamageSource.MAGIC, WNGSpells.whirlpool.getProperty("damage").floatValue() * this.damageMultiplier);
-                        }*/
+                        }
                     }
                     double dx = (this.posX - target.posX) / (this.getPositionVector().distanceTo(target.getPositionVector()) * 20) * this.damageMultiplier;
                     double dz = (this.posZ - target.posZ) / (this.getPositionVector().distanceTo(target.getPositionVector()) * 20) * this.damageMultiplier;

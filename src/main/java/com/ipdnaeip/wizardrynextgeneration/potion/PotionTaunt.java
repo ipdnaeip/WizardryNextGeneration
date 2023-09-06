@@ -5,6 +5,7 @@ import com.ipdnaeip.wizardrynextgeneration.registry.WNGPotions;
 import electroblob.wizardry.entity.living.ISummonedCreature;
 import electroblob.wizardry.potion.PotionMagicEffect;
 import electroblob.wizardry.util.EntityUtils;
+import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.monster.IMob;
@@ -34,12 +35,10 @@ public class PotionTaunt extends PotionMagicEffect {
         EntityLivingBase entity = event.getEntityLiving();
         if (entity.isPotionActive(WNGPotions.taunt)) {
             List<EntityLivingBase> targets = EntityUtils.getLivingWithinRadius(8 + (4 * entity.getActivePotionEffect(WNGPotions.taunt).getAmplifier()), entity.posX, entity.posY, entity.posZ, entity.getEntityWorld());
-            Iterator var6 = targets.iterator();
-            while (var6.hasNext()) {
-                EntityLivingBase targetEntity = (EntityLivingBase) var6.next();
-                if (targetEntity != entity && targetEntity instanceof IMob) {
+            for (EntityLivingBase targetEntity : targets) {
+                if (targetEntity != entity && targetEntity instanceof IMob && targetEntity instanceof EntityLiving) {
                     if (!(targetEntity instanceof ISummonedCreature) || ((ISummonedCreature) targetEntity).getCaster() instanceof IMob) {
-                        ((EntityMob) targetEntity).setAttackTarget(entity);
+                        ((EntityLiving)targetEntity).setAttackTarget(entity);
                     }
                 }
             }

@@ -36,11 +36,9 @@ public class Betrayal extends SpellRay {
         if (!world.isRemote && target instanceof EntityLivingBase) {
             double range = (WNGSpells.betrayal.getProperty(EFFECT_RADIUS).floatValue() * modifiers.get(WizardryItems.blast_upgrade));
             List<EntityLivingBase> targets = EntityUtils.getLivingWithinRadius(range, target.posX, target.posY, target.posZ, world);
-            Iterator var6 = targets.iterator();
-            while (var6.hasNext()) {
-                EntityLivingBase targetEntity = (EntityLivingBase) var6.next();
+            for (EntityLivingBase targetEntity : targets) {
                 if (targetEntity != caster) {
-                    targetEntity.addPotionEffect(new PotionEffect(WNGPotions.betrayal, this.getProperty(EFFECT_DURATION).intValue(), (int)((modifiers.get(SpellModifiers.POTENCY) -1) * 3.5)));
+                    targetEntity.addPotionEffect(new PotionEffect(WNGPotions.betrayal, this.getProperty(EFFECT_DURATION).intValue(), (int) ((modifiers.get(SpellModifiers.POTENCY) - 1) * 3.5)));
                 }
             }
         }
