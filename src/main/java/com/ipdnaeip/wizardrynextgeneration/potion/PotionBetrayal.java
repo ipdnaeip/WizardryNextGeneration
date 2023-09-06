@@ -7,6 +7,7 @@ import electroblob.wizardry.util.EntityUtils;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.monster.EntityMob;
+import net.minecraft.entity.monster.IMob;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -33,11 +34,9 @@ public class PotionBetrayal extends PotionMagicEffect {
         EntityLivingBase entity = event.getEntityLiving();
         if (entity.isPotionActive(WNGPotions.betrayal)) {
             List<EntityLivingBase> targets = EntityUtils.getLivingWithinRadius(8 + (4 * entity.getActivePotionEffect(WNGPotions.betrayal).getAmplifier()), entity.posX, entity.posY, entity.posZ, entity.getEntityWorld());
-            Iterator var6 = targets.iterator();
-            while (var6.hasNext()) {
-                EntityLivingBase targetEntity = (EntityLivingBase) var6.next();
-                if (targetEntity != entity && entity instanceof EntityMob && targetEntity instanceof EntityMob) {
-                    ((EntityMob) entity).setAttackTarget(targetEntity);
+            for (EntityLivingBase targetEntity : targets) {
+                if (targetEntity != entity && entity instanceof IMob && targetEntity instanceof IMob && entity instanceof EntityLiving) {
+                    ((EntityLiving) entity).setAttackTarget(targetEntity);
                 }
             }
         }
