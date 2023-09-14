@@ -1,19 +1,26 @@
 package com.ipdnaeip.wizardrynextgeneration.util;
 
+import com.google.common.collect.Lists;
 import electroblob.wizardry.entity.ICustomHitbox;
 import electroblob.wizardry.util.EntityUtils;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.potion.Potion;
+import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
-import java.util.ArrayList;
-import java.util.List;
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
+
+import java.util.*;
 import java.util.function.Predicate;
 
-public final class WNGEntityUtils {
+public final class WNGUtils {
 
-    private WNGEntityUtils() {
+    private WNGUtils() {
     }
 
     public static boolean isEntityStill(Entity entity) {
@@ -66,5 +73,64 @@ public final class WNGEntityUtils {
         return result;
     }
 
+    public static <T extends Entity> List<T> getEntitiesWithinCylinder(double radius, double x, double y, double z, double height, World world, Class<T> entityType) {
+        AxisAlignedBB aabb = new AxisAlignedBB(x - radius, y, z - radius, x + radius, y + height, z + radius);
+        List<T> entityList = world.getEntitiesWithinAABB(entityType, aabb);
+        for(T entity : entityList) {
+            if (entity.getDistance(x, entity.posY, z) > radius) {
+                entityList.remove(entity);
+                break;
+            }
+        }
+        return entityList;
+    }
+
+    public static Potion getRandomPotionEffect(boolean all, boolean isBad) {
+        List<Potion> potionList = ForgeRegistries.POTIONS.getValues();
+        List<Potion> potionCuratedList = Lists.newArrayList();
+        for (Potion potion : potionList) {
+            if (potion.getRegistryName().getNamespace().matches("minecraft")) {
+                if (all) {
+                    potionCuratedList.add(potion);
+                } else if (isBad && potion.isBadEffect()) {
+                    potionCuratedList.add(potion);
+                } else if (!isBad && !potion.isBadEffect()) {
+                    potionCuratedList.add(potion);
+                }
+            }
+        }
+        return potionCuratedList.get((int)(Math.random() * (potionCuratedList.size() - 1)));
+    }
+
+    public static boolean doesPlayerHaveLessThanItem(EntityPlayer player, Item item, int amount) {
+        int check = 0;
+        for (ItemStack stack : player.inventory.mainInventory) {
+            if (stack.getItem() == item) check++;
+        }
+        for (ItemStack stack : player.inventory.armorInventory) {
+            if (stack.getItem() == item) check++;
+        }
+        for (ItemStack stack : player.inventory.offHandInventory) {
+            if (stack.getItem() == item) check++;
+        }
+        if (check < amount) {
+            return true;
+        }
+        return false;
+    }
+
+    public static int playerExcessItems(EntityPlayer player, Item item, int amount) {
+        int check = 0;
+        for (ItemStack stack : player.inventory.mainInventory) {
+            if (stack.getItem() == item) check++;
+        }
+        for (ItemStack stack : player.inventory.armorInventory) {
+            if (stack.getItem() == item) check++;
+        }
+        for (ItemStack stack : player.inventory.offHandInventory) {
+            if (stack.getItem() == item) check++;
+        }
+        return amount - check;
+    }
 
 }

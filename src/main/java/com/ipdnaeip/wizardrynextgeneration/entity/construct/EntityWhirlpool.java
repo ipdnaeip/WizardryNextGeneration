@@ -1,6 +1,7 @@
 package com.ipdnaeip.wizardrynextgeneration.entity.construct;
 
 import com.ipdnaeip.wizardrynextgeneration.registry.WNGSpells;
+import com.ipdnaeip.wizardrynextgeneration.util.WNGUtils;
 import electroblob.wizardry.entity.construct.EntityScaledConstruct;
 import electroblob.wizardry.util.EntityUtils;
 import electroblob.wizardry.util.MagicDamage;
@@ -16,7 +17,7 @@ public class EntityWhirlpool extends EntityScaledConstruct {
 
     public EntityWhirlpool(World world) {
         super(world);
-        this.setSize(WNGSpells.whirlpool.getProperty("effect_radius").floatValue() * 2.0F, 10F);
+        this.setSize(WNGSpells.whirlpool.getProperty("effect_radius").floatValue() * 2.0F, 0F);
     }
 
     public void onUpdate() {
@@ -25,15 +26,11 @@ public class EntityWhirlpool extends EntityScaledConstruct {
         }
         super.onUpdate();
         if (!this.world.isRemote) {
-            List<EntityLivingBase> targets = EntityUtils.getLivingWithinRadius((this.width / 2.0F), this.posX, this.posY, this.posZ, this.world);
+            List<EntityLivingBase> targets = WNGUtils.getEntitiesWithinCylinder((this.width / 2.0F), this.posX, this.posY, this.posZ, 0.5f, this.world, EntityLivingBase.class);
             for (EntityLivingBase target : targets) {
-                if (this.isValidTarget(target) && target.onGround) {
+                if (this.isValidTarget(target)) {
                     if (this.ticksExisted % 10 == 0) {
-                        if (this.getCaster() != null) {
-                        EntityUtils.attackEntityWithoutKnockback(target, MagicDamage.causeIndirectMagicDamage(this, this.getCaster(), MagicDamage.DamageType.FORCE), WNGSpells.whirlpool.getProperty("damage").floatValue() * this.damageMultiplier);
-                        } else {
-                            target.attackEntityFrom(DamageSource.MAGIC, WNGSpells.whirlpool.getProperty("damage").floatValue() * this.damageMultiplier);
-                        }
+                        EntityUtils.attackEntityWithoutKnockback(target, DamageSource.DROWN, WNGSpells.whirlpool.getProperty("damage").floatValue() * this.damageMultiplier);
                     }
                     double dx = (this.posX - target.posX) / (this.getPositionVector().distanceTo(target.getPositionVector()) * 20) * this.damageMultiplier;
                     double dz = (this.posZ - target.posZ) / (this.getPositionVector().distanceTo(target.getPositionVector()) * 20) * this.damageMultiplier;
@@ -46,9 +43,6 @@ public class EntityWhirlpool extends EntityScaledConstruct {
             float angle = this.rand.nextFloat() * 3.1415927F * 2.0F;
             world.spawnParticle(EnumParticleTypes.WATER_SPLASH, this.posX + radius * (double) MathHelper.cos(angle), this.posY, this.posZ + radius * (double)MathHelper.sin(angle), 0, 0.1f ,0);
         }
-    }
-    public boolean canRenderOnFire() {
-        return false;
     }
 
 }

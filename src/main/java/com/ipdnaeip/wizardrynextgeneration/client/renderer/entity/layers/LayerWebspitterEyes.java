@@ -1,7 +1,7 @@
 package com.ipdnaeip.wizardrynextgeneration.client.renderer.entity.layers;
 
 import com.ipdnaeip.wizardrynextgeneration.WizardryNextGeneration;
-import com.ipdnaeip.wizardrynextgeneration.client.renderer.entity.RenderWebspitter;
+import com.ipdnaeip.wizardrynextgeneration.client.renderer.entity.living.RenderWebspitter;
 import com.ipdnaeip.wizardrynextgeneration.entity.living.EntityWebspitter;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;

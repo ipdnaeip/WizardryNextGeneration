@@ -6,6 +6,7 @@ import com.ipdnaeip.wizardrynextgeneration.entity.construct.EntityGravitationalF
 import com.ipdnaeip.wizardrynextgeneration.entity.construct.EntityWhirlpool;
 import com.ipdnaeip.wizardrynextgeneration.entity.living.*;
 import com.ipdnaeip.wizardrynextgeneration.entity.projectile.EntityAcceleratedMass;
+import com.ipdnaeip.wizardrynextgeneration.entity.projectile.EntityConjuredPotion;
 import com.ipdnaeip.wizardrynextgeneration.entity.projectile.EntityFissionBlast;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EnumCreatureType;
@@ -74,6 +75,7 @@ public class WNGEntities {
         registry.register(createEntry(EntityWhirlpool.class, "whirlpool", WNGEntities.TrackingType.CONSTRUCT).build());
 
         //living
+        registry.register(createEntry(EntityPigZombieConvert.class, "pig_zombie_convert", TrackingType.LIVING).build());
         registry.register(createEntry(EntityRighteousDefender.class, "righteous_defender", TrackingType.LIVING).egg(16764218, 16769387).build());
         registry.register(createEntry(EntityRighteousDefenderMinion.class, "righteous_defender_minion", TrackingType.LIVING).build());
         registry.register(createEntry(EntityWebspitter.class, "webspitter", WNGEntities.TrackingType.LIVING).egg(3357763, 960667).spawn(EnumCreatureType.MONSTER, 20, 1, 3, ForgeRegistries.BIOMES.getValuesCollection().stream().filter((b) -> BiomeDictionary.hasType(b, BiomeDictionary.Type.PLAINS) ).collect(Collectors.toSet())).build());
@@ -82,6 +84,7 @@ public class WNGEntities {
         //projectile
         registry.register(createEntry(EntityAcceleratedMass.class, "accelerated_mass", WNGEntities.TrackingType.PROJECTILE).build());
         registry.register(createEntry(EntityFissionBlast.class, "fission_blast", WNGEntities.TrackingType.PROJECTILE).build());
+        registry.register(createEntry(EntityConjuredPotion.class, "toss_potion", WNGEntities.TrackingType.PROJECTILE).build());
     }
 
 }

@@ -94,6 +94,12 @@ public final class WNGSpells {
     public static final Spell whirlpool = placeholder();
     public static final Spell combustion = placeholder();
 
+    // WNG 1.0.3 Spells
+    public static final Spell hex_swine = placeholder();
+    public static final Spell toss_potion = placeholder();
+    public static final Spell conjure_potion = placeholder();
+    public static final Spell conjure_lingering_potion = placeholder();
+
     @SuppressWarnings("unchecked")
     @SubscribeEvent
     public static void register(RegistryEvent.Register<Spell> event) {
@@ -165,6 +171,13 @@ public final class WNGSpells {
         registry.register(new Pull());
         registry.register(new Whirlpool());
         registry.register(new Combustion());
+
+        // WNG 1.0.3 Spells
+
+        registry.register(new HexSwine());
+        registry.register(new TossPotion());
+        registry.register(new ConjurePotion());
+        registry.register(new ConjureLingeringPotion());
     }
 }
 

@@ -90,6 +90,7 @@ entity.wizardrynextgeneration:grativational_field.name=Gravitational Field
 
 entity.wizardrynextgeneration:bat_minion.name=Bat
 entity.wizardrynextgeneration:bat_mob.name=Bat
+entity.wizardrynextgeneration:pig_zombie_convert.name=Pigman
 entity.wizardrynextgeneration:righteous_defender.name=Righteous Defender
 entity.wizardrynextgeneration:righteous_defender_minion.name=Righteous Defender
 entity.wizardrynextgeneration:webspitter.name=Webspitter
@@ -206,6 +207,8 @@ spell.wizardrynextgeneration:gravitational_pull=Gravity
 spell.wizardrynextgeneration:gravitational_pull.desc=Increase a creature's gravity.
 spell.wizardrynextgeneration:haste=Haste
 spell.wizardrynextgeneration:haste.desc=Increase your arm swinging speed.
+spell.wizardrynextgeneration:hex_swine=Hex Swine
+spell.wizardrynextgeneration:hex_swine.desc=Defy the laws of nature and transform a pig into a zombie pigman!
 spell.wizardrynextgeneration:home_teleport=Home Teleport
 spell.wizardrynextgeneration:home_teleport.desc=Teleport to your bed location.
 spell.wizardrynextgeneration:home_teleport.missing=Your bed is missing or obstructed...

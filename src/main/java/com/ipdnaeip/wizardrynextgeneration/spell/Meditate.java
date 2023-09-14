@@ -4,18 +4,14 @@ package com.ipdnaeip.wizardrynextgeneration.spell;
 
 import com.ipdnaeip.wizardrynextgeneration.WizardryNextGeneration;
 import com.ipdnaeip.wizardrynextgeneration.registry.WNGItems;
-import com.ipdnaeip.wizardrynextgeneration.util.WNGEntityUtils;
+import com.ipdnaeip.wizardrynextgeneration.util.WNGUtils;
 import electroblob.wizardry.item.SpellActions;
 import electroblob.wizardry.spell.Spell;
 import electroblob.wizardry.util.ParticleBuilder;
 import electroblob.wizardry.util.SpellModifiers;
-import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.MobEffects;
 import net.minecraft.item.Item;
-import net.minecraft.potion.PotionEffect;
-import net.minecraft.tileentity.TileEntityDispenser;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.text.TextComponentTranslation;
@@ -46,13 +42,13 @@ public class Meditate extends Spell {
 
     @Override
     public boolean cast(World world, EntityPlayer caster, EnumHand hand, int ticksInUse, SpellModifiers modifiers) {
-        System.out.println(WNGEntityUtils.isEntityStill(caster) + " s m " + WNGEntityUtils.isEntityMoving(caster));
-        if (WNGEntityUtils.isEntityMoving(caster)) {
+        System.out.println(WNGUtils.isEntityStill(caster) + " s m " + WNGUtils.isEntityMoving(caster));
+        if (WNGUtils.isEntityMoving(caster)) {
             caster.sendStatusMessage(new TextComponentTranslation("spell." + this.getUnlocalisedName() + ".moving"), true);
             return false;
         }
         //check if the player can be healed and if the player is standing still
-        if (WNGEntityUtils.isEntityStill(caster) && caster.getHealth() < caster.getMaxHealth() && caster.getHealth() > 0.0F && ticksInUse % 10 == 0) {
+        if (WNGUtils.isEntityStill(caster) && caster.getHealth() < caster.getMaxHealth() && caster.getHealth() > 0.0F && ticksInUse % 10 == 0) {
             //caster.addPotionEffect(new PotionEffect(MobEffects.BLINDNESS, 30, 0));
             caster.heal(this.getProperty("health").floatValue() * (1 + modifiers.get("potency")));
             this.playSound(world, caster, ticksInUse, -1, modifiers);
