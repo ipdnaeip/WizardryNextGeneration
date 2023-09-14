@@ -18,6 +18,8 @@ public class Whirlpool extends SpellConstructRanged<EntityWhirlpool> {
         super(WizardryNextGeneration.MODID, "whirlpool", EntityWhirlpool::new, false);
         this.soundValues(1F, 1F, 0F);
         this.addProperties(EFFECT_RADIUS, DAMAGE);
+        this.floor(true);
+        this.allowOverlap = true;
     }
 
     @Override

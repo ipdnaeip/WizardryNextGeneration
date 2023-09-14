@@ -28,6 +28,7 @@
   "spell.gravitational_field": 			  {"category": "spells", "sounds": ["ebwizardry:effect1", "ebwizardry:effect2"]},
   "spell.gravitational_pull": 			  {"category": "spells", "sounds": ["ebwizardry:effect1", "ebwizardry:effect2"]},
   "spell.haste":                          {"category": "spells", "sounds": ["ebwizardry:buff"]},
+  "spell.hex_swine":                      {"category": "spells", "sounds": ["ebwizardry:buff_large"]},
   "spell.humility":                       {"category": "spells", "sounds": ["ebwizardry:effect1", "ebwizardry:effect2"]},
   "spell.hyper_beam":                     {"category": "spells", "sounds": ["mob/illusion_illager/prepare_blind"]},
   "spell.ice_barrage": 			          {"category": "spells", "sounds": ["ebwizardry:ice"]},

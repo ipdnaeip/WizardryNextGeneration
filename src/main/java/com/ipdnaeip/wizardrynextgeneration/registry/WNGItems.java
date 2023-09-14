@@ -37,16 +37,13 @@ public final class WNGItems {
     }
 
     //misc
-    public static final Item battleaxe_iron = placeholder();
     public static final Item blessed_meat = placeholder();
-    public static final Item spear_diamond = placeholder();
-    public static final Item spear_stone = placeholder();
 
     //magical items
+    public static final Item conjured_potion = placeholder();
     public static final Item scroll_wng = placeholder();
     public static final Item spell_book_wng = placeholder();
     public static final Item spell_encyclopedia = placeholder();
-    public static final Item tablet_earth = placeholder();
 
     //amulet
     public static final Item amulet_moon = placeholder();
@@ -121,6 +118,7 @@ public final class WNGItems {
         registerItem(registry, "blessed_meat", new ItemBlessedMeat());
 
         //magical items
+        registerItem(registry, "conjured_potion", new ItemConjuredPotion());
         registerItem(registry, "scroll_wng", new ItemScroll());
         registerItem(registry,"spell_book_wng", new ItemWNGSpellBook());
         registerItem(registry, "spell_encyclopedia", new ItemSpellEncyclopedia());

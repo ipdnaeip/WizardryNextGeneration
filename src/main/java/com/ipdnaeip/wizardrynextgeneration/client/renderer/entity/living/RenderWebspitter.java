@@ -1,4 +1,4 @@
-package com.ipdnaeip.wizardrynextgeneration.client.renderer.entity;
+package com.ipdnaeip.wizardrynextgeneration.client.renderer.entity.living;
 
 import com.ipdnaeip.wizardrynextgeneration.WizardryNextGeneration;
 import com.ipdnaeip.wizardrynextgeneration.client.renderer.entity.layers.LayerWebspitterEyes;

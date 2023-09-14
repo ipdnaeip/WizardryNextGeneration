@@ -1,6 +1,6 @@
 package com.ipdnaeip.wizardrynextgeneration.spell;
 
-import com.ipdnaeip.wizardrynextgeneration.util.WNGEntityUtils;
+import com.ipdnaeip.wizardrynextgeneration.util.WNGUtils;
 import electroblob.wizardry.spell.SpellRay;
 import electroblob.wizardry.util.EntityUtils;
 import electroblob.wizardry.util.RayTracer;
@@ -8,8 +8,6 @@ import electroblob.wizardry.util.SpellModifiers;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.EnumAction;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
@@ -30,7 +28,7 @@ public abstract class SpellRayMultiple extends SpellRay {
     protected boolean shootSpell(World world, Vec3d origin, Vec3d direction, @Nullable EntityLivingBase caster, int ticksInUse, SpellModifiers modifiers) {
         double range = this.getRange(world, origin, direction, caster, ticksInUse, modifiers);
         Vec3d endpoint = origin.add(direction.scale(range));
-        List<RayTraceResult> rayTrace = WNGEntityUtils.rayTraceMultiple(world, origin, endpoint, this.aimAssist, this.hitLiquids, this.ignoreUncollidables, false, penetratesBlocks, Entity.class, this.ignoreLivingEntities ? EntityUtils::isLiving : RayTracer.ignoreEntityFilter(caster));
+        List<RayTraceResult> rayTrace = WNGUtils.rayTraceMultiple(world, origin, endpoint, this.aimAssist, this.hitLiquids, this.ignoreUncollidables, false, penetratesBlocks, Entity.class, this.ignoreLivingEntities ? EntityUtils::isLiving : RayTracer.ignoreEntityFilter(caster));
         boolean flag = false;
         if (!rayTrace.isEmpty()) {
             for (RayTraceResult rayTraceResult : rayTrace) {
