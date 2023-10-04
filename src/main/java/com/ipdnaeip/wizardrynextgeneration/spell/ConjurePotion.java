@@ -21,6 +21,7 @@ public class ConjurePotion extends SpellConjuration {
         ItemConjuredPotion.setEffectDurationMultiplier(stack, modifiers.get(WizardryItems.duration_upgrade));
         ItemConjuredPotion.setBlastMultiplier(stack, modifiers.get(WizardryItems.blast_upgrade));
         ItemConjuredPotion.setLingering(stack, false);
+        ItemConjuredPotion.setInstantEffect(stack, false);
     }
 
     @Override

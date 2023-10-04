@@ -10,13 +10,15 @@
     "trades": true,
     "looting": true
   },
-  "tier": "novice",
+  "tier": "apprentice",
   "element": "sorcery",
-  "type": "utility",
-  "cost": 10,
-  "chargeup": 10,
+  "type": "projectile",
+  "cost": 15,
+  "chargeup": 20,
   "cooldown": 100,
   "base_properties": {
-    "item_lifetime": 600
+    "range": 10,
+    "blast_radius": 3,
+    "effect_duration": 600
   }
 }

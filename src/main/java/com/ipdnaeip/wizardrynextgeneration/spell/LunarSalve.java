@@ -16,6 +16,8 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.World;
 
 import java.util.ArrayList;
@@ -30,13 +32,15 @@ public class LunarSalve extends SpellBuff {
     }
 
     protected boolean applyEffects(EntityLivingBase caster, SpellModifiers modifiers) {
-        if (!caster.getActivePotionEffects().isEmpty()) {
+        if (caster.world.isDaytime() || !caster.world.canSeeSky(new BlockPos(caster.posX, caster.posY + (double)caster.getEyeHeight(), caster.posZ)) && caster instanceof EntityPlayer) {
+            if(!caster.world.isRemote) ((EntityPlayer)caster).sendStatusMessage(new TextComponentTranslation("spell." + this.getUnlocalisedName() + ".no_moonlight"), true);
+            return false;
+        }
+        else if (!caster.getActivePotionEffects().isEmpty() && !caster.world.isDaytime() && caster.world.canSeeSky(new BlockPos(caster.posX, caster.posY + (double)caster.getEyeHeight(), caster.posZ))) {
             ItemStack milk = new ItemStack(Items.MILK_BUCKET);
             boolean flag = false;
-            Iterator var5 = (new ArrayList(caster.getActivePotionEffects())).iterator();
-
-            while(var5.hasNext()) {
-                PotionEffect effect = (PotionEffect)var5.next();
+            for (Object o : new ArrayList(caster.getActivePotionEffects())) {
+                PotionEffect effect = (PotionEffect) o;
                 if (effect.isCurativeItem(milk) && !effect.getPotion().isBeneficial()) {
                     caster.removePotionEffect(effect.getPotion());
                     flag = true;

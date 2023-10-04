@@ -23,13 +23,14 @@ import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
 
 public class EntityRighteousDefender extends EntityCreature {
-    private final double AISpeed = 0.5;
+    public final double AISpeed = 0.5;
     protected Predicate<Entity> targetSelector;
 
     public EntityRighteousDefender(World world) {
         super(world);
     }
 
+    @Override
     protected void initEntityAI() {
         this.tasks.addTask(1, new EntityAIAttackMelee(this, this.AISpeed, true));
         this.tasks.addTask(2, new EntityAIWander(this, this.AISpeed));
@@ -40,6 +41,7 @@ public class EntityRighteousDefender extends EntityCreature {
         this.targetTasks.addTask(0, new EntityAINearestAttackableTarget<>(this, EntityLiving.class, 0, false, true, this.targetSelector));
     }
 
+    @Override
     public IEntityLivingData onInitialSpawn(DifficultyInstance difficulty, IEntityLivingData livingdata){
         this.setItemStackToSlot(EntityEquipmentSlot.HEAD, new ItemStack(Items.CHAINMAIL_HELMET));
         this.setItemStackToSlot(EntityEquipmentSlot.CHEST, new ItemStack(Items.CHAINMAIL_CHESTPLATE));
@@ -50,6 +52,7 @@ public class EntityRighteousDefender extends EntityCreature {
         return livingdata;
     }
 
+    @Override
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
         this.getAttributeMap().registerAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(6.0);
@@ -58,28 +61,34 @@ public class EntityRighteousDefender extends EntityCreature {
         this.getEntityAttribute(SharedMonsterAttributes.ARMOR).setBaseValue(12);
     }
 
+    @Override
     protected float getSoundPitch()
     {
         return super.getSoundPitch() * 0.75F;
     }
 
+    @Override
     protected SoundEvent getAmbientSound() {
         return WizardrySounds.ENTITY_WIZARD_AMBIENT;
     }
 
+    @Override
     protected SoundEvent getHurtSound(DamageSource source) {
         return WizardrySounds.ENTITY_WIZARD_HURT;
     }
 
+    @Override
     protected SoundEvent getDeathSound() {
         return WizardrySounds.ENTITY_WIZARD_DEATH;
     }
 
+    @Override
     public boolean attackEntityAsMob(Entity entityIn)
     {
         return entityIn.attackEntityFrom(DamageSource.causeMobDamage(this), (float) this.getAttributeMap().getAttributeInstance(SharedMonsterAttributes.ATTACK_DAMAGE).getAttributeValue());
     }
 
+    @Override
     public void onLivingUpdate() {
         super.onLivingUpdate();
         this.updateArmSwingProgress();
