@@ -4,23 +4,13 @@ import com.ipdnaeip.wizardrynextgeneration.WizardryNextGeneration;
 import com.ipdnaeip.wizardrynextgeneration.entity.projectile.EntityConjuredPotion;
 import com.ipdnaeip.wizardrynextgeneration.registry.WNGItems;
 import electroblob.wizardry.spell.SpellProjectile;
-import electroblob.wizardry.util.SpellModifiers;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.Item;
 
-import javax.annotation.Nullable;
+public class PotionBomb extends SpellProjectile<EntityConjuredPotion> {
 
-public class TossPotion extends SpellProjectile<EntityConjuredPotion> {
-
-    public TossPotion() {
-        super(WizardryNextGeneration.MODID, "toss_potion", EntityConjuredPotion::new);
+    public PotionBomb() {
+        super(WizardryNextGeneration.MODID, "potion_bomb", EntityConjuredPotion::new);
         this.addProperties("blast_radius", "effect_duration");
-    }
-
-    @Override
-    protected void addProjectileExtras(EntityConjuredPotion projectile, @Nullable EntityLivingBase caster, SpellModifiers modifiers) {
-        projectile.isLingering = false;
-        projectile.randomEffects = true;
     }
 
     @Override

@@ -13,10 +13,10 @@
   "tier": "advanced",
   "element": "sorcery",
   "type": "utility",
-  "cost": 50,
-  "chargeup": 10,
-  "cooldown": 25,
+  "cost": 100,
+  "chargeup": 20,
+  "cooldown": 100,
   "base_properties": {
-    "item_lifetime": 600
+    "teleport_countdown": 75
   }
 }

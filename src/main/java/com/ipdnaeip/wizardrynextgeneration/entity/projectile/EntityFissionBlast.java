@@ -3,6 +3,7 @@ package com.ipdnaeip.wizardrynextgeneration.entity.projectile;
 import com.ipdnaeip.wizardrynextgeneration.registry.WNGSpells;
 import electroblob.wizardry.entity.projectile.EntityMagicArrow;
 import electroblob.wizardry.util.ParticleBuilder;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.util.math.MathHelper;
@@ -16,7 +17,6 @@ public class EntityFissionBlast extends EntityMagicArrow {
     public EntityFissionBlast(World world) {
         super(world);
         this.setSize(0.2F, 0.2F);
-
         }
 
     @Override

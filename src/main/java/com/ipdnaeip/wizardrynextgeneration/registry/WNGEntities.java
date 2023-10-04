@@ -8,6 +8,7 @@ import com.ipdnaeip.wizardrynextgeneration.entity.living.*;
 import com.ipdnaeip.wizardrynextgeneration.entity.projectile.EntityAcceleratedMass;
 import com.ipdnaeip.wizardrynextgeneration.entity.projectile.EntityConjuredPotion;
 import com.ipdnaeip.wizardrynextgeneration.entity.projectile.EntityFissionBlast;
+import electroblob.wizardry.Wizardry;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.util.ResourceLocation;
@@ -20,6 +21,7 @@ import net.minecraftforge.fml.common.registry.EntityEntryBuilder;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.registries.IForgeRegistry;
 
+import java.util.Arrays;
 import java.util.stream.Collectors;
 
 @Mod.EventBusSubscriber
@@ -75,6 +77,9 @@ public class WNGEntities {
         registry.register(createEntry(EntityWhirlpool.class, "whirlpool", WNGEntities.TrackingType.CONSTRUCT).build());
 
         //living
+        registry.register(createEntry(EntityBatMob.class, "bat_mob", TrackingType.LIVING).egg(4996656, 986895).spawn(EnumCreatureType.MONSTER, 20, 1, 3, ForgeRegistries.BIOMES.getValuesCollection().stream().filter((b) -> {
+            return !Arrays.asList(Wizardry.settings.mobSpawnBiomeBlacklist).contains(b.getRegistryName());
+        }).collect(Collectors.toSet())).build());
         registry.register(createEntry(EntityPigZombieConvert.class, "pig_zombie_convert", TrackingType.LIVING).build());
         registry.register(createEntry(EntityRighteousDefender.class, "righteous_defender", TrackingType.LIVING).egg(16764218, 16769387).build());
         registry.register(createEntry(EntityRighteousDefenderMinion.class, "righteous_defender_minion", TrackingType.LIVING).build());

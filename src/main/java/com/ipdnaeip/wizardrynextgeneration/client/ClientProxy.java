@@ -2,6 +2,7 @@ package com.ipdnaeip.wizardrynextgeneration.client;
 
 import com.ipdnaeip.wizardrynextgeneration.CommonProxy;
 import com.ipdnaeip.wizardrynextgeneration.WizardryNextGeneration;
+import com.ipdnaeip.wizardrynextgeneration.client.renderer.entity.living.RenderBatMob;
 import com.ipdnaeip.wizardrynextgeneration.client.renderer.entity.living.RenderRighteousDefender;
 import com.ipdnaeip.wizardrynextgeneration.client.renderer.entity.living.RenderWebspitter;
 import com.ipdnaeip.wizardrynextgeneration.client.renderer.entity.layers.LayerDivineShield;
@@ -9,6 +10,7 @@ import com.ipdnaeip.wizardrynextgeneration.client.renderer.entity.layers.LayerSo
 import com.ipdnaeip.wizardrynextgeneration.entity.construct.EntityAntiGravitationalField;
 import com.ipdnaeip.wizardrynextgeneration.entity.construct.EntityGravitationalField;
 import com.ipdnaeip.wizardrynextgeneration.entity.construct.EntityWhirlpool;
+import com.ipdnaeip.wizardrynextgeneration.entity.living.EntityBatMob;
 import com.ipdnaeip.wizardrynextgeneration.entity.living.EntityPigZombieConvert;
 import com.ipdnaeip.wizardrynextgeneration.entity.living.EntityRighteousDefender;
 import com.ipdnaeip.wizardrynextgeneration.entity.living.EntityWebspitter;
@@ -39,6 +41,7 @@ public class ClientProxy extends CommonProxy {
         RenderingRegistry.registerEntityRenderingHandler(EntityWhirlpool.class, manager -> new RenderSigil(manager, new ResourceLocation(WizardryNextGeneration.MODID, "textures/entity/whirlpool.png"), -5F, false));
 
         //living
+        RenderingRegistry.registerEntityRenderingHandler(EntityBatMob.class, RenderBatMob::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityPigZombieConvert.class, RenderPigZombie::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityRighteousDefender.class, RenderRighteousDefender::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityWebspitter.class, RenderWebspitter::new);

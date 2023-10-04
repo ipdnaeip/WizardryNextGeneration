@@ -8,30 +8,16 @@ advancement.wizardrynextgeneration:accelerated_mass_max_damage.desc=Deal the max
 
 enchantment.wizardrynextgeneration:ranger=Ranger
 enchantment.wizardrynextgeneration:ranger.desc=Reduces the movement penalty for channeling a bow.
-enchantment.wizardrynextgeneration:phalanx=Phalanx
-enchantment.wizardrynextgeneration:phalanx.desc=Reduces the movement penalty for blocking with a shield.
 
 #item
 
   #misc
-
-item.wizardrynextgeneration:battleaxe_iron.name=Iron Battleaxe
-item.wizardrynextgeneration:blessed_meat.name=Blessed Meat
-item.wizardrynextgeneration:spear_diamond.name=Diamond spear
-item.wizardrynextgeneration:spear_stone.name=Stone Spear
 
   #magical item
 
 item.wizardrynextgeneration:scroll_wng.name=Scroll of %1$s
 item.wizardrynextgeneration:spell_book_wng.name=Spell Book
 item.wizardrynextgeneration:spell_encyclopedia.name=Spell Encyclopedia
-item.wizardrynextgeneration:tablet_earth.name=Tablet of the Earth
-item.wizardrynextgeneration:tablet.buff=+%1$s%% %2$s potency
-item.wizardrynextgeneration:tablet.level=Level: %1$s
-item.wizardrynextgeneration:tablet.spell=Current Spell: %1$s
-item.wizardrynextgeneration:tablet.mana=Mana: %1$s/%2$s
-item.wizardrynextgeneration:tablet.progression=Progression: %1$s/%2$s
-item.wizardrynextgeneration:tablet.levelup=Your %1$s tablet has increased in level
 
   #amulet
 
@@ -88,7 +74,6 @@ entity.wizardrynextgeneration:grativational_field.name=Gravitational Field
 
    #living
 
-entity.wizardrynextgeneration:bat_minion.name=Bat
 entity.wizardrynextgeneration:bat_mob.name=Bat
 entity.wizardrynextgeneration:pig_zombie_convert.name=Pigman
 entity.wizardrynextgeneration:righteous_defender.name=Righteous Defender
@@ -177,8 +162,12 @@ spell.wizardrynextgeneration:cloak_of_the_void=Cloak of the Void
 spell.wizardrynextgeneration:cloak_of_the_void.desc=Cloak yourself in the void, becoming invisible and silent.
 spell.wizardrynextgeneration:combustion=Combustion
 spell.wizardrynextgeneration:combustion.desc=Strike a creature with such intense heat that if it dies, it explodes, dealing damage to and burning nearby creatures.
+spell.wizardrynextgeneration:concoction_bomb=Concoction Bomb
+spell.wizardrynextgeneration:concoction_bomb.desc=Throw a splash potion that deals an extra effect on impact.
 spell.wizardrynextgeneration:conduction=Conduction
 spell.wizardrynextgeneration:conduction.desc=Zap a creature, dealing bonus damage and paralyzing them if they are in water.
+spell.wizardrynextgeneration:conjure_potion=Conjure Potion
+spell.wizardrynextgeneration:conjure_potion.desc=Conjure a throwable potion.
 spell.wizardrynextgeneration:divine_shield=Divine Shield
 spell.wizardrynextgeneration:divine_shield.desc=Become immune to the next instance of damage you take.
 spell.wizardrynextgeneration:domesticate=Domesticate
@@ -227,6 +216,7 @@ spell.wizardrynextgeneration:justice.high_health=The target resisted some of the
 spell.wizardrynextgeneration:justice.no_effect=The target is unaffected
 spell.wizardrynextgeneration:lunar_salve=Lunar Salve
 spell.wizardrynextgeneration:lunar_salve.desc=Remove all negative status effects.
+spell.wizardrynextgeneration:lunar_salve.no_moonlight=You do not have direct moonlight
 spell.wizardrynextgeneration:meditate=Meditation
 spell.wizardrynextgeneration:meditate.desc=Heal your wounds through self-reflection.
 spell.wizardrynextgeneration:meditate.moving=You need to be still to meditate.
@@ -242,6 +232,8 @@ spell.wizardrynextgeneration:photosynthesis.desc=Channel the power of sunlight t
 spell.wizardrynextgeneration:photosynthesis.no_sunlight=You do not have direct sunlight
 spell.wizardrynextgeneration:piercing_mass=Piercing Mass
 spell.wizardrynextgeneration:piercing_mass.desc=Launch a chunk of metal that penetrates through blocks.
+spell.wizardrynextgeneration:potion_bomb=Potion Bomb
+spell.wizardrynextgeneration:potion_bomb.desc=Throw a splash potion.
 spell.wizardrynextgeneration:preparation=Preparation
 spell.wizardrynextgeneration:preparation.desc=Focus your mind to reduce the chargeup time and mana consumption of your next spell.
 spell.wizardrynextgeneration:pull=Pull
@@ -272,6 +264,9 @@ spell.wizardrynextgeneration:solar_winds=Solar Winds
 spell.wizardrynextgeneration:solar_winds.desc=Ride a wave of the sun's energy.
 spell.wizardrynextgeneration:solar_sentinel=Solar Sentinel
 spell.wizardrynextgeneration:solar_sentinel.desc=Rise to the heights of the gods themselves.
+spell.wizardrynextgeneration:spawn_teleport=Spawn Teleport
+spell.wizardrynextgeneration:spawn_teleport.desc=Teleport to the world spawnpoint.
+spell.wizardrynextgeneration:spawn_teleport.wrongdimension=You need to be in the overworld.
 spell.wizardrynextgeneration:spit_web=Spit Web
 spell.wizardrynextgeneration:spit_web.desc=Spit a ball of webs at a target, exploding on contact with a block.
 spell.wizardrynextgeneration:summon_righteous_defender=Summon Righteous Defender

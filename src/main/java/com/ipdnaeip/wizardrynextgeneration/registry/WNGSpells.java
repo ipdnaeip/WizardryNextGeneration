@@ -79,7 +79,6 @@ public final class WNGSpells {
     public static final Spell preparation = placeholder();
     public static final Spell flesh_feed = placeholder();
     public static final Spell lunar_salve = placeholder();
-    public static final Spell home_teleport = placeholder();
     public static final Spell hyper_beam = placeholder();
     public static final Spell spit_web = placeholder();
     public static final Spell domesticate = placeholder();
@@ -96,9 +95,11 @@ public final class WNGSpells {
 
     // WNG 1.0.3 Spells
     public static final Spell hex_swine = placeholder();
-    public static final Spell toss_potion = placeholder();
+    public static final Spell potion_bomb = placeholder();
     public static final Spell conjure_potion = placeholder();
-    public static final Spell conjure_lingering_potion = placeholder();
+    public static final Spell home_teleport = placeholder();
+    public static final Spell spawn_teleport = placeholder();
+    public static final Spell concoction_bomb = placeholder();
 
     @SuppressWarnings("unchecked")
     @SubscribeEvent
@@ -175,9 +176,11 @@ public final class WNGSpells {
         // WNG 1.0.3 Spells
 
         registry.register(new HexSwine());
-        registry.register(new TossPotion());
+        registry.register(new PotionBomb());
         registry.register(new ConjurePotion());
-        registry.register(new ConjureLingeringPotion());
+        registry.register(new HomeTeleport());
+        registry.register(new SpawnTeleport());
+        registry.register(new ConcoctionBomb());
     }
 }
 

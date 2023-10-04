@@ -19,9 +19,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ItemConjuredPotion extends Item implements IConjuredItem {
 
-    public float durationMultiplier = 1;
-    public float blastMultiplier = 1;
-
     public ItemConjuredPotion() {
         this.setMaxDamage(600);
         this.setCreativeTab(null);
@@ -78,6 +75,7 @@ public class ItemConjuredPotion extends Item implements IConjuredItem {
             potion.durationMultiplier = ItemConjuredPotion.getEffectDurationMultiplier(stack);
             potion.blastMultiplier = ItemConjuredPotion.getBlastMultiplier(stack);
             potion.isLingering = ItemConjuredPotion.getLingering(stack);
+            potion.hasInstantEffect = ItemConjuredPotion.getInstantEffect(stack);
             potion.aim(player, 1.0F);
             world.spawnEntity(potion);
         }
@@ -88,7 +86,6 @@ public class ItemConjuredPotion extends Item implements IConjuredItem {
         if (!stack.hasTagCompound()) {
             stack.setTagCompound(new NBTTagCompound());
         }
-
         stack.getTagCompound().setFloat("effectDurationMultiplier", multiplier);
     }
 
@@ -96,7 +93,6 @@ public class ItemConjuredPotion extends Item implements IConjuredItem {
         if (!stack.hasTagCompound()) {
             stack.setTagCompound(new NBTTagCompound());
         }
-
         stack.getTagCompound().setFloat("blastMultiplier", multiplier);
     }
 
@@ -104,8 +100,14 @@ public class ItemConjuredPotion extends Item implements IConjuredItem {
         if (!stack.hasTagCompound()) {
             stack.setTagCompound(new NBTTagCompound());
         }
-
         stack.getTagCompound().setBoolean("lingering", lingering);
+    }
+
+    public static void setInstantEffect(ItemStack stack, boolean instantEffect) {
+        if (!stack.hasTagCompound()) {
+            stack.setTagCompound(new NBTTagCompound());
+        }
+        stack.getTagCompound().setBoolean("instantEffect", instantEffect);
     }
 
     public static float getEffectDurationMultiplier(ItemStack stack) {
@@ -118,6 +120,10 @@ public class ItemConjuredPotion extends Item implements IConjuredItem {
 
     public static boolean getLingering(ItemStack stack) {
         return stack.hasTagCompound() && stack.getTagCompound().getBoolean("lingering");
+    }
+
+    public static boolean getInstantEffect(ItemStack stack) {
+        return stack.hasTagCompound() && stack.getTagCompound().getBoolean("instantEffect");
     }
 
 }

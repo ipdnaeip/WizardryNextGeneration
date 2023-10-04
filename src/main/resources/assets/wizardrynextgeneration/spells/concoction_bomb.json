@@ -10,12 +10,12 @@
     "trades": true,
     "looting": true
   },
-  "tier": "apprentice",
+  "tier": "advanced",
   "element": "sorcery",
   "type": "projectile",
-  "cost": 15,
+  "cost": 20,
   "chargeup": 20,
-  "cooldown": 20,
+  "cooldown": 100,
   "base_properties": {
     "range": 10,
     "blast_radius": 3,

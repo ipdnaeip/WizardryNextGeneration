@@ -1,13 +1,16 @@
 package com.ipdnaeip.wizardrynextgeneration.entity.projectile;
 
+import com.ipdnaeip.wizardrynextgeneration.registry.WNGItems;
 import com.ipdnaeip.wizardrynextgeneration.registry.WNGPotions;
 import com.ipdnaeip.wizardrynextgeneration.registry.WNGSpells;
 import com.ipdnaeip.wizardrynextgeneration.util.WNGUtils;
 import electroblob.wizardry.entity.projectile.EntityBomb;
+import electroblob.wizardry.integration.baubles.WizardryBaublesIntegration;
 import electroblob.wizardry.util.EntityUtils;
 import electroblob.wizardry.util.ParticleBuilder;
 import net.minecraft.entity.EntityAreaEffectCloud;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.MobEffects;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.potion.Potion;
@@ -24,13 +27,15 @@ public class EntityConjuredPotion extends EntityBomb {
 
     public PotionEffect potionEffect;
     public boolean isLingering;
+    public boolean hasInstantEffect;
     public boolean randomEffects;
     public float durationMultiplier;
 
     public EntityConjuredPotion(World world) {
         super(world);
-        this.potionEffect = new PotionEffect(MobEffects.INSTANT_DAMAGE);
+        this.potionEffect = null;
         this.isLingering = false;
+        this.hasInstantEffect = false;
         this.randomEffects = false;
         this.durationMultiplier = 1f;
     }
@@ -52,25 +57,33 @@ public class EntityConjuredPotion extends EntityBomb {
             }
         }
         if (!this.world.isRemote) {
+            this.isLingering = this.getThrower() instanceof EntityPlayer && WizardryBaublesIntegration.isBaubleEquipped((EntityPlayer)this.getThrower(), WNGItems.charm_lingering);
             this.playSound(SoundEvents.ENTITY_SPLASH_POTION_BREAK, 1.5F, this.rand.nextFloat() * 0.4F + 0.6F);
-            double range = (WNGSpells.toss_potion.getProperty("blast_radius").floatValue() * this.blastMultiplier);
-            int duration = (int)(WNGSpells.toss_potion.getProperty("effect_duration").floatValue() * durationMultiplier);
-            Potion randomPotion = WNGUtils.getRandomPotionEffect(false, potionEffect.getPotion().isBadEffect());
-            if (!isLingering) {
-                List<EntityLivingBase> targets = EntityUtils.getLivingWithinRadius(range, this.posX, this.posY, this.posZ, this.world);
+            double range = (WNGSpells.potion_bomb.getProperty("blast_radius").floatValue() * this.blastMultiplier);
+            int duration = (int)(WNGSpells.potion_bomb.getProperty("effect_duration").floatValue() * durationMultiplier);
+            List<EntityLivingBase> targets = EntityUtils.getLivingWithinRadius(range, this.posX, this.posY, this.posZ, this.world);
+            if (hasInstantEffect) {
                 for (EntityLivingBase target : targets) {
-                    if (potionEffect.getPotion().isBadEffect()) {
-                        MobEffects.INSTANT_DAMAGE.affectEntity(this, this.getThrower(), target, (int)((damageMultiplier - 1) / 0.4), 1);
-                    } else {
-                        MobEffects.INSTANT_HEALTH.affectEntity(this, this.getThrower(), target, (int)((damageMultiplier - 1) / 0.4), 1);
-                    }
-                    if (!randomEffects) {
-                        if (potionEffect.getPotion() != MobEffects.INSTANT_DAMAGE) {
-                            target.addPotionEffect(new PotionEffect(potionEffect.getPotion(), duration, (int) ((damageMultiplier - 1) / 0.4)));
+                    if (getConjuredPotionEffect().isBadEffect()) {
+                        if (getConjuredPotionEffect() == MobEffects.INSTANT_DAMAGE && !this.isLingering) {
+                            MobEffects.INSTANT_DAMAGE.affectEntity(this, this.getThrower(), target, (int) ((damageMultiplier - 1) / 0.4), 1);
+                        }
+                        else{
+                            MobEffects.INSTANT_DAMAGE.affectEntity(this, this.getThrower(), target, (int) ((damageMultiplier - 1) / 0.4), 0.5);
                         }
                     } else {
-                        target.addPotionEffect(new PotionEffect(randomPotion, duration, (int)((damageMultiplier - 1) / 0.4)));
+                        MobEffects.INSTANT_HEALTH.affectEntity(this, this.getThrower(), target, (int) ((damageMultiplier - 1) / 0.4), 0.5);
                     }
+                }
+            }
+            if (!isLingering) {
+                for (EntityLivingBase target : targets) {
+                    if (getConjuredPotionEffect().isBadEffect()) {
+                        MobEffects.INSTANT_DAMAGE.affectEntity(this, this.getThrower(), target, (int) ((damageMultiplier - 1) / 0.4), 0.5);
+                    } else {
+                        MobEffects.INSTANT_HEALTH.affectEntity(this, this.getThrower(), target, (int) ((damageMultiplier - 1) / 0.4), 0.5);
+                    }
+                    target.addPotionEffect(new PotionEffect(getConjuredPotionEffect(), duration, (int) ((damageMultiplier - 1) / 0.4)));
                 }
             }
             else {
@@ -81,7 +94,7 @@ public class EntityConjuredPotion extends EntityBomb {
                 entityareaeffectcloud.setRadiusOnUse(-0.5F);
                 entityareaeffectcloud.setWaitTime(10);
                 entityareaeffectcloud.setRadiusPerTick(-entityareaeffectcloud.getRadius() / (float)entityareaeffectcloud.getDuration());
-                entityareaeffectcloud.addEffect(new PotionEffect(potionEffect.getPotion(), duration, (int)((damageMultiplier - 1) / 0.4)));
+                entityareaeffectcloud.addEffect(new PotionEffect(getConjuredPotionEffect(), duration / 2, (int)((damageMultiplier - 1) / 0.4)));
                 entityareaeffectcloud.setColor(9895830);
                 this.world.spawnEntity(entityareaeffectcloud);
             }
@@ -89,5 +102,16 @@ public class EntityConjuredPotion extends EntityBomb {
         }
     }
 
+    public Potion getPotion() {
+        return potionEffect == null ? MobEffects.INSTANT_DAMAGE : potionEffect.getPotion();
+    }
+
+    public Potion getConjuredPotionEffect() {
+        if (randomEffects) {
+            return WNGUtils.getRandomPotionEffect(false, getPotion().isBadEffect());
+        } else {
+            return getPotion();
+        }
+    }
 
 }

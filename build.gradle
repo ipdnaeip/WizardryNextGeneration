@@ -46,6 +46,7 @@ minecraft {
 
             // Recommended logging level for the console
             property 'forge.logging.console.level', 'info'
+            args '--username', 'ipdnaeip', '--user', 'ipdnaeip', '--uuid', 'ed54ba92-c7f9-469c-b255-f46532efefdd'
         }
 
         server {
