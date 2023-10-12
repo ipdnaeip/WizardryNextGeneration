@@ -100,8 +100,8 @@ public final class WNGSpells {
     public static final Spell home_teleport = placeholder();
     public static final Spell spawn_teleport = placeholder();
     public static final Spell concoction_bomb = placeholder();
+    public static final Spell napalm = placeholder();
 
-    @SuppressWarnings("unchecked")
     @SubscribeEvent
     public static void register(RegistryEvent.Register<Spell> event) {
 
@@ -181,6 +181,7 @@ public final class WNGSpells {
         registry.register(new HomeTeleport());
         registry.register(new SpawnTeleport());
         registry.register(new ConcoctionBomb());
+        registry.register(new Napalm());
     }
 }
 

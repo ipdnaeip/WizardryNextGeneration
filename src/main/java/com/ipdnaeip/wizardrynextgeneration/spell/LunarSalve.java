@@ -31,6 +31,7 @@ public class LunarSalve extends SpellBuff {
         this.addProperties();
     }
 
+    @Override
     protected boolean applyEffects(EntityLivingBase caster, SpellModifiers modifiers) {
         if (caster.world.isDaytime() || !caster.world.canSeeSky(new BlockPos(caster.posX, caster.posY + (double)caster.getEyeHeight(), caster.posZ)) && caster instanceof EntityPlayer) {
             if(!caster.world.isRemote) ((EntityPlayer)caster).sendStatusMessage(new TextComponentTranslation("spell." + this.getUnlocalisedName() + ".no_moonlight"), true);

@@ -3,6 +3,7 @@ package com.ipdnaeip.wizardrynextgeneration.registry;
 import com.ipdnaeip.wizardrynextgeneration.WizardryNextGeneration;
 import com.ipdnaeip.wizardrynextgeneration.entity.construct.EntityAntiGravitationalField;
 import com.ipdnaeip.wizardrynextgeneration.entity.construct.EntityGravitationalField;
+import com.ipdnaeip.wizardrynextgeneration.entity.construct.EntityNapalm;
 import com.ipdnaeip.wizardrynextgeneration.entity.construct.EntityWhirlpool;
 import com.ipdnaeip.wizardrynextgeneration.entity.living.*;
 import com.ipdnaeip.wizardrynextgeneration.entity.projectile.EntityAcceleratedMass;
@@ -72,9 +73,10 @@ public class WNGEntities {
         IForgeRegistry<EntityEntry> registry = event.getRegistry();
 
         //construct
-        registry.register(createEntry(EntityAntiGravitationalField.class, "anti_gravitational_field", WNGEntities.TrackingType.CONSTRUCT).build());
-        registry.register(createEntry(EntityGravitationalField.class, "gravitational_field", WNGEntities.TrackingType.CONSTRUCT).build());
-        registry.register(createEntry(EntityWhirlpool.class, "whirlpool", WNGEntities.TrackingType.CONSTRUCT).build());
+        registry.register(createEntry(EntityAntiGravitationalField.class, "anti_gravitational_field", TrackingType.CONSTRUCT).build());
+        registry.register(createEntry(EntityGravitationalField.class, "gravitational_field", TrackingType.CONSTRUCT).build());
+        registry.register(createEntry(EntityNapalm.class, "napalm", TrackingType.LIVING).build());
+        registry.register(createEntry(EntityWhirlpool.class, "whirlpool", TrackingType.CONSTRUCT).build());
 
         //living
         registry.register(createEntry(EntityBatMob.class, "bat_mob", TrackingType.LIVING).egg(4996656, 986895).spawn(EnumCreatureType.MONSTER, 20, 1, 3, ForgeRegistries.BIOMES.getValuesCollection().stream().filter((b) -> {
@@ -83,13 +85,13 @@ public class WNGEntities {
         registry.register(createEntry(EntityPigZombieConvert.class, "pig_zombie_convert", TrackingType.LIVING).build());
         registry.register(createEntry(EntityRighteousDefender.class, "righteous_defender", TrackingType.LIVING).egg(16764218, 16769387).build());
         registry.register(createEntry(EntityRighteousDefenderMinion.class, "righteous_defender_minion", TrackingType.LIVING).build());
-        registry.register(createEntry(EntityWebspitter.class, "webspitter", WNGEntities.TrackingType.LIVING).egg(3357763, 960667).spawn(EnumCreatureType.MONSTER, 20, 1, 3, ForgeRegistries.BIOMES.getValuesCollection().stream().filter((b) -> BiomeDictionary.hasType(b, BiomeDictionary.Type.PLAINS) ).collect(Collectors.toSet())).build());
+        registry.register(createEntry(EntityWebspitter.class, "webspitter", TrackingType.LIVING).egg(3357763, 960667).spawn(EnumCreatureType.MONSTER, 20, 1, 3, ForgeRegistries.BIOMES.getValuesCollection().stream().filter((b) -> BiomeDictionary.hasType(b, BiomeDictionary.Type.PLAINS) ).collect(Collectors.toSet())).build());
         registry.register(createEntry(EntityWebspitterMinion.class, "webspitter_minion", TrackingType.LIVING).build());
 
         //projectile
-        registry.register(createEntry(EntityAcceleratedMass.class, "accelerated_mass", WNGEntities.TrackingType.PROJECTILE).build());
-        registry.register(createEntry(EntityFissionBlast.class, "fission_blast", WNGEntities.TrackingType.PROJECTILE).build());
-        registry.register(createEntry(EntityConjuredPotion.class, "toss_potion", WNGEntities.TrackingType.PROJECTILE).build());
+        registry.register(createEntry(EntityAcceleratedMass.class, "accelerated_mass", TrackingType.PROJECTILE).build());
+        registry.register(createEntry(EntityFissionBlast.class, "fission_blast", TrackingType.PROJECTILE).build());
+        registry.register(createEntry(EntityConjuredPotion.class, "toss_potion", TrackingType.PROJECTILE).build());
     }
 
 }

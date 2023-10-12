@@ -2,6 +2,7 @@ package com.ipdnaeip.wizardrynextgeneration.client;
 
 import com.ipdnaeip.wizardrynextgeneration.CommonProxy;
 import com.ipdnaeip.wizardrynextgeneration.WizardryNextGeneration;
+import com.ipdnaeip.wizardrynextgeneration.client.renderer.entity.construct.RenderNapalm;
 import com.ipdnaeip.wizardrynextgeneration.client.renderer.entity.living.RenderBatMob;
 import com.ipdnaeip.wizardrynextgeneration.client.renderer.entity.living.RenderRighteousDefender;
 import com.ipdnaeip.wizardrynextgeneration.client.renderer.entity.living.RenderWebspitter;
@@ -9,6 +10,7 @@ import com.ipdnaeip.wizardrynextgeneration.client.renderer.entity.layers.LayerDi
 import com.ipdnaeip.wizardrynextgeneration.client.renderer.entity.layers.LayerSolarSentinel;
 import com.ipdnaeip.wizardrynextgeneration.entity.construct.EntityAntiGravitationalField;
 import com.ipdnaeip.wizardrynextgeneration.entity.construct.EntityGravitationalField;
+import com.ipdnaeip.wizardrynextgeneration.entity.construct.EntityNapalm;
 import com.ipdnaeip.wizardrynextgeneration.entity.construct.EntityWhirlpool;
 import com.ipdnaeip.wizardrynextgeneration.entity.living.EntityBatMob;
 import com.ipdnaeip.wizardrynextgeneration.entity.living.EntityPigZombieConvert;
@@ -17,10 +19,12 @@ import com.ipdnaeip.wizardrynextgeneration.entity.living.EntityWebspitter;
 import com.ipdnaeip.wizardrynextgeneration.entity.projectile.EntityAcceleratedMass;
 import com.ipdnaeip.wizardrynextgeneration.entity.projectile.EntityFissionBlast;
 import com.ipdnaeip.wizardrynextgeneration.entity.projectile.EntityConjuredPotion;
+import electroblob.wizardry.client.renderer.entity.RenderDecay;
 import electroblob.wizardry.client.renderer.entity.RenderMagicArrow;
 import electroblob.wizardry.client.renderer.entity.RenderProjectile;
 import electroblob.wizardry.client.renderer.entity.RenderSigil;
 import electroblob.wizardry.client.renderer.entity.layers.LayerTiledOverlay;
+import electroblob.wizardry.entity.construct.EntityDecay;
 import net.minecraft.client.renderer.entity.RenderPigZombie;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
@@ -38,6 +42,7 @@ public class ClientProxy extends CommonProxy {
         //construct
         RenderingRegistry.registerEntityRenderingHandler(EntityAntiGravitationalField.class, manager -> new RenderSigil(manager, new ResourceLocation(WizardryNextGeneration.MODID, "textures/entity/anti_gravitational_field.png"), 0.0F, false));
         RenderingRegistry.registerEntityRenderingHandler(EntityGravitationalField.class, manager -> new RenderSigil(manager, new ResourceLocation(WizardryNextGeneration.MODID, "textures/entity/gravitational_field.png"), 0.0F, false));
+        RenderingRegistry.registerEntityRenderingHandler(EntityNapalm.class, RenderNapalm::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityWhirlpool.class, manager -> new RenderSigil(manager, new ResourceLocation(WizardryNextGeneration.MODID, "textures/entity/whirlpool.png"), -5F, false));
 
         //living

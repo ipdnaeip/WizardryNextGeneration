@@ -28,6 +28,7 @@ public class WNGPotions {
     public static final Potion frenzy = placeholder();
     public static final Potion gravity = placeholder();
     public static final Potion magic_weakness = placeholder();
+    public static final Potion napalm = placeholder();
     public static final Potion pacify = placeholder();
     public static final Potion preparation = placeholder();
     public static final Potion shock_weakness = placeholder();
@@ -49,13 +50,14 @@ public class WNGPotions {
 
         registerPotion(registry, "betrayal", new PotionBetrayal());
         registerPotion(registry, "bleed", new PotionBleed());
-        registerPotion(registry, "camouflage", new PotionCamouflage().setBeneficial());
+        //registerPotion(registry, "camouflage", new PotionCamouflage().setBeneficial());
         registerPotion(registry, "cleansing_flames", new PotionCleansingFlames().setBeneficial());
         registerPotion(registry, "disempowerment", new PotionDisempowerment());
         registerPotion(registry, "divine_shield", new PotionDivineShield().setBeneficial());
         registerPotion(registry, "frenzy", new PotionFrenzy());
         registerPotion(registry, "gravity", new PotionGravity());
         registerPotion(registry, "magic_weakness", new PotionMagicWeakness());
+        registerPotion(registry, "napalm", new PotionNapalm());
         registerPotion(registry, "pacify", new PotionPacify());
         registerPotion(registry, "preparation", new PotionPreparation().setBeneficial());
         registerPotion(registry, "shock_weakness", new PotionShockWeakness());
