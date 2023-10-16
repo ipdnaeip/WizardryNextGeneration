@@ -18,11 +18,9 @@ public class RenderNapalm extends Render<EntityNapalm> {
 
     public RenderNapalm(RenderManager renderManager) {
         super(renderManager);
-
         for(int i = 0; i < 10; ++i) {
             TEXTURES[i] = new ResourceLocation(WizardryNextGeneration.MODID, "textures/entity/napalm/napalm_" + i + ".png");
         }
-
     }
 
     public void doRender(EntityNapalm entity, double x, double y, double z, float entityYaw, float partialTicks) {

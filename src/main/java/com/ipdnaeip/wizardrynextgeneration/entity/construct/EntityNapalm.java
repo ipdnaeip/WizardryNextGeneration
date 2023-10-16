@@ -30,14 +30,10 @@ public class EntityNapalm extends EntityLivingScaledConstruct {
     }
 
     @Override
-    protected void applyEntityAttributes() {
-        super.applyEntityAttributes();
-        this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(1);
-    }
-
     public void onUpdate() {
         boolean burningEntity = false;
         super.onUpdate();
+        System.out.println(this.lifetime + " " + this.ticksExisted + " " + this.damageMultiplier);
         if (this.isBurning()) {
             this.explode();
         }
@@ -60,7 +56,6 @@ public class EntityNapalm extends EntityLivingScaledConstruct {
             float angle = this.rand.nextFloat() * 3.1415927F * 2.0F;
             ParticleBuilder.create(ParticleBuilder.Type.DARK_MAGIC).pos(this.posX + radius * (double) MathHelper.cos(angle), this.posY, this.posZ + radius * (double)MathHelper.sin(angle)).clr(0xD86631).spawn(this.world);
         }
-
     }
 
     @Override

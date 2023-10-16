@@ -7,15 +7,13 @@ import electroblob.wizardry.util.AllyDesignationSystem;
 import electroblob.wizardry.util.EntityUtils;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IEntityOwnable;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.EntityEquipmentSlot;
-import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
-import net.minecraft.util.EnumHandSide;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
@@ -26,7 +24,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import javax.annotation.Nullable;
 import java.util.UUID;
 
-public abstract class EntityLivingMagicConstruct extends EntityLivingBase implements IEntityOwnable, IEntityAdditionalSpawnData {
+public abstract class EntityLivingMagicConstruct extends EntityLiving implements IEntityOwnable, IEntityAdditionalSpawnData {
     private UUID casterUUID;
     public int lifetime = 600;
     public float damageMultiplier = 1.0F;
@@ -65,10 +63,6 @@ public abstract class EntityLivingMagicConstruct extends EntityLivingBase implem
     }
 
     @Override
-    protected void entityInit() {
-    }
-
-    @Override
     public void readEntityFromNBT(NBTTagCompound nbttagcompound) {
         super.readEntityFromNBT(nbttagcompound);
         if (nbttagcompound.hasUniqueId("casterUUID")) {
@@ -85,7 +79,6 @@ public abstract class EntityLivingMagicConstruct extends EntityLivingBase implem
         if (this.casterUUID != null) {
             nbttagcompound.setUniqueId("casterUUID", this.casterUUID);
         }
-
         nbttagcompound.setInteger("lifetime", this.lifetime);
         nbttagcompound.setFloat("damageMultiplier", this.damageMultiplier);
     }
@@ -99,7 +92,7 @@ public abstract class EntityLivingMagicConstruct extends EntityLivingBase implem
         this.lifetime = data.readInt();
         int id = data.readInt();
         if (id == -1) {
-            this.setCaster((EntityLivingBase)null);
+            this.setCaster(null);
         } else {
             Entity entity = this.world.getEntityByID(id);
             if (entity instanceof EntityLivingBase) {
@@ -109,26 +102,6 @@ public abstract class EntityLivingMagicConstruct extends EntityLivingBase implem
             }
         }
 
-    }
-
-    public EnumHandSide getPrimaryHand()
-    {
-        return null;
-    }
-
-    public Iterable<ItemStack> getArmorInventoryList()
-    {
-        return null;
-    }
-
-    public ItemStack getItemStackFromSlot(EntityEquipmentSlot slotIn)
-    {
-        return null;
-    }
-
-
-    public void setItemStackToSlot(EntityEquipmentSlot slotIn, ItemStack stack)
-    {
     }
 
     @Nullable
@@ -148,7 +121,6 @@ public abstract class EntityLivingMagicConstruct extends EntityLivingBase implem
             Wizardry.logger.warn("{} has a non-living owner!", this);
             entity = null;
         }
-
         return (EntityLivingBase)entity;
     }
 
@@ -164,6 +136,12 @@ public abstract class EntityLivingMagicConstruct extends EntityLivingBase implem
     public SoundCategory getSoundCategory() {
         return WizardrySounds.SPELLS;
     }
+
+    @Override
+    public boolean canDespawn() { return false; }
+
+    @Override
+    public boolean isMovementBlocked() { return true; }
 
     @Override
     public boolean canBePushed() {

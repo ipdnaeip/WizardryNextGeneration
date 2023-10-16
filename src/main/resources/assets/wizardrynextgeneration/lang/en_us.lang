@@ -69,8 +69,8 @@ item.wizardrynextgeneration:ring_void.desc=Sorcery spells are 30%% more potent i
 
    #construct
 
-entity.wizardrynextgeneration:anti_grativational_field.name=Anti-gravitational Field
-entity.wizardrynextgeneration:grativational_field.name=Gravitational Field
+entity.wizardrynextgeneration:anti_gravitational_field.name=Anti-gravitational Field
+entity.wizardrynextgeneration:gravitational_field.name=Gravitational Field
 entity.wizardrynextgeneration:napalm.name=Napalm
 entity.wizardrynextgeneration:whirlpool_field.name=Whirlpool
 
