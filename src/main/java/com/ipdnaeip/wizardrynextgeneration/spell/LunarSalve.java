@@ -2,6 +2,7 @@ package com.ipdnaeip.wizardrynextgeneration.spell;
 
 import com.ipdnaeip.wizardrynextgeneration.WizardryNextGeneration;
 import com.ipdnaeip.wizardrynextgeneration.registry.WNGItems;
+import com.ipdnaeip.wizardrynextgeneration.util.WNGUtils;
 import electroblob.wizardry.item.SpellActions;
 import electroblob.wizardry.registry.WizardryItems;
 import electroblob.wizardry.spell.Spell;
@@ -33,11 +34,11 @@ public class LunarSalve extends SpellBuff {
 
     @Override
     protected boolean applyEffects(EntityLivingBase caster, SpellModifiers modifiers) {
-        if (caster.world.isDaytime() || !caster.world.canSeeSky(new BlockPos(caster.posX, caster.posY + (double)caster.getEyeHeight(), caster.posZ)) && caster instanceof EntityPlayer) {
+        if (!WNGUtils.hasMoonlight(caster.world, caster) && caster instanceof EntityPlayer) {
             if(!caster.world.isRemote) ((EntityPlayer)caster).sendStatusMessage(new TextComponentTranslation("spell." + this.getUnlocalisedName() + ".no_moonlight"), true);
             return false;
         }
-        else if (!caster.getActivePotionEffects().isEmpty() && !caster.world.isDaytime() && caster.world.canSeeSky(new BlockPos(caster.posX, caster.posY + (double)caster.getEyeHeight(), caster.posZ))) {
+        else if (!caster.getActivePotionEffects().isEmpty() && WNGUtils.hasMoonlight(caster.world, caster)) {
             ItemStack milk = new ItemStack(Items.MILK_BUCKET);
             boolean flag = false;
             for (Object o : new ArrayList(caster.getActivePotionEffects())) {

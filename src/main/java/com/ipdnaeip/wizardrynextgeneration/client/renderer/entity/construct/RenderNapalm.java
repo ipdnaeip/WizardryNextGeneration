@@ -23,11 +23,12 @@ public class RenderNapalm extends Render<EntityNapalm> {
         }
     }
 
+    @Override
     public void doRender(EntityNapalm entity, double x, double y, double z, float entityYaw, float partialTicks) {
         GlStateManager.pushMatrix();
         GlStateManager.enableBlend();
         GlStateManager.disableLighting();
-        OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 240.0F, 240.0F);
+        //OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 240.0F, 240.0F);
         GlStateManager.blendFunc(770, 771);
         float yOffset = 0.0F;
         GlStateManager.translate((float)x, (float)y + yOffset, (float)z);

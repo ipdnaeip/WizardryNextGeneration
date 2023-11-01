@@ -182,6 +182,7 @@ public final class WNGSpells {
         registry.register(new SpawnTeleport());
         registry.register(new ConcoctionBomb());
         registry.register(new Napalm());
+//        registry.register(new PiercingMass());
     }
 }
 

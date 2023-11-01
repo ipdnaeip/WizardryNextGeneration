@@ -92,14 +92,12 @@ public class SpellLivingConstructRanged<T extends EntityLivingMagicConstruct> ex
                 if (hit != null && hit.typeOfHit == Type.BLOCK && !hit.getBlockPos().equals(new BlockPos(x, y, z))) {
                     return false;
                 }
-
                 EnumFacing side = null;
                 if (!target.onGround && this.requiresFloor) {
                     Integer floor = BlockUtils.getNearestFloor(world, new BlockPos(x, y, z), 3);
                     if (floor == null) {
                         return false;
                     }
-
                     y = (double)floor;
                     side = EnumFacing.UP;
                 }
@@ -108,7 +106,6 @@ public class SpellLivingConstructRanged<T extends EntityLivingMagicConstruct> ex
                     return false;
                 }
             }
-
             caster.swingArm(hand);
             this.playSound(world, caster, ticksInUse, -1, modifiers);
             return true;
@@ -126,9 +123,7 @@ public class SpellLivingConstructRanged<T extends EntityLivingMagicConstruct> ex
         if (rayTrace == null || rayTrace.typeOfHit != Type.BLOCK || rayTrace.sideHit != EnumFacing.UP && this.requiresFloor) {
             if (this.requiresFloor) {
                 return false;
-            }
-
-            if (!world.isRemote && !this.spawnConstruct(world, endpoint.x, endpoint.y, endpoint.z, null, null, modifiers)) {
+            } if (!world.isRemote && !this.spawnConstruct(world, endpoint.x, endpoint.y, endpoint.z, null, null, modifiers)) {
                 return false;
             }
         } else if (!world.isRemote) {
@@ -139,7 +134,6 @@ public class SpellLivingConstructRanged<T extends EntityLivingMagicConstruct> ex
                 return false;
             }
         }
-
         this.playSound(world, x - (double)direction.getXOffset(), y - (double)direction.getYOffset(), z - (double)direction.getZOffset(), ticksInUse, duration, modifiers);
         return true;
     }

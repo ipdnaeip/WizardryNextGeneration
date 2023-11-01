@@ -1,3 +1,4 @@
+/*
 package com.ipdnaeip.wizardrynextgeneration.potion;
 
 import com.ipdnaeip.wizardrynextgeneration.WizardryNextGeneration;
@@ -35,3 +36,4 @@ public class PotionCamouflage extends PotionMagicEffect {
         }
     }
 }
+*/

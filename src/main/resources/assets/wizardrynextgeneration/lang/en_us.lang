@@ -74,13 +74,12 @@ entity.wizardrynextgeneration:gravitational_field.name=Gravitational Field
 entity.wizardrynextgeneration:napalm.name=Napalm
 entity.wizardrynextgeneration:whirlpool_field.name=Whirlpool
 
-
    #living
 
-entity.wizardrynextgeneration:bat_mob.name=Bat
 entity.wizardrynextgeneration:pig_zombie_convert.name=Pigman
 entity.wizardrynextgeneration:righteous_defender.name=Righteous Defender
 entity.wizardrynextgeneration:righteous_defender_minion.name=Righteous Defender
+entity.wizardrynextgeneration:vampire_bat.name=Vampire Bat
 entity.wizardrynextgeneration:webspitter.name=Webspitter
 entity.wizardrynextgeneration:webspitter_minion.name=Webspitter
 

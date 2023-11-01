@@ -42,7 +42,7 @@ public class PotionSolarWinds extends PotionMagicEffect implements ICustomPotion
         ParticleBuilder.create(ParticleBuilder.Type.MAGIC_FIRE).pos(x, y, z).clr(255, 180, 50).time(10).spawn(world);
     }
 
-    @SubscribeEvent
+/*    @SubscribeEvent
     public static void onLivingUpdateEvent(LivingEvent.LivingUpdateEvent event) {
         EntityLivingBase entity = event.getEntityLiving();
         if (entity instanceof EntityPlayer) {
@@ -60,5 +60,23 @@ public class PotionSolarWinds extends PotionMagicEffect implements ICustomPotion
                 }
             }
         }
+    }*/
+
+/*    @SubscribeEvent
+    public static void onLivingUpdateEvent(LivingEvent.LivingUpdateEvent event) {
+        EntityLivingBase entity = event.getEntityLiving();
+        entity.getEntityWorld().playSound(null, entity.getPosition(), SoundEvents.ENTITY_BLAZE_BURN, SoundCategory.BLOCKS, 0.5F, entity.getEntityWorld().rand.nextFloat() * 0.2F + 0.9F);
     }
+
+    @SubscribeEvent
+    public static void onLivingJumpEvent(LivingEvent.LivingJumpEvent event) {
+        EntityLivingBase entity = event.getEntityLiving();
+        if (entity.isPotionActive(WNGPotions.solar_winds)) {
+            entity.fallDistance = 0.0F;
+            entity.motionY = entity.motionY < 0.5F ? entity.motionY + 0.1F : entity.motionY;
+            if (entity instanceof EntityPlayer && ItemNewArtefact.isNewArtefactActive((EntityPlayer) entity, WNGItems.head_ra)) {
+                entity.jumpMovementFactor = 0.05F;
+            }
+        }
+    }*/
 }

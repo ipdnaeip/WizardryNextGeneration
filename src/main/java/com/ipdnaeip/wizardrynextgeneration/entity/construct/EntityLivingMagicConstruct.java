@@ -33,15 +33,17 @@ public abstract class EntityLivingMagicConstruct extends EntityLiving implements
         super(world);
         this.height = 1.0F;
         this.width = 1.0F;
-        this.noClip = true;
+        //this.noClip = true;
     }
 
+    @Override
     @SideOnly(Side.CLIENT)
     public void setPositionAndRotationDirect(double x, double y, double z, float yaw, float pitch, int posRotationIncrements, boolean teleport) {
         this.setPosition(x, y, z);
         this.setRotation(yaw, pitch);
     }
 
+    @Override
     public void onUpdate() {
         if (this.ticksExisted > this.lifetime && this.lifetime != -1) {
             this.despawn();
@@ -49,6 +51,7 @@ public abstract class EntityLivingMagicConstruct extends EntityLiving implements
         super.onUpdate();
     }
 
+    @Override
     public EnumActionResult applyPlayerInteraction(EntityPlayer player, Vec3d vec, EnumHand hand) {
         if (this.lifetime == -1 && this.getCaster() == player && player.isSneaking() && player.getHeldItem(hand).getItem() instanceof ISpellCastingItem) {
             this.despawn();
@@ -68,7 +71,6 @@ public abstract class EntityLivingMagicConstruct extends EntityLiving implements
         if (nbttagcompound.hasUniqueId("casterUUID")) {
             this.casterUUID = nbttagcompound.getUniqueId("casterUUID");
         }
-
         this.lifetime = nbttagcompound.getInteger("lifetime");
         this.damageMultiplier = nbttagcompound.getFloat("damageMultiplier");
     }
@@ -101,7 +103,6 @@ public abstract class EntityLivingMagicConstruct extends EntityLiving implements
                 Wizardry.logger.warn("Construct caster with ID in spawn data not found");
             }
         }
-
     }
 
     @Nullable
@@ -149,12 +150,6 @@ public abstract class EntityLivingMagicConstruct extends EntityLiving implements
     }
 
     @Override
-    public boolean canRenderOnFire() {
-        return false;
-    }
+    protected void collideWithEntity(Entity entityIn) { }
 
-    @Override
-    public boolean isPushedByWater() {
-        return false;
-    }
 }
