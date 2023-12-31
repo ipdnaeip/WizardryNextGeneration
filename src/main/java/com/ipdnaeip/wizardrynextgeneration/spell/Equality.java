@@ -26,8 +26,8 @@ public class Equality extends SpellRay {
         super(WizardryNextGeneration.MODID, "equality", SpellActions.POINT, false);
         this.aimAssist(0.3F);
         this.soundValues(1F, 0.6F, 0.1F);
-        this.addProperties();
     }
+
     @Override
     protected boolean onEntityHit(World world, Entity target, Vec3d hit, EntityLivingBase caster, Vec3d origin, int ticksInUse, SpellModifiers modifiers) {
         if (target instanceof EntityLivingBase) {
@@ -60,14 +60,17 @@ public class Equality extends SpellRay {
         }
         return false;
     }
+
     @Override
     protected boolean onBlockHit(World world, BlockPos pos, EnumFacing side, Vec3d hit, EntityLivingBase caster, Vec3d origin, int ticksInUse, SpellModifiers modifiers) {
         return false;
     }
+
     @Override
     protected boolean onMiss(World world, EntityLivingBase caster, Vec3d origin, Vec3d direction, int ticksInUse, SpellModifiers modifiers) {
         return false;
     }
+
     @Override
     public boolean canBeCastBy(TileEntityDispenser dispenser) {
         return false;

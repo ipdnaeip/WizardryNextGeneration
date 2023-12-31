@@ -10,15 +10,13 @@
     "trades": true,
     "looting": true
   },
-  "tier": "advanced",
-  "element": "necromancy",
+  "tier": "apprentice",
+  "element": "earth",
   "type": "attack",
-  "cost": 25,
-  "chargeup": 10,
-  "cooldown": 50,
+  "cost": 20,
+  "chargeup": 5,
+  "cooldown": 20,
   "base_properties": {
-    "damage": 10,
-    "range": 10,
-    "heal_factor": 0.35
+    "range": 10
   }
 }

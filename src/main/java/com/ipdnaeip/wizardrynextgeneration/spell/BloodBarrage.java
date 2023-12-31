@@ -17,7 +17,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
-public class BloodBarrage extends SpellBarrage{
+public class BloodBarrage extends SpellBarrage {
 
     public static final String HEAL_FACTOR = "heal_factor";
 
@@ -28,9 +28,11 @@ public class BloodBarrage extends SpellBarrage{
 
     @Override
     protected void barrageEffect(World world, EntityLivingBase target, EntityLivingBase caster, int ticksInUse, SpellModifiers modifiers) {
+        float health = target.getHealth();
         EntityUtils.attackEntityWithoutKnockback(target, MagicDamage.causeDirectMagicDamage(caster, MagicDamage.DamageType.WITHER), getProperty(DAMAGE).floatValue() * modifiers.get(SpellModifiers.POTENCY));
         if (world.isRemote) ParticleBuilder.create(ParticleBuilder.Type.CLOUD, world.rand, target.posX, target.posY + target.getEyeHeight() - 0.5f, target.posZ, 0, false).clr(170, 0, 0).time(10 + world.rand.nextInt(5)).shaded(true).spawn(world);
-        if (caster != null) caster.heal((getProperty(DAMAGE).floatValue() * modifiers.get(SpellModifiers.POTENCY) * getProperty(HEAL_FACTOR).floatValue()));
+        health -= target.getHealth();
+        if (caster != null) caster.heal(health * getProperty(HEAL_FACTOR).floatValue());
     }
 
     @Override

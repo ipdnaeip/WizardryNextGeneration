@@ -47,6 +47,7 @@ public class EntityConjuredPotion extends EntityBomb {
 
     @Override
     protected void onImpact(@Nonnull RayTraceResult rayTrace) {
+        System.out.println(this.hasInstantEffect);
         if (this.world.isRemote) {
             for(int i = 0; (float)i < 60.0F * this.blastMultiplier; ++i) {
                 float f1 = MathHelper.sqrt(this.rand.nextFloat()) * 0.2F;
@@ -55,6 +56,9 @@ public class EntityConjuredPotion extends EntityBomb {
                 float f4 = MathHelper.sin(this.rand.nextFloat() * ((float)Math.PI * 2F)) * f1;
                 ParticleBuilder.create(ParticleBuilder.Type.SPARKLE).pos(this.posX, this.posY, this.posZ).vel(f2, f3, f4).clr(150, 255, 150).time(20).spawn(this.world);
             }
+            if (this.hasInstantEffect) {
+                ParticleBuilder.create(ParticleBuilder.Type.SPHERE).pos(this.posX, this.posY, this.posZ).clr(150, 255, 150).scale(4.0f).spawn(this.world);
+            }
         }
         if (!this.world.isRemote) {
             this.isLingering = this.getThrower() instanceof EntityPlayer && WizardryBaublesIntegration.isBaubleEquipped((EntityPlayer)this.getThrower(), WNGItems.charm_lingering);
@@ -62,7 +66,7 @@ public class EntityConjuredPotion extends EntityBomb {
             double range = (WNGSpells.potion_bomb.getProperty("blast_radius").floatValue() * this.blastMultiplier);
             int duration = (int)(WNGSpells.potion_bomb.getProperty("effect_duration").floatValue() * durationMultiplier);
             List<EntityLivingBase> targets = EntityUtils.getLivingWithinRadius(range, this.posX, this.posY, this.posZ, this.world);
-            if (hasInstantEffect) {
+            if (this.hasInstantEffect) {
                 for (EntityLivingBase target : targets) {
                     if (getConjuredPotionEffect().isBadEffect()) {
                         if (getConjuredPotionEffect() == MobEffects.INSTANT_DAMAGE && !this.isLingering) {
@@ -76,14 +80,16 @@ public class EntityConjuredPotion extends EntityBomb {
                     }
                 }
             }
-            if (!isLingering) {
+            if (!this.isLingering) {
                 for (EntityLivingBase target : targets) {
                     if (getConjuredPotionEffect().isBadEffect()) {
                         MobEffects.INSTANT_DAMAGE.affectEntity(this, this.getThrower(), target, (int) ((damageMultiplier - 1) / 0.4), 0.5);
                     } else {
                         MobEffects.INSTANT_HEALTH.affectEntity(this, this.getThrower(), target, (int) ((damageMultiplier - 1) / 0.4), 0.5);
                     }
-                    target.addPotionEffect(new PotionEffect(getConjuredPotionEffect(), duration, (int) ((damageMultiplier - 1) / 0.4)));
+                    if (!getConjuredPotionEffect().isInstant()) {
+                        target.addPotionEffect(new PotionEffect(getConjuredPotionEffect(), duration, (int) ((damageMultiplier - 1) / 0.4)));
+                    }
                 }
             }
             else {

@@ -1,6 +1,10 @@
 package com.ipdnaeip.wizardrynextgeneration.block;
 
-import net.minecraft.block.BlockCauldron;
+import electroblob.wizardry.util.ParticleBuilder;
+import net.minecraft.block.Block;
+import net.minecraft.block.material.MapColor;
+import net.minecraft.block.material.Material;
+import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -17,29 +21,58 @@ import net.minecraft.stats.StatList;
 import net.minecraft.tileentity.TileEntityBanner;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
-import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.SoundCategory;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.Nullable;
+import java.util.List;
 import java.util.Random;
 
-public class BlockEnchantedCauldron extends BlockCauldron {
+public class BlockEnchantedCauldron extends Block
+{
+    protected static final AxisAlignedBB AABB_LEGS = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.3125D, 1.0D);
+    protected static final AxisAlignedBB AABB_WALL_NORTH = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 1.0D, 0.125D);
+    protected static final AxisAlignedBB AABB_WALL_SOUTH = new AxisAlignedBB(0.0D, 0.0D, 0.875D, 1.0D, 1.0D, 1.0D);
+    protected static final AxisAlignedBB AABB_WALL_EAST = new AxisAlignedBB(0.875D, 0.0D, 0.0D, 1.0D, 1.0D, 1.0D);
+    protected static final AxisAlignedBB AABB_WALL_WEST = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 0.125D, 1.0D, 1.0D);
 
     public BlockEnchantedCauldron() {
+        super(Material.IRON, MapColor.STONE);
+        this.setLightLevel(0.5f);
+        this.setHardness(2.0f);
+    }
 
+    public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, @Nullable Entity entityIn, boolean isActualState) {
+        addCollisionBoxToList(pos, entityBox, collidingBoxes, AABB_LEGS);
+        addCollisionBoxToList(pos, entityBox, collidingBoxes, AABB_WALL_WEST);
+        addCollisionBoxToList(pos, entityBox, collidingBoxes, AABB_WALL_NORTH);
+        addCollisionBoxToList(pos, entityBox, collidingBoxes, AABB_WALL_EAST);
+        addCollisionBoxToList(pos, entityBox, collidingBoxes, AABB_WALL_SOUTH);
+    }
+
+    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
+        return FULL_BLOCK_AABB;
+    }
+
+    public boolean isOpaqueCube(IBlockState state)
+    {
+        return false;
+    }
+
+    public boolean isFullCube(IBlockState state)
+    {
+        return false;
     }
 
     @Override
     public void onEntityCollision(World worldIn, BlockPos pos, IBlockState state, Entity entityIn)
     {
-        int i = state.getValue(LEVEL);
-        float f = (float)pos.getY() + (6.0F + (float)(3 * i)) / 16.0F;
-
-        if (!worldIn.isRemote && entityIn.isBurning() && i > 0 && entityIn.getEntityBoundingBox().minY <= (double)f)
-        {
+        if (!worldIn.isRemote && entityIn.isBurning() && entityIn.getEntityBoundingBox().minY <= (double)pos.getY() + (15D/16D)) {
             entityIn.extinguish();
         }
     }
@@ -51,27 +84,30 @@ public class BlockEnchantedCauldron extends BlockCauldron {
             return true;
         }
         else {
-            int i = state.getValue(LEVEL);
             Item item = itemstack.getItem();
-            if (item == Items.WATER_BUCKET) {
-                if (i < 3 && !worldIn.isRemote) {
+            //Containers do not fill with water in creative mode. Kept consistent with vanilla coding
+            if (item == Items.BUCKET) {
+                if (!worldIn.isRemote) {
                     if (!playerIn.capabilities.isCreativeMode) {
-                        playerIn.setHeldItem(hand, new ItemStack(Items.BUCKET));
+                        itemstack.shrink(1);
+                        if (itemstack.isEmpty()) {
+                            playerIn.setHeldItem(hand, new ItemStack(Items.WATER_BUCKET));
+                        }
+                        else if (!playerIn.inventory.addItemStackToInventory(new ItemStack(Items.WATER_BUCKET))) {
+                            playerIn.dropItem(new ItemStack(Items.WATER_BUCKET), false);
+                        }
                     }
-                    playerIn.addStat(StatList.CAULDRON_FILLED);
-                    this.setWaterLevel(worldIn, pos, state, 3);
-                    worldIn.playSound(null, pos, SoundEvents.ITEM_BUCKET_EMPTY, SoundCategory.BLOCKS, 1.0F, 1.0F);
+                    playerIn.addStat(StatList.CAULDRON_USED);
+                    worldIn.playSound(null, pos, SoundEvents.ITEM_BUCKET_FILL, SoundCategory.BLOCKS, 1.0F, 1.0F);
                 }
-
                 return true;
             }
             else if (item == Items.GLASS_BOTTLE) {
-                if (i > 0 && !worldIn.isRemote) {
+                if (!worldIn.isRemote) {
                     if (!playerIn.capabilities.isCreativeMode) {
                         ItemStack itemstack3 = PotionUtils.addPotionToItemStack(new ItemStack(Items.POTIONITEM), PotionTypes.WATER);
                         playerIn.addStat(StatList.CAULDRON_USED);
                         itemstack.shrink(1);
-
                         if (itemstack.isEmpty()) {
                             playerIn.setHeldItem(hand, itemstack3);
                         }
@@ -86,24 +122,8 @@ public class BlockEnchantedCauldron extends BlockCauldron {
                 }
                 return true;
             }
-            else if (item == Items.POTIONITEM && PotionUtils.getPotionFromItem(itemstack) == PotionTypes.WATER) {
-                if (i < 3 && !worldIn.isRemote) {
-                    if (!playerIn.capabilities.isCreativeMode) {
-                        ItemStack itemstack2 = new ItemStack(Items.GLASS_BOTTLE);
-                        playerIn.addStat(StatList.CAULDRON_USED);
-                        playerIn.setHeldItem(hand, itemstack2);
-                        if (playerIn instanceof EntityPlayerMP) {
-                            ((EntityPlayerMP)playerIn).sendContainerToPlayer(playerIn.inventoryContainer);
-                        }
-                    }
-
-                    worldIn.playSound((EntityPlayer)null, pos, SoundEvents.ITEM_BOTTLE_EMPTY, SoundCategory.BLOCKS, 1.0F, 1.0F);
-                    this.setWaterLevel(worldIn, pos, state, i + 1);
-                }
-                return true;
-            }
             else {
-                if (i > 0 && item instanceof ItemArmor) {
+                if (item instanceof ItemArmor) {
                     ItemArmor itemarmor = (ItemArmor)item;
                     if (itemarmor.getArmorMaterial() == ItemArmor.ArmorMaterial.LEATHER && itemarmor.hasColor(itemstack) && !worldIn.isRemote) {
                         itemarmor.removeColor(itemstack);
@@ -111,7 +131,7 @@ public class BlockEnchantedCauldron extends BlockCauldron {
                         return true;
                     }
                 }
-                if (i > 0 && item instanceof ItemBanner) {
+                if (item instanceof ItemBanner) {
                     if (TileEntityBanner.getPatterns(itemstack) > 0 && !worldIn.isRemote) {
                         ItemStack itemstack1 = itemstack.copy();
                         itemstack1.setCount(1);
@@ -141,10 +161,30 @@ public class BlockEnchantedCauldron extends BlockCauldron {
 
     @SideOnly(Side.CLIENT)
     public void randomDisplayTick(IBlockState stateIn, World worldIn, BlockPos pos, Random rand) {
-        double d0 = (double)pos.getX() + 0.5D;
-        double d1 = (double)pos.getY() + 0.7D;
-        double d2 = (double)pos.getZ() + 0.5D;
-        worldIn.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, d0, d1, d2, 0.0D, 0.0D, 0.0D);
-        worldIn.spawnParticle(EnumParticleTypes.FLAME, d0, d1, d2, 0.0D, 0.0D, 0.0D);
+        double d0 = (double)pos.getX() + rand.nextDouble();
+        double d1 = (double)pos.getY() + rand.nextDouble();
+        double d2 = (double)pos.getZ() + rand.nextDouble();
+        ParticleBuilder.create(ParticleBuilder.Type.SPARKLE).pos(d0, d1, d2).vel(0, 0, 0).time(20).spawn(worldIn);
     }
+
+    public Item getItemDropped(IBlockState state, Random rand, int fortune)
+    {
+        return Items.CAULDRON;
+    }
+
+    public boolean isPassable(IBlockAccess worldIn, BlockPos pos)
+    {
+        return true;
+    }
+
+    public BlockFaceShape getBlockFaceShape(IBlockAccess worldIn, IBlockState state, BlockPos pos, EnumFacing face) {
+        if (face == EnumFacing.UP) {
+            return BlockFaceShape.BOWL;
+        }
+        else {
+            return face == EnumFacing.DOWN ? BlockFaceShape.UNDEFINED : BlockFaceShape.SOLID;
+        }
+    }
+
+
 }

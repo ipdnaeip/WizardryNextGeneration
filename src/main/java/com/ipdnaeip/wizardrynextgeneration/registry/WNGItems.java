@@ -10,9 +10,11 @@ import electroblob.wizardry.item.ItemScroll;
 import electroblob.wizardry.item.ItemSpellBook;
 import electroblob.wizardry.misc.BehaviourSpellDispense;
 import electroblob.wizardry.registry.WizardryTabs;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockDispenser;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.event.RegistryEvent;
@@ -110,10 +112,26 @@ public final class WNGItems {
         }
     }
 
+    private static void registerItemBlock(IForgeRegistry<Item> registry, Block block) {
+        registerItemBlock(registry, block, new ItemBlock(block));
+    }
+
+    private static void registerItemBlock(IForgeRegistry<Item> registry, Block block, ItemBlock itemblock) {
+        itemblock.setRegistryName(block.getRegistryName());
+        registry.register(itemblock);
+        if (block.getCreativeTab() instanceof WizardryTabs.CreativeTabListed) {
+            ((WizardryTabs.CreativeTabListed)block.getCreativeTab()).order.add(itemblock);
+        }
+
+    }
+
     @SubscribeEvent
     public static void register(RegistryEvent.Register<Item> event) {
 
         IForgeRegistry<Item> registry = event.getRegistry();
+
+        //block
+        //registerItemBlock(registry, WNGBlocks.enchanted_cauldron);
 
         //misc
         registerItem(registry, "blessed_meat", new ItemBlessedMeat());

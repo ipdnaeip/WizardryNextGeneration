@@ -10,6 +10,7 @@ import net.minecraft.init.SoundEvents;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.world.World;
+import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -47,7 +48,7 @@ public class PotionCleansingFlames extends PotionMagicEffect implements ICustomP
     }
 
     @SubscribeEvent
-    public static void onLivingHurtEvent(LivingHurtEvent event) {
+    public static void onLivingAttackEvent(LivingAttackEvent event) {
         if (event.getEntityLiving().isPotionActive(WNGPotions.cleansing_flames) && event.getSource().isFireDamage()) {
             event.setCanceled(true);
         }

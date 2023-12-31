@@ -36,11 +36,13 @@ public class BloodBlitz extends SpellRay {
     @Override
     protected boolean onEntityHit(World world, Entity target, Vec3d hit, EntityLivingBase caster, Vec3d origin, int ticksInUse, SpellModifiers modifiers) {
         if (target instanceof EntityLivingBase) {
+            float health = ((EntityLivingBase)target).getHealth();
             EntityUtils.attackEntityWithoutKnockback(target, MagicDamage.causeDirectMagicDamage(caster, MagicDamage.DamageType.WITHER), getProperty(DAMAGE).floatValue() * modifiers.get(SpellModifiers.POTENCY));
+            health -= ((EntityLivingBase) target).getHealth();
             if (world.isRemote)
                 ParticleBuilder.create(ParticleBuilder.Type.CLOUD, world.rand, target.posX, target.posY + target.getEyeHeight() - 0.5f, target.posZ, 0, false).clr(170, 0, 0).time(10 + world.rand.nextInt(5)).spawn(world);
             if (caster != null)
-                caster.heal((getProperty(DAMAGE).floatValue() * modifiers.get(SpellModifiers.POTENCY) * getProperty(HEAL_FACTOR).floatValue()));
+                caster.heal(health * getProperty(HEAL_FACTOR).floatValue());
         }
         return true;
     }

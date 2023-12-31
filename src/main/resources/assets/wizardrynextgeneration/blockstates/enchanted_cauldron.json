@@ -1,8 +1,5 @@
 {
   "variants": {
-    "level=0": { "model": "minecraft:cauldron_empty" },
-    "level=1": { "model": "minecraft:cauldron_level1" },
-    "level=2": { "model": "minecraft:cauldron_level2" },
-    "level=3": { "model": "minecraft:cauldron_level3" }
+    "normal": { "model": "wizardrynextgeneration:enchanted_cauldron" }
   }
 }

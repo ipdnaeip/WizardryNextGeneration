@@ -19,9 +19,12 @@ public class WNGBlocks {
     }
 
     @Nonnull
+    @SuppressWarnings("ConstantConditions")
     private static <T> T placeholder() {
         return null;
     }
+
+    public static final Block enchanted_cauldron = placeholder();
 
     public static void registerBlock(IForgeRegistry<Block> registry, String name, Block block) {
         block.setRegistryName(WizardryNextGeneration.MODID, name);
@@ -32,6 +35,6 @@ public class WNGBlocks {
     @SubscribeEvent
     public static void register(RegistryEvent.Register<Block> event) {
         IForgeRegistry<Block> registry = event.getRegistry();
-        registerBlock(registry, "enchanted_cauldron", (new BlockEnchantedCauldron()).setCreativeTab(WNGTabs.WIZARDRYNEXTGENERATION));
+        registerBlock(registry, "enchanted_cauldron", new BlockEnchantedCauldron().setCreativeTab(WNGTabs.WIZARDRYNEXTGENERATION));
     }
 }

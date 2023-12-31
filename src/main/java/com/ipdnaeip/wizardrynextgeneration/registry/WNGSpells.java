@@ -101,6 +101,9 @@ public final class WNGSpells {
     public static final Spell spawn_teleport = placeholder();
     public static final Spell concoction_bomb = placeholder();
     public static final Spell napalm = placeholder();
+    public static final Spell enchant_cauldron = placeholder();
+    public static final Spell chomp = placeholder();
+    //public static final Spell celestial_beam = placeholder();
 
     @SubscribeEvent
     public static void register(RegistryEvent.Register<Spell> event) {
@@ -182,7 +185,10 @@ public final class WNGSpells {
         registry.register(new SpawnTeleport());
         registry.register(new ConcoctionBomb());
         registry.register(new Napalm());
-//        registry.register(new PiercingMass());
+        registry.register(new EnchantCauldron());
+        registry.register(new Chomp());
+        //registry.register(new CelestialBeam());
+
     }
 }
 
