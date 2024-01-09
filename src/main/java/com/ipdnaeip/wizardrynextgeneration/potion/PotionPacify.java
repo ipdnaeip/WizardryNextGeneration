@@ -32,7 +32,7 @@ public class PotionPacify extends PotionMagicEffect {
     @SubscribeEvent
     public static void onLivingSetAttackTargetEvent(LivingSetAttackTargetEvent event) {
         if (event.getEntityLiving().isPotionActive(WNGPotions.pacify) && event.getEntityLiving() instanceof EntityLiving && event.getTarget() != null) {
-            ((EntityLiving) event.getEntityLiving()).setAttackTarget(null);
+            ((EntityLiving)event.getEntityLiving()).setAttackTarget(null);
         }
     }
 

@@ -32,7 +32,6 @@ public class EntityNapalm extends EntityLivingScaledConstruct {
     public void onUpdate() {
         boolean burningEntity = false;
         super.onUpdate();
-        System.out.println(this.lifetime + " " + this.ticksExisted + " " + this.damageMultiplier);
         if (this.isBurning()) {
             this.explode();
         }

@@ -10,6 +10,8 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class EntityAcceleratedMass extends EntityMagicArrow {
 
@@ -48,32 +50,6 @@ public class EntityAcceleratedMass extends EntityMagicArrow {
         this.shoot(this.motionX, this.motionY, this.motionZ, speed * 1.5F, 0F);
     }
 
-/*    @Override
-    public void aim(EntityLivingBase caster, float speed){
-        this.setCaster(caster);
-        this.setLocationAndAngles(caster.posX, caster.posY + (double)caster.getEyeHeight() - LAUNCH_Y_OFFSET,
-            caster.posZ, caster.rotationYaw, caster.rotationPitch);
-        if (caster.getActiveHand() == EnumHand.MAIN_HAND) {
-            this.posX -= (double) (MathHelper.cos(this.rotationYaw / 180.0F * (float) Math.PI) * 0.16F);
-            this.posY -= 0.10000000149011612D;
-            this.posZ -= (double) (MathHelper.sin(this.rotationYaw / 180.0F * (float) Math.PI) * 0.16F);
-        } else {
-            this.posX += (double) (MathHelper.cos(this.rotationYaw / 180.0F * (float) Math.PI) * 0.16F);
-            this.posY -= 0.10000000149011612D;
-            this.posZ += (double) (MathHelper.sin(this.rotationYaw / 180.0F * (float) Math.PI) * 0.16F);
-        }
-        this.setPosition(this.posX, this.posY, this.posZ);
-        System.out.println(caster.getActiveHand());
-        // yOffset was set to 0 here, but that has been replaced by getYOffset(), which returns 0 in Entity anyway.
-        this.motionX = (double)(-MathHelper.sin(this.rotationYaw / 180.0F * (float)Math.PI)
-                * MathHelper.cos(this.rotationPitch / 180.0F * (float)Math.PI));
-        this.motionY = (double)(-MathHelper.sin(this.rotationPitch / 180.0F * (float)Math.PI));
-        this.motionZ = (double)(MathHelper.cos(this.rotationYaw / 180.0F * (float)Math.PI)
-                * MathHelper.cos(this.rotationPitch / 180.0F * (float)Math.PI));
-
-        this.shoot(this.motionX, this.motionY, this.motionZ, speed * 1.5F, 1.0F);
-    }*/
-
     @Override
     public void onEntityHit(EntityLivingBase entityHit) {
         this.playSound(SoundEvents.BLOCK_ANVIL_PLACE, 0.5F, 0.7F + (this.rand.nextFloat() * 0.1F));
@@ -94,12 +70,22 @@ public class EntityAcceleratedMass extends EntityMagicArrow {
         this.motionY *= 1.1;
         this.motionZ *= 1.1;
         damage = Math.min(damage * 1.2, WNGSpells.accelerated_mass.getProperty("damage").doubleValue() * damage_multiplier);
-
     }
 
     public int getLifetime() {
             return 100;
     }
 
-
+    @Override
+    @SideOnly(Side.CLIENT)
+    public boolean isInRangeToRenderDist(double distance)
+    {
+        double d0 = this.getEntityBoundingBox().getAverageEdgeLength() * 10.0D;
+        if (Double.isNaN(d0))
+        {
+            d0 = 1.0D;
+        }
+        d0 = d0 * 64.0D * getRenderDistanceWeight();
+        return distance < d0 * d0;
+    }
 }

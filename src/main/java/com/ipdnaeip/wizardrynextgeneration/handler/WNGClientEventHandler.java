@@ -31,23 +31,19 @@ public class WNGClientEventHandler {
         MovementInput input = event.getMovementInput();
         int level = EnchantmentHelper.getEnchantmentLevel(WNGEnchantments.ranger, stack);
         if (player.isHandActive() && stack.getItem() instanceof ItemBow) {
-           player.setSprinting(false);
-            MovementInput var10000 = event.getMovementInput();
-            var10000.moveStrafe *= 1F + (0.75F * level);
-            var10000 = event.getMovementInput();
-            var10000.moveForward *= 1F + (0.75F * level);
+            player.setSprinting(false);
+            input.moveStrafe *= 1F + level;
+            input.moveForward *= 1F + level;
         }
         level = EnchantmentHelper.getEnchantmentLevel(WNGEnchantments.phalanx, stack);
         if (player.isHandActive() && stack.getItem() instanceof ItemShield) {
             player.setSprinting(false);
-            MovementInput var10000 = event.getMovementInput();
-            var10000.moveStrafe *= 1F + (0.75F * level);
-            var10000 = event.getMovementInput();
-            var10000.moveForward *= 1F + (0.75F * level);
+            input.moveStrafe *= 1F + level;
+            input.moveForward *= 1F + level;
         }
         if (ItemNewArtefact.isNewArtefactActive(player, WNGItems.body_hashashin) && ItemNewArtefact.isNewArtefactActive(player, WNGItems.head_hashashin) && player.isSneaking()) {
-            input.moveForward *= 1.5F;
-            input.moveStrafe *= 1.5F;
+            input.moveForward *= 2F;
+            input.moveStrafe *= 2F;
         }
 
     }

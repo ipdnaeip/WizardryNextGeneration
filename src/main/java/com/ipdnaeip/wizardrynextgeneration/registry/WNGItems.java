@@ -46,6 +46,9 @@ public final class WNGItems {
     public static final Item scroll_wng = placeholder();
     public static final Item spell_book_wng = placeholder();
     public static final Item spell_encyclopedia = placeholder();
+    public static final Item upgrade_chargeup = placeholder();
+    public static final Item upgrade_looting = placeholder();
+    public static final Item upgrade_movement = placeholder();
 
     //amulet
     public static final Item amulet_moon = placeholder();
@@ -70,6 +73,7 @@ public final class WNGItems {
     //ring
     public static final Item ring_9th_circle = placeholder();
     public static final Item ring_anodized = placeholder();
+    public static final Item ring_looting = placeholder();
     public static final Item ring_nullification = placeholder();
     public static final Item ring_static_shock = placeholder();
     public static final Item ring_void = placeholder();
@@ -131,7 +135,6 @@ public final class WNGItems {
         IForgeRegistry<Item> registry = event.getRegistry();
 
         //block
-        //registerItemBlock(registry, WNGBlocks.enchanted_cauldron);
 
         //misc
         registerItem(registry, "blessed_meat", new ItemBlessedMeat());
@@ -139,8 +142,11 @@ public final class WNGItems {
         //magical items
         registerItem(registry, "conjured_potion", new ItemConjuredPotion());
         registerItem(registry, "scroll_wng", new ItemScroll());
-        registerItem(registry,"spell_book_wng", new ItemWNGSpellBook());
+        registerItem(registry, "spell_book_wng", new ItemWNGSpellBook());
         registerItem(registry, "spell_encyclopedia", new ItemSpellEncyclopedia());
+        registerItem(registry, "upgrade_chargeup", new ItemChargeupWandUpgrade());
+        registerItem(registry, "upgrade_looting", new ItemLootingWandUpgrade());
+        registerItem(registry, "upgrade_movement", new ItemMovementWandUpgrade());
 
         //amulet
         registerItem(registry, "amulet_moon", new ItemAmuletMoon(EnumRarity.EPIC, ItemArtefact.Type.AMULET));
@@ -165,6 +171,7 @@ public final class WNGItems {
         //ring
         registerItem(registry, "ring_9th_circle", new ItemWNGArtefact(EnumRarity.UNCOMMON, ItemArtefact.Type.RING));
         registerItem(registry, "ring_anodized", new ItemWNGArtefact(EnumRarity.RARE, ItemArtefact.Type.RING));
+        registerItem(registry, "ring_looting", new ItemWNGArtefact(EnumRarity.UNCOMMON, ItemArtefact.Type.RING));
         registerItem(registry, "ring_nullification", new ItemWNGArtefact(EnumRarity.RARE, ItemArtefact.Type.RING));
         registerItem(registry, "ring_static_shock", new ItemWNGArtefact(EnumRarity.RARE, ItemArtefact.Type.RING));
         registerItem(registry, "ring_void", new ItemWNGArtefact(EnumRarity.UNCOMMON, ItemArtefact.Type.RING));

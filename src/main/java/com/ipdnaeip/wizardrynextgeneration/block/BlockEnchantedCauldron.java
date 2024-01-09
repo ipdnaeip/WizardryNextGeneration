@@ -165,6 +165,10 @@ public class BlockEnchantedCauldron extends Block
         double d1 = (double)pos.getY() + rand.nextDouble();
         double d2 = (double)pos.getZ() + rand.nextDouble();
         ParticleBuilder.create(ParticleBuilder.Type.SPARKLE).pos(d0, d1, d2).vel(0, 0, 0).time(20).spawn(worldIn);
+        if (rand.nextDouble() < 0.1D) {
+            worldIn.playSound((double)pos.getX() + 0.5D, pos.getY(), (double)pos.getZ() + 0.5D, SoundEvents.BLOCK_FURNACE_FIRE_CRACKLE, SoundCategory.BLOCKS, 1.0F, 1.0F, false);
+        }
+
     }
 
     public Item getItemDropped(IBlockState state, Random rand, int fortune)

@@ -110,7 +110,8 @@ public final class WNGSpells {
 
         IForgeRegistry<Spell> registry = event.getRegistry();
 
-        // WNG 1.0.0 Spells
+        // WNG 1.0.0 Spells (42)
+
         registry.register(new Photosynthesis());
         registry.register(new Scorch());
         registry.register(new BloodInfusion());
@@ -154,7 +155,7 @@ public final class WNGSpells {
         registry.register(new Smite());
         registry.register(new FissionBlast());
 
-        // WNG 1.0.2 Spells
+        // WNG 1.0.2 Spells (19)
 
         registry.register(new SummonWebspitter());
         registry.register(new ViciousBite());
@@ -176,7 +177,7 @@ public final class WNGSpells {
         registry.register(new Whirlpool());
         registry.register(new Combustion());
 
-        // WNG 1.0.3 Spells
+        // WNG 1.0.3 Spells (9)
 
         registry.register(new HexSwine());
         registry.register(new PotionBomb());

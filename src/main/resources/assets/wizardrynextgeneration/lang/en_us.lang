@@ -13,8 +13,14 @@ enchantment.wizardrynextgeneration:ranger.desc=Reduces the movement penalty for 
 
   #misc
 
+item.wizardrynextgeneration:blessed_meat.name=Blessed Meat
+
   #magical item
 
+item.wizardrynextgeneration:chargeup_upgrade.name=Wand Chargeup Upgrade
+item.wizardrynextgeneration:conjured_potion.name=Conjured Potion
+item.wizardrynextgeneration:looting_upgrade.name=Wand Looting Upgrade
+item.wizardrynextgeneration:movement_upgrade.name=Wand Movement Upgrade
 item.wizardrynextgeneration:scroll_wng.name=Scroll of %1$s
 item.wizardrynextgeneration:spell_book_wng.name=Spell Book
 item.wizardrynextgeneration:spell_encyclopedia.name=Spell Encyclopedia
@@ -58,6 +64,8 @@ item.wizardrynextgeneration:ring_9th_circle.name=Ring of the 9th Circle
 item.wizardrynextgeneration:ring_9th_circle.desc=Ice spells are 30%% more potent in the Nether
 item.wizardrynextgeneration:ring_anodized.name=Anodized Ring
 item.wizardrynextgeneration:ring_anodized.desc=Casting lightning spells hardens your exterior, providing resistance
+item.wizardrynextgeneration:ring_looting.name=Band of the Hunter
+item.wizardrynextgeneration:ring_looting.desc=Grants + 1 looting
 item.wizardrynextgeneration:ring_nullification.name=Ring of Nullification
 item.wizardrynextgeneration:ring_nullification.desc=Sorcery spells have a chance to not cost any mana
 item.wizardrynextgeneration:ring_static_shock.name=Ring of Static Shock

@@ -27,6 +27,7 @@ import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.event.entity.ProjectileImpactEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
+import net.minecraftforge.event.entity.living.LootingLevelEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -107,20 +108,6 @@ public class WNGEventHandler {
                     player.motionZ *= 1.25F;
                 }
             }
-/*            if (ItemNewArtefact.isNewArtefactActive(player, WNGItems.belt_potion)) {
-                PotionEffect[] potionEffects = player.getActivePotionEffects().toArray(new PotionEffect[player.getActivePotionEffects().size()]);
-                for (int i = 0; i < potionEffects.length; i++) {
-                    if (player.ticksExisted % potionEffects[i].getDuration() == potionEffects[i].getDuration() - 1) {
-                        int damageAmount = (potionEffects[i].getAmplifier() + 1) * potionEffects[i].getDuration();
-                        if (WNGBaublesIntegration.getBeltSlotItemStack(player).getMaxDamage() - WNGBaublesIntegration.getBeltSlotItemStack(player).getItemDamage() >= damageAmount) {
-                            if (potionEffects[i].getPotion().isBeneficial()) {
-                                player.addPotionEffect(new PotionEffect(potionEffects[i].getPotion(), potionEffects[i].getDuration(), potionEffects[i].getAmplifier()));
-                                WNGBaublesIntegration.getBeltSlotItemStack(player).damageItem(damageAmount, player);
-                            }
-                        }
-                    }
-                }
-            }*/
             if (ItemNewArtefact.isNewArtefactActive(player, WNGItems.belt_potion)) {
                 PotionEffect[] potionEffects = player.getActivePotionEffects().toArray(new PotionEffect[0]);
                 if (player.ticksExisted % 10 ==0 ) {
@@ -140,21 +127,6 @@ public class WNGEventHandler {
             }
         }
     }
-
-/*    @SubscribeEvent
-    public static void onPotionExpiryEvent(PotionEvent.PotionExpiryEvent event) {
-        PotionEffect potionEffect = event.getPotionEffect();
-        if (event.getEntity() instanceof EntityPlayer) {
-            EntityPlayer player = (EntityPlayer) event.getEntity();
-            if (ItemNewArtefact.isNewArtefactActive(player, WNGItems.belt_potion)) {
-                int damageAmount = (potionEffect.getAmplifier() + 1) * potionEffect.getDuration();
-                if (potionEffect.getPotion().isBeneficial() && WNGBaublesIntegration.getBeltSlotItemStack(player).getMaxDamage() - WNGBaublesIntegration.getBeltSlotItemStack(player).getItemDamage() >= damageAmount) {
-                    player.addPotionEffect(new PotionEffect (potionEffect.getPotion(), potionEffect.getDuration(), potionEffect.getAmplifier()));
-                    WNGBaublesIntegration.getBeltSlotItemStack(player).damageItem(damageAmount, player);
-                }
-            }
-        }
-    }*/
 
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void onSpellCastPreEvent(SpellCastEvent.Pre event) {
@@ -203,6 +175,16 @@ public class WNGEventHandler {
                         event.getArrow().setDead();
                     }
                 }
+            }
+        }
+    }
+
+    @SubscribeEvent
+    public static void onLootingLevelEvent(LootingLevelEvent event) {
+        if (event.getDamageSource().getTrueSource() instanceof EntityPlayer) {
+            EntityPlayer player = (EntityPlayer)event.getDamageSource().getTrueSource();
+            if (ItemArtefact.isArtefactActive(player, WNGItems.ring_looting)) {
+                event.setLootingLevel(event.getLootingLevel() + 1);
             }
         }
     }
