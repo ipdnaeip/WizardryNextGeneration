@@ -20,11 +20,13 @@ public class RenderVampireBat extends RenderLiving<EntityVampireBat> {
         this.addLayer(new LayerVampireBatEyes<>(this));
     }
 
+    @Override
     protected void preRenderCallback(EntityVampireBat entitylivingbaseIn, float partialTickTime)
     {
         GlStateManager.scale(0.35F, 0.35F, 0.35F);
     }
 
+    @Override
     protected void applyRotations(EntityVampireBat entityLiving, float ageInTicks, float rotationYaw, float partialTicks)
     {
         if (entityLiving.getIsBatHanging())

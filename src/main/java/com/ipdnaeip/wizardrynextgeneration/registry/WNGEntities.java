@@ -84,6 +84,7 @@ public class WNGEntities {
         registry.register(createEntry(EntityRighteousDefender.class, "righteous_defender", TrackingType.LIVING).egg(16764218, 16769387).build());
         registry.register(createEntry(EntityRighteousDefenderMinion.class, "righteous_defender_minion", TrackingType.LIVING).build());
         registry.register(createEntry(EntityVampireBat.class, "vampire_bat", TrackingType.LIVING).egg(3086871, 986895).spawn(EnumCreatureType.MONSTER, 20, 1, 3, ForgeRegistries.BIOMES.getValuesCollection().stream().filter((b) -> !Arrays.asList(Wizardry.settings.mobSpawnBiomeBlacklist).contains(b.getRegistryName())).collect(Collectors.toSet())).build());
+        registry.register(createEntry(EntityVampireBatMinion.class, "vampire_bat_minion", TrackingType.LIVING).build());
         registry.register(createEntry(EntityWebspitter.class, "webspitter", TrackingType.LIVING).egg(3357763, 960667).spawn(EnumCreatureType.MONSTER, 20, 1, 3, ForgeRegistries.BIOMES.getValuesCollection().stream().filter((b) -> BiomeDictionary.hasType(b, BiomeDictionary.Type.PLAINS) ).collect(Collectors.toSet())).build());
         registry.register(createEntry(EntityWebspitterMinion.class, "webspitter_minion", TrackingType.LIVING).build());
 

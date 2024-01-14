@@ -1,4 +1,6 @@
 {
+  "entity.vampire_bat.bite":               {"category": "hostile", "sounds": ["wizardrynextgeneration:fox_eat1", "wizardrynextgeneration:fox_eat2", "wizardrynextgeneration:fox_eat3"]},
+
   "spell.accelerated_mass":               {"category": "spells", "sounds": ["wizardrynextgeneration:shot1", "wizardrynextgeneration:shot2", "wizardrynextgeneration:shot3"]},
   "spell.anti_gravitational_field": 	  {"category": "spells", "sounds": ["ebwizardry:effect1", "ebwizardry:effect2"]},
   "spell.anti_gravitational_push.start":  {"category": "spells", "sounds": ["ebwizardry:small_aura_start"]},
@@ -74,6 +76,7 @@
   "spell.spawn_teleport": 			      {"category": "spells", "sounds": ["portal/trigger"]},
   "spell.spit_web":                       {"category": "spells", "sounds": ["entity/shulker/shoot1", "entity/shulker/shoot2", "entity/shulker/shoot3", "entity/shulker/shoot4"]},
   "spell.summon_righteous_defender":      {"category": "spells", "sounds": ["wizardrynextgeneration:horn"]},
+  "spell.summon_vampire_bat":             {"category": "spells", "sounds": ["ebwizardry:summon1", "ebwizardry:summon2"]},
   "spell.summon_webspitter":              {"category": "spells", "sounds": ["ebwizardry:summon1", "ebwizardry:summon2"]},
   "spell.tase.start": 		              {"category": "spells", "sounds": ["ebwizardry:lightning_ray_start"]},
   "spell.tase.loop": 		              {"category": "spells", "sounds": ["ebwizardry:lightning_ray_loop"]},

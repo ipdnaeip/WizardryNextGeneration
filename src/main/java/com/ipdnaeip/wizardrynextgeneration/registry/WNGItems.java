@@ -69,6 +69,7 @@ public final class WNGItems {
     public static final Item head_hashashin = placeholder();
     public static final Item head_ra = placeholder();
     public static final Item head_raijin = placeholder();
+    public static final Item head_thorns = placeholder();
 
     //ring
     public static final Item ring_9th_circle = placeholder();
@@ -167,6 +168,7 @@ public final class WNGItems {
         registerItem(registry, "head_hashashin", new ItemNewArtefact(EnumRarity.RARE, ItemNewArtefact.AdditionalType.HEAD));
         registerItem(registry, "head_ra", new ItemNewArtefact(EnumRarity.EPIC, ItemNewArtefact.AdditionalType.HEAD));
         registerItem(registry, "head_raijin", new ItemNewArtefact(EnumRarity.EPIC, ItemNewArtefact.AdditionalType.HEAD));
+        registerItem(registry, "head_thorns", new ItemNewArtefact(EnumRarity.RARE, ItemNewArtefact.AdditionalType.HEAD));
 
         //ring
         registerItem(registry, "ring_9th_circle", new ItemWNGArtefact(EnumRarity.UNCOMMON, ItemArtefact.Type.RING));

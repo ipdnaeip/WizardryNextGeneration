@@ -1,6 +1,8 @@
 package com.ipdnaeip.wizardrynextgeneration.entity.living;
 
 import com.ipdnaeip.wizardrynextgeneration.entity.ai.EntityBatFlightHelper;
+import com.ipdnaeip.wizardrynextgeneration.registry.WNGPotions;
+import com.ipdnaeip.wizardrynextgeneration.registry.WNGSounds;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.*;
@@ -40,7 +42,6 @@ public class EntityVampireBat extends EntityMob
 
     @Override
     protected void initEntityAI() {
-        super.initEntityAI();
         this.tasks.addTask(0, new EntityAISwimming(this));
         this.tasks.addTask(3, new EntityAIAttackMelee(this, this.getFlyingSpeed(), true));
         this.tasks.addTask(4, new EntityAIFlyingWander(this, this.getFlyingSpeed()));
@@ -65,7 +66,7 @@ public class EntityVampireBat extends EntityMob
     @Override
     protected float getSoundPitch()
     {
-        return super.getSoundPitch() * 0.80F;
+        return super.getSoundPitch() * 0.5F;
     }
 
     @Override
@@ -206,6 +207,7 @@ public class EntityVampireBat extends EntityMob
     public boolean attackEntityAsMob(Entity entityIn)
     {
         if (super.attackEntityAsMob(entityIn)) {
+            this.playSound(WNGSounds.VAMPIRE_BAT_BITE, 1f, 0.9f + this.rand.nextFloat() + 0.2f);
             if (entityIn instanceof EntityLivingBase) {
                 int i = 0;
                 if (this.world.getDifficulty() == EnumDifficulty.EASY) {
@@ -218,7 +220,7 @@ public class EntityVampireBat extends EntityMob
                     i = 120;
                 }
                 if (i > 0) {
-                    ((EntityLivingBase)entityIn).addPotionEffect(new PotionEffect(MobEffects.POISON, i, 0));
+                    ((EntityLivingBase)entityIn).addPotionEffect(new PotionEffect(WNGPotions.bleed, i, 0));
                     this.addPotionEffect(new PotionEffect(MobEffects.REGENERATION, i, 0));
                 }
             }
@@ -312,7 +314,8 @@ public class EntityVampireBat extends EntityMob
         @Nullable
         protected Vec3d getPosition()
         {
-            return RandomPositionGenerator.findRandomTarget(this.entity, 10, 7);
+            //return RandomPositionGenerator.findRandomTarget(this.entity, 10, 7);
+            return new Vec3d(this.entity.posX + this.entity.world.rand.nextGaussian() * 7, this.entity.posY + this.entity.world.rand.nextFloat() * 6 - 2, this.entity.posZ + this.entity.world.rand.nextGaussian() * 7);
         }
 
         public boolean shouldContinueExecuting()

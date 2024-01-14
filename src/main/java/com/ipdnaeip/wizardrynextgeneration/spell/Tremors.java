@@ -16,6 +16,7 @@ import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.SoundEvent;
@@ -54,20 +55,27 @@ public class Tremors extends SpellAreaEffect {
     }
 
     @Override
-    protected boolean affectEntity(World world, Vec3d vec3d, @Nullable EntityLivingBase caster, EntityLivingBase target, int i, int ticksInUse, SpellModifiers modifiers) {
-        if (caster != null) {
-            double velocityFactor = caster.getPositionVector().distanceTo(target.getPositionVector()) * 4;
-            if (target.onGround) {
-                target.attackEntityFrom(MagicDamage.causeDirectMagicDamage(caster, MagicDamage.DamageType.BLAST), this.getProperty("damage").floatValue() * modifiers.get("potency"));
-                double dx = target.posX - caster.posX;
-                double dy = target.posY + 1.0 - caster.posY;
-                double dz = target.posZ - caster.posZ;
-                target.motionX = dx / velocityFactor;
-                target.motionY = dy / velocityFactor;
-                target.motionZ = dz / velocityFactor;
-                this.playSound(world, caster, 0, -1, modifiers);
-                return true;
-            }
+    public boolean cast(World world, double x, double y, double z, EnumFacing direction, int ticksInUse, int duration, SpellModifiers modifiers) {
+        if (ticksInUse % 10 == 0 && world.getBlockState(new BlockPos(x, y, z).down()).getBlock().isCollidable()) {
+            this.playSound(world, x, y, z, ticksInUse, -1, modifiers);
+            this.findAndAffectEntities(world, new Vec3d(x, y, z), null, ticksInUse, modifiers);
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    protected boolean affectEntity(World world, Vec3d origin, @Nullable EntityLivingBase caster, EntityLivingBase target, int i, int ticksInUse, SpellModifiers modifiers) {
+        double velocityFactor = origin.distanceTo(target.getPositionVector()) * 4;
+        if (target.onGround) {
+            target.attackEntityFrom(MagicDamage.causeDirectMagicDamage(caster, MagicDamage.DamageType.BLAST), this.getProperty("damage").floatValue() * modifiers.get("potency"));
+            double dx = target.posX - origin.x;
+            double dy = target.posY + 1.0 - origin.y;
+            double dz = target.posZ - origin.z;
+            target.motionX = dx / velocityFactor;
+            target.motionY = dy / velocityFactor;
+            target.motionZ = dz / velocityFactor;
+            return true;
         }
         return false;
     }

@@ -61,7 +61,7 @@
 //                buffer.begin(7, DefaultVertexFormats.POSITION_TEX_COLOR);
 //                Vec3d position = GeometryUtils.getCentre(target.pos).subtract(origin);
 //                double distance = position.length();
-//                double distanceCap = (double)(Minecraft.getMinecraft().gameSettings.renderDistanceChunks * 16 - 8);
+//                double distanceCap = Minecraft.getMinecraft().gameSettings.renderDistanceChunks * 16 - 8;
 //                double displayDist = Math.min(distance, distanceCap);
 //                double factor = displayDist / distance;
 //                GlStateManager.translate(position.x * factor, position.y * factor, position.z * factor);

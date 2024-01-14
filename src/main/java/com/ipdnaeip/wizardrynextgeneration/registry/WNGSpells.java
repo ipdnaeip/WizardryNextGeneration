@@ -105,6 +105,9 @@ public final class WNGSpells {
     public static final Spell chomp = placeholder();
     //public static final Spell celestial_beam = placeholder();
 
+    //WNG 1.0.4 Spells
+    public static final Spell summon_vampire_bat = placeholder();
+
     @SubscribeEvent
     public static void register(RegistryEvent.Register<Spell> event) {
 
@@ -189,6 +192,10 @@ public final class WNGSpells {
         registry.register(new EnchantCauldron());
         registry.register(new Chomp());
         //registry.register(new CelestialBeam());
+
+        // WNG 1.0.4 Spells (1)
+
+        registry.register(new SummonVampireBat());
 
     }
 }

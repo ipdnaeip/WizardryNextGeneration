@@ -76,7 +76,7 @@ public class EntityAcceleratedMass extends EntityMagicArrow {
             return 100;
     }
 
-    @Override
+/*    @Override
     @SideOnly(Side.CLIENT)
     public boolean isInRangeToRenderDist(double distance)
     {
@@ -87,5 +87,5 @@ public class EntityAcceleratedMass extends EntityMagicArrow {
         }
         d0 = d0 * 64.0D * getRenderDistanceWeight();
         return distance < d0 * d0;
-    }
+    }*/
 }

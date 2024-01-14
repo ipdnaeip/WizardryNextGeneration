@@ -24,34 +24,48 @@ public class LayerVampireBatEyes<T extends EntityVampireBat> implements LayerRen
 
         // Copied from LayerDruidMageEyes
 
-        this.mainRenderer.bindTexture(TEXTURE);
-
+/*        this.mainRenderer.bindTexture(TEXTURE);
         GlStateManager.enableBlend();
         GlStateManager.disableAlpha();
         GlStateManager.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
         GlStateManager.depthMask(!entity.isInvisible());
-
         OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 240, 240);
+        OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 61680.0F, 0.0F);
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
-
         Minecraft.getMinecraft().entityRenderer.setupFogColor(true);
-
         this.mainRenderer.getMainModel().render(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale);
-
         Minecraft.getMinecraft().entityRenderer.setupFogColor(false);
         int i = entity.getBrightnessForRender();
         int j = i % 65536;
         int k = i / 65536;
         OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, (float)j, (float)k);
-
         this.mainRenderer.setLightmap(entity);
-
         GlStateManager.disableBlend();
+        GlStateManager.enableAlpha();*/
+
+        //Code from Bluefire from the Modding Coalition Discord
+
+        this.mainRenderer.bindTexture(TEXTURE);
+        GlStateManager.enableBlend();
         GlStateManager.enableAlpha();
+        GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
+        GlStateManager.depthMask(!entity.isInvisible());
+        OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 61680.0F, 0.0F);
+        GlStateManager.disableLighting();
+        GlStateManager.blendFunc(GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ONE);
+        this.mainRenderer.getMainModel().render(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale);
+        GlStateManager.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
+        int i = entity.getBrightnessForRender();
+        int j = i % 65536;
+        int k = i / 65536;
+        OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, (float)j, (float)k);
+        GlStateManager.enableLighting();
+        GlStateManager.disableBlend();
     }
 
     @Override
     public boolean shouldCombineTextures(){
         return false;
     }
+
 }

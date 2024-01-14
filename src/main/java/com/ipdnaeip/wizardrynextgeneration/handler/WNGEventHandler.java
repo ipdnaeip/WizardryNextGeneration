@@ -14,6 +14,7 @@ import electroblob.wizardry.util.EntityUtils;
 import electroblob.wizardry.util.IElementalDamage;
 import electroblob.wizardry.util.MagicDamage;
 import electroblob.wizardry.util.SpellModifiers;
+import net.minecraft.enchantment.EnchantmentThorns;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
@@ -21,6 +22,7 @@ import net.minecraft.init.Items;
 import net.minecraft.init.MobEffects;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.BiomeDictionary;
@@ -41,9 +43,11 @@ public class WNGEventHandler {
     @SubscribeEvent
     public static void onLivingHurtEvent(LivingHurtEvent event) {
         EntityPlayer player;
+        EntityLivingBase entity;
+        //dealt by the player
         if (event.getSource().getTrueSource() instanceof EntityPlayer) {
             player = (EntityPlayer) event.getSource().getTrueSource();
-            EntityLivingBase entity = event.getEntityLiving();
+            entity = event.getEntityLiving();
             if (ItemNewArtefact.isNewArtefactActive(player, WNGItems.head_raijin)) {
                 if (event.getSource() instanceof IElementalDamage && ((IElementalDamage) event.getSource()).getType() == MagicDamage.DamageType.SHOCK) {
                     if (event.getAmount() > (entity.getMaxHealth() / 2)) {
@@ -58,6 +62,7 @@ public class WNGEventHandler {
                 }
             }
         }
+        //dealt to the player
         if (event.getEntityLiving() instanceof EntityPlayer) {
             player = (EntityPlayer) event.getEntityLiving();
             if (ItemArtefact.isArtefactActive(player, WNGItems.amulet_moon)) {
@@ -73,6 +78,11 @@ public class WNGEventHandler {
                     ((ItemCharmHorn)charm.getItem()).performAction(player, charm);
                 }
             }
+            if (ItemNewArtefact.isNewArtefactActive(player, WNGItems.head_thorns)) {
+                if (player.world.rand.nextFloat() < 0.15f && event.getSource().getTrueSource() instanceof EntityLivingBase) {
+                    event.getSource().getTrueSource().attackEntityFrom(DamageSource.causeThornsDamage(player), 1 + player.world.rand.nextInt(3));
+                }
+            }
         }
     }
 
@@ -82,7 +92,7 @@ public class WNGEventHandler {
             EntityPlayer player = (EntityPlayer) event.getCaster();
             if (ItemArtefact.isArtefactActive(player, WNGItems.ring_anodized)) {
                 if (event.getCaster() instanceof EntityPlayer && event.getSpell().getElement() == Element.LIGHTNING) {
-                    event.getCaster().addPotionEffect(new PotionEffect(MobEffects.RESISTANCE, 100, 0));
+                    event.getCaster().addPotionEffect(new PotionEffect(MobEffects.RESISTANCE, 50, 0));
                 }
             }
         }

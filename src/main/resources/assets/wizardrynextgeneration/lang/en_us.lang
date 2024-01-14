@@ -57,6 +57,8 @@ item.wizardrynextgeneration:head_ra.name=Sun-Disk of Ra
 item.wizardrynextgeneration:head_ra.desc=The crown of the sun god allows you to have better horizontal control in solar winds
 item.wizardrynextgeneration:head_raijin.name=Mask of Raijin
 item.wizardrynextgeneration:head_raijin.desc=The mask of the thunderlord allows high intensity lightning spells to paralyze creatures
+item.wizardrynextgeneration:head_thorns.name=Crown of Thorns
+item.wizardrynextgeneration:head_thorns.desc=You have a 15%% chance to deal a small amount of damage to creatures that damage you
 
   #ring
 
@@ -88,6 +90,7 @@ entity.wizardrynextgeneration:pig_zombie_convert.name=Pigman
 entity.wizardrynextgeneration:righteous_defender.name=Righteous Defender
 entity.wizardrynextgeneration:righteous_defender_minion.name=Righteous Defender
 entity.wizardrynextgeneration:vampire_bat.name=Vampire Bat
+entity.wizardrynextgeneration:vampire_bat_minion.name=Vampire Bat
 entity.wizardrynextgeneration:webspitter.name=Webspitter
 entity.wizardrynextgeneration:webspitter_minion.name=Webspitter
 
@@ -288,6 +291,8 @@ spell.wizardrynextgeneration:spit_web=Spit Web
 spell.wizardrynextgeneration:spit_web.desc=Spit a ball of webs at a target, exploding on contact with a block.
 spell.wizardrynextgeneration:summon_righteous_defender=Summon Righteous Defender
 spell.wizardrynextgeneration:summon_righteous_defender.desc=Summons a righteous defender to fight for you. The minion will disappear after 30 seconds or if it is killed.
+spell.wizardrynextgeneration:summon_vampire_bat=Summon Vampire Bat
+spell.wizardrynextgeneration:summon_vampire_bat.desc=Summons a vampire bat to fight for you. The minion will disappear after 30 seconds or if it is killed.
 spell.wizardrynextgeneration:summon_webspitter=Summon Webspitter
 spell.wizardrynextgeneration:summon_webspitter.desc=Summons a webspitter to fight for you. The minion will disappear after 30 seconds or if it is killed.
 spell.wizardrynextgeneration:tase=Tase
