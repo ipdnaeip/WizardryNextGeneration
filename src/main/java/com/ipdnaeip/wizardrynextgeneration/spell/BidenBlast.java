@@ -24,7 +24,7 @@ public class BidenBlast extends SpellRayMultiple {
     @Override
     protected boolean onEntityHit(World world, Entity target, Vec3d hit, EntityLivingBase caster, Vec3d origin, int ticksInUse, SpellModifiers modifiers) {
         if (target instanceof EntityLivingBase) {
-            target.attackEntityFrom(MagicDamage.causeDirectMagicDamage(caster, MagicDamage.DamageType.MAGIC), ((EntityLivingBase) target).getMaxHealth());
+            target.attackEntityFrom(MagicDamage.causeDirectMagicDamage(caster, MagicDamage.DamageType.MAGIC), Float.MAX_VALUE);
         }
         return true;
     }

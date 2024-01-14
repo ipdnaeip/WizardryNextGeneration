@@ -22,7 +22,7 @@ public class EntityWhirlpool extends EntityScaledConstruct {
 
     public void onUpdate() {
         if (this.ticksExisted % 20 == 0) {
-            this.playSound(SoundEvents.BLOCK_WATER_AMBIENT, 1F, 1.0F);
+            this.playSound(SoundEvents.BLOCK_WATER_AMBIENT, 5F, 1.0F);
         }
         super.onUpdate();
         if (!this.world.isRemote) {

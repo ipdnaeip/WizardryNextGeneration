@@ -4,6 +4,7 @@ package com.ipdnaeip.wizardrynextgeneration.spell;
 
 import com.ipdnaeip.wizardrynextgeneration.WizardryNextGeneration;
 import com.ipdnaeip.wizardrynextgeneration.registry.WNGItems;
+import com.ipdnaeip.wizardrynextgeneration.util.WNGUtils;
 import electroblob.wizardry.item.SpellActions;
 import electroblob.wizardry.spell.Spell;
 import electroblob.wizardry.util.ParticleBuilder;
@@ -44,13 +45,13 @@ public class Moonlight extends Spell {
 
     @Override
     public boolean cast(World world, EntityPlayer caster, EnumHand hand, int ticksInUse, SpellModifiers modifiers) {
-        if (world.isDaytime() || !world.canSeeSky(new BlockPos(caster.posX, caster.posY + (double)caster.getEyeHeight(), caster.posZ))) {
+        if (!WNGUtils.hasMoonlight(world, caster)) {
             if(!world.isRemote) caster.sendStatusMessage(new TextComponentTranslation("spell." + this.getUnlocalisedName() + ".no_moonlight"), true);
             return false;
         }
         //check if the player can be healed and if the moon is out and visible by the player
-        if (caster.getHealth() < caster.getMaxHealth() && caster.getHealth() > 0.0F && ticksInUse % 10 == 0 && !world.isDaytime() && world.canSeeSky(new BlockPos(caster.posX, caster.posY + (double)caster.getEyeHeight(), caster.posZ))) {
-            caster.heal(this.getProperty("health").floatValue() * (1 + modifiers.get("potency")));
+        if (caster.getHealth() < caster.getMaxHealth() && caster.getHealth() > 0.0F && ticksInUse % 10 == 0 && WNGUtils.hasMoonlight(world, caster)) {
+            caster.heal(this.getProperty("health").floatValue() * modifiers.get("potency"));
             this.playSound(world, caster, ticksInUse, -1, modifiers);
             if (world.isRemote) ParticleBuilder.create(ParticleBuilder.Type.BUFF).entity(caster).clr(204, 255, 255).spawn(world);
             return true;

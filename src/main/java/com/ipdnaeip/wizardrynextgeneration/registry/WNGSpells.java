@@ -100,14 +100,21 @@ public final class WNGSpells {
     public static final Spell home_teleport = placeholder();
     public static final Spell spawn_teleport = placeholder();
     public static final Spell concoction_bomb = placeholder();
+    public static final Spell napalm = placeholder();
+    public static final Spell enchant_cauldron = placeholder();
+    public static final Spell chomp = placeholder();
+    //public static final Spell celestial_beam = placeholder();
 
-    @SuppressWarnings("unchecked")
+    //WNG 1.0.4 Spells
+    public static final Spell summon_vampire_bat = placeholder();
+
     @SubscribeEvent
     public static void register(RegistryEvent.Register<Spell> event) {
 
         IForgeRegistry<Spell> registry = event.getRegistry();
 
-        // WNG 1.0.0 Spells
+        // WNG 1.0.0 Spells (42)
+
         registry.register(new Photosynthesis());
         registry.register(new Scorch());
         registry.register(new BloodInfusion());
@@ -151,7 +158,7 @@ public final class WNGSpells {
         registry.register(new Smite());
         registry.register(new FissionBlast());
 
-        // WNG 1.0.2 Spells
+        // WNG 1.0.2 Spells (19)
 
         registry.register(new SummonWebspitter());
         registry.register(new ViciousBite());
@@ -173,7 +180,7 @@ public final class WNGSpells {
         registry.register(new Whirlpool());
         registry.register(new Combustion());
 
-        // WNG 1.0.3 Spells
+        // WNG 1.0.3 Spells (9)
 
         registry.register(new HexSwine());
         registry.register(new PotionBomb());
@@ -181,6 +188,15 @@ public final class WNGSpells {
         registry.register(new HomeTeleport());
         registry.register(new SpawnTeleport());
         registry.register(new ConcoctionBomb());
+        registry.register(new Napalm());
+        registry.register(new EnchantCauldron());
+        registry.register(new Chomp());
+        //registry.register(new CelestialBeam());
+
+        // WNG 1.0.4 Spells (1)
+
+        registry.register(new SummonVampireBat());
+
     }
 }
 

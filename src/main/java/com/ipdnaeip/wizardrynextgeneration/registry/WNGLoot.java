@@ -17,6 +17,7 @@ public class WNGLoot {
     private static LootTable UNCOMMON_ARTEFACTS;
     private static LootTable RARE_ARTEFACTS;
     private static LootTable EPIC_ARTEFACTS;
+    private static LootTable WAND_UPGRADES;
     private static LootTable WIZARDRYNEXTGENERATION_BOOKS_AND_SCROLLS;
     private static LootTable LIBRARY_RUINS_BOOKSHELF;
     private static LootTable OBELISK;
@@ -35,6 +36,7 @@ public class WNGLoot {
         LootTableList.register(new ResourceLocation(WizardryNextGeneration.MODID, "subsets/uncommon_artefacts"));
         LootTableList.register(new ResourceLocation(WizardryNextGeneration.MODID, "subsets/rare_artefacts"));
         LootTableList.register(new ResourceLocation(WizardryNextGeneration.MODID, "subsets/epic_artefacts"));
+        LootTableList.register(new ResourceLocation(WizardryNextGeneration.MODID, "subsets/wand_upgrades"));
         LootTableList.register(new ResourceLocation(WizardryNextGeneration.MODID, "subsets/wizardrynextgeneration_books_and_scrolls"));
 
         //entities
@@ -70,6 +72,10 @@ public class WNGLoot {
             LootPool targetPool = event.getTable().getPool("wizardry");
             LootPool sourcePool = WIZARD_TOWER.getPool("WizardryNextGeneration");
             injectEntries(sourcePool, targetPool);
+        } else if (event.getName().toString().equals(Wizardry.MODID + ":subsets/wand_upgrades") && WAND_UPGRADES != null) {
+            LootPool targetPool = event.getTable().getPool("upgrades");
+            LootPool sourcePool = WAND_UPGRADES.getPool("WizardryNextGeneration");
+            injectEntries(sourcePool, targetPool);
         }
 
         if (event.getName().toString().equals(Wizardry.MODID + ":chests/shrine") && SHRINE != null) {
@@ -80,7 +86,7 @@ public class WNGLoot {
         }
 
         // inject artefacts to ebwiz tables
-    if (event.getName().toString().equals(Wizardry.MODID + ":subsets/uncommon_artefacts") && UNCOMMON_ARTEFACTS != null) {
+        if (event.getName().toString().equals(Wizardry.MODID + ":subsets/uncommon_artefacts") && UNCOMMON_ARTEFACTS != null) {
             LootPool targetPool = event.getTable().getPool("uncommon_artefacts");
             LootPool sourcePool = UNCOMMON_ARTEFACTS.getPool("main");
             injectEntries(sourcePool, targetPool);
@@ -88,7 +94,6 @@ public class WNGLoot {
         if (event.getName().toString().equals(Wizardry.MODID + ":subsets/rare_artefacts") && RARE_ARTEFACTS != null) {
             LootPool targetPool = event.getTable().getPool("rare_artefacts");
             LootPool sourcePool = RARE_ARTEFACTS.getPool("main");
-
             injectEntries(sourcePool, targetPool);
         }
         if (event.getName().toString().equals(Wizardry.MODID + ":subsets/epic_artefacts") && EPIC_ARTEFACTS != null) {
@@ -96,6 +101,7 @@ public class WNGLoot {
             LootPool sourcePool = EPIC_ARTEFACTS.getPool("main");
             injectEntries(sourcePool, targetPool);
         }
+
 
     }
     private static void injectEntries(LootPool sourcePool, LootPool targetPool) {

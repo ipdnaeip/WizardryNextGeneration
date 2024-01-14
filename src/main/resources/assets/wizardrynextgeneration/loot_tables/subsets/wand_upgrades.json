@@ -1,0 +1,25 @@
+{
+  "pools": [
+    {
+      "name": "wizardrynextgeneration",
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "item",
+          "name": "wizardrynextgeneration:upgrade_chargeup",
+          "weight": 1
+        },
+        {
+          "type": "item",
+          "name": "wizardrynextgeneration:upgrade_looting",
+          "weight": 1
+        },
+        {
+          "type": "item",
+          "name": "wizardrynextgeneration:upgrade_movement",
+          "weight": 1
+        }
+      ]
+    }
+  ]
+}

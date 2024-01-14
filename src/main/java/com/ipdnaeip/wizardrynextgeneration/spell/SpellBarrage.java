@@ -28,7 +28,9 @@ public abstract class SpellBarrage extends SpellRay {
         double range = (this.getProperty(EFFECT_RADIUS).floatValue() * modifiers.get(WizardryItems.blast_upgrade));
         List<EntityLivingBase> targets = EntityUtils.getLivingWithinRadius(range, target.posX, target.posY, target.posZ, world);
         for (EntityLivingBase entity : targets) {
-            this.barrageEffect(world, entity, caster, ticksInUse, modifiers);
+            if (AllyDesignationSystem.isValidTarget(caster, entity)) {
+                this.barrageEffect(world, entity, caster, ticksInUse, modifiers);
+            }
         }
         if (world.isRemote) this.barrageParticles(world, hit, caster, ticksInUse, modifiers);
         return true;

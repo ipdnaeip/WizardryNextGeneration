@@ -1,16 +1,15 @@
 package com.ipdnaeip.wizardrynextgeneration.client.model;
 
-import com.ipdnaeip.wizardrynextgeneration.entity.living.EntityBatMob;
+import com.ipdnaeip.wizardrynextgeneration.entity.living.EntityVampireBat;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.passive.EntityBat;
 import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
-public class ModelBatMob extends ModelBase
+public class ModelVampireBat extends ModelBase
 {
     private final ModelRenderer batHead;
     private final ModelRenderer batBody;
@@ -19,7 +18,7 @@ public class ModelBatMob extends ModelBase
     private final ModelRenderer batOuterRightWing;
     private final ModelRenderer batOuterLeftWing;
 
-    public ModelBatMob()
+    public ModelVampireBat()
     {
         this.textureWidth = 64;
         this.textureHeight = 64;
@@ -62,7 +61,7 @@ public class ModelBatMob extends ModelBase
 
     public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entityIn)
     {
-        if (((EntityBatMob)entityIn).getIsBatHanging())
+        if (((EntityVampireBat)entityIn).getIsBatHanging())
         {
             this.batHead.rotateAngleX = headPitch * 0.017453292F;
             this.batHead.rotateAngleY = (float)Math.PI - netHeadYaw * 0.017453292F;

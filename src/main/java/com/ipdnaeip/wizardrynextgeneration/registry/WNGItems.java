@@ -10,9 +10,11 @@ import electroblob.wizardry.item.ItemScroll;
 import electroblob.wizardry.item.ItemSpellBook;
 import electroblob.wizardry.misc.BehaviourSpellDispense;
 import electroblob.wizardry.registry.WizardryTabs;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockDispenser;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.event.RegistryEvent;
@@ -44,6 +46,9 @@ public final class WNGItems {
     public static final Item scroll_wng = placeholder();
     public static final Item spell_book_wng = placeholder();
     public static final Item spell_encyclopedia = placeholder();
+    public static final Item upgrade_chargeup = placeholder();
+    public static final Item upgrade_looting = placeholder();
+    public static final Item upgrade_movement = placeholder();
 
     //amulet
     public static final Item amulet_moon = placeholder();
@@ -64,10 +69,12 @@ public final class WNGItems {
     public static final Item head_hashashin = placeholder();
     public static final Item head_ra = placeholder();
     public static final Item head_raijin = placeholder();
+    public static final Item head_thorns = placeholder();
 
     //ring
     public static final Item ring_9th_circle = placeholder();
     public static final Item ring_anodized = placeholder();
+    public static final Item ring_looting = placeholder();
     public static final Item ring_nullification = placeholder();
     public static final Item ring_static_shock = placeholder();
     public static final Item ring_void = placeholder();
@@ -110,10 +117,25 @@ public final class WNGItems {
         }
     }
 
+    private static void registerItemBlock(IForgeRegistry<Item> registry, Block block) {
+        registerItemBlock(registry, block, new ItemBlock(block));
+    }
+
+    private static void registerItemBlock(IForgeRegistry<Item> registry, Block block, ItemBlock itemblock) {
+        itemblock.setRegistryName(block.getRegistryName());
+        registry.register(itemblock);
+        if (block.getCreativeTab() instanceof WizardryTabs.CreativeTabListed) {
+            ((WizardryTabs.CreativeTabListed)block.getCreativeTab()).order.add(itemblock);
+        }
+
+    }
+
     @SubscribeEvent
     public static void register(RegistryEvent.Register<Item> event) {
 
         IForgeRegistry<Item> registry = event.getRegistry();
+
+        //block
 
         //misc
         registerItem(registry, "blessed_meat", new ItemBlessedMeat());
@@ -121,8 +143,11 @@ public final class WNGItems {
         //magical items
         registerItem(registry, "conjured_potion", new ItemConjuredPotion());
         registerItem(registry, "scroll_wng", new ItemScroll());
-        registerItem(registry,"spell_book_wng", new ItemWNGSpellBook());
+        registerItem(registry, "spell_book_wng", new ItemWNGSpellBook());
         registerItem(registry, "spell_encyclopedia", new ItemSpellEncyclopedia());
+        registerItem(registry, "upgrade_chargeup", new ItemChargeupWandUpgrade());
+        registerItem(registry, "upgrade_looting", new ItemLootingWandUpgrade());
+        registerItem(registry, "upgrade_movement", new ItemMovementWandUpgrade());
 
         //amulet
         registerItem(registry, "amulet_moon", new ItemAmuletMoon(EnumRarity.EPIC, ItemArtefact.Type.AMULET));
@@ -143,10 +168,12 @@ public final class WNGItems {
         registerItem(registry, "head_hashashin", new ItemNewArtefact(EnumRarity.RARE, ItemNewArtefact.AdditionalType.HEAD));
         registerItem(registry, "head_ra", new ItemNewArtefact(EnumRarity.EPIC, ItemNewArtefact.AdditionalType.HEAD));
         registerItem(registry, "head_raijin", new ItemNewArtefact(EnumRarity.EPIC, ItemNewArtefact.AdditionalType.HEAD));
+        registerItem(registry, "head_thorns", new ItemNewArtefact(EnumRarity.RARE, ItemNewArtefact.AdditionalType.HEAD));
 
         //ring
         registerItem(registry, "ring_9th_circle", new ItemWNGArtefact(EnumRarity.UNCOMMON, ItemArtefact.Type.RING));
         registerItem(registry, "ring_anodized", new ItemWNGArtefact(EnumRarity.RARE, ItemArtefact.Type.RING));
+        registerItem(registry, "ring_looting", new ItemWNGArtefact(EnumRarity.UNCOMMON, ItemArtefact.Type.RING));
         registerItem(registry, "ring_nullification", new ItemWNGArtefact(EnumRarity.RARE, ItemArtefact.Type.RING));
         registerItem(registry, "ring_static_shock", new ItemWNGArtefact(EnumRarity.RARE, ItemArtefact.Type.RING));
         registerItem(registry, "ring_void", new ItemWNGArtefact(EnumRarity.UNCOMMON, ItemArtefact.Type.RING));

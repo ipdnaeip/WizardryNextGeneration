@@ -10,6 +10,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
@@ -83,6 +84,15 @@ public final class WNGUtils {
             }
         }
         return entityList;
+    }
+
+    public static boolean hasSunlight(World world, Entity entity) {
+        return world.isDaytime() && world.canSeeSky(new BlockPos(entity.posX, entity.posY + entity.getEyeHeight(), entity.posZ));
+    }
+
+
+    public static boolean hasMoonlight(World world, Entity entity) {
+        return !world.isDaytime() && world.canSeeSky(new BlockPos(entity.posX, entity.posY + entity.getEyeHeight(), entity.posZ));
     }
 
     public static Potion getRandomPotionEffect(boolean all, boolean isBad) {

@@ -23,12 +23,6 @@ public class Whirlpool extends SpellConstructRanged<EntityWhirlpool> {
     }
 
     @Override
-    public boolean cast(World world, EntityPlayer caster, EnumHand hand, int ticksInUse, SpellModifiers modifiers) {
-        super.cast(world, caster, hand, ticksInUse, modifiers);
-        return true;
-    }
-
-    @Override
     public boolean applicableForItem(Item item) {
         return item == WNGItems.spell_book_wng || item == WNGItems.scroll_wng;
     }

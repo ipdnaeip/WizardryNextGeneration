@@ -13,8 +13,14 @@ enchantment.wizardrynextgeneration:ranger.desc=Reduces the movement penalty for 
 
   #misc
 
+item.wizardrynextgeneration:blessed_meat.name=Blessed Meat
+
   #magical item
 
+item.wizardrynextgeneration:chargeup_upgrade.name=Wand Chargeup Upgrade
+item.wizardrynextgeneration:conjured_potion.name=Conjured Potion
+item.wizardrynextgeneration:looting_upgrade.name=Wand Looting Upgrade
+item.wizardrynextgeneration:movement_upgrade.name=Wand Movement Upgrade
 item.wizardrynextgeneration:scroll_wng.name=Scroll of %1$s
 item.wizardrynextgeneration:spell_book_wng.name=Spell Book
 item.wizardrynextgeneration:spell_encyclopedia.name=Spell Encyclopedia
@@ -51,6 +57,8 @@ item.wizardrynextgeneration:head_ra.name=Sun-Disk of Ra
 item.wizardrynextgeneration:head_ra.desc=The crown of the sun god allows you to have better horizontal control in solar winds
 item.wizardrynextgeneration:head_raijin.name=Mask of Raijin
 item.wizardrynextgeneration:head_raijin.desc=The mask of the thunderlord allows high intensity lightning spells to paralyze creatures
+item.wizardrynextgeneration:head_thorns.name=Crown of Thorns
+item.wizardrynextgeneration:head_thorns.desc=You have a 15%% chance to deal a small amount of damage to creatures that damage you
 
   #ring
 
@@ -58,6 +66,8 @@ item.wizardrynextgeneration:ring_9th_circle.name=Ring of the 9th Circle
 item.wizardrynextgeneration:ring_9th_circle.desc=Ice spells are 30%% more potent in the Nether
 item.wizardrynextgeneration:ring_anodized.name=Anodized Ring
 item.wizardrynextgeneration:ring_anodized.desc=Casting lightning spells hardens your exterior, providing resistance
+item.wizardrynextgeneration:ring_looting.name=Band of the Hunter
+item.wizardrynextgeneration:ring_looting.desc=Grants + 1 looting
 item.wizardrynextgeneration:ring_nullification.name=Ring of Nullification
 item.wizardrynextgeneration:ring_nullification.desc=Sorcery spells have a chance to not cost any mana
 item.wizardrynextgeneration:ring_static_shock.name=Ring of Static Shock
@@ -69,15 +79,18 @@ item.wizardrynextgeneration:ring_void.desc=Sorcery spells are 30%% more potent i
 
    #construct
 
-entity.wizardrynextgeneration:anti_grativational_field.name=Anti-gravitational Field
-entity.wizardrynextgeneration:grativational_field.name=Gravitational Field
+entity.wizardrynextgeneration:anti_gravitational_field.name=Anti-gravitational Field
+entity.wizardrynextgeneration:gravitational_field.name=Gravitational Field
+entity.wizardrynextgeneration:napalm.name=Napalm
+entity.wizardrynextgeneration:whirlpool_field.name=Whirlpool
 
    #living
 
-entity.wizardrynextgeneration:bat_mob.name=Bat
 entity.wizardrynextgeneration:pig_zombie_convert.name=Pigman
 entity.wizardrynextgeneration:righteous_defender.name=Righteous Defender
 entity.wizardrynextgeneration:righteous_defender_minion.name=Righteous Defender
+entity.wizardrynextgeneration:vampire_bat.name=Vampire Bat
+entity.wizardrynextgeneration:vampire_bat_minion.name=Vampire Bat
 entity.wizardrynextgeneration:webspitter.name=Webspitter
 entity.wizardrynextgeneration:webspitter_minion.name=Webspitter
 
@@ -98,6 +111,7 @@ potion.wizardrynextgeneration:divine_shield=Divine Shield
 potion.wizardrynextgeneration:frenzy=Frenzy
 potion.wizardrynextgeneration:gravity=Gravity
 potion.wizardrynextgeneration:magic_weakness=Magic Weakness
+potion.wizardrynextgeneration:napalm=Napalm
 potion.wizardrynextgeneration:pacify=Pacify
 potion.wizardrynextgeneration:preparation=Preparation
 potion.wizardrynextgeneration:shock_weakness=Shock Weakness
@@ -156,6 +170,8 @@ spell.wizardrynextgeneration:blood_infusion.full_shield=You cannot convert anymo
 spell.wizardrynextgeneration:blood_infusion.low_health=You do not have enough health to convert
 spell.wizardrynextgeneration:bones_to_apples=Bones to Apples
 spell.wizardrynextgeneration:bones_to_apples.desc=Convert bones into apples.
+spell.wizardrynextgeneration:chomp=Chomp
+spell.wizardrynextgeneration:chomp.desc=Summon a pair of biting fangs at a target location.
 spell.wizardrynextgeneration:cleansing_flames=Cleansing Flames
 spell.wizardrynextgeneration:cleansing_flames.desc=Engulf yourself in holy fire, providing fire immunity and healing.
 spell.wizardrynextgeneration:cloak_of_the_void=Cloak of the Void
@@ -174,6 +190,8 @@ spell.wizardrynextgeneration:domesticate=Domesticate
 spell.wizardrynextgeneration:domesticate.desc=Have an animal follow you.
 spell.wizardrynextgeneration:domesticate.following=%1$s is following you
 spell.wizardrynextgeneration:domesticate.no_longer_following=%1$s is no longer following you
+spell.wizardrynextgeneration:enchant_cauldron=Enchant Cauldron
+spell.wizardrynextgeneration:enchant_cauldron.desc=Enchant a cauldron to never run out of water.
 spell.wizardrynextgeneration:equality=Equality
 spell.wizardrynextgeneration:equality.desc=Reduce the target's health to your missing health.
 spell.wizardrynextgeneration:equality.high_health=The target resisted some of the damage
@@ -225,6 +243,8 @@ spell.wizardrynextgeneration:migraine.desc=Make your target suffer continuous me
 spell.wizardrynextgeneration:moonlight=Moonlight
 spell.wizardrynextgeneration:moonlight.desc=Embrace the light of the moon to heal your wounds.
 spell.wizardrynextgeneration:moonlight.no_moonlight=You do not have direct moonlight
+spell.wizardrynextgeneration:napalm=Napalm
+spell.wizardrynextgeneration:napalm.desc=Create a pool of napalm that applies napalm to all creatures that touch it and explodes into a massive fireball when ignited.
 spell.wizardrynextgeneration:pacify=Pacify
 spell.wizardrynextgeneration:pacify.desc=Remove a creature's will to fight.
 spell.wizardrynextgeneration:photosynthesis=Photosynthesis
@@ -266,13 +286,15 @@ spell.wizardrynextgeneration:solar_sentinel=Solar Sentinel
 spell.wizardrynextgeneration:solar_sentinel.desc=Rise to the heights of the gods themselves.
 spell.wizardrynextgeneration:spawn_teleport=Spawn Teleport
 spell.wizardrynextgeneration:spawn_teleport.desc=Teleport to the world spawnpoint.
-spell.wizardrynextgeneration:spawn_teleport.wrongdimension=You need to be in the overworld.
+spell.wizardrynextgeneration:spawn_teleport.wrongdimension=You must be in the overworld.
 spell.wizardrynextgeneration:spit_web=Spit Web
 spell.wizardrynextgeneration:spit_web.desc=Spit a ball of webs at a target, exploding on contact with a block.
 spell.wizardrynextgeneration:summon_righteous_defender=Summon Righteous Defender
-spell.wizardrynextgeneration:summon_righteous_defender.desc=Summons a righteous defender to fight for you. The zombie will disappear after 30 seconds or if it is killed.
+spell.wizardrynextgeneration:summon_righteous_defender.desc=Summons a righteous defender to fight for you. The minion will disappear after 30 seconds or if it is killed.
+spell.wizardrynextgeneration:summon_vampire_bat=Summon Vampire Bat
+spell.wizardrynextgeneration:summon_vampire_bat.desc=Summons a vampire bat to fight for you. The minion will disappear after 30 seconds or if it is killed.
 spell.wizardrynextgeneration:summon_webspitter=Summon Webspitter
-spell.wizardrynextgeneration:summon_webspitter.desc=Summons a webspitter to fight for you. The zombie will disappear after 30 seconds or if it is killed.
+spell.wizardrynextgeneration:summon_webspitter.desc=Summons a webspitter to fight for you. The minion will disappear after 30 seconds or if it is killed.
 spell.wizardrynextgeneration:tase=Tase
 spell.wizardrynextgeneration:tase.desc=Channel lightning into a creature, restricting its movement.
 spell.wizardrynextgeneration:tranquility=Tranquility

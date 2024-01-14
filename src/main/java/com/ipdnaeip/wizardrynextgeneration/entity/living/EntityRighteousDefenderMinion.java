@@ -38,10 +38,17 @@ public class EntityRighteousDefenderMinion extends EntityRighteousDefender imple
     public int taunt_strength = 0;
 
     // Setter + getter implementations
-    @Override public int getLifetime(){ return lifetime; }
-    @Override public void setLifetime(int lifetime){ this.lifetime = lifetime; }
-    @Override public UUID getOwnerId(){ return casterUUID; }
-    @Override public void setOwnerId(UUID uuid){ this.casterUUID = uuid; }
+    @Override
+    public int getLifetime(){ return lifetime; }
+
+    @Override
+    public void setLifetime(int lifetime){ this.lifetime = lifetime; }
+
+    @Override
+    public UUID getOwnerId(){ return casterUUID; }
+
+    @Override
+    public void setOwnerId(UUID uuid){ this.casterUUID = uuid; }
 
     /** Creates a new webspitter minion in the given world. */
 
@@ -52,20 +59,24 @@ public class EntityRighteousDefenderMinion extends EntityRighteousDefender imple
 
     // Implementations
 
+    @Override
     public void setRevengeTarget(EntityLivingBase entity){
         if(this.shouldRevengeTarget(entity)) super.setRevengeTarget(entity);
     }
 
+    @Override
     public void onUpdate(){
         super.onUpdate();
         this.updateDelegate();
         this.addPotionEffect(new PotionEffect(WNGPotions.taunt, 20, taunt_strength));
     }
 
+    @Override
     public void onSpawn(){
         this.spawnParticleEffect();
     }
 
+    @Override
     public void onDespawn(){
         this.spawnParticleEffect();
     }
@@ -81,19 +92,23 @@ public class EntityRighteousDefenderMinion extends EntityRighteousDefender imple
         }
     }
 
+    @Override
     public boolean hasParticleEffect(){
         return true;
     }
 
+    @Override
     protected boolean processInteract(EntityPlayer player, EnumHand hand){
         return this.interactDelegate(player, hand) || super.processInteract(player, hand);
     }
 
+    @Override
     public void writeEntityToNBT(NBTTagCompound nbttagcompound){
         super.writeEntityToNBT(nbttagcompound);
         this.writeNBTDelegate(nbttagcompound);
     }
 
+    @Override
     public void readEntityFromNBT(NBTTagCompound nbttagcompound){
         super.readEntityFromNBT(nbttagcompound);
         this.readNBTDelegate(nbttagcompound);
@@ -101,14 +116,24 @@ public class EntityRighteousDefenderMinion extends EntityRighteousDefender imple
 
     // Recommended overrides
 
-    @Override protected int getExperiencePoints(EntityPlayer player){ return 0; }
-    @Override protected boolean canDropLoot(){ return false; }
-    @Override protected Item getDropItem(){ return null; }
-    @Override protected ResourceLocation getLootTable(){ return null; }
-    @Override public boolean canPickUpLoot(){ return false; }
+    @Override
+    protected int getExperiencePoints(EntityPlayer player){ return 0; }
+
+    @Override
+    protected boolean canDropLoot(){ return false; }
+
+    @Override
+    protected Item getDropItem(){ return null; }
+
+    @Override
+    protected ResourceLocation getLootTable(){ return null; }
+
+    @Override
+    public boolean canPickUpLoot(){ return false; }
 
     // This vanilla method has nothing to do with the custom despawn() method.
-    @Override protected boolean canDespawn(){
+    @Override
+    protected boolean canDespawn(){
         return getCaster() == null && getOwnerId() == null;
     }
 

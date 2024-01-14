@@ -21,7 +21,7 @@ public class Meditate extends Spell {
 
     public Meditate() {
         super(WizardryNextGeneration.MODID, "meditate", SpellActions.IMBUE, true);
-        this.soundValues(1F, 1.0F, 0.4F);
+        this.soundValues(1F, 1.0F, 0.2F);
         addProperties(HEALTH);
     }
 

@@ -1,45 +1,50 @@
 package com.ipdnaeip.wizardrynextgeneration.entity.living;
 
-import com.ipdnaeip.wizardrynextgeneration.entity.ai.EntityFlightHelper;
+import com.ipdnaeip.wizardrynextgeneration.entity.ai.EntityBatFlightHelper;
+import com.ipdnaeip.wizardrynextgeneration.registry.WNGPotions;
+import com.ipdnaeip.wizardrynextgeneration.registry.WNGSounds;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.MobEffects;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
+import net.minecraft.pathfinding.PathNavigate;
+import net.minecraft.pathfinding.PathNavigateFlying;
+import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.Vec3d;
+import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
 import java.util.Calendar;
 
-public class EntityBatMob extends EntityMob
+public class EntityVampireBat extends EntityMob
 {
-    private static final DataParameter<Boolean> HANGING = EntityDataManager.createKey(EntityBatMob.class, DataSerializers.BOOLEAN);
+    private static final DataParameter<Boolean> HANGING = EntityDataManager.createKey(EntityVampireBat.class, DataSerializers.BOOLEAN);
 
-    public EntityBatMob(World worldIn)
+    public EntityVampireBat(World worldIn)
     {
         super(worldIn);
-        this.moveHelper = new EntityFlightHelper(this);
+        this.moveHelper = new EntityBatFlightHelper(this);
         this.setSize(0.5F, 0.9F);
         this.setIsBatHanging(true);
     }
 
     @Override
-    protected void initEntityAI()
-    {
-        super.initEntityAI();
+    protected void initEntityAI() {
         this.tasks.addTask(0, new EntityAISwimming(this));
-        this.tasks.addTask(3, new EntityAIAttackMelee(this, 1, true));
-//        this.tasks.addTask(8, new EntityBatMob.AIMoveRandom(this, 0.25));
-        this.tasks.addTask(8, new EntityBatMob.AIMoveRandom());
+        this.tasks.addTask(3, new EntityAIAttackMelee(this, this.getFlyingSpeed(), true));
+        this.tasks.addTask(4, new EntityAIFlyingWander(this, this.getFlyingSpeed()));
         this.tasks.addTask(9, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
         this.tasks.addTask(1, new EntityAILookIdle(this));
         this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true));
@@ -61,7 +66,7 @@ public class EntityBatMob extends EntityMob
     @Override
     protected float getSoundPitch()
     {
-        return super.getSoundPitch() * 0.95F;
+        return super.getSoundPitch() * 0.5F;
     }
 
     @Override
@@ -83,24 +88,26 @@ public class EntityBatMob extends EntityMob
     }
 
     @Override
-    public boolean canBePushed()
-    {
-        return false;
-    }
-
-    @Override
-    protected void collideWithEntity(Entity entityIn) {
-    }
-
-    @Override
-    protected void collideWithNearbyEntities() {
-    }
-
-    @Override
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
-        this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(2);
-        this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(10);
+        this.getAttributeMap().registerAttribute(SharedMonsterAttributes.FLYING_SPEED);
+        this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(1);
+        this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(6);
+        this.getEntityAttribute(SharedMonsterAttributes.FLYING_SPEED).setBaseValue(0.05);
+    }
+
+    public double getFlyingSpeed() {
+        return this.getEntityAttribute(SharedMonsterAttributes.FLYING_SPEED).getAttributeValue();
+    }
+
+    @Override
+    protected PathNavigate createNavigator(World worldIn)
+    {
+        PathNavigateFlying pathnavigateflying = new PathNavigateFlying(this, worldIn);
+        pathnavigateflying.setCanOpenDoors(false);
+        pathnavigateflying.setCanFloat(true);
+        pathnavigateflying.setCanEnterDoors(true);
+        return pathnavigateflying;
     }
 
     public boolean getIsBatHanging()
@@ -184,17 +191,14 @@ public class EntityBatMob extends EntityMob
 
     @Override
     public boolean attackEntityFrom(DamageSource source, float amount) {
-        if (this.isEntityInvulnerable(source))
-        {
+        if (this.isEntityInvulnerable(source)) {
             return false;
         }
         else
         {
-            if (!this.world.isRemote && this.getIsBatHanging())
-            {
+            if (!this.world.isRemote && this.getIsBatHanging()) {
                 this.setIsBatHanging(false);
             }
-
             return super.attackEntityFrom(source, amount);
         }
     }
@@ -202,19 +206,39 @@ public class EntityBatMob extends EntityMob
     @Override
     public boolean attackEntityAsMob(Entity entityIn)
     {
-        return entityIn.attackEntityFrom(DamageSource.causeMobDamage(this), (float) this.getAttributeMap().getAttributeInstance(SharedMonsterAttributes.ATTACK_DAMAGE).getAttributeValue());
+        if (super.attackEntityAsMob(entityIn)) {
+            this.playSound(WNGSounds.VAMPIRE_BAT_BITE, 1f, 0.9f + this.rand.nextFloat() + 0.2f);
+            if (entityIn instanceof EntityLivingBase) {
+                int i = 0;
+                if (this.world.getDifficulty() == EnumDifficulty.EASY) {
+                    i = 40;
+                }
+                if (this.world.getDifficulty() == EnumDifficulty.NORMAL) {
+                    i = 80;
+                }
+                else if (this.world.getDifficulty() == EnumDifficulty.HARD) {
+                    i = 120;
+                }
+                if (i > 0) {
+                    ((EntityLivingBase)entityIn).addPotionEffect(new PotionEffect(WNGPotions.bleed, i, 0));
+                    this.addPotionEffect(new PotionEffect(MobEffects.REGENERATION, i, 0));
+                }
+            }
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 
     @Override
-    public void readEntityFromNBT(NBTTagCompound compound)
-    {
+    public void readEntityFromNBT(NBTTagCompound compound) {
         super.readEntityFromNBT(compound);
         this.dataManager.set(HANGING, compound.getBoolean("BatFlags"));
     }
 
     @Override
-    public void writeEntityToNBT(NBTTagCompound compound)
-    {
+    public void writeEntityToNBT(NBTTagCompound compound) {
         super.writeEntityToNBT(compound);
         compound.setBoolean("BatFlags", this.dataManager.get(HANGING));
     }
@@ -254,83 +278,55 @@ public class EntityBatMob extends EntityMob
     {
         return this.height / 2.0F;
     }
-    
-/*    class AIMoveRandom extends EntityAIBase
+
+    class EntityAIFlyingWander extends EntityAIBase
     {
-        EntityCreature creature;
-        BlockPos blockPos;
-        double speed;
+        protected final EntityCreature entity;
+        protected double x;
+        protected double y;
+        protected double z;
+        protected final double speed;
 
-        public AIMoveRandom(EntityCreature creature, double speed) {
-            this.setMutexBits(1);
-            this.creature = creature;
-            this.blockPos = new BlockPos(creature);
-            this.speed = speed;
-        }
-
-        @Override
-        public boolean shouldExecute() {
-            return EntityBatMob.this.rand.nextInt(30) == 0 || this.blockPos.distanceSq((int)creature.posX, (int)creature.posY, (int)creature.posZ) < 4.0D;
-        }
-
-        @Override
-        public boolean shouldContinueExecuting() {
-            return !EntityBatMob.this.getMoveHelper().isUpdating();
-        }
-
-        @Override
-        public void updateTask() {
-            blockPos = getRandomPosition();
-            if (EntityBatMob.this.world.isAirBlock(blockPos)) {
-                EntityBatMob.this.moveHelper.setMoveTo((double) blockPos.getX() + 0.5D, (double) blockPos.getY() + 0.5D, (double) blockPos.getZ() + 0.5D, this.speed);
-                this.creature.getNavigator().tryMoveToXYZ((double) blockPos.getX() + 0.5D, (double) blockPos.getY() + 0.5D, (double) blockPos.getZ() + 0.5D, this.speed);
-                if (EntityBatMob.this.getAttackTarget() == null) {
-                    EntityBatMob.this.getLookHelper().setLookPosition((double) blockPos.getX() + 0.5D, (double) blockPos.getY() + 0.5D, (double) blockPos.getZ() + 0.5D, 180.0F, 20.0F);
-                }
-            }
-        }
-
-        public BlockPos getRandomPosition() {
-            return blockPos.add(EntityBatMob.this.rand.nextInt(15) - 7, EntityBatMob.this.rand.nextInt(11) - 5, EntityBatMob.this.rand.nextInt(15) - 7);
-        }
-    }*/
-
-    class AIMoveRandom extends EntityAIBase
-    {
-        public AIMoveRandom()
+        public EntityAIFlyingWander(EntityCreature creatureIn, double speedIn)
         {
+            this.entity = creatureIn;
+            this.speed = speedIn;
             this.setMutexBits(1);
         }
 
         public boolean shouldExecute()
         {
-            return !EntityBatMob.this.getMoveHelper().isUpdating() && EntityBatMob.this.rand.nextInt(7) == 0;
+            Vec3d vec3d = this.getPosition();
+
+            if (vec3d == null)
+            {
+                return false;
+            }
+            else
+            {
+                this.x = vec3d.x;
+                this.y = vec3d.y;
+                this.z = vec3d.z;
+                return true;
+            }
+        }
+
+        @Nullable
+        protected Vec3d getPosition()
+        {
+            //return RandomPositionGenerator.findRandomTarget(this.entity, 10, 7);
+            return new Vec3d(this.entity.posX + this.entity.world.rand.nextGaussian() * 7, this.entity.posY + this.entity.world.rand.nextFloat() * 6 - 2, this.entity.posZ + this.entity.world.rand.nextGaussian() * 7);
         }
 
         public boolean shouldContinueExecuting()
         {
-            return false;
+            return !this.entity.getNavigator().noPath();
         }
 
-        public void updateTask()
+        public void startExecuting()
         {
-            BlockPos blockpos = EntityBatMob.this.getPosition();
-
-            for (int i = 0; i < 3; ++i)
-            {
-                BlockPos blockpos1 = blockpos.add(EntityBatMob.this.rand.nextInt(15) - 7, EntityBatMob.this.rand.nextInt(11) - 5, EntityBatMob.this.rand.nextInt(15) - 7);
-
-                if (EntityBatMob.this.world.isAirBlock(blockpos1))
-                {
-                    EntityBatMob.this.moveHelper.setMoveTo((double)blockpos1.getX() + 0.5D, (double)blockpos1.getY() + 0.5D, (double)blockpos1.getZ() + 0.5D, 0.25D);
-
-                    if (EntityBatMob.this.getAttackTarget() == null)
-                    {
-                        EntityBatMob.this.getLookHelper().setLookPosition((double)blockpos1.getX() + 0.5D, (double)blockpos1.getY() + 0.5D, (double)blockpos1.getZ() + 0.5D, 180.0F, 20.0F);
-                    }
-                    break;
-                }
-            }
+            this.entity.getNavigator().tryMoveToXYZ(this.x, this.y, this.z, this.speed);
         }
+
     }
 }

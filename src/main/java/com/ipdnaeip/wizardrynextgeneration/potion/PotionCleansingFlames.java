@@ -6,12 +6,11 @@ import electroblob.wizardry.potion.ICustomPotionParticles;
 import electroblob.wizardry.potion.PotionMagicEffect;
 import electroblob.wizardry.util.ParticleBuilder;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.init.MobEffects;
 import net.minecraft.init.SoundEvents;
-import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.world.World;
+import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -41,15 +40,17 @@ public class PotionCleansingFlames extends PotionMagicEffect implements ICustomP
             if (entity.isBurning()) {
                 entity.extinguish();
             }
+            if (entity.ticksExisted % 20 == 0) {
+                entity.getEntityWorld().playSound(null, entity.getPosition(), SoundEvents.ENTITY_BLAZE_BURN, SoundCategory.PLAYERS, 0.5F, entity.getEntityWorld().rand.nextFloat() * 0.2F + 0.9F);
+            }
             if (entity.ticksExisted % 20 / (entity.getActivePotionEffect(WNGPotions.cleansing_flames).getAmplifier() + 1) == 0)  {
-                entity.getEntityWorld().playSound(null, entity.getPosition(), SoundEvents.ENTITY_BLAZE_BURN, SoundCategory.BLOCKS, 0.5F, entity.getEntityWorld().rand.nextFloat() * 0.2F + 0.9F);
                 entity.heal(0.5F);
             }
         }
     }
 
     @SubscribeEvent
-    public static void onLivingHurtEvent(LivingHurtEvent event) {
+    public static void onLivingAttackEvent(LivingAttackEvent event) {
         if (event.getEntityLiving().isPotionActive(WNGPotions.cleansing_flames) && event.getSource().isFireDamage()) {
             event.setCanceled(true);
         }

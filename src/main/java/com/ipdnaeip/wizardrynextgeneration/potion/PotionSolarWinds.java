@@ -48,12 +48,16 @@ public class PotionSolarWinds extends PotionMagicEffect implements ICustomPotion
         if (entity instanceof EntityPlayer) {
             EntityPlayer entityPlayer = (EntityPlayer) event.getEntityLiving();
             if (entity.isPotionActive(WNGPotions.solar_winds)) {
+                boolean flying = false;
                 entity.getEntityWorld().playSound(null, entity.getPosition(), SoundEvents.ENTITY_BLAZE_BURN, SoundCategory.BLOCKS, 0.5F, entity.getEntityWorld().rand.nextFloat() * 0.2F + 0.9F);
                 if (!entity.onGround && GameSettings.isKeyDown(Minecraft.getMinecraft().gameSettings.keyBindJump)) {
+                    entity.motionY = entity.motionY < 0.5F ? entity.motionY + 0.1F : entity.motionY;
+                    flying = true;
+                }
+                if (flying) {
                     if (!Wizardry.settings.replaceVanillaFallDamage) {
                         entity.fallDistance = 0.0F;
                     }
-                    entity.motionY = entity.motionY < 0.5F ? entity.motionY + 0.1F : entity.motionY;
                     if (ItemNewArtefact.isNewArtefactActive(entityPlayer, WNGItems.head_ra)) {
                         entity.jumpMovementFactor = 0.05F;
                     }
