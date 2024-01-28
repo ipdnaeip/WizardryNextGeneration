@@ -1,4 +1,3 @@
-/*
 package com.ipdnaeip.wizardrynextgeneration.entity.projectile;
 
 import com.ipdnaeip.wizardrynextgeneration.registry.WNGSpells;
@@ -74,7 +73,7 @@ public class EntityPiercingMass extends EntityMagicArrow {
 
     @Override
     public void onUpdate() {
-//        this.noClip = true;
+        this.noClip = true;
         super.onUpdate();
 //        this.noClip = false;
         if (this.getLifetime() >= 0 && this.ticksExisted > this.getLifetime()) {
@@ -162,10 +161,14 @@ public class EntityPiercingMass extends EntityMagicArrow {
         }
     }
 
+    @Override
+    public void doBlockCollisions() {
+
+    }
+
     public int getLifetime() {
         return 50;
     }
 
 
 }
-*/

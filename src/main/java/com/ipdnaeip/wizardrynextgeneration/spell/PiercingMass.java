@@ -1,8 +1,6 @@
-/*
 package com.ipdnaeip.wizardrynextgeneration.spell;
 
 import com.ipdnaeip.wizardrynextgeneration.WizardryNextGeneration;
-import com.ipdnaeip.wizardrynextgeneration.entity.projectile.EntityAcceleratedMass;
 import com.ipdnaeip.wizardrynextgeneration.entity.projectile.EntityPiercingMass;
 import com.ipdnaeip.wizardrynextgeneration.registry.WNGItems;
 import electroblob.wizardry.spell.SpellArrow;
@@ -29,4 +27,4 @@ public class PiercingMass extends SpellArrow<EntityPiercingMass> {
     public boolean applicableForItem(Item item) {
         return item == WNGItems.spell_book_wng || item == WNGItems.scroll_wng;
     }
-}*/
+}

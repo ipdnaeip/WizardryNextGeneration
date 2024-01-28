@@ -107,6 +107,7 @@ public final class WNGSpells {
 
     //WNG 1.0.4 Spells
     public static final Spell summon_vampire_bat = placeholder();
+    public static final Spell energize = placeholder();
 
     @SubscribeEvent
     public static void register(RegistryEvent.Register<Spell> event) {
@@ -191,11 +192,16 @@ public final class WNGSpells {
         registry.register(new Napalm());
         registry.register(new EnchantCauldron());
         registry.register(new Chomp());
+        //beam isnt fluid and targeting system is flawed
         //registry.register(new CelestialBeam());
 
         // WNG 1.0.4 Spells (1)
 
         registry.register(new SummonVampireBat());
+        //cant make the projectile travel properly through walls
+        //registry.register(new PiercingMass());
+        //not sure if this is even possible
+        //registry.register(new Energize());
 
     }
 }
