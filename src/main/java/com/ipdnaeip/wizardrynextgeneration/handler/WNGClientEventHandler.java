@@ -8,6 +8,7 @@ import electroblob.wizardry.item.ItemArtefact;
 import electroblob.wizardry.item.ItemWand;
 import electroblob.wizardry.registry.WizardryItems;
 import electroblob.wizardry.registry.WizardryPotions;
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemBow;
@@ -15,6 +16,7 @@ import net.minecraft.item.ItemShield;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.MovementInput;
 import net.minecraftforge.client.event.InputUpdateEvent;
+import net.minecraftforge.client.event.RenderLivingEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
@@ -23,6 +25,10 @@ import net.minecraftforge.fml.relauncher.Side;
 public class WNGClientEventHandler {
 
     private WNGClientEventHandler() {}
+
+/*    @SubscribeEvent
+    public static void onRenderLivingEventPre(RenderLivingEvent.Pre event) {
+    }*/
 
     @SubscribeEvent
     public static void onInputUpdateEvent(InputUpdateEvent event) {
