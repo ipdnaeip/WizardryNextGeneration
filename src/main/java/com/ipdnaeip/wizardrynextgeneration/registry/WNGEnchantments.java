@@ -2,6 +2,7 @@ package com.ipdnaeip.wizardrynextgeneration.registry;
 
 
 import com.ipdnaeip.wizardrynextgeneration.WizardryNextGeneration;
+import com.ipdnaeip.wizardrynextgeneration.enchantment.EnchantmentPhalanx;
 import com.ipdnaeip.wizardrynextgeneration.enchantment.EnchantmentRanger;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraftforge.event.RegistryEvent;
@@ -26,6 +27,7 @@ public class WNGEnchantments {
     @SubscribeEvent
     public static void register(RegistryEvent.Register<Enchantment> event) {
 
+        event.getRegistry().register(new EnchantmentPhalanx().setRegistryName(WizardryNextGeneration.MODID, "phalanx"));
         event.getRegistry().register(new EnchantmentRanger().setRegistryName(WizardryNextGeneration.MODID, "ranger"));
     }
 

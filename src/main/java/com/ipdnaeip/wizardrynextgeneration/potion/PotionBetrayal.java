@@ -24,11 +24,6 @@ public class PotionBetrayal extends PotionMagicEffect {
         this.setPotionName("potion." + WizardryNextGeneration.MODID + ":betrayal");
     }
 
-    @Override
-    public boolean isReady(int duration, int amplifier) {
-        return true;
-    }
-
     @SubscribeEvent
     public static void onLivingUpdateEvent(LivingEvent.LivingUpdateEvent event) {
         EntityLivingBase entity = event.getEntityLiving();

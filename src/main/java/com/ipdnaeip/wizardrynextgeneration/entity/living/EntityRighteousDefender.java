@@ -92,6 +92,8 @@ public class EntityRighteousDefender extends EntityCreature {
     public void onLivingUpdate() {
         super.onLivingUpdate();
         this.updateArmSwingProgress();
-        this.addPotionEffect(new PotionEffect(WNGPotions.taunt, 20, 0, false, false));
+        if (this.ticksExisted % 50 == 1) {
+            this.addPotionEffect(new PotionEffect(WNGPotions.taunt, 50, 0, false, false));
+        }
     }
 }

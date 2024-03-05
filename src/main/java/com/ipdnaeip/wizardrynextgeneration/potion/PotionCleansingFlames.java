@@ -24,11 +24,6 @@ public class PotionCleansingFlames extends PotionMagicEffect implements ICustomP
         this.setPotionName("potion." + WizardryNextGeneration.MODID + ":cleansing_flames");
     }
 
-    @Override
-    public boolean isReady(int duration, int amplifier) {
-        return true;
-    }
-
     public void spawnCustomParticle(World world, double x, double y, double z) {
         ParticleBuilder.create(ParticleBuilder.Type.MAGIC_FIRE).pos(x, y, z).clr(255, 200, 60).time(10).spawn(world);
     }

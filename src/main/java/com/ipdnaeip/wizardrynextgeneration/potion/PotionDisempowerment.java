@@ -20,11 +20,6 @@ public class PotionDisempowerment extends PotionMagicEffect {
         this.setPotionName("potion." + WizardryNextGeneration.MODID + ":disempowerment");
     }
 
-    @Override
-    public boolean isReady(int duration, int amplifier) {
-        return true;
-    }
-
     //code by WinDanesz, modified for use
     @SubscribeEvent(priority = EventPriority.HIGHEST) // processing after electroblob.wizardry.item.ItemArtefact.onSpellCastPreEvent (EventPriority.LOW)
     public static void onSpellCastPreEvent(SpellCastEvent.Pre event) {

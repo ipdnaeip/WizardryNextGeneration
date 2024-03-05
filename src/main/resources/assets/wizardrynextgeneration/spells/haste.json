@@ -13,7 +13,7 @@
   "tier": "novice",
   "element": "earth",
   "type": "buff",
-  "cost": 30,
+  "cost": 20,
   "chargeup": 5,
   "cooldown": 60,
   "base_properties": {

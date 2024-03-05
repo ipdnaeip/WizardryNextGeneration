@@ -108,6 +108,9 @@ public final class WNGSpells {
     //WNG 1.0.4 Spells
     public static final Spell summon_vampire_bat = placeholder();
     public static final Spell energize = placeholder();
+    public static final Spell lightning_reflexes = placeholder();
+    public static final Spell retribution = placeholder();
+    public static final Spell eye_for_an_eye = placeholder();
 
     @SubscribeEvent
     public static void register(RegistryEvent.Register<Spell> event) {
@@ -192,12 +195,16 @@ public final class WNGSpells {
         registry.register(new Napalm());
         registry.register(new EnchantCauldron());
         registry.register(new Chomp());
-        //beam isnt fluid and targeting system is flawed
+        //beam isn't fluid and targeting system is flawed
         //registry.register(new CelestialBeam());
 
-        // WNG 1.0.4 Spells (1)
+        // WNG 1.0.4 Spells (3)
 
+        registry.register(new LightningReflexes());
         registry.register(new SummonVampireBat());
+        registry.register(new TanFlesh());
+        registry.register(new Retribution());
+        registry.register(new EyeForAnEye());
         //cant make the projectile travel properly through walls
         //registry.register(new PiercingMass());
         //not sure if this is even possible

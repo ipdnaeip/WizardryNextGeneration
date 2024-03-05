@@ -1,0 +1,23 @@
+{
+  "enabled": {
+    "book": true,
+    "scroll": true,
+    "wands": true,
+    "npcs": true,
+    "dispensers": true,
+    "commands": true,
+    "treasure": true,
+    "trades": true,
+    "looting": true
+  },
+  "tier": "apprentice",
+  "element": "lightning",
+  "type": "buff",
+  "cost": 30,
+  "chargeup": 5,
+  "cooldown": 100,
+  "base_properties": {
+    "lightning_reflexes_duration": 600,
+    "lightning_reflexes_strength": 0
+  }
+}

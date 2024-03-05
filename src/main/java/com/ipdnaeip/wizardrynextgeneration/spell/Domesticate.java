@@ -8,7 +8,9 @@ import electroblob.wizardry.data.Persistence;
 import electroblob.wizardry.data.WizardData;
 import electroblob.wizardry.item.SpellActions;
 import electroblob.wizardry.spell.SpellRay;
+import electroblob.wizardry.spell.Transportation;
 import electroblob.wizardry.util.EntityUtils;
+import electroblob.wizardry.util.Location;
 import electroblob.wizardry.util.SpellModifiers;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
@@ -38,13 +40,8 @@ import java.util.UUID;
 @Mod.EventBusSubscriber
 public class Domesticate extends SpellRay {
 
-/*    public static final List<IStoredVariable<UUID>> ALLIED_ANIMAL_UUID_KEYS = new ArrayList<>();*/
-
     public Domesticate() {
         super(WizardryNextGeneration.MODID, "domesticate", SpellActions.SUMMON, false);
-/*        for (IStoredVariable<UUID> keys : ALLIED_ANIMAL_UUID_KEYS) {
-            WizardData.registerStoredVariables(keys);
-        }*/
     }
 
     @Override
@@ -94,20 +91,11 @@ public class Domesticate extends SpellRay {
                 animal.tasks.removeTask(entityAIBase);
             }
         }
- /*       WizardData data = WizardData.get(player);
-        for (IStoredVariable<UUID> iStoredVariable : ALLIED_ANIMAL_UUID_KEYS) {
-            if (data.getVariable(iStoredVariable) == animal.getUniqueID()) {
-                data.setVariable(iStoredVariable, null);
-            }
-        }*/
     }
 
     private static void allyWithAnimal(EntityPlayer player, EntityAnimal animal) {
         EntityAIAnimalFollowPlayer task = new EntityAIAnimalFollowPlayer(animal, 1f, 3, 10, player);
         animal.tasks.addTask(2, task);
-/*        ALLIED_ANIMAL_UUID_KEYS.add(IStoredVariable.StoredVariable.ofUUID("alliedAnimalUUID", Persistence.ALWAYS));
-        WizardData data = WizardData.get(player);
-        data.setVariable(IStoredVariable.StoredVariable.ofUUID("alliedAnimalUUID", Persistence.ALWAYS), animal.getUniqueID());*/
     }
 
     private static boolean isAlreadyFollowing(EntityAnimal animal) {
@@ -119,23 +107,6 @@ public class Domesticate extends SpellRay {
         }
         return false;
     }
-
-/*    @SubscribeEvent
-    public static void onCheckSpawnEvent(EntityJoinWorldEvent event) {
-        // We have no way of checking if it's a spawner in getCanSpawnHere() so this has to be done here instead
-        if (event.getEntity() instanceof EntityPlayer) {
-            if (!event.getWorld().isRemote) {
-                EntityPlayer player = (EntityPlayer) event.getEntity();
-                WizardData data = WizardData.get(player);
-                for (IStoredVariable<UUID> i : ALLIED_ANIMAL_UUID_KEYS) {
-                    Entity storedAnimal = EntityUtils.getEntityByUUID(event.getWorld(), data.getVariable(i));
-                    if (storedAnimal!= null && !isAlreadyFollowing((EntityAnimal) storedAnimal)) {
-                    allyWithAnimal(player, (EntityAnimal) storedAnimal);
-                    }
-                }
-            }
-        }
-    }*/
 
     @Override
     public boolean applicableForItem(Item item) {

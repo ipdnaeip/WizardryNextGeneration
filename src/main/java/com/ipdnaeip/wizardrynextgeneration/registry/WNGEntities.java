@@ -91,7 +91,7 @@ public class WNGEntities {
 
         //projectile
         registry.register(createEntry(EntityAcceleratedMass.class, "accelerated_mass", TrackingType.PROJECTILE).build());
-        registry.register(createEntry(EntityConjuredPotion.class, "toss_potion", TrackingType.PROJECTILE).build());
+        registry.register(createEntry(EntityConjuredPotion.class, "conjured_potion", TrackingType.PROJECTILE).build());
         registry.register(createEntry(EntityFissionBlast.class, "fission_blast", TrackingType.PROJECTILE).build());
         registry.register(createEntry(EntityPiercingMass.class, "piercing_mass", TrackingType.PROJECTILE).build());
     }

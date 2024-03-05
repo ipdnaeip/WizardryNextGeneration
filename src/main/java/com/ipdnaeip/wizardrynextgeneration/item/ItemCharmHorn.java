@@ -1,6 +1,5 @@
 package com.ipdnaeip.wizardrynextgeneration.item;
 
-import com.ipdnaeip.wizardrynextgeneration.integration.baubles.WNGBaublesIntegration;
 import com.ipdnaeip.wizardrynextgeneration.registry.WNGSpells;
 import electroblob.wizardry.util.SpellModifiers;
 import net.minecraft.entity.player.EntityPlayer;

@@ -48,6 +48,7 @@ public class HomeTeleport extends Spell {
         if (data != null) {
             Integer countdown = data.getVariable(COUNTDOWN_KEY);
             if (countdown == null || countdown == 0) {
+                //IntelliJ says bedlocation cannot be null, but it can be null!
                 if (caster.getBedLocation() == null) {
                     if (!world.isRemote) caster.sendStatusMessage(new TextComponentTranslation("spell." + this.getUnlocalisedName() + ".wrongdimension"), true);
                     return false;
@@ -73,6 +74,7 @@ public class HomeTeleport extends Spell {
         if (countdown == null) {
             return 0;
         } else {
+            //IntelliJ says bedlocation cannot be null, but it can be null!
             if (!player.world.isRemote && player.getBedLocation() != null) {
                 BlockPos pos = EntityPlayer.getBedSpawnLocation(player.world, player.getBedLocation(), false);
                 if (pos != null) {
@@ -105,7 +107,6 @@ public class HomeTeleport extends Spell {
     public boolean applicableForItem(Item item) {
         return item == WNGItems.spell_book_wng || item == WNGItems.scroll_wng;
     }
-
 
     static {
         COUNTDOWN_KEY = IStoredVariable.StoredVariable.ofInt("tpCountdown", Persistence.NEVER).withTicker(HomeTeleport::update);

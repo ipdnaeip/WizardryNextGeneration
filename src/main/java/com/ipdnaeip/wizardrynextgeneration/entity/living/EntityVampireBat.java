@@ -269,7 +269,7 @@ public class EntityVampireBat extends EntityMob
         }
     }
 
-    private boolean isDateAroundHalloween(Calendar cal) {
+    protected boolean isDateAroundHalloween(Calendar cal) {
         return cal.get(Calendar.MONTH) + 1 == 10 && cal.get(Calendar.DATE) >= 20 || cal.get(Calendar.MONTH) + 1 == 11 && cal.get(Calendar.DATE) <= 3;
     }
 

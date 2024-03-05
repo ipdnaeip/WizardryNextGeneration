@@ -19,18 +19,13 @@ public class PotionGravity extends PotionMagicEffect {
         this.setPotionName("potion." + WizardryNextGeneration.MODID + ":gravity");
     }
 
-    @Override
-    public boolean isReady(int duration, int amplifier) {
-        return true;
-    }
-
     @SubscribeEvent
     public static void onLivingUpdateEvent(LivingEvent.LivingUpdateEvent event) {
         EntityLivingBase entity = event.getEntityLiving();
         if (entity instanceof EntityPlayer) {
             EntityPlayer entityPlayer = (EntityPlayer) event.getEntityLiving();
             if (entity.isPotionActive(WNGPotions.gravity) && !entityPlayer.capabilities.isFlying) {
-                entity.motionY -= 0.025 * (2 << (entity.getActivePotionEffect(WNGPotions.gravity).getAmplifier()));
+                entity.motionY -= 0.025 * (entity.getActivePotionEffect(WNGPotions.gravity).getAmplifier() + 1);
             }
         }
     }
@@ -39,7 +34,7 @@ public class PotionGravity extends PotionMagicEffect {
     public static void onLivingFallEvent(LivingFallEvent event) {
         EntityLivingBase entity = event.getEntityLiving();
         if (entity.isPotionActive(WNGPotions.gravity)) {
-            event.setDamageMultiplier(2 << (entity.getActivePotionEffect(WNGPotions.gravity).getAmplifier()));
+            event.setDamageMultiplier(entity.getActivePotionEffect(WNGPotions.gravity).getAmplifier() + 2);
         }
     }
 

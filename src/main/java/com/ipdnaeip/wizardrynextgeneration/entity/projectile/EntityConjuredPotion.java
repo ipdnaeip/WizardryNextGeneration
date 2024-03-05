@@ -1,12 +1,19 @@
 package com.ipdnaeip.wizardrynextgeneration.entity.projectile;
 
+import com.ipdnaeip.wizardrynextgeneration.WizardryNextGeneration;
 import com.ipdnaeip.wizardrynextgeneration.registry.WNGItems;
 import com.ipdnaeip.wizardrynextgeneration.registry.WNGPotions;
 import com.ipdnaeip.wizardrynextgeneration.registry.WNGSpells;
 import com.ipdnaeip.wizardrynextgeneration.util.WNGUtils;
+import electroblob.wizardry.data.IStoredVariable;
+import electroblob.wizardry.data.IVariable;
+import electroblob.wizardry.data.Persistence;
+import electroblob.wizardry.data.WizardData;
 import electroblob.wizardry.entity.projectile.EntityBomb;
 import electroblob.wizardry.integration.baubles.WizardryBaublesIntegration;
+import electroblob.wizardry.spell.Transportation;
 import electroblob.wizardry.util.EntityUtils;
+import electroblob.wizardry.util.Location;
 import electroblob.wizardry.util.ParticleBuilder;
 import net.minecraft.entity.EntityAreaEffectCloud;
 import net.minecraft.entity.EntityLivingBase;
@@ -17,13 +24,21 @@ import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
+import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.World;
+import net.minecraftforge.event.entity.living.PotionEvent;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 
 import javax.annotation.Nonnull;
+import java.util.ArrayList;
 import java.util.List;
 
+//@Mod.EventBusSubscriber
 public class EntityConjuredPotion extends EntityBomb {
+
+    //public static final IStoredVariable<List<Potion>> EXPERIENCED_POTIONS_IDS = new IStoredVariable.StoredVariable("experiencedPotionIDs", Persistence.ALWAYS);
 
     public PotionEffect potionEffect;
     public boolean isLingering;
@@ -119,5 +134,26 @@ public class EntityConjuredPotion extends EntityBomb {
             return getPotion();
         }
     }
+
+/*    @SubscribeEvent
+    public static void onPotionAddedEvent(PotionEvent.PotionAddedEvent event) {
+        if (event.getEntityLiving() instanceof EntityPlayer) {
+            EntityPlayer player = (EntityPlayer)event.getEntityLiving();
+            if (WizardData.get(player) != null) {
+                WizardData data = WizardData.get(player);
+                List<Potion> potion = data.getVariable(EXPERIENCED_POTIONS_IDS);
+                if (potion == null) {
+                    data.setVariable(EXPERIENCED_POTIONS_IDS, potion = new ArrayList<>(0));
+                }
+                if (potion != null && !potion.contains(event.getPotionEffect().getPotion())) {
+                    potion.add(event.getPotionEffect().getPotion());
+                    //data.setVariable(POTION_EFFECTS, potionEffects);
+                    if (!player.world.isRemote) {
+                        player.sendStatusMessage(new TextComponentTranslation("entity." + WizardryNextGeneration.MODID + ":conjured_potion.effect_learned", new TextComponentTranslation(event.getPotionEffect().getPotion().getName())), true);
+                    }
+                }
+            }
+        }
+    }*/
 
 }
