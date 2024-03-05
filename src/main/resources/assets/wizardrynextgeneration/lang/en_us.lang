@@ -1,13 +1,15 @@
 #advancement
 
 advancement.wizardrynextgeneration:accelerated_mass_max_damage=Maximum Velocity!
-advancement.wizardrynextgeneration:accelerated_mass_max_damage.desc=Deal the maximum damage of an accelerated mass projectile!
+advancement.wizardrynextgeneration:accelerated_mass_max_damage.desc=Deal the maximum damage of an accelerated mass projectile
 
 
 #enchantment
 
 enchantment.wizardrynextgeneration:ranger=Ranger
-enchantment.wizardrynextgeneration:ranger.desc=Reduces the movement penalty for channeling a bow.
+enchantment.wizardrynextgeneration:ranger.desc=Reduces the movement penalty while notching a bow.
+enchantment.wizardrynextgeneration:phalanx=Phalanx
+enchantment.wizardrynextgeneration:phalanx.desc=Reduces the movement penalty while blocking with a shield.
 
 #item
 
@@ -40,7 +42,7 @@ item.wizardrynextgeneration:belt_potion.desc=Uses mana to extend the duration of
 item.wizardrynextgeneration:body_hashashin.name=Chestplate of the Hashashin
 item.wizardrynextgeneration:body_hashashin.desc=The chestplate of an ancient assassin. It allows you to stay quiet in the dark while sneaking
 item.wizardrynextgeneration:body_artemis.name=Artemis's Quiver
-item.wizardrynextgeneration:body_artemis.desc=Arrows have a chance to return to your inventory. Arrows that miss will always return to your inventory
+item.wizardrynextgeneration:body_artemis.desc=Arrows have a chance to return a regular arrow to your inventory. Arrows that miss will always return to your inventory. This will always return regular non-tipped arrows.
 
   #charm
 
@@ -97,28 +99,69 @@ entity.wizardrynextgeneration:webspitter_minion.name=Webspitter
    #projectile
 
 entity.wizardrynextgeneration:accelerated_mass.name=Magic
+entity.wizardrynextgeneration:conjured_potion.effect_learned=Experienced the %1$s effect
+entity.wizardrynextgeneration:conjured_potion.name=Magic
 entity.wizardrynextgeneration:fission_blast.name=Magic
 entity.wizardrynextgeneration:piercing_mass.name=Magic
 
 #potion
 
+potion.wizardrynextgeneration:animal_allegiance=Animal Allegiance
 potion.wizardrynextgeneration:betrayal=Betrayal
 potion.wizardrynextgeneration:bleed=Bleed
 potion.wizardrynextgeneration:cleansing_flames=Cleansing Flames
 potion.wizardrynextgeneration:disempowerment=Disempowerment
 potion.wizardrynextgeneration:disempowerment.failed_cast=Your potency is too low to cast the spell
 potion.wizardrynextgeneration:divine_shield=Divine Shield
+potion.wizardrynextgeneration:empowerment=Magic Empowerment
+potion.wizardrynextgeneration:empowerment_earth=Earth Empowerment
+potion.wizardrynextgeneration:empowerment_fire=Fire Empowerment
+potion.wizardrynextgeneration:empowerment_healing=Healing Empowerment
+potion.wizardrynextgeneration:empowerment_ice=Ice Empowerment
+potion.wizardrynextgeneration:empowerment_lightning=Lightning Empowerment
+potion.wizardrynextgeneration:empowerment_necromancy=Necromancy Empowerment
+potion.wizardrynextgeneration:empowerment_sorcery=Sorcery Empowerment
+potion.wizardrynextgeneration:eye_for_an_eye=Eye for An Eye
 potion.wizardrynextgeneration:frenzy=Frenzy
 potion.wizardrynextgeneration:gravity=Gravity
+potion.wizardrynextgeneration:lightning_reflexes=Lightning Reflexes
 potion.wizardrynextgeneration:magic_weakness=Magic Weakness
 potion.wizardrynextgeneration:napalm=Napalm
 potion.wizardrynextgeneration:pacify=Pacify
 potion.wizardrynextgeneration:preparation=Preparation
+potion.wizardrynextgeneration:retribution=Retribution
 potion.wizardrynextgeneration:shock_weakness=Shock Weakness
 potion.wizardrynextgeneration:solar_winds=Solar Winds
 potion.wizardrynextgeneration:suffocation=Suffocation
 potion.wizardrynextgeneration:taunt=Taunt
 potion.wizardrynextgeneration:veneficium=Veneficium
+
+#potioneffect
+
+potion.effect.wizardrynextgeneration:empowerment=Potion of Magic Empowerment
+splash_potion.effect.wizardrynextgeneration:empowerment=Splash Potion of Magic Empowerment
+lingering_potion.effect.wizardrynextgeneration:empowerment=Lingering Potion of Magic Empowerment
+potion.effect.wizardrynextgeneration:empowerment_earth=Potion of Earth Empowerment
+splash_potion.effect.wizardrynextgeneration:empowerment_earth=Splash Potion of Earth Empowerment
+lingering_potion.effect.wizardrynextgeneration:empowerment_earth=Lingering Potion of Earth Empowerment
+potion.effect.wizardrynextgeneration:empowerment_fire=Potion of Fire Empowerment
+splash_potion.effect.wizardrynextgeneration:empowerment_fire=Splash Potion of Fire Empowerment
+lingering_potion.effect.wizardrynextgeneration:empowerment_fire=Lingering Potion of Fire Empowerment
+potion.effect.wizardrynextgeneration:empowerment_healing=Potion of Healing Empowerment
+splash_potion.effect.wizardrynextgeneration:empowerment_healing=Splash Potion of Healing Empowerment
+lingering_potion.effect.wizardrynextgeneration:empowerment_healing=Lingering Potion of Healing Empowerment
+potion.effect.wizardrynextgeneration:empowerment_ice=Potion of Ice Empowerment
+splash_potion.effect.wizardrynextgeneration:empowerment_ice=Splash Potion of Ice Empowerment
+lingering_potion.effect.wizardrynextgeneration:empowerment_ice=Lingering Potion of Ice Empowerment
+potion.effect.wizardrynextgeneration:empowerment_lightning=Potion of Lightning Empowerment
+splash_potion.effect.wizardrynextgeneration:empowerment_lightning=Splash Potion of Lightning Empowerment
+lingering_potion.effect.wizardrynextgeneration:empowerment_lightning=Lingering Potion of Lightning Empowerment
+potion.effect.wizardrynextgeneration:empowerment_necromancy=Potion of Necromancy Empowerment
+splash_potion.effect.wizardrynextgeneration:empowerment_necromancy=Splash Potion of Necromancy Empowerment
+lingering_potion.effect.wizardrynextgeneration:empowerment_necromancy=Lingering Potion of Necromancy Empowerment
+potion.effect.wizardrynextgeneration:empowerment_sorcery=Potion of Sorcery Empowerment
+splash_potion.effect.wizardrynextgeneration:empowerment_sorcery=Splash Potion of Sorcery Empowerment
+lingering_potion.effect.wizardrynextgeneration:empowerment_sorcery=Lingering Potion of Sorcery Empowerment
 
 #discipline
 
@@ -195,7 +238,9 @@ spell.wizardrynextgeneration:enchant_cauldron.desc=Enchant a cauldron to never r
 spell.wizardrynextgeneration:equality=Equality
 spell.wizardrynextgeneration:equality.desc=Reduce the target's health to your missing health.
 spell.wizardrynextgeneration:equality.high_health=The target resisted some of the damage
-spell.wizardrynextgeneration:equality.no_effect=The target is unaffected
+spell.wizardrynextgeneration:equality.no_effect=The target is unaffected.
+spell.wizardrynextgeneration:eye_for_an_eye=Eye For An Eye
+spell.wizardrynextgeneration:eye_for_an_eye.desc=Reflect the next instance of damage you take.
 spell.wizardrynextgeneration:fission_blast=Fission Blast
 spell.wizardrynextgeneration:fission_blast.desc=Fire a cone of sharp metal.
 spell.wizardrynextgeneration:flesh_feed=Flesh Feed
@@ -232,6 +277,8 @@ spell.wizardrynextgeneration:justice=Justice
 spell.wizardrynextgeneration:justice.desc=Justice for all!
 spell.wizardrynextgeneration:justice.high_health=The target resisted some of the damage
 spell.wizardrynextgeneration:justice.no_effect=The target is unaffected
+spell.wizardrynextgeneration:lightning_reflexes=Lightning Reflexes
+spell.wizardrynextgeneration:lightning_reflexes.desc=Infuse your muscles with electricity to attack faster.
 spell.wizardrynextgeneration:lunar_salve=Lunar Salve
 spell.wizardrynextgeneration:lunar_salve.desc=Remove all negative status effects.
 spell.wizardrynextgeneration:lunar_salve.no_moonlight=You do not have direct moonlight
@@ -258,10 +305,12 @@ spell.wizardrynextgeneration:preparation=Preparation
 spell.wizardrynextgeneration:preparation.desc=Focus your mind to reduce the chargeup time and mana consumption of your next spell.
 spell.wizardrynextgeneration:pull=Pull
 spell.wizardrynextgeneration:pull.desc=Pull a target toward you.
+spell.wizardrynextgeneration:retribution=Retribution
+spell.wizardrynextgeneration:retribution.desc=Reflect all damage taken for a period of time.
 spell.wizardrynextgeneration:righteous_defense=Righteous Defense
 spell.wizardrynextgeneration:righteous_defense.desc=Make yourself the target of all hostile creatures for a time.
 spell.wizardrynextgeneration:sap_intellect=Sap Intellect
-spell.wizardrynextgeneration:sap_intellect.desc=Drain the life from your enemies, dealing damage them and weaking their magic potency.
+spell.wizardrynextgeneration:sap_intellect.desc=Drain the life from your enemies, dealing damage to them and weaking their magic potency.
 spell.wizardrynextgeneration:sap_strength=Sap Strength
 spell.wizardrynextgeneration:sap_strength.desc=Drain the life from your enemies, dealing damage and weakening them.
 spell.wizardrynextgeneration:scapegoat=Scapegoat
@@ -295,6 +344,8 @@ spell.wizardrynextgeneration:summon_vampire_bat=Summon Vampire Bat
 spell.wizardrynextgeneration:summon_vampire_bat.desc=Summons a vampire bat to fight for you. The minion will disappear after 30 seconds or if it is killed.
 spell.wizardrynextgeneration:summon_webspitter=Summon Webspitter
 spell.wizardrynextgeneration:summon_webspitter.desc=Summons a webspitter to fight for you. The minion will disappear after 30 seconds or if it is killed.
+spell.wizardrynextgeneration:tan_flesh=Tan Flesh
+spell.wizardrynextgeneration:tan_flesh.desc=Tan rotten flesh into leather.
 spell.wizardrynextgeneration:tase=Tase
 spell.wizardrynextgeneration:tase.desc=Channel lightning into a creature, restricting its movement.
 spell.wizardrynextgeneration:tranquility=Tranquility

@@ -1,13 +1,11 @@
 package com.ipdnaeip.wizardrynextgeneration.registry;
 
 import com.ipdnaeip.wizardrynextgeneration.WizardryNextGeneration;
-import com.ipdnaeip.wizardrynextgeneration.constants.Discipline;
 import com.ipdnaeip.wizardrynextgeneration.item.*;
 import electroblob.wizardry.block.BlockBookshelf;
 import electroblob.wizardry.inventory.ContainerBookshelf;
 import electroblob.wizardry.item.ItemArtefact;
 import electroblob.wizardry.item.ItemScroll;
-import electroblob.wizardry.item.ItemSpellBook;
 import electroblob.wizardry.misc.BehaviourSpellDispense;
 import electroblob.wizardry.registry.WizardryTabs;
 import net.minecraft.block.Block;
@@ -76,6 +74,7 @@ public final class WNGItems {
     public static final Item ring_anodized = placeholder();
     public static final Item ring_looting = placeholder();
     public static final Item ring_nullification = placeholder();
+    public static final Item ring_rainbow = placeholder();
     public static final Item ring_static_shock = placeholder();
     public static final Item ring_void = placeholder();
 
@@ -153,11 +152,11 @@ public final class WNGItems {
         registerItem(registry, "amulet_moon", new ItemAmuletMoon(EnumRarity.EPIC, ItemArtefact.Type.AMULET));
 
         //belt
-        registerItem(registry, "belt_potion", new ItemBeltPotion(EnumRarity.RARE, ItemNewArtefact.AdditionalType.BELT));
+        registerItem(registry, "belt_potion", new ItemBeltPotion(EnumRarity.RARE, ItemArtefact.Type.BELT));
 
         //body
-        registerItem(registry, "body_artemis", new ItemNewArtefact(EnumRarity.RARE, ItemNewArtefact.AdditionalType.BODY));
-        registerItem(registry, "body_hashashin", new ItemNewArtefact(EnumRarity.RARE, ItemNewArtefact.AdditionalType.BODY));
+        registerItem(registry, "body_artemis", new ItemWNGArtefact(EnumRarity.RARE, ItemArtefact.Type.BODY));
+        registerItem(registry, "body_hashashin", new ItemWNGArtefact(EnumRarity.RARE, ItemArtefact.Type.BODY));
 
         //charm
         registerItem(registry, "charm_dice", new ItemWNGArtefact(EnumRarity.EPIC, ItemArtefact.Type.CHARM));
@@ -165,16 +164,17 @@ public final class WNGItems {
         registerItem(registry, "charm_lingering", new ItemWNGArtefact(EnumRarity.EPIC, ItemArtefact.Type.CHARM));
 
         //head
-        registerItem(registry, "head_hashashin", new ItemNewArtefact(EnumRarity.RARE, ItemNewArtefact.AdditionalType.HEAD));
-        registerItem(registry, "head_ra", new ItemNewArtefact(EnumRarity.EPIC, ItemNewArtefact.AdditionalType.HEAD));
-        registerItem(registry, "head_raijin", new ItemNewArtefact(EnumRarity.EPIC, ItemNewArtefact.AdditionalType.HEAD));
-        registerItem(registry, "head_thorns", new ItemNewArtefact(EnumRarity.RARE, ItemNewArtefact.AdditionalType.HEAD));
+        registerItem(registry, "head_hashashin", new ItemWNGArtefact(EnumRarity.RARE, ItemArtefact.Type.HEAD));
+        registerItem(registry, "head_ra", new ItemWNGArtefact(EnumRarity.EPIC, ItemArtefact.Type.HEAD));
+        registerItem(registry, "head_raijin", new ItemWNGArtefact(EnumRarity.EPIC, ItemArtefact.Type.HEAD));
+        registerItem(registry, "head_thorns", new ItemWNGArtefact(EnumRarity.RARE, ItemArtefact.Type.HEAD));
 
         //ring
         registerItem(registry, "ring_9th_circle", new ItemWNGArtefact(EnumRarity.UNCOMMON, ItemArtefact.Type.RING));
         registerItem(registry, "ring_anodized", new ItemWNGArtefact(EnumRarity.RARE, ItemArtefact.Type.RING));
         registerItem(registry, "ring_looting", new ItemWNGArtefact(EnumRarity.UNCOMMON, ItemArtefact.Type.RING));
         registerItem(registry, "ring_nullification", new ItemWNGArtefact(EnumRarity.RARE, ItemArtefact.Type.RING));
+        registerItem(registry, "ring_rainbow", new ItemWNGArtefact(EnumRarity.EPIC, ItemArtefact.Type.RING));
         registerItem(registry, "ring_static_shock", new ItemWNGArtefact(EnumRarity.RARE, ItemArtefact.Type.RING));
         registerItem(registry, "ring_void", new ItemWNGArtefact(EnumRarity.UNCOMMON, ItemArtefact.Type.RING));
 

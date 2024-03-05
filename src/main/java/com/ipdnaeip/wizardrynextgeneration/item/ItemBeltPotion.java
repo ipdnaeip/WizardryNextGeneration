@@ -4,6 +4,7 @@ import electroblob.wizardry.client.DrawingUtils;
 import electroblob.wizardry.constants.Constants;
 import electroblob.wizardry.item.IManaStoringItem;
 import electroblob.wizardry.item.IWorkbenchItem;
+import electroblob.wizardry.item.ItemArtefact;
 import electroblob.wizardry.registry.WizardryItems;
 import electroblob.wizardry.registry.WizardryRecipes;
 import net.minecraft.entity.player.EntityPlayer;
@@ -11,11 +12,11 @@ import net.minecraft.inventory.Slot;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
 
-public class ItemBeltPotion extends ItemNewArtefact implements IWorkbenchItem, IManaStoringItem {
+public class ItemBeltPotion extends ItemWNGArtefact implements IWorkbenchItem, IManaStoringItem {
 
     public static final int MAX_MANA = 1000;
 
-    public ItemBeltPotion(EnumRarity rarity, AdditionalType type) {
+    public ItemBeltPotion(EnumRarity rarity, ItemArtefact.Type type) {
         super(rarity, type);
         setMaxStackSize(1);
         setMaxDamage(MAX_MANA);

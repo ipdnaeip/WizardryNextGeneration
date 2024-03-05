@@ -1,5 +1,6 @@
 package com.ipdnaeip.wizardrynextgeneration.item;
 
+import com.ipdnaeip.wizardrynextgeneration.registry.WNGConstants;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumRarity;
@@ -16,7 +17,6 @@ import javax.annotation.Nullable;
 //most of the code was copied from Windanesz's ItemDailyArtefact
 public abstract class ItemCooldownArtefact extends ItemWNGArtefact {
 
-    private static final String LAST_TIME_ACTIVATED = "last_time_activated";
     public long cooldown;
 
     public ItemCooldownArtefact(EnumRarity rarity, Type type) {
@@ -42,9 +42,9 @@ public abstract class ItemCooldownArtefact extends ItemWNGArtefact {
     }
 
     public boolean isReady(World world, ItemStack stack) {
-        if (world != null && !stack.isEmpty() && stack.hasTagCompound() && stack.getTagCompound().hasKey(LAST_TIME_ACTIVATED)) {
+        if (world != null && !stack.isEmpty() && stack.hasTagCompound() && stack.getTagCompound().hasKey(WNGConstants.CD_ARTEFACT_LAST_TIME_ACTIVATED)) {
             long currentWorldTime = world.getTotalWorldTime();
-            long lastAccess = stack.getTagCompound().getLong(LAST_TIME_ACTIVATED);
+            long lastAccess = stack.getTagCompound().getLong(WNGConstants.CD_ARTEFACT_LAST_TIME_ACTIVATED);
             return isCooldownReset(lastAccess, currentWorldTime);
         }
         return true;
@@ -63,7 +63,7 @@ public abstract class ItemCooldownArtefact extends ItemWNGArtefact {
         } else {
             nbt = new NBTTagCompound();
         }
-        nbt.setLong(LAST_TIME_ACTIVATED, currentTime);
+        nbt.setLong(WNGConstants.CD_ARTEFACT_LAST_TIME_ACTIVATED, currentTime);
         stack.setTagCompound(nbt);
     }
 

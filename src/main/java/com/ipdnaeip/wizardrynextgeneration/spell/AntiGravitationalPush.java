@@ -6,6 +6,7 @@ import electroblob.wizardry.item.SpellActions;
 import electroblob.wizardry.registry.WizardryItems;
 import electroblob.wizardry.registry.WizardrySounds;
 import electroblob.wizardry.spell.Spell;
+import electroblob.wizardry.spell.SpellBuff;
 import electroblob.wizardry.util.ParticleBuilder;
 import electroblob.wizardry.util.SpellModifiers;
 import net.minecraft.entity.EntityLivingBase;
@@ -53,7 +54,9 @@ public class AntiGravitationalPush extends Spell {
     }
 
     public void finishCasting(World world, @Nullable EntityLivingBase caster, double x, double y, double z, @Nullable EnumFacing direction, int duration, SpellModifiers modifiers) {
-        caster.addPotionEffect(new PotionEffect(MobEffects.LEVITATION, (int)modifiers.get(WizardryItems.duration_upgrade) * Math.min(duration * 2, 100), (int)((modifiers.get("potency") - 1) * 3.5)));
+        if (caster != null) {
+            caster.addPotionEffect(new PotionEffect(MobEffects.LEVITATION, (int) modifiers.get(WizardryItems.duration_upgrade) * Math.min(duration * 2, 100), SpellBuff.getStandardBonusAmplifier(modifiers.get(SpellModifiers.POTENCY))));
+        }
     }
 
     @Override

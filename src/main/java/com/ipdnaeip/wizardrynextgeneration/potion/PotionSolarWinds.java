@@ -1,22 +1,18 @@
 package com.ipdnaeip.wizardrynextgeneration.potion;
 
 import com.ipdnaeip.wizardrynextgeneration.WizardryNextGeneration;
-import com.ipdnaeip.wizardrynextgeneration.item.ItemNewArtefact;
 import com.ipdnaeip.wizardrynextgeneration.registry.WNGItems;
 import com.ipdnaeip.wizardrynextgeneration.registry.WNGPotions;
 import electroblob.wizardry.Wizardry;
 import electroblob.wizardry.item.ItemArtefact;
 import electroblob.wizardry.potion.ICustomPotionParticles;
 import electroblob.wizardry.potion.PotionMagicEffect;
-import electroblob.wizardry.registry.WizardrySounds;
 import electroblob.wizardry.util.ParticleBuilder;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.settings.GameSettings;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.MobEffects;
 import net.minecraft.init.SoundEvents;
-import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.world.World;
@@ -31,11 +27,6 @@ public class PotionSolarWinds extends PotionMagicEffect implements ICustomPotion
     public PotionSolarWinds() {
         super(false, 0xFFB432, new ResourceLocation(WizardryNextGeneration.MODID, "textures/gui/potion_icons/solar_winds.png"));
         this.setPotionName("potion." + WizardryNextGeneration.MODID + ":solar_winds");
-    }
-
-    @Override
-    public boolean isReady(int duration, int amplifier) {
-        return true;
     }
 
     public void spawnCustomParticle(World world, double x, double y, double z) {
@@ -58,7 +49,7 @@ public class PotionSolarWinds extends PotionMagicEffect implements ICustomPotion
                     if (!Wizardry.settings.replaceVanillaFallDamage) {
                         entity.fallDistance = 0.0F;
                     }
-                    if (ItemNewArtefact.isNewArtefactActive(entityPlayer, WNGItems.head_ra)) {
+                    if (ItemArtefact.isArtefactActive(entityPlayer, WNGItems.head_ra)) {
                         entity.jumpMovementFactor = 0.05F;
                     }
                 }

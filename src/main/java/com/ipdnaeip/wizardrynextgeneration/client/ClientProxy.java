@@ -3,6 +3,7 @@ package com.ipdnaeip.wizardrynextgeneration.client;
 import com.ipdnaeip.wizardrynextgeneration.CommonProxy;
 import com.ipdnaeip.wizardrynextgeneration.WizardryNextGeneration;
 import com.ipdnaeip.wizardrynextgeneration.client.renderer.entity.construct.RenderNapalm;
+import com.ipdnaeip.wizardrynextgeneration.client.renderer.entity.layers.LayerHolyThorns;
 import com.ipdnaeip.wizardrynextgeneration.client.renderer.entity.living.RenderVampireBat;
 import com.ipdnaeip.wizardrynextgeneration.client.renderer.entity.living.RenderRighteousDefender;
 import com.ipdnaeip.wizardrynextgeneration.client.renderer.entity.living.RenderWebspitter;
@@ -61,8 +62,9 @@ public class ClientProxy extends CommonProxy {
     @Override
     public void initialiseLayers() {
 
-        LayerTiledOverlay.initialiseLayers(LayerSolarSentinel::new);
         LayerTiledOverlay.initialiseLayers(LayerDivineShield::new);
+        LayerTiledOverlay.initialiseLayers(LayerHolyThorns::new);
+        LayerTiledOverlay.initialiseLayers(LayerSolarSentinel::new);
     }
 
 }

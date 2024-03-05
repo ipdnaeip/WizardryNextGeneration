@@ -15,6 +15,7 @@ public class WNGSounds {
     private WNGSounds() {}
 
     public static final SoundEvent VAMPIRE_BAT_BITE = createSound("entity.vampire_bat.bite");
+    public static final SoundEvent CONSECRATION_PULSE = createSound("spell.consecration.pulse");
 
     public static SoundEvent createSound(String name) {
         return createSound(WizardryNextGeneration.MODID, name);
@@ -27,5 +28,6 @@ public class WNGSounds {
     @SubscribeEvent
     public static void register(RegistryEvent.Register<SoundEvent> event) {
         event.getRegistry().register(VAMPIRE_BAT_BITE);
+        event.getRegistry().register(CONSECRATION_PULSE);
     }
 }

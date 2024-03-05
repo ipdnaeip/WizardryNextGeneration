@@ -19,10 +19,9 @@ public class PotionShockWeakness extends PotionMagicEffect {
         this.setPotionName("potion." + WizardryNextGeneration.MODID + ":shock_weakness");
     }
 
-    @SubscribeEvent(priority = EventPriority.LOW)
+    @SubscribeEvent
     public static void onLivingHurtEvent(LivingHurtEvent event) {
         float increase = 0.15F;
-
         if (event.getEntityLiving().isPotionActive(WNGPotions.shock_weakness) && event.getSource() instanceof IElementalDamage && ((IElementalDamage) event.getSource()).getType() == MagicDamage.DamageType.SHOCK) {
             int multiplier = event.getEntityLiving().getActivePotionEffect(WNGPotions.shock_weakness).getAmplifier() + 1;
             event.setAmount(event.getAmount() * (1 + (increase * multiplier)));

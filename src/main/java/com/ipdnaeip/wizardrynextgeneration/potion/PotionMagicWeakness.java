@@ -21,11 +21,6 @@ public class PotionMagicWeakness extends PotionMagicEffect {
         this.setPotionName("potion." + WizardryNextGeneration.MODID + ":magic_weakness");
     }
 
-    @Override
-    public boolean isReady(int duration, int amplifier) {
-        return true;
-    }
-
     @SubscribeEvent(priority = EventPriority.LOW)
     public static void onLivingHurtEvent(LivingHurtEvent event) {
         float increase = 0.15F;

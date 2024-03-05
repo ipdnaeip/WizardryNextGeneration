@@ -1,7 +1,6 @@
 package com.ipdnaeip.wizardrynextgeneration;
 
 import com.ipdnaeip.wizardrynextgeneration.handler.WNGGuiHandler;
-import com.ipdnaeip.wizardrynextgeneration.integration.baubles.WNGBaublesIntegration;
 import com.ipdnaeip.wizardrynextgeneration.item.ItemWNGWandUpgrade;
 import com.ipdnaeip.wizardrynextgeneration.registry.WNGAdvancementTriggers;
 import com.ipdnaeip.wizardrynextgeneration.registry.WNGItems;
@@ -41,7 +40,7 @@ public class WizardryNextGeneration
         WNGItems.registerBookshelfModelTextures();
         WNGAdvancementTriggers.register();
         proxy.registerRenderers();
-        WNGBaublesIntegration.init();
+        //WNGBaublesIntegration.init();
     }
 
     @EventHandler
