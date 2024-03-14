@@ -41,8 +41,8 @@ item.wizardrynextgeneration:belt_potion.desc=Uses mana to extend the duration of
 
 item.wizardrynextgeneration:body_hashashin.name=Chestplate of the Hashashin
 item.wizardrynextgeneration:body_hashashin.desc=The chestplate of an ancient assassin. It allows you to stay quiet in the dark while sneaking
-item.wizardrynextgeneration:body_artemis.name=Artemis's Quiver
-item.wizardrynextgeneration:body_artemis.desc=Arrows have a chance to return a regular arrow to your inventory. Arrows that miss will always return to your inventory. This will always return regular non-tipped arrows.
+item.wizardrynextgeneration:body_artemis.name=Quiver of Artemis
+item.wizardrynextgeneration:body_artemis.desc=Arrows have a chance to return a regular arrow to your inventory. Arrows that miss will always return to your inventory. This will always return regular non-tipped arrows
 
   #charm
 
@@ -50,6 +50,14 @@ item.wizardrynextgeneration:charm_dice.name=Magical Dice
 item.wizardrynextgeneration:charm_dice.desc=Has a chance to increase or decrease the potency of your spells!
 item.wizardrynextgeneration:charm_horn.name=Holy Horn
 item.wizardrynextgeneration:charm_horn.desc=While you take damage at low health and are surrounded by enemies, summon a Righteous Defender to aid you. Can only occur once a day
+item.wizardrynextgeneration:charm_lingering.name=Lingering Flask
+item.wizardrynextgeneration:charm_lingering.desc=Your magical splash potions are lingering potions
+item.wizardrynextgeneration:charm_yang.name=Yang Symbol
+item.wizardrynextgeneration:charm_yang.desc=Healing spells are 30%% more potent in the light
+item.wizardrynextgeneration:charm_yin.name=Yin Symbol
+item.wizardrynextgeneration:charm_yin.desc=Necromancy spells are 30%% more potent in the dark
+item.wizardrynextgeneration:charm_yin_yang.name=Yin Yang Symbol
+item.wizardrynextgeneration:charm_yin_yang.desc=Healing spells are 30%% in the light and necromancy spells are 30%% more potent in the dark. Can be created by matching a yin and yang symbol
 
   #head
 
@@ -72,6 +80,8 @@ item.wizardrynextgeneration:ring_looting.name=Band of the Hunter
 item.wizardrynextgeneration:ring_looting.desc=Grants + 1 looting
 item.wizardrynextgeneration:ring_nullification.name=Ring of Nullification
 item.wizardrynextgeneration:ring_nullification.desc=Sorcery spells have a chance to not cost any mana
+item.wizardrynextgeneration:ring_rainbow.name=Rainbow Crystal Ring
+item.wizardrynextgeneration:ring_rainbow.desc=Spells of a different element than your last cast spell are 30%% more potent
 item.wizardrynextgeneration:ring_static_shock.name=Ring of Static Shock
 item.wizardrynextgeneration:ring_static_shock.desc=Damaging a creature with a lightning spell applies shock weakness, up to shock weakness 3
 item.wizardrynextgeneration:ring_void.name=Ring of the Void
@@ -199,8 +209,8 @@ spell.wizardrynextgeneration:assassinate=Assassination
 spell.wizardrynextgeneration:assassinate.desc=Strike a creature with a deadly shadow, dealing bonus damage if they are unaware of your presence.
 spell.wizardrynextgeneration:betrayal=Betrayal
 spell.wizardrynextgeneration:betrayal.desc=Trust no one.
-spell.wizardrynextgeneration:biden_blast=Biden Blast
-spell.wizardrynextgeneration:biden_blast.desc=Biden Blast, Jack!
+spell.wizardrynextgeneration:biden_blast=Bai'den Blast
+spell.wizardrynextgeneration:biden_blast.desc=A spell of godlike power created by an ancient lich. It is said no copies of it remain in the world.
 spell.wizardrynextgeneration:bless_meat=Bless Meat
 spell.wizardrynextgeneration:bless_meat.desc=Bless rotten flesh into a highly nutritious substitute.
 spell.wizardrynextgeneration:blood_barrage=Blood Barrage

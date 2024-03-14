@@ -30,6 +30,10 @@ public class HexSwine extends SpellRay {
             minion.setCaster(caster);
             minion.setLocationAndAngles(target.posX, target.posY, target.posZ, target.rotationYaw, target.rotationPitch);
             minion.setHealth(minion.getMaxHealth());
+            if (target.hasCustomName()) {
+                minion.setCustomNameTag(target.getCustomNameTag());
+                minion.setAlwaysRenderNameTag(target.getAlwaysRenderNameTag());
+            }
             target.setDead();
             world.spawnEntity(minion);
             return true;

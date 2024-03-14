@@ -1,6 +1,8 @@
 package com.ipdnaeip.wizardrynextgeneration.item;
 
 import com.ipdnaeip.wizardrynextgeneration.registry.WNGConstants;
+import com.ipdnaeip.wizardrynextgeneration.registry.WNGSpells;
+import electroblob.wizardry.util.SpellModifiers;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumRarity;
@@ -54,7 +56,14 @@ public abstract class ItemCooldownArtefact extends ItemWNGArtefact {
         return (endTime - startTime) >= cooldown;
     }
 
-    public abstract void performAction(EntityPlayer player, ItemStack stack);
+    public void performAction(EntityPlayer player, ItemStack stack) {
+        if (isReady(player.world, stack))  {
+            this.action(player, stack);
+            setLastTimeActivated(stack, player.getEntityWorld().getTotalWorldTime());
+        }
+    }
+
+    public abstract void action(EntityPlayer player, ItemStack stack);
 
     public static void setLastTimeActivated(ItemStack stack, long currentTime) {
         NBTTagCompound nbt;

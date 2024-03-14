@@ -17,10 +17,11 @@ public class ItemAmuletMoon extends ItemCooldownArtefact {
 
     public ItemAmuletMoon(EnumRarity rarity, Type type) {
         super(rarity, type);
-        setCooldown(24000);
-        addReadinessPropertyOverride();
+        this.setCooldown(24000);
+        this.addReadinessPropertyOverride();
     }
 
+    @Override
     public boolean isReady(World world, ItemStack stack) {
         if (world != null && !stack.isEmpty() && stack.hasTagCompound() && stack.getTagCompound().hasKey(WNGConstants.CD_ARTEFACT_LAST_TIME_ACTIVATED)) {
             long currentWorldTime = world.getTotalWorldTime();
@@ -30,19 +31,16 @@ public class ItemAmuletMoon extends ItemCooldownArtefact {
         return true;
     }
 
-    public void performAction(EntityPlayer player, ItemStack stack) {
-        if (isReady(player.world, stack)) {
-            player.setHealth(1F);
-            player.clearActivePotions();
-            player.addPotionEffect(new PotionEffect(MobEffects.ABSORPTION, 100, 1));
-            player.addPotionEffect(new PotionEffect(MobEffects.REGENERATION, 900, 1));
-            player.getEntityWorld().playSound(player, player.getPosition(), SoundEvents.ITEM_TOTEM_USE, SoundCategory.BLOCKS, 1F, 0F);
-            setLastTimeActivated(stack, player.getEntityWorld().getTotalWorldTime());
-            SetHasBeenFullMoon(stack, false);
-        }
+    public void action(EntityPlayer player, ItemStack stack) {
+        player.setHealth(1F);
+        player.clearActivePotions();
+        player.addPotionEffect(new PotionEffect(MobEffects.ABSORPTION, 100, 1));
+        player.addPotionEffect(new PotionEffect(MobEffects.REGENERATION, 900, 1));
+        player.world.playSound(player, player.getPosition(), SoundEvents.ITEM_TOTEM_USE, SoundCategory.BLOCKS, 1F, 0F);
+        setHasBeenFullMoon(stack, false);
     }
 
-    public static void SetHasBeenFullMoon(ItemStack stack, boolean fullMoon) {
+    public static void setHasBeenFullMoon(ItemStack stack, boolean fullMoon) {
         NBTTagCompound nbt;
         if (stack.hasTagCompound()) {
             nbt = stack.getTagCompound();

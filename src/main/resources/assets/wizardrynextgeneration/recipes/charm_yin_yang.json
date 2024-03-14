@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "wizardrynextgeneration:charm_yin"
+    },
+    {
+      "item": "wizardrynextgeneration:charm_yang"
+    }
+  ],
+  "result": {
+    "item": "wizardrynextgeneration:charm_yin_yang"
+  }
+}
