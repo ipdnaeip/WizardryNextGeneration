@@ -10,14 +10,11 @@ public class ItemCharmHorn extends ItemCooldownArtefact {
 
     public ItemCharmHorn(EnumRarity rarity, Type type) {
         super(rarity, type);
-        setCooldown(24000);
-        addReadinessPropertyOverride();
+        this.setCooldown(24000);
+        this.addReadinessPropertyOverride();
     }
 
-    public void performAction(EntityPlayer player, ItemStack stack) {
-        if (isReady(player.world, stack)) {
-            WNGSpells.summon_righteous_defender.cast(player.world, player, player.getActiveHand(), 0, new SpellModifiers());
-            setLastTimeActivated(stack, player.getEntityWorld().getTotalWorldTime());
-        }
+    public void action(EntityPlayer player, ItemStack stack) {
+        WNGSpells.summon_righteous_defender.cast(player.world, player, player.getActiveHand(), 0, new SpellModifiers());
     }
 }

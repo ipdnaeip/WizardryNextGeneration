@@ -62,6 +62,9 @@ public final class WNGItems {
     public static final Item charm_dice = placeholder();
     public static final Item charm_horn = placeholder();
     public static final Item charm_lingering = placeholder();
+    public static final Item charm_yang = placeholder();
+    public static final Item charm_yin = placeholder();
+    public static final Item charm_yin_yang = placeholder();
 
     //head
     public static final Item head_hashashin = placeholder();
@@ -162,6 +165,9 @@ public final class WNGItems {
         registerItem(registry, "charm_dice", new ItemWNGArtefact(EnumRarity.EPIC, ItemArtefact.Type.CHARM));
         registerItem(registry, "charm_horn", new ItemCharmHorn(EnumRarity.EPIC, ItemArtefact.Type.CHARM));
         registerItem(registry, "charm_lingering", new ItemWNGArtefact(EnumRarity.EPIC, ItemArtefact.Type.CHARM));
+        registerItem(registry, "charm_yang", new ItemWNGArtefact(EnumRarity.RARE, ItemArtefact.Type.CHARM));
+        registerItem(registry, "charm_yin", new ItemWNGArtefact(EnumRarity.RARE, ItemArtefact.Type.CHARM));
+        registerItem(registry, "charm_yin_yang", new ItemWNGArtefact(EnumRarity.EPIC, ItemArtefact.Type.CHARM));
 
         //head
         registerItem(registry, "head_hashashin", new ItemWNGArtefact(EnumRarity.RARE, ItemArtefact.Type.HEAD));

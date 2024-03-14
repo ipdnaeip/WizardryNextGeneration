@@ -21,6 +21,16 @@
         },
         {
           "type": "item",
+          "name": "wizardrynextgeneration:charm_yang",
+          "weight": 1
+        },
+        {
+          "type": "item",
+          "name": "wizardrynextgeneration:charm_yin",
+          "weight": 1
+        },
+        {
+          "type": "item",
           "name": "wizardrynextgeneration:head_hashashin",
           "weight": 1
         },
