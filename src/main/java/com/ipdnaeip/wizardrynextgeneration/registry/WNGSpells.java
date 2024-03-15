@@ -198,7 +198,7 @@ public final class WNGSpells {
         //beam isn't fluid and targeting system is flawed
         //registry.register(new CelestialBeam());
 
-        // WNG 1.0.4 Spells (3)
+        // WNG 1.0.4 Spells (5)
 
         registry.register(new LightningReflexes());
         registry.register(new SummonVampireBat());
