@@ -12,6 +12,7 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 
@@ -140,6 +141,15 @@ public final class WNGUtils {
             if (stack.getItem() == item) check++;
         }
         return amount - check;
+    }
+
+    /**
+     * Shorthand method to do instance check and sideonly checks for player messages
+     */
+    public static void sendMessage(Entity player, String translationKey, boolean actionBar, Object... args) {
+        if (player instanceof EntityPlayer && !player.world.isRemote) {
+            ((EntityPlayer) player).sendStatusMessage(new TextComponentTranslation(translationKey, args), actionBar);
+        }
     }
 
 }
