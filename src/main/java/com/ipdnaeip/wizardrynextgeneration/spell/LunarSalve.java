@@ -43,7 +43,7 @@ public class LunarSalve extends SpellBuff {
             boolean flag = false;
             for (Object o : new ArrayList(caster.getActivePotionEffects())) {
                 PotionEffect effect = (PotionEffect) o;
-                if (effect.isCurativeItem(milk) && !effect.getPotion().isBeneficial()) {
+                if (effect.isCurativeItem(milk) && effect.getPotion().isBadEffect()) {
                     caster.removePotionEffect(effect.getPotion());
                     flag = true;
                 }

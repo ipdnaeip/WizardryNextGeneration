@@ -112,7 +112,7 @@ public class WNGEventHandler {
                     PotionEffect[] potionEffects = player.getActivePotionEffects().toArray(new PotionEffect[0]);
                     for (PotionEffect effect : potionEffects) {
                         if (belt.getMaxDamage() - belt.getItemDamage() >= effect.getAmplifier() + 1) {
-                            if (effect.getPotion().isBeneficial())
+                            if (!effect.getPotion().isBadEffect())
                                 player.addPotionEffect(new PotionEffect(effect.getPotion(), effect.getDuration() + 10, effect.getAmplifier()));
                             if (player.ticksExisted % 20 == 0) belt.damageItem(effect.getAmplifier() + 1, player);
                         }
