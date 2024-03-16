@@ -24,7 +24,9 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 import javax.annotation.Nullable;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 @Mod.EventBusSubscriber
 public class PotionAnimalAllegiance extends PotionMagicEffect {
@@ -57,14 +59,20 @@ public class PotionAnimalAllegiance extends PotionMagicEffect {
     @SubscribeEvent
     public static void onPotionExpiryEvent(PotionEvent.PotionExpiryEvent event) {
         if (event.getEntityLiving() instanceof EntityAnimal) {
-            EntityAnimal entity = (EntityAnimal)event.getEntityLiving();
+            EntityAnimal entity = (EntityAnimal) event.getEntityLiving();
+            List<EntityAITasks.EntityAITaskEntry> tasksToRemove = new ArrayList<>();
             for (EntityAITasks.EntityAITaskEntry entityAITaskEntry : entity.tasks.taskEntries) {
                 if (entityAITaskEntry.action instanceof EntityAIAnimalAttackMelee || entityAITaskEntry.action instanceof EntityAIAnimalNearestAttackTarget) {
-                    entity.tasks.removeTask(entityAITaskEntry.action);
+                    tasksToRemove.add(entityAITaskEntry);
                 }
+            }
+            // Remove the tasks after iteration
+            for (EntityAITasks.EntityAITaskEntry taskEntry : tasksToRemove) {
+                entity.tasks.removeTask(taskEntry.action);
             }
         }
     }
+
 
     @SubscribeEvent
     public static void onPotionRemoveEvent(PotionEvent.PotionRemoveEvent event) {
