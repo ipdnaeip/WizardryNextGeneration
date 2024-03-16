@@ -51,7 +51,7 @@ public class PotionAnimalAllegiance extends PotionMagicEffect {
         if (event.getEntityLiving() instanceof EntityAnimal) {
             EntityAnimal entity = (EntityAnimal)event.getEntityLiving();
             float attackDamage = entity.getEntityData().hasKey(WNGConstants.ANIMAL_ATTACK_MULTIPLIER) ? entity.getEntityData().getFloat(WNGConstants.ANIMAL_ATTACK_MULTIPLIER) : 1f;
-            entity.tasks.addTask(0, new EntityAIAnimalAttackMelee(entity, entity.getAIMoveSpeed(), attackDamage));
+            entity.tasks.addTask(0, new EntityAIAnimalAttackMelee(entity, 1.1f, attackDamage));
             entity.targetTasks.addTask(0, new EntityAIAnimalNearestAttackTarget(entity, EntityLivingBase.class, 0, false, true, getNewTargetSelector((EntityLivingBase)(EntityUtils.getEntityByUUID(entity.world, entity.getEntityData().getUniqueId(WNGConstants.ANIMAL_ALLEGIANCE_CASTER))))));
         }
     }
