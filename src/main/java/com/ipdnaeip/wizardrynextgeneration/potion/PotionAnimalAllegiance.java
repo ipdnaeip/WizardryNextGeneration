@@ -10,10 +10,7 @@ import electroblob.wizardry.Wizardry;
 import electroblob.wizardry.entity.living.ISummonedCreature;
 import electroblob.wizardry.potion.PotionMagicEffect;
 import electroblob.wizardry.util.EntityUtils;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityList;
-import net.minecraft.entity.EntityLiving;
-import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.*;
 import net.minecraft.entity.ai.EntityAITasks;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.passive.EntityAnimal;
@@ -50,7 +47,7 @@ public class PotionAnimalAllegiance extends PotionMagicEffect {
     public static void onPotionAddedEvent(PotionEvent.PotionAddedEvent event) {
         if (event.getEntityLiving() instanceof EntityAnimal) {
             EntityAnimal entity = (EntityAnimal)event.getEntityLiving();
-            float attackDamage = entity.getMaxHealth() / 5f;
+            float attackDamage = (float)(entity.getAttributeMap().getAttributeInstance(SharedMonsterAttributes.ATTACK_DAMAGE).getAttributeValue());
             attackDamage *= entity.getEntityData().hasKey(WNGConstants.ANIMAL_ATTACK_MULTIPLIER) ? entity.getEntityData().getFloat(WNGConstants.ANIMAL_ATTACK_MULTIPLIER) : 1f;
             entity.tasks.addTask(0, new EntityAIAnimalAttackMelee(entity, 1.5, attackDamage));
             entity.targetTasks.addTask(0, new EntityAIAnimalNearestAttackTarget(entity, EntityLivingBase.class, 0, false, true, getNewTargetSelector((EntityLivingBase)(EntityUtils.getEntityByUUID(entity.world, entity.getEntityData().getUniqueId(WNGConstants.ANIMAL_ALLEGIANCE_CASTER))))));
