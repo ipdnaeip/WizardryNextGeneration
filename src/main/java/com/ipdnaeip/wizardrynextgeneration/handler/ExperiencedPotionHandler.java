@@ -1,3 +1,4 @@
+/*
 package com.ipdnaeip.wizardrynextgeneration.handler;
 
 import com.ipdnaeip.wizardrynextgeneration.WizardryNextGeneration;
@@ -58,4 +59,9 @@ public class ExperiencedPotionHandler {
             }
         }
     }
+
+    static {
+        WizardData.registerStoredVariables(EXPERIENCED_POTION_NAMES);
+    }
 }
+*/

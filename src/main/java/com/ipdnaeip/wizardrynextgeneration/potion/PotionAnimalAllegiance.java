@@ -32,7 +32,7 @@ import java.util.List;
 public class PotionAnimalAllegiance extends PotionMagicEffect {
 
     public PotionAnimalAllegiance() {
-        super(false, 1000, new ResourceLocation(WizardryNextGeneration.MODID, "textures/gui/potion_icons/animal_alliance.png"));
+        super(false, 0xFFE293, new ResourceLocation(WizardryNextGeneration.MODID, "textures/gui/potion_icons/animal_alliance.png"));
         this.setPotionName("potion." + WizardryNextGeneration.MODID + ":animal_allegiance");
     }
 
@@ -50,8 +50,9 @@ public class PotionAnimalAllegiance extends PotionMagicEffect {
     public static void onPotionAddedEvent(PotionEvent.PotionAddedEvent event) {
         if (event.getEntityLiving() instanceof EntityAnimal) {
             EntityAnimal entity = (EntityAnimal)event.getEntityLiving();
-            float attackDamage = entity.getEntityData().hasKey(WNGConstants.ANIMAL_ATTACK_MULTIPLIER) ? entity.getEntityData().getFloat(WNGConstants.ANIMAL_ATTACK_MULTIPLIER) : 1f;
-            entity.tasks.addTask(0, new EntityAIAnimalAttackMelee(entity, entity.getAIMoveSpeed(), attackDamage));
+            float attackDamage = entity.getMaxHealth() / 5f;
+            attackDamage *= entity.getEntityData().hasKey(WNGConstants.ANIMAL_ATTACK_MULTIPLIER) ? entity.getEntityData().getFloat(WNGConstants.ANIMAL_ATTACK_MULTIPLIER) : 1f;
+            entity.tasks.addTask(0, new EntityAIAnimalAttackMelee(entity, 1.5, attackDamage));
             entity.targetTasks.addTask(0, new EntityAIAnimalNearestAttackTarget(entity, EntityLivingBase.class, 0, false, true, getNewTargetSelector((EntityLivingBase)(EntityUtils.getEntityByUUID(entity.world, entity.getEntityData().getUniqueId(WNGConstants.ANIMAL_ALLEGIANCE_CASTER))))));
         }
     }
@@ -73,15 +74,19 @@ public class PotionAnimalAllegiance extends PotionMagicEffect {
         }
     }
 
-
     @SubscribeEvent
     public static void onPotionRemoveEvent(PotionEvent.PotionRemoveEvent event) {
         if (event.getEntityLiving() instanceof EntityAnimal) {
             EntityAnimal entity = (EntityAnimal)event.getEntityLiving();
+            List<EntityAITasks.EntityAITaskEntry> tasksToRemove = new ArrayList<>();
             for (EntityAITasks.EntityAITaskEntry entityAITaskEntry : entity.tasks.taskEntries) {
                 if (entityAITaskEntry.action instanceof EntityAIAnimalAttackMelee || entityAITaskEntry.action instanceof EntityAIAnimalNearestAttackTarget) {
-                    entity.tasks.removeTask(entityAITaskEntry.action);
+                    tasksToRemove.add(entityAITaskEntry);
                 }
+            }
+            // Remove the tasks after iteration
+            for (EntityAITasks.EntityAITaskEntry taskEntry : tasksToRemove) {
+                entity.tasks.removeTask(taskEntry.action);
             }
         }
     }

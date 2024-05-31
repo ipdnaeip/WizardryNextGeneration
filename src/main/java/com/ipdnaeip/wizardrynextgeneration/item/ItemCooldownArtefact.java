@@ -19,6 +19,7 @@ import javax.annotation.Nullable;
 //most of the code was copied from Windanesz's ItemDailyArtefact
 public abstract class ItemCooldownArtefact extends ItemWNGArtefact {
 
+    public static final String CD_ARTEFACT_LAST_TIME_ACTIVATED = WNGConstants.registerTag("cd_artefact_last_time_activated");
     public long cooldown;
 
     public ItemCooldownArtefact(EnumRarity rarity, Type type) {
@@ -44,9 +45,9 @@ public abstract class ItemCooldownArtefact extends ItemWNGArtefact {
     }
 
     public boolean isReady(World world, ItemStack stack) {
-        if (world != null && !stack.isEmpty() && stack.hasTagCompound() && stack.getTagCompound().hasKey(WNGConstants.CD_ARTEFACT_LAST_TIME_ACTIVATED)) {
+        if (world != null && !stack.isEmpty() && stack.hasTagCompound() && stack.getTagCompound().hasKey(CD_ARTEFACT_LAST_TIME_ACTIVATED)) {
             long currentWorldTime = world.getTotalWorldTime();
-            long lastAccess = stack.getTagCompound().getLong(WNGConstants.CD_ARTEFACT_LAST_TIME_ACTIVATED);
+            long lastAccess = stack.getTagCompound().getLong(CD_ARTEFACT_LAST_TIME_ACTIVATED);
             return isCooldownReset(lastAccess, currentWorldTime);
         }
         return true;
@@ -72,7 +73,7 @@ public abstract class ItemCooldownArtefact extends ItemWNGArtefact {
         } else {
             nbt = new NBTTagCompound();
         }
-        nbt.setLong(WNGConstants.CD_ARTEFACT_LAST_TIME_ACTIVATED, currentTime);
+        nbt.setLong(CD_ARTEFACT_LAST_TIME_ACTIVATED, currentTime);
         stack.setTagCompound(nbt);
     }
 

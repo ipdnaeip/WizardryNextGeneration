@@ -19,13 +19,16 @@ item.wizardrynextgeneration:blessed_meat.name=Blessed Meat
 
   #magical item
 
-item.wizardrynextgeneration:chargeup_upgrade.name=Wand Chargeup Upgrade
 item.wizardrynextgeneration:conjured_potion.name=Conjured Potion
-item.wizardrynextgeneration:looting_upgrade.name=Wand Looting Upgrade
-item.wizardrynextgeneration:movement_upgrade.name=Wand Movement Upgrade
 item.wizardrynextgeneration:scroll_wng.name=Scroll of %1$s
 item.wizardrynextgeneration:spell_book_wng.name=Spell Book
 item.wizardrynextgeneration:spell_encyclopedia.name=Spell Encyclopedia
+item.wizardrynextgeneration:upgrade_chargeup.name=Wand Chargeup Upgrade
+item.wizardrynextgeneration:upgrade_chargeup.desc=Upgrades the spell chargeup speed of a wand
+item.wizardrynextgeneration:upgrade_looting.name=Wand Looting Upgrade
+item.wizardrynextgeneration:upgrade_looting.desc=Upgrades the looting level of a wand
+item.wizardrynextgeneration:upgrade_movement.name=Wand Movement Upgrade
+item.wizardrynextgeneration:upgrade_movement.desc=Upgrades the movement speed while casting spells with a wand
 
   #amulet
 
@@ -42,16 +45,20 @@ item.wizardrynextgeneration:belt_potion.desc=Uses mana to extend the duration of
 item.wizardrynextgeneration:body_hashashin.name=Chestplate of the Hashashin
 item.wizardrynextgeneration:body_hashashin.desc=The chestplate of an ancient assassin. It allows you to stay quiet in the dark while sneaking
 item.wizardrynextgeneration:body_artemis.name=Quiver of Artemis
-item.wizardrynextgeneration:body_artemis.desc=Arrows have a chance to return a regular arrow to your inventory. Arrows that miss will always return to your inventory. This will always return regular non-tipped arrows
+item.wizardrynextgeneration:body_artemis.desc=Arrows have a chance to return to your inventory. Arrows that miss will always return to your inventory
 
   #charm
 
+item.wizardrynextgeneration:charm_bloodstone.name=Bloodstone
+item.wizardrynextgeneration:charm_bloodstone.desc=Slowly regenerates your health over time at the cost of stored mana. Can be activated to increase the rate at which it restores health at much greater mana cost
 item.wizardrynextgeneration:charm_dice.name=Magical Dice
 item.wizardrynextgeneration:charm_dice.desc=Has a chance to increase or decrease the potency of your spells!
 item.wizardrynextgeneration:charm_horn.name=Holy Horn
 item.wizardrynextgeneration:charm_horn.desc=While you take damage at low health and are surrounded by enemies, summon a Righteous Defender to aid you. Can only occur once a day
 item.wizardrynextgeneration:charm_lingering.name=Lingering Flask
 item.wizardrynextgeneration:charm_lingering.desc=Your magical splash potions are lingering potions
+item.wizardrynextgeneration:charm_pyramid.name=Pyramid Crystal
+item.wizardrynextgeneration:charm_pyramid.desc=Novice, apprentice, and advanced spells gain 30%%, 20%%, and 10%% increased potency respectively
 item.wizardrynextgeneration:charm_yang.name=Yang Symbol
 item.wizardrynextgeneration:charm_yang.desc=Healing spells are 30%% more potent in the light
 item.wizardrynextgeneration:charm_yin.name=Yin Symbol
@@ -65,6 +72,8 @@ item.wizardrynextgeneration:head_hashashin.name=Hood of the Hashashin
 item.wizardrynextgeneration:head_hashashin.desc=The mask of an ancient assassin. It allows you to hide better in the dark while sneaking
 item.wizardrynextgeneration:head_ra.name=Sun-Disk of Ra
 item.wizardrynextgeneration:head_ra.desc=The crown of the sun god allows you to have better horizontal control in solar winds
+item.wizardrynextgeneration:head_rally.name=Leader's Crown
+item.wizardrynextgeneration:head_rally.desc=Increase the effectiveness of spells that apply the rally effect
 item.wizardrynextgeneration:head_raijin.name=Mask of Raijin
 item.wizardrynextgeneration:head_raijin.desc=The mask of the thunderlord allows high intensity lightning spells to paralyze creatures
 item.wizardrynextgeneration:head_thorns.name=Crown of Thorns
@@ -151,27 +160,35 @@ potion.wizardrynextgeneration:veneficium=Veneficium
 potion.effect.wizardrynextgeneration:empowerment=Potion of Magic Empowerment
 splash_potion.effect.wizardrynextgeneration:empowerment=Splash Potion of Magic Empowerment
 lingering_potion.effect.wizardrynextgeneration:empowerment=Lingering Potion of Magic Empowerment
+tipped_arrow.effect.wizardrynextgeneration:empowerment=Arrow of Magic Empowerment
 potion.effect.wizardrynextgeneration:empowerment_earth=Potion of Earth Empowerment
 splash_potion.effect.wizardrynextgeneration:empowerment_earth=Splash Potion of Earth Empowerment
 lingering_potion.effect.wizardrynextgeneration:empowerment_earth=Lingering Potion of Earth Empowerment
+tipped_arrow.effect.wizardrynextgeneration:empowerment_earth=Arrow of Earth Empowerment
 potion.effect.wizardrynextgeneration:empowerment_fire=Potion of Fire Empowerment
 splash_potion.effect.wizardrynextgeneration:empowerment_fire=Splash Potion of Fire Empowerment
 lingering_potion.effect.wizardrynextgeneration:empowerment_fire=Lingering Potion of Fire Empowerment
+tipped_arrow.effect.wizardrynextgeneration:empowerment_fire=Arrow of Fire Empowerment
 potion.effect.wizardrynextgeneration:empowerment_healing=Potion of Healing Empowerment
 splash_potion.effect.wizardrynextgeneration:empowerment_healing=Splash Potion of Healing Empowerment
 lingering_potion.effect.wizardrynextgeneration:empowerment_healing=Lingering Potion of Healing Empowerment
+tipped_arrow.effect.wizardrynextgeneration:empowerment_healing=Arrow of Healing Empowerment
 potion.effect.wizardrynextgeneration:empowerment_ice=Potion of Ice Empowerment
 splash_potion.effect.wizardrynextgeneration:empowerment_ice=Splash Potion of Ice Empowerment
 lingering_potion.effect.wizardrynextgeneration:empowerment_ice=Lingering Potion of Ice Empowerment
+tipped_arrow.effect.wizardrynextgeneration:empowerment_ice=Arrow of Ice Empowerment
 potion.effect.wizardrynextgeneration:empowerment_lightning=Potion of Lightning Empowerment
 splash_potion.effect.wizardrynextgeneration:empowerment_lightning=Splash Potion of Lightning Empowerment
 lingering_potion.effect.wizardrynextgeneration:empowerment_lightning=Lingering Potion of Lightning Empowerment
+tipped_arrow.effect.wizardrynextgeneration:empowerment_lightning=Arrow of Lightning Empowerment
 potion.effect.wizardrynextgeneration:empowerment_necromancy=Potion of Necromancy Empowerment
 splash_potion.effect.wizardrynextgeneration:empowerment_necromancy=Splash Potion of Necromancy Empowerment
 lingering_potion.effect.wizardrynextgeneration:empowerment_necromancy=Lingering Potion of Necromancy Empowerment
+tipped_arrow.effect.wizardrynextgeneration:empowerment_necromancy=Arrow of Necromancy Empowerment
 potion.effect.wizardrynextgeneration:empowerment_sorcery=Potion of Sorcery Empowerment
 splash_potion.effect.wizardrynextgeneration:empowerment_sorcery=Splash Potion of Sorcery Empowerment
 lingering_potion.effect.wizardrynextgeneration:empowerment_sorcery=Lingering Potion of Sorcery Empowerment
+tipped_arrow.effect.wizardrynextgeneration:empowerment_sorcery=Arrow of Sorcery Empowerment
 
 #discipline
 
@@ -201,6 +218,8 @@ discipline.witch=Witch
 
 spell.wizardrynextgeneration:accelerated_mass=Accelerated Mass
 spell.wizardrynextgeneration:accelerated_mass.desc=Launch a chunk of metal that increases in velocity and damage as it travels.
+spell.wizardrynextgeneration:animal_allegiance=Animal Allegiance
+spell.wizardrynextgeneration:animal_allegiance.desc=Call the beasts of the wild to your side.
 spell.wizardrynextgeneration:anti_gravitational_field=Anti-Gravitational Field
 spell.wizardrynextgeneration:anti_gravitational_field.desc=Create an area of reversed gravity.
 spell.wizardrynextgeneration:anti_gravitational_push=Anti-Gravity
@@ -283,6 +302,8 @@ spell.wizardrynextgeneration:ice_barrage=Ice Barrage
 spell.wizardrynextgeneration:ice_barrage.desc=Useful for collecting shovels.
 spell.wizardrynextgeneration:ice_blitz=Ice Blitz
 spell.wizardrynextgeneration:ice_blitz.desc=Freeze a creature in a block of ice and damage it.
+spell.wizardrynextgeneration:inspire=Inspire
+spell.wizardrynextgeneration:inspire.desc=Rally your nearby pets and summons.
 spell.wizardrynextgeneration:justice=Justice
 spell.wizardrynextgeneration:justice.desc=Justice for all!
 spell.wizardrynextgeneration:justice.high_health=The target resisted some of the damage

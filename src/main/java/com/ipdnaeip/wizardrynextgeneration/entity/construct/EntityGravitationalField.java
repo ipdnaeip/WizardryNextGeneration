@@ -6,6 +6,7 @@ import com.ipdnaeip.wizardrynextgeneration.util.WNGUtils;
 import electroblob.wizardry.entity.construct.EntityScaledConstruct;
 import electroblob.wizardry.registry.WizardrySounds;
 import electroblob.wizardry.spell.SpellBuff;
+import electroblob.wizardry.util.EntityUtils;
 import electroblob.wizardry.util.ParticleBuilder;
 import electroblob.wizardry.util.ParticleBuilder.Type;
 
@@ -30,7 +31,7 @@ public class EntityGravitationalField extends EntityScaledConstruct {
         }
         super.onUpdate();
         if (!this.world.isRemote) {
-            List<Entity> targets = WNGUtils.getEntitiesWithinCylinder((this.width / 2.0F), this.posX, this.posY, this.posZ, this.height * sizeMultiplier, this.world, Entity.class);
+            List<Entity> targets = EntityUtils.getEntitiesWithinCylinder((this.width / 2.0F), this.posX, this.posY, this.posZ, this.height * sizeMultiplier, this.world, Entity.class);
             for (Entity target : targets) {
                 if (target instanceof EntityLivingBase) {
                     ((EntityLivingBase)target).addPotionEffect(new PotionEffect(WNGPotions.gravity, 10, SpellBuff.getStandardBonusAmplifier(damageMultiplier)));

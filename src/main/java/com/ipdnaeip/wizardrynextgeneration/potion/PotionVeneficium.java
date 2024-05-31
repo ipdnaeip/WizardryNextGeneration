@@ -47,9 +47,7 @@ public class PotionVeneficium extends PotionMagicEffect {
             EntityLivingBase entity = event.getEntityLiving();
             if (entity.isPotionActive(WNGPotions.veneficium)) {
                 List<EntityLivingBase> targets = EntityUtils.getLivingWithinRadius(4 + (2 * entity.getActivePotionEffect(WNGPotions.veneficium).getAmplifier()), entity.posX, entity.posY, entity.posZ, entity.getEntityWorld());
-                Iterator var6 = targets.iterator();
-                while (var6.hasNext()) {
-                    EntityLivingBase targetEntity = (EntityLivingBase) var6.next();
+                for (EntityLivingBase targetEntity : targets) {
                     if (targetEntity != player) {
                         if (player.getEntityWorld().isRemote) {
                             for (int i = 0; (float) i < 60.0F; ++i) {

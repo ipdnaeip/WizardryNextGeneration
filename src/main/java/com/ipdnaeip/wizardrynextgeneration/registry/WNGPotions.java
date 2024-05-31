@@ -30,6 +30,7 @@ public class WNGPotions {
     public static final Potion empowerment_necromancy = new PotionEmpowerment(11141290, new ResourceLocation("ebwizardry", "textures/items/crystal_necromancy.png")).setBeneficial();
     public static final Potion empowerment_sorcery = new PotionEmpowerment(5635925, new ResourceLocation("ebwizardry", "textures/items/crystal_sorcery.png")).setBeneficial();
     public static final Potion eye_for_an_eye = new PotionEyeForAnEye().setBeneficial();
+    public static final Potion focus = new PotionFocus().setBeneficial();
     public static final Potion frenzy = new PotionFrenzy();
     public static final Potion gravity = new PotionGravity();
     public static final Potion lightning_reflexes = new PotionLightningReflexes().setBeneficial();
@@ -37,6 +38,7 @@ public class WNGPotions {
     public static final Potion napalm = new PotionNapalm();
     public static final Potion pacify = new PotionPacify();
     public static final Potion preparation = new PotionPreparation().setBeneficial();
+    public static final Potion rally = new PotionRally();
     public static final Potion retribution = new PotionRetribution().setBeneficial();
     public static final Potion shock_weakness = new PotionShockWeakness();
     public static final Potion solar_winds = new PotionSolarWinds().setBeneficial();
@@ -70,6 +72,7 @@ public class WNGPotions {
         registerPotion(registry, "empowerment_necromancy", empowerment_necromancy);
         registerPotion(registry, "empowerment_sorcery", empowerment_sorcery);
         registerPotion(registry, "eye_for_an_eye", eye_for_an_eye);
+        registerPotion(registry, "focus", focus);
         registerPotion(registry, "frenzy", frenzy);
         registerPotion(registry, "gravity", gravity);
         registerPotion(registry, "lightning_reflexes", lightning_reflexes);
@@ -77,6 +80,7 @@ public class WNGPotions {
         registerPotion(registry, "napalm", napalm);
         registerPotion(registry, "pacify", pacify);
         registerPotion(registry, "preparation", preparation);
+        registerPotion(registry, "rally", rally);
         registerPotion(registry, "retribution", retribution);
         registerPotion(registry, "shock_weakness", shock_weakness);
         registerPotion(registry, "solar_winds", solar_winds);

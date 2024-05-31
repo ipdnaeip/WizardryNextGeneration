@@ -3,6 +3,7 @@ package com.ipdnaeip.wizardrynextgeneration.entity.living;
 import com.ipdnaeip.wizardrynextgeneration.entity.ai.EntityBatFlightHelper;
 import com.ipdnaeip.wizardrynextgeneration.registry.WNGPotions;
 import com.ipdnaeip.wizardrynextgeneration.registry.WNGSounds;
+import electroblob.wizardry.Wizardry;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.*;
@@ -24,10 +25,16 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
+import net.minecraftforge.event.entity.living.LivingSpawnEvent;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.eventhandler.Event;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import org.apache.commons.lang3.ArrayUtils;
 
 import javax.annotation.Nullable;
 import java.util.Calendar;
 
+@Mod.EventBusSubscriber
 public class EntityVampireBat extends EntityMob
 {
     private static final DataParameter<Boolean> HANGING = EntityDataManager.createKey(EntityVampireBat.class, DataSerializers.BOOLEAN);
@@ -277,6 +284,15 @@ public class EntityVampireBat extends EntityMob
     public float getEyeHeight()
     {
         return this.height / 2.0F;
+    }
+
+    @SubscribeEvent
+    public static void onCheckSpawnEvent(LivingSpawnEvent.CheckSpawn event){
+        // We have no way of checking if it's a spawner in getCanSpawnHere() so this has to be done here instead
+        if(event.getEntityLiving() instanceof EntityVampireBat && !event.isSpawner()){
+            if(!ArrayUtils.contains(Wizardry.settings.mobSpawnDimensions, event.getWorld().provider.getDimension()))
+                event.setResult(Event.Result.DENY);
+        }
     }
 
     class EntityAIFlyingWander extends EntityAIBase

@@ -4,10 +4,14 @@ import com.google.common.collect.Lists;
 import electroblob.wizardry.entity.ICustomHitbox;
 import electroblob.wizardry.util.EntityUtils;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
+import net.minecraft.util.CombatRules;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
@@ -74,7 +78,7 @@ public final class WNGUtils {
         return result;
     }
 
-    public static <T extends Entity> List<T> getEntitiesWithinCylinder(double radius, double x, double y, double z, double height, World world, Class<T> entityType) {
+/*    public static <T extends Entity> List<T> getEntitiesWithinCylinder(double radius, double x, double y, double z, double height, World world, Class<T> entityType) {
         AxisAlignedBB aabb = new AxisAlignedBB(x - radius, y, z - radius, x + radius, y + height, z + radius);
         List<T> entityList = world.getEntitiesWithinAABB(entityType, aabb);
         for(T entity : entityList) {
@@ -84,7 +88,8 @@ public final class WNGUtils {
             }
         }
         return entityList;
-    }
+    }*/
+
 
     public static boolean hasSunlight(World world, Entity entity) {
         return world.isDaytime() && world.canSeeSky(new BlockPos(entity.posX, entity.posY + entity.getEyeHeight(), entity.posZ));
@@ -110,6 +115,29 @@ public final class WNGUtils {
             }
         }
         return potionCuratedList.get((int)(Math.random() * (potionCuratedList.size() - 1)));
+    }
+
+    /**
+     * Set the damagesource to bypass armor
+     * If subtract is true, the penetration value will be subtracted from the entity's armor
+     * If subtract is false, the penetration value will ignore a percentage of the entity's armor
+     *
+     * @param entity The entity whose armor is being penetrated
+     * @param damage The damage being modified
+     * @param penetration The penetration value
+     * @param subtract If true, the penetration value is subtracted from the entity's total armor, otherwise the it penetrates a percentage of the entity's armor
+     * @return The damage amount post armor and penetration calculations
+     */
+    public static float penetrationDamage(EntityLivingBase entity, float damage, float penetration, boolean subtract) {
+        float armor = (float)entity.getTotalArmorValue();
+        if (subtract) {
+            armor = penetration < armor ? armor - penetration : 0f;
+        }
+        else {
+            armor = penetration < 1f ? armor -= armor * penetration : 0;
+        }
+        damage = CombatRules.getDamageAfterAbsorb(damage, armor, (float)entity.getEntityAttribute(SharedMonsterAttributes.ARMOR_TOUGHNESS).getAttributeValue());
+        return damage;
     }
 
     public static boolean doesPlayerHaveLessThanItem(EntityPlayer player, Item item, int amount) {

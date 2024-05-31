@@ -26,7 +26,7 @@ public class EntityWhirlpool extends EntityScaledConstruct {
         }
         super.onUpdate();
         if (!this.world.isRemote) {
-            List<EntityLivingBase> targets = WNGUtils.getEntitiesWithinCylinder((this.width / 2.0F), this.posX, this.posY, this.posZ, 0.5f, this.world, EntityLivingBase.class);
+            List<EntityLivingBase> targets = EntityUtils.getEntitiesWithinCylinder((this.width / 2.0F), this.posX, this.posY, this.posZ, 0.5f, this.world, EntityLivingBase.class);
             for (EntityLivingBase target : targets) {
                 if (this.isValidTarget(target)) {
                     if (this.ticksExisted % 10 == 0) {

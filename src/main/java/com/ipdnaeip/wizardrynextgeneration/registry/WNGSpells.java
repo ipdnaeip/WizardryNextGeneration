@@ -112,6 +112,10 @@ public final class WNGSpells {
     public static final Spell retribution = placeholder();
     public static final Spell eye_for_an_eye = placeholder();
 
+    //WNG 1.0.5 Spells
+    public static final Spell animal_allegiance = placeholder();
+    public static final Spell boost_morale = placeholder();
+
     @SubscribeEvent
     public static void register(RegistryEvent.Register<Spell> event) {
 
@@ -209,6 +213,11 @@ public final class WNGSpells {
         //registry.register(new PiercingMass());
         //not sure if this is even possible
         //registry.register(new Energize());
+
+        // WNG 1.0.5 Spells (2)
+
+        registry.register(new AnimalAllegiance());
+        //registry.register(new Inspire());
 
     }
 }

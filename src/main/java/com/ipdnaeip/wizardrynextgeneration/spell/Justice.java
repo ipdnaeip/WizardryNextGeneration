@@ -26,7 +26,6 @@ public class Justice extends SpellAreaEffect  {
         this.particleDensity(0.5F);
         this.targetAllies(false);
         this.alwaysSucceed(true);
-        this.addProperties();
     }
 
     @Override

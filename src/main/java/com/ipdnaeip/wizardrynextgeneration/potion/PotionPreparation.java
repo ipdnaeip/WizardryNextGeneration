@@ -23,12 +23,11 @@ public class PotionPreparation extends PotionMagicEffect {
     public static void onSpellCastPreEvent(SpellCastEvent.Pre event) {
         if (event.getCaster() instanceof EntityPlayer) {
             EntityPlayer player = (EntityPlayer) event.getCaster();
-            SpellModifiers modifiers = event.getModifiers();
             if (player.isPotionActive(WNGPotions.preparation)) {
+                SpellModifiers modifiers = event.getModifiers();
                 float multiplier = (2f / (player.getActivePotionEffect(WNGPotions.preparation).getAmplifier() + 3f));
-                //System.out.println("p " + multiplier);
-                modifiers.set("cost", multiplier, false);
-                modifiers.set("chargeup", multiplier, false);
+                modifiers.set(SpellModifiers.COST, multiplier, false);
+                modifiers.set(SpellModifiers.CHARGEUP, multiplier, false);
             }
         }
     }

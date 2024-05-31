@@ -36,7 +36,7 @@ public class EntityNapalm extends EntityLivingScaledConstruct {
             this.explode();
         }
         if (!this.world.isRemote) {
-            List<EntityLivingBase> targets = WNGUtils.getEntitiesWithinCylinder(this.width / 2, this.posX, this.posY, this.posZ, this.height, this.world, EntityLivingBase.class);
+            List<EntityLivingBase> targets = EntityUtils.getEntitiesWithinCylinder(this.width / 2, this.posX, this.posY, this.posZ, this.height, this.world, EntityLivingBase.class);
             for (EntityLivingBase target : targets) {
                 if (isValidTarget(target)) {
                     if (!target.isPotionActive(WNGPotions.napalm)) {

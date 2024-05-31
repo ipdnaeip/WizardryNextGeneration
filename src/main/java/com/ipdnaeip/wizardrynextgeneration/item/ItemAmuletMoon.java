@@ -23,9 +23,9 @@ public class ItemAmuletMoon extends ItemCooldownArtefact {
 
     @Override
     public boolean isReady(World world, ItemStack stack) {
-        if (world != null && !stack.isEmpty() && stack.hasTagCompound() && stack.getTagCompound().hasKey(WNGConstants.CD_ARTEFACT_LAST_TIME_ACTIVATED)) {
+        if (world != null && !stack.isEmpty() && stack.hasTagCompound() && stack.getTagCompound().hasKey(CD_ARTEFACT_LAST_TIME_ACTIVATED)) {
             long currentWorldTime = world.getTotalWorldTime();
-            long lastAccess = stack.getTagCompound().getLong(WNGConstants.CD_ARTEFACT_LAST_TIME_ACTIVATED);
+            long lastAccess = stack.getTagCompound().getLong(CD_ARTEFACT_LAST_TIME_ACTIVATED);
             return isCooldownReset(lastAccess, currentWorldTime) && stack.getTagCompound().getBoolean(WNGConstants.AMULET_MOON_FULL_MOON);
         }
         return true;

@@ -1,0 +1,9 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "wizardrynextgeneration:items/charm_bloodstone"
+  },
+  "overrides": [
+    {"predicate": {"active": 1.0}, "model": "wizardrynextgeneration:item/charm_bloodstone_inactive"}
+  ]
+}

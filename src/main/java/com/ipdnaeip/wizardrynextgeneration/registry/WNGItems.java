@@ -41,6 +41,7 @@ public final class WNGItems {
 
     //magical items
     public static final Item conjured_potion = placeholder();
+    //public static final Item magical_belt = placeholder();
     public static final Item scroll_wng = placeholder();
     public static final Item spell_book_wng = placeholder();
     public static final Item spell_encyclopedia = placeholder();
@@ -59,9 +60,11 @@ public final class WNGItems {
     public static final Item body_artemis = placeholder();
 
     //charm
+    public static final Item charm_bloodstone = placeholder();
     public static final Item charm_dice = placeholder();
     public static final Item charm_horn = placeholder();
     public static final Item charm_lingering = placeholder();
+    public static final Item charm_pyramid = placeholder();
     public static final Item charm_yang = placeholder();
     public static final Item charm_yin = placeholder();
     public static final Item charm_yin_yang = placeholder();
@@ -69,6 +72,7 @@ public final class WNGItems {
     //head
     public static final Item head_hashashin = placeholder();
     public static final Item head_ra = placeholder();
+    //public static final Item head_rally = placeholder();
     public static final Item head_raijin = placeholder();
     public static final Item head_thorns = placeholder();
 
@@ -144,6 +148,7 @@ public final class WNGItems {
 
         //magical items
         registerItem(registry, "conjured_potion", new ItemConjuredPotion());
+        //registerItem(registry, "magical_belt", new ItemMagicalJewellery(ItemArtefact.Type.BELT));
         registerItem(registry, "scroll_wng", new ItemScroll());
         registerItem(registry, "spell_book_wng", new ItemWNGSpellBook());
         registerItem(registry, "spell_encyclopedia", new ItemSpellEncyclopedia());
@@ -162,9 +167,11 @@ public final class WNGItems {
         registerItem(registry, "body_hashashin", new ItemWNGArtefact(EnumRarity.RARE, ItemArtefact.Type.BODY));
 
         //charm
+        registerItem(registry, "charm_bloodstone", new ItemCharmBloodstone(EnumRarity.RARE, ItemArtefact.Type.CHARM));
         registerItem(registry, "charm_dice", new ItemWNGArtefact(EnumRarity.EPIC, ItemArtefact.Type.CHARM));
         registerItem(registry, "charm_horn", new ItemCharmHorn(EnumRarity.EPIC, ItemArtefact.Type.CHARM));
         registerItem(registry, "charm_lingering", new ItemWNGArtefact(EnumRarity.EPIC, ItemArtefact.Type.CHARM));
+        registerItem(registry, "charm_pyramid", new ItemWNGArtefact(EnumRarity.RARE, ItemArtefact.Type.CHARM));
         registerItem(registry, "charm_yang", new ItemWNGArtefact(EnumRarity.RARE, ItemArtefact.Type.CHARM));
         registerItem(registry, "charm_yin", new ItemWNGArtefact(EnumRarity.RARE, ItemArtefact.Type.CHARM));
         registerItem(registry, "charm_yin_yang", new ItemWNGArtefact(EnumRarity.EPIC, ItemArtefact.Type.CHARM));
@@ -172,6 +179,7 @@ public final class WNGItems {
         //head
         registerItem(registry, "head_hashashin", new ItemWNGArtefact(EnumRarity.RARE, ItemArtefact.Type.HEAD));
         registerItem(registry, "head_ra", new ItemWNGArtefact(EnumRarity.EPIC, ItemArtefact.Type.HEAD));
+        //registerItem(registry, "head_rally", new ItemWNGArtefact(EnumRarity.RARE, ItemArtefact.Type.HEAD));
         registerItem(registry, "head_raijin", new ItemWNGArtefact(EnumRarity.EPIC, ItemArtefact.Type.HEAD));
         registerItem(registry, "head_thorns", new ItemWNGArtefact(EnumRarity.RARE, ItemArtefact.Type.HEAD));
 

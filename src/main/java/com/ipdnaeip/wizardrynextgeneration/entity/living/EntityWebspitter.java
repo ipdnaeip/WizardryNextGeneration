@@ -1,7 +1,7 @@
 package com.ipdnaeip.wizardrynextgeneration.entity.living;
 
 import com.ipdnaeip.wizardrynextgeneration.WizardryNextGeneration;
-import com.ipdnaeip.wizardrynextgeneration.registry.WNGSpells;
+import electroblob.wizardry.Wizardry;
 import electroblob.wizardry.registry.Spells;
 import electroblob.wizardry.util.SpellModifiers;
 import net.minecraft.entity.*;
@@ -11,6 +11,10 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.event.entity.living.LivingSpawnEvent;
+import net.minecraftforge.fml.common.eventhandler.Event;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import org.apache.commons.lang3.ArrayUtils;
 
 public class EntityWebspitter extends EntitySpider {
 
@@ -44,6 +48,15 @@ public class EntityWebspitter extends EntitySpider {
     @Override
     protected ResourceLocation getLootTable() {
         return LOOT_TABLE;
+    }
+
+    @SubscribeEvent
+    public static void onCheckSpawnEvent(LivingSpawnEvent.CheckSpawn event){
+        // We have no way of checking if it's a spawner in getCanSpawnHere() so this has to be done here instead
+        if(event.getEntityLiving() instanceof EntityWebspitter && !event.isSpawner()){
+            if(!ArrayUtils.contains(Wizardry.settings.mobSpawnDimensions, event.getWorld().provider.getDimension()))
+                event.setResult(Event.Result.DENY);
+        }
     }
 
     static class AICobwebAttack extends EntityAIBase {

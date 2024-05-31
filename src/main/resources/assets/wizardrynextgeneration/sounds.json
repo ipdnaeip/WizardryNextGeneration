@@ -1,7 +1,8 @@
 {
-  "entity.vampire_bat.bite":               {"category": "hostile", "sounds": ["wizardrynextgeneration:fox_eat1", "wizardrynextgeneration:fox_eat2", "wizardrynextgeneration:fox_eat3"]},
+  "entity.vampire_bat.bite":              {"category": "hostile", "sounds": ["wizardrynextgeneration:fox_eat1", "wizardrynextgeneration:fox_eat2", "wizardrynextgeneration:fox_eat3"]},
 
   "spell.accelerated_mass":               {"category": "spells", "sounds": ["wizardrynextgeneration:shot1", "wizardrynextgeneration:shot2", "wizardrynextgeneration:shot3"]},
+  "spell.animal_allegiance": 		      {"category": "spells", "sounds": ["mob/enderdragon/growl1", "mob/enderdragon/growl2", "mob/enderdragon/growl3", "mob/enderdragon/growl4"]},
   "spell.anti_gravitational_field": 	  {"category": "spells", "sounds": ["ebwizardry:effect1", "ebwizardry:effect2"]},
   "spell.anti_gravitational_push.start":  {"category": "spells", "sounds": ["ebwizardry:small_aura_start"]},
   "spell.anti_gravitational_push.loop":   {"category": "spells", "sounds": ["ebwizardry:small_aura_loop"]},
