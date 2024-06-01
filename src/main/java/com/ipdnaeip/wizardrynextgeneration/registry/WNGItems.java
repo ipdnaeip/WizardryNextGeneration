@@ -41,7 +41,7 @@ public final class WNGItems {
 
     //magical items
     public static final Item conjured_potion = placeholder();
-    //public static final Item magical_belt = placeholder();
+    public static final Item magical_belt = placeholder();
     public static final Item scroll_wng = placeholder();
     public static final Item spell_book_wng = placeholder();
     public static final Item spell_encyclopedia = placeholder();
@@ -148,7 +148,7 @@ public final class WNGItems {
 
         //magical items
         registerItem(registry, "conjured_potion", new ItemConjuredPotion());
-        //registerItem(registry, "magical_belt", new ItemMagicalJewellery(ItemArtefact.Type.BELT));
+        registerItem(registry, "magical_belt", new ItemEnchantableJewellery(ItemArtefact.Type.BELT));
         registerItem(registry, "scroll_wng", new ItemScroll());
         registerItem(registry, "spell_book_wng", new ItemWNGSpellBook());
         registerItem(registry, "spell_encyclopedia", new ItemSpellEncyclopedia());

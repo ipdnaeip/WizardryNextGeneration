@@ -22,7 +22,7 @@ public class WizardryNextGeneration
 {
     public static final String MODID = "wizardrynextgeneration";
     public static final String NAME = "Wizardry Next Generation";
-    public static final String VERSION = "1.0.5";
+    public static final String VERSION = "1.0.6";
     public static Settings settings = new Settings();
     public static Logger logger;
     public static File configDirectory;
