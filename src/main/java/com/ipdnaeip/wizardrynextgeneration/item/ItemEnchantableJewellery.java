@@ -1,3 +1,4 @@
+/*
 package com.ipdnaeip.wizardrynextgeneration.item;
 
 import electroblob.wizardry.Wizardry;
@@ -81,3 +82,4 @@ public class ItemEnchantableJewellery extends Item {
     }
 
 }
+*/

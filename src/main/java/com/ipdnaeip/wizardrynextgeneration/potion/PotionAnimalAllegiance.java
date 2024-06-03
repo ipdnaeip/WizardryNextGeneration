@@ -4,8 +4,8 @@ import com.google.common.base.Predicate;
 import com.ipdnaeip.wizardrynextgeneration.WizardryNextGeneration;
 import com.ipdnaeip.wizardrynextgeneration.entity.ai.EntityAIAnimalAttackMelee;
 import com.ipdnaeip.wizardrynextgeneration.entity.ai.EntityAIAnimalNearestAttackTarget;
-import com.ipdnaeip.wizardrynextgeneration.registry.WNGConstants;
 import com.ipdnaeip.wizardrynextgeneration.registry.WNGPotions;
+import com.ipdnaeip.wizardrynextgeneration.util.WNGUtils;
 import electroblob.wizardry.Wizardry;
 import electroblob.wizardry.entity.living.ISummonedCreature;
 import electroblob.wizardry.potion.PotionMagicEffect;
@@ -28,6 +28,9 @@ import java.util.List;
 @Mod.EventBusSubscriber
 public class PotionAnimalAllegiance extends PotionMagicEffect {
 
+    public static final String ANIMAL_ALLEGIANCE_CASTER = WNGUtils.registerTag("animal_alliance_caster");
+    public static final String ANIMAL_ATTACK_MULTIPLIER = WNGUtils.registerTag("animal_attack_multiplier");
+
     public PotionAnimalAllegiance() {
         super(false, 0xFFE293, new ResourceLocation(WizardryNextGeneration.MODID, "textures/gui/potion_icons/animal_alliance.png"));
         this.setPotionName("potion." + WizardryNextGeneration.MODID + ":animal_allegiance");
@@ -37,7 +40,7 @@ public class PotionAnimalAllegiance extends PotionMagicEffect {
     public static void onLivingSetAttackTargetEvent(LivingSetAttackTargetEvent event) {
         if (event.getEntityLiving().isPotionActive(WNGPotions.animal_allegiance) && event.getEntityLiving() instanceof EntityLiving && event.getTarget() != null) {
             EntityLiving entity = (EntityLiving)event.getEntityLiving();
-            if (event.getTarget() == EntityUtils.getEntityByUUID(entity.world, entity.getEntityData().getUniqueId(WNGConstants.ANIMAL_ALLEGIANCE_CASTER))) {
+            if (event.getTarget() == EntityUtils.getEntityByUUID(entity.world, entity.getEntityData().getUniqueId(ANIMAL_ALLEGIANCE_CASTER))) {
                 ((EntityLiving) event.getEntityLiving()).setAttackTarget(null);
             }
         }
@@ -45,12 +48,13 @@ public class PotionAnimalAllegiance extends PotionMagicEffect {
 
     @SubscribeEvent
     public static void onPotionAddedEvent(PotionEvent.PotionAddedEvent event) {
-        if (event.getEntityLiving() instanceof EntityAnimal) {
-            EntityAnimal entity = (EntityAnimal)event.getEntityLiving();
-            float attackDamage = (float)(entity.getAttributeMap().getAttributeInstance(SharedMonsterAttributes.ATTACK_DAMAGE).getAttributeValue());
-            attackDamage *= entity.getEntityData().hasKey(WNGConstants.ANIMAL_ATTACK_MULTIPLIER) ? entity.getEntityData().getFloat(WNGConstants.ANIMAL_ATTACK_MULTIPLIER) : 1f;
+        if (event.getEntityLiving() instanceof EntityAnimal && event.getPotionEffect().getPotion() == WNGPotions.animal_allegiance) {
+            EntityAnimal entity = (EntityAnimal) event.getEntityLiving();
+            float attackDamage = entity.getAttributeMap().getAllAttributes().contains(SharedMonsterAttributes.ATTACK_DAMAGE) ? (float)(entity.getAttributeMap().getAttributeInstance(SharedMonsterAttributes.ATTACK_DAMAGE).getAttributeValue()) : (float)SharedMonsterAttributes.ATTACK_DAMAGE.getDefaultValue();
+            attackDamage *= entity.getEntityData().hasKey(ANIMAL_ATTACK_MULTIPLIER) ? entity.getEntityData().getFloat(ANIMAL_ATTACK_MULTIPLIER) : 1f;
             entity.tasks.addTask(0, new EntityAIAnimalAttackMelee(entity, 1.5, attackDamage));
-            entity.targetTasks.addTask(0, new EntityAIAnimalNearestAttackTarget(entity, EntityLivingBase.class, 0, false, true, getNewTargetSelector((EntityLivingBase)(EntityUtils.getEntityByUUID(entity.world, entity.getEntityData().getUniqueId(WNGConstants.ANIMAL_ALLEGIANCE_CASTER))))));
+            entity.targetTasks.addTask(0, new EntityAIAnimalNearestAttackTarget(entity, EntityLivingBase.class, 0, false, true, getNewTargetSelector((EntityLivingBase) (EntityUtils.getEntityByUUID(entity.world, entity.getEntityData().getUniqueId(ANIMAL_ALLEGIANCE_CASTER))))));
+
         }
     }
 

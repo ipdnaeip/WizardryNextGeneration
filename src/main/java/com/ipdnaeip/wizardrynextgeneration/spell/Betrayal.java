@@ -3,70 +3,31 @@ package com.ipdnaeip.wizardrynextgeneration.spell;
 import com.ipdnaeip.wizardrynextgeneration.WizardryNextGeneration;
 import com.ipdnaeip.wizardrynextgeneration.registry.WNGItems;
 import com.ipdnaeip.wizardrynextgeneration.registry.WNGPotions;
-import com.ipdnaeip.wizardrynextgeneration.registry.WNGSpells;
 import electroblob.wizardry.item.SpellActions;
-import electroblob.wizardry.registry.WizardryItems;
-import electroblob.wizardry.spell.SpellRay;
-import electroblob.wizardry.util.EntityUtils;
+import electroblob.wizardry.spell.SpellBuff;
 import electroblob.wizardry.util.ParticleBuilder;
 import electroblob.wizardry.util.SpellModifiers;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.item.Item;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
-import java.util.Iterator;
-import java.util.List;
-
-
-public class Betrayal extends SpellRay {
+public class Betrayal extends SpellBarrage {
 
     public Betrayal() {
         super(WizardryNextGeneration.MODID, "betrayal", SpellActions.POINT, false);
         this.soundValues(1F, 0.1F, 0.1F);
-        this.addProperties(EFFECT_RADIUS, EFFECT_DURATION);
+        this.addProperties(EFFECT_RADIUS, EFFECT_STRENGTH, EFFECT_DURATION);
     }
 
     @Override
-    protected boolean onEntityHit(World world, Entity target, Vec3d hit, EntityLivingBase caster, Vec3d origin, int ticksInUse, SpellModifiers modifiers) {
-        if (!world.isRemote && target instanceof EntityLivingBase) {
-            double range = (WNGSpells.betrayal.getProperty(EFFECT_RADIUS).floatValue() * modifiers.get(WizardryItems.blast_upgrade));
-            List<EntityLivingBase> targets = EntityUtils.getLivingWithinRadius(range, target.posX, target.posY, target.posZ, world);
-            for (EntityLivingBase targetEntity : targets) {
-                if (targetEntity != caster) {
-                    targetEntity.addPotionEffect(new PotionEffect(WNGPotions.betrayal, this.getProperty(EFFECT_DURATION).intValue(), (int) ((modifiers.get(SpellModifiers.POTENCY) - 1) * 3.5)));
-                }
-            }
+    protected void barrageEffect(World world, EntityLivingBase target, EntityLivingBase caster, int ticksInUse, SpellModifiers modifiers) {
+        if (target instanceof EntityLiving && target instanceof IMob) {
+            int bonusAmplifier = SpellBuff.getStandardBonusAmplifier(modifiers.get(SpellModifiers.POTENCY));
+            target.addPotionEffect(new PotionEffect(WNGPotions.betrayal, this.getProperty(EFFECT_DURATION).intValue(), (int)this.getProperty(EFFECT_STRENGTH).floatValue() + bonusAmplifier));
         }
-        return true;
-    }
-
-    @Override
-    protected boolean onBlockHit(World world, BlockPos pos, EnumFacing side, Vec3d hit, EntityLivingBase caster, Vec3d origin, int ticksInUse, SpellModifiers modifiers) {
-        if (!world.isRemote) {
-            double range = (WNGSpells.betrayal.getProperty(EFFECT_RADIUS).floatValue() * modifiers.get(WizardryItems.blast_upgrade));
-            List<EntityLivingBase> targets = EntityUtils.getLivingWithinRadius(range, pos.getX(), pos.getY(), pos.getZ(), world);
-            Iterator var6 = targets.iterator();
-
-            while (var6.hasNext()) {
-                EntityLivingBase targetEntity = (EntityLivingBase) var6.next();
-                if (targetEntity != caster) {
-                    targetEntity.addPotionEffect(new PotionEffect(WNGPotions.betrayal, (int)(this.getProperty(EFFECT_DURATION).floatValue() * modifiers.get(WizardryItems.duration_upgrade)), (int)((modifiers.get(SpellModifiers.POTENCY) -1) * 3.5)));
-                }
-            }
-        }
-        return true;
-    }
-
-    @Override
-    protected boolean onMiss(World world, EntityLivingBase caster, Vec3d origin, Vec3d direction, int ticksInUse, SpellModifiers modifiers) {
-        return false;
     }
 
     @Override

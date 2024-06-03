@@ -1,6 +1,7 @@
 package com.ipdnaeip.wizardrynextgeneration.spell;
 
 import com.ipdnaeip.wizardrynextgeneration.WizardryNextGeneration;
+import com.ipdnaeip.wizardrynextgeneration.potion.PotionAnimalAllegiance;
 import com.ipdnaeip.wizardrynextgeneration.registry.WNGConstants;
 import com.ipdnaeip.wizardrynextgeneration.registry.WNGItems;
 import com.ipdnaeip.wizardrynextgeneration.registry.WNGPotions;
@@ -34,7 +35,7 @@ public class AnimalAllegiance extends SpellAreaEffect  {
         target.addPotionEffect(new PotionEffect(WNGPotions.animal_allegiance, this.getProperty(EFFECT_DURATION).intValue(), 0));
         if (caster != null) {
             NBTTagCompound entityNBT = target.getEntityData();
-            entityNBT.setUniqueId(WNGConstants.ANIMAL_ALLEGIANCE_CASTER, caster.getUniqueID());
+            entityNBT.setUniqueId(PotionAnimalAllegiance.ANIMAL_ALLEGIANCE_CASTER, caster.getUniqueID());
         }
         return true;
     }

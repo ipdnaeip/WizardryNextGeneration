@@ -4,10 +4,9 @@ import baubles.api.BaublesApi;
 import com.ipdnaeip.wizardrynextgeneration.item.ItemAmuletMoon;
 import com.ipdnaeip.wizardrynextgeneration.item.ItemCharmBloodstone;
 import com.ipdnaeip.wizardrynextgeneration.item.ItemCharmHorn;
-import com.ipdnaeip.wizardrynextgeneration.potion.PotionRally;
-import com.ipdnaeip.wizardrynextgeneration.registry.WNGConstants;
 import com.ipdnaeip.wizardrynextgeneration.registry.WNGItems;
 import com.ipdnaeip.wizardrynextgeneration.registry.WNGPotions;
+import com.ipdnaeip.wizardrynextgeneration.util.WNGUtils;
 import electroblob.wizardry.Wizardry;
 import electroblob.wizardry.constants.Element;
 import electroblob.wizardry.constants.Tier;
@@ -19,35 +18,26 @@ import electroblob.wizardry.util.EntityUtils;
 import electroblob.wizardry.util.IElementalDamage;
 import electroblob.wizardry.util.MagicDamage;
 import electroblob.wizardry.util.SpellModifiers;
-import net.minecraft.block.Block;
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityArrow;
-import net.minecraft.entity.projectile.EntityTippedArrow;
 import net.minecraft.init.Items;
 import net.minecraft.init.MobEffects;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
-import net.minecraft.util.FoodStats;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.BiomeDictionary;
-import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.ProjectileImpactEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.living.LootingLevelEvent;
-import net.minecraftforge.event.entity.living.PotionEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
-import net.minecraftforge.fml.common.eventhandler.Event;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
-import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
@@ -58,6 +48,7 @@ import static electroblob.wizardry.item.ItemArtefact.getActiveArtefacts;
 public class WNGEventHandler {
 
     private static final Method getArrowStack = ObfuscationReflectionHelper.findMethod(EntityArrow.class, "func_184550_j", ItemStack.class);
+    public static final String LAST_SPELL_ELEMENT = WNGUtils.registerTag("last_spell_element");
 
     private WNGEventHandler() {}
 
@@ -231,7 +222,7 @@ public class WNGEventHandler {
                 }
                 else if (artefact ==  WNGItems.ring_rainbow) {
                     NBTTagCompound entityNBT = player.getEntityData();
-                    if (spell.getElement() != Element.fromName(entityNBT.getString(WNGConstants.LAST_SPELL_ELEMENT), null)) {
+                    if (spell.getElement() != Element.fromName(entityNBT.getString(LAST_SPELL_ELEMENT), null)) {
                         modifiers.set(SpellModifiers.POTENCY, 1.3F * potency, false);
                     }
                 }
@@ -249,7 +240,7 @@ public class WNGEventHandler {
         if (event.getCaster() != null) {
             EntityLivingBase caster = event.getCaster();
             NBTTagCompound entityNBT = caster.getEntityData();
-            entityNBT.setString(WNGConstants.LAST_SPELL_ELEMENT, event.getSpell().getElement().getName());
+            entityNBT.setString(LAST_SPELL_ELEMENT, event.getSpell().getElement().getName());
         }
         if (event.getCaster() instanceof EntityPlayer) {
             EntityPlayer player = (EntityPlayer) event.getCaster();

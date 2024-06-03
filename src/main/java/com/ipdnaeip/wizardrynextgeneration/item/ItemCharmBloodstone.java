@@ -1,25 +1,19 @@
 package com.ipdnaeip.wizardrynextgeneration.item;
 
-import com.ipdnaeip.wizardrynextgeneration.registry.WNGConstants;
+import com.ipdnaeip.wizardrynextgeneration.util.WNGUtils;
 import electroblob.wizardry.client.DrawingUtils;
 import electroblob.wizardry.constants.Constants;
 import electroblob.wizardry.item.IManaStoringItem;
 import electroblob.wizardry.item.IWorkbenchItem;
 import electroblob.wizardry.registry.WizardryItems;
 import electroblob.wizardry.registry.WizardryRecipes;
-import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.Slot;
-import net.minecraft.item.EnumAction;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.IItemPropertyGetter;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.potion.PotionEffect;
-import net.minecraft.stats.StatList;
 import net.minecraft.util.*;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
@@ -29,7 +23,7 @@ import javax.annotation.Nullable;
 
 public class ItemCharmBloodstone extends ItemWNGArtefact implements IWorkbenchItem, IManaStoringItem {
 
-    public static final String BLOODSTONE_IS_ACTIVE = WNGConstants.registerTag("bloodstone_is_active");
+    public static final String BLOODSTONE_IS_ACTIVE = WNGUtils.registerTag("bloodstone_is_active");
     public static final int MAX_MANA = 1000;
     public static final int TICKS_INBETWEEN = 100;
     public static final int CHARGE_PER_USE = 5;

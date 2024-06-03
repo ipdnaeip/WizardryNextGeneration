@@ -1,8 +1,6 @@
 package com.ipdnaeip.wizardrynextgeneration.item;
 
-import com.ipdnaeip.wizardrynextgeneration.registry.WNGConstants;
-import com.ipdnaeip.wizardrynextgeneration.registry.WNGSpells;
-import electroblob.wizardry.util.SpellModifiers;
+import com.ipdnaeip.wizardrynextgeneration.util.WNGUtils;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumRarity;
@@ -19,7 +17,7 @@ import javax.annotation.Nullable;
 //most of the code was copied from Windanesz's ItemDailyArtefact
 public abstract class ItemCooldownArtefact extends ItemWNGArtefact {
 
-    public static final String CD_ARTEFACT_LAST_TIME_ACTIVATED = WNGConstants.registerTag("cd_artefact_last_time_activated");
+    public static final String CD_ARTEFACT_LAST_TIME_ACTIVATED = WNGUtils.registerTag("cd_artefact_last_time_activated");
     public long cooldown;
 
     public ItemCooldownArtefact(EnumRarity rarity, Type type) {

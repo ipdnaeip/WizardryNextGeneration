@@ -1,6 +1,7 @@
 package com.ipdnaeip.wizardrynextgeneration.util;
 
 import com.google.common.collect.Lists;
+import com.ipdnaeip.wizardrynextgeneration.WizardryNextGeneration;
 import electroblob.wizardry.entity.ICustomHitbox;
 import electroblob.wizardry.util.EntityUtils;
 import net.minecraft.entity.Entity;
@@ -26,6 +27,10 @@ import java.util.function.Predicate;
 public final class WNGUtils {
 
     private WNGUtils() {
+    }
+
+    public static String registerTag(String key) {
+        return WizardryNextGeneration.MODID + "." + key;
     }
 
     public static boolean isEntityStill(Entity entity) {
