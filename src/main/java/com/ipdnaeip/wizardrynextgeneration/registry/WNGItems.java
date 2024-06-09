@@ -41,7 +41,13 @@ public final class WNGItems {
 
     //magical items
     public static final Item conjured_potion = placeholder();
-    //public static final Item magical_belt = placeholder();
+    public static final Item enchantable_amulet = placeholder();
+    public static final Item enchantable_belt = placeholder();
+    public static final Item enchantable_body = placeholder();
+    public static final Item enchantable_charm = placeholder();
+    public static final Item enchantable_head = placeholder();
+    public static final Item enchantable_ring = placeholder();
+    public static final Item enchantable_trinket = placeholder();
     public static final Item scroll_wng = placeholder();
     public static final Item spell_book_wng = placeholder();
     public static final Item spell_encyclopedia = placeholder();
@@ -148,7 +154,13 @@ public final class WNGItems {
 
         //magical items
         registerItem(registry, "conjured_potion", new ItemConjuredPotion());
-        //registerItem(registry, "magical_belt", new ItemEnchantableJewellery(ItemArtefact.Type.BELT));
+        registerItem(registry, "enchantable_amulet", new ItemEnchantableJewellery(ItemArtefact.Type.AMULET));
+        registerItem(registry, "enchantable_belt", new ItemEnchantableJewellery(ItemArtefact.Type.BELT));
+        registerItem(registry, "enchantable_body", new ItemEnchantableJewellery(ItemArtefact.Type.BODY));
+        registerItem(registry, "enchantable_charm", new ItemEnchantableJewellery(ItemArtefact.Type.CHARM));
+        registerItem(registry, "enchantable_head", new ItemEnchantableJewellery(ItemArtefact.Type.HEAD));
+        registerItem(registry, "enchantable_ring", new ItemEnchantableJewellery(ItemArtefact.Type.RING));
+        registerItem(registry, "enchantable_trinket", new ItemEnchantableJewellery(ItemArtefact.Type.TRINKET));
         registerItem(registry, "scroll_wng", new ItemScroll());
         registerItem(registry, "spell_book_wng", new ItemWNGSpellBook());
         registerItem(registry, "spell_encyclopedia", new ItemSpellEncyclopedia());

@@ -41,11 +41,11 @@ public class LunarSalve extends SpellBuff {
         else if (!caster.getActivePotionEffects().isEmpty() && WNGUtils.hasMoonlight(caster.world, caster)) {
             ItemStack milk = new ItemStack(Items.MILK_BUCKET);
             boolean flag = false;
-            for (Object o : new ArrayList(caster.getActivePotionEffects())) {
-                PotionEffect effect = (PotionEffect) o;
+            for (PotionEffect effect : caster.getActivePotionEffects()) {
                 if (effect.isCurativeItem(milk) && effect.getPotion().isBadEffect()) {
                     caster.removePotionEffect(effect.getPotion());
                     flag = true;
+                    break;
                 }
             }
             return flag;

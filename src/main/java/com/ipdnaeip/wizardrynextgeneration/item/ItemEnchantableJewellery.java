@@ -1,4 +1,3 @@
-/*
 package com.ipdnaeip.wizardrynextgeneration.item;
 
 import electroblob.wizardry.Wizardry;
@@ -33,20 +32,17 @@ public class ItemEnchantableJewellery extends Item {
     }
 
     @Override
-    public int getMaxItemUseDuration(ItemStack stack)
-    {
+    public int getMaxItemUseDuration(ItemStack stack) {
         return 20;
     }
 
     @Override
-    public EnumAction getItemUseAction(ItemStack stack)
-    {
+    public EnumAction getItemUseAction(ItemStack stack) {
         return EnumAction.BLOCK;
     }
 
     @Override
-    public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn)
-    {
+    public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
         playerIn.setActiveHand(handIn);
         return new ActionResult<>(EnumActionResult.SUCCESS, playerIn.getHeldItem(handIn));
     }
@@ -58,28 +54,20 @@ public class ItemEnchantableJewellery extends Item {
 
     @Override
     public ItemStack onItemUseFinish(ItemStack stack, World world, EntityLivingBase entityLiving) {
-
         if (entityLiving instanceof EntityPlayer && !world.isRemote) {
-
-            LootTable table = world.getLootTableManager().getLootTableFromLocation(new ResourceLocation(Wizardry.MODID, "chests/shrine"));
-            LootContext context = new LootContext.Builder((WorldServer) world).withPlayer((EntityPlayer) entityLiving).withLuck(0).build();
-
-            List<ItemStack> artefacts = new ArrayList<>();
-            table.getPool("artefact").generateLoot(artefacts, world.rand, context);
-
-            for (ItemStack artefact : artefacts) {
-                if (!(artefact.getItem() instanceof ItemArtefact || ((ItemArtefact)(artefact.getItem())).getType() == this.type)) {
-                    artefacts.remove(artefact);
-                    break;
+            for (int x = 0; x < 50; x++) {
+                LootTable table = world.getLootTableManager().getLootTableFromLocation(new ResourceLocation(Wizardry.MODID, "chests/shrine"));
+                LootContext context = new LootContext.Builder((WorldServer) world).withPlayer((EntityPlayer) entityLiving).withLuck(0).build();
+                List<ItemStack> artefacts = new ArrayList<>();
+                table.getPool("artefact").generateLoot(artefacts, world.rand, context);
+                for (ItemStack artefact : artefacts) {
+                    if ((artefact.getItem() instanceof ItemArtefact && ((ItemArtefact) (artefact.getItem())).getType() == this.type)) {
+                        return artefact;
+                    }
                 }
             }
-
-            System.out.println("list size: " + artefacts.size());
-            return artefacts.get(itemRand.nextInt(artefacts.size()));
-
         }
         return super.onItemUseFinish(stack, world, entityLiving);
     }
 
 }
-*/

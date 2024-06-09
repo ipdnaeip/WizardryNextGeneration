@@ -55,7 +55,6 @@ public class WNGLoot {
         } else if (event.getName().toString().equals(WizardryNextGeneration.MODID + ":subsets/epic_artefacts")) {
             EPIC_ARTEFACTS = event.getTable();
         }
-
         // Inject books and scrolls to ebwiz tables
         if (event.getName().toString().equals(Wizardry.MODID + ":chests/library_ruins_bookshelf") && LIBRARY_RUINS_BOOKSHELF != null) {
             LootPool targetPool = event.getTable().getPool("wizardry");
@@ -84,7 +83,6 @@ public class WNGLoot {
             injectEntries(sourcePool, targetPool);
 
         }
-
         // inject artefacts to ebwiz tables
         if (event.getName().toString().equals(Wizardry.MODID + ":subsets/uncommon_artefacts") && UNCOMMON_ARTEFACTS != null) {
             LootPool targetPool = event.getTable().getPool("uncommon_artefacts");
@@ -101,9 +99,8 @@ public class WNGLoot {
             LootPool sourcePool = EPIC_ARTEFACTS.getPool("main");
             injectEntries(sourcePool, targetPool);
         }
-
-
     }
+
     private static void injectEntries(LootPool sourcePool, LootPool targetPool) {
         // Accessing {@link net.minecraft.world.storage.loot.LootPool.lootEntries}
         if (sourcePool != null && targetPool != null) {
@@ -115,7 +112,6 @@ public class WNGLoot {
         } else {
             WizardryNextGeneration.logger.warn("Attempted to inject to null pool source or target.");
         }
-
     }
 
     private static LootPool getAdditive(String entryName, String poolName) {

@@ -1,4 +1,3 @@
-/*
 package com.ipdnaeip.wizardrynextgeneration.handler;
 
 import com.ipdnaeip.wizardrynextgeneration.WizardryNextGeneration;
@@ -29,6 +28,14 @@ public class ExperiencedPotionHandler {
             (NBTTagList nbtTagList) -> new ArrayList<>(NBTExtras.NBTToList(nbtTagList, NBTTagString::getString)),
             Persistence.ALWAYS);
 
+/*    // Define a stored variable to keep track of experienced potion names
+    public static final IStoredVariable<List<String>> EXPERIENCED_POTION_NAMES = new IStoredVariable.StoredVariable<List<String>, NBTTagList>("wizardrynextgeneration.experiencedPotionNames",
+            // Convert list of strings to NBTTagList
+            stringList -> NBTExtras.listToNBT(stringList, NBTTagString::new),
+            // Convert NBTTagList to list of strings
+            (NBTTagList nbtTagList) -> new ArrayList<>(NBTExtras.NBTToList(nbtTagList, NBTTagString::getString)),
+            Persistence.ALWAYS).setSynced();*/
+
     private ExperiencedPotionHandler() {}
 
     @SubscribeEvent
@@ -44,17 +51,15 @@ public class ExperiencedPotionHandler {
                 List<String> potionNameList = data.getVariable(EXPERIENCED_POTION_NAMES);
                 // If the list is null, initialize it
                 if (potionNameList == null) {
-                    potionNameList = new ArrayList<>();
+                    data.setVariable(EXPERIENCED_POTION_NAMES, potionNameList = new ArrayList<>());
                 }
-
                 // If the potion name is not already in the list, add it
                 if (!potionNameList.contains(potionName)) {
                     potionNameList.add(potionName);
                     // Update the wizard data with the modified potion name list
                     data.setVariable(EXPERIENCED_POTION_NAMES, potionNameList);
                     // Send a message to the player about learning the potion effect
-                    WNGUtils.sendMessage(player, "entity." + WizardryNextGeneration.MODID + ":conjured_potion.effect_learned", true,
-                            new TextComponentTranslation(event.getPotionEffect().getPotion().getName()));
+                    WNGUtils.sendMessage(player, "entity." + WizardryNextGeneration.MODID + ":conjured_potion.effect_learned", true, new TextComponentTranslation(event.getPotionEffect().getPotion().getName()));
                 }
             }
         }
@@ -64,4 +69,3 @@ public class ExperiencedPotionHandler {
         WizardData.registerStoredVariables(EXPERIENCED_POTION_NAMES);
     }
 }
-*/
