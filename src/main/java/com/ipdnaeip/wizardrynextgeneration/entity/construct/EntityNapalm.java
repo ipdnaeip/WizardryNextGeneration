@@ -21,6 +21,7 @@ import java.util.List;
 public class EntityNapalm extends EntityLivingScaledConstruct {
 
     public int textureIndex;
+    public boolean burningEntity = false;
 
     public EntityNapalm(World world) {
         super(world);
@@ -30,23 +31,22 @@ public class EntityNapalm extends EntityLivingScaledConstruct {
 
     @Override
     public void onUpdate() {
-        boolean burningEntity = false;
         super.onUpdate();
         if (this.isBurning()) {
             this.explode();
         }
         if (!this.world.isRemote) {
-            List<EntityLivingBase> targets = EntityUtils.getEntitiesWithinCylinder(this.width / 2, this.posX, this.posY, this.posZ, this.height, this.world, EntityLivingBase.class);
+            List<EntityLivingBase> targets = EntityUtils.getEntitiesWithinCylinder(this.width / 2f, this.posX, this.posY, this.posZ, this.height, this.world, EntityLivingBase.class);
             for (EntityLivingBase target : targets) {
                 if (isValidTarget(target)) {
                     if (!target.isPotionActive(WNGPotions.napalm)) {
                         target.addPotionEffect(new PotionEffect(WNGPotions.napalm, WNGSpells.napalm.getProperty("effect_duration").intValue(), SpellBuff.getStandardBonusAmplifier(damageMultiplier)));
                     }
                     if (target.isBurning()) {
-                        burningEntity = true;
+                        this.burningEntity = true;
                     }
                 }
-            }   if (burningEntity) {
+            }   if (this.burningEntity) {
             this.explode();
             }
         } else if (this.rand.nextInt(15) == 0) {

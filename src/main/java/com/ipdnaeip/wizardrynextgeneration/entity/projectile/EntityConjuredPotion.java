@@ -1,20 +1,11 @@
 package com.ipdnaeip.wizardrynextgeneration.entity.projectile;
 
-import com.ipdnaeip.wizardrynextgeneration.WizardryNextGeneration;
+import com.ipdnaeip.wizardrynextgeneration.handler.ExperiencedPotionHandler;
 import com.ipdnaeip.wizardrynextgeneration.registry.WNGItems;
-import com.ipdnaeip.wizardrynextgeneration.registry.WNGPotions;
 import com.ipdnaeip.wizardrynextgeneration.registry.WNGSpells;
-import com.ipdnaeip.wizardrynextgeneration.util.WNGUtils;
-import electroblob.wizardry.data.IStoredVariable;
-import electroblob.wizardry.data.IVariable;
-import electroblob.wizardry.data.Persistence;
-import electroblob.wizardry.data.WizardData;
 import electroblob.wizardry.entity.projectile.EntityBomb;
 import electroblob.wizardry.integration.baubles.WizardryBaublesIntegration;
-import electroblob.wizardry.spell.Transportation;
 import electroblob.wizardry.util.EntityUtils;
-import electroblob.wizardry.util.Location;
-import electroblob.wizardry.util.NBTExtras;
 import electroblob.wizardry.util.ParticleBuilder;
 import net.minecraft.entity.EntityAreaEffectCloud;
 import net.minecraft.entity.EntityLivingBase;
@@ -25,15 +16,9 @@ import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
-import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.World;
-import net.minecraftforge.event.entity.living.PotionEvent;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.common.registry.ForgeRegistries;
 
 import javax.annotation.Nonnull;
-import java.util.ArrayList;
 import java.util.List;
 
 public class EntityConjuredPotion extends EntityBomb {
@@ -63,11 +48,11 @@ public class EntityConjuredPotion extends EntityBomb {
         System.out.println(this.hasInstantEffect);
         if (this.world.isRemote) {
             for(int i = 0; (float)i < 60.0F * this.blastMultiplier; ++i) {
-                float f1 = MathHelper.sqrt(this.rand.nextFloat()) * 0.2F;
-                float f2 = MathHelper.cos(this.rand.nextFloat() * ((float)Math.PI * 2F)) * f1;
-                float f3 = MathHelper.sin(this.rand.nextFloat() * ((float)Math.PI * 2F)) * f1;
-                float f4 = MathHelper.sin(this.rand.nextFloat() * ((float)Math.PI * 2F)) * f1;
-                ParticleBuilder.create(ParticleBuilder.Type.SPARKLE).pos(this.posX, this.posY, this.posZ).vel(f2, f3, f4).clr(150, 255, 150).time(20).spawn(this.world);
+                float length = MathHelper.sqrt(this.rand.nextFloat()) * 0.2F;
+                float x = MathHelper.cos(this.rand.nextFloat() * ((float)Math.PI * 2F)) * length;
+                float y = MathHelper.sin(this.rand.nextFloat() * ((float)Math.PI * 2F)) * length;
+                float z = MathHelper.sin(this.rand.nextFloat() * ((float)Math.PI * 2F)) * length;
+                ParticleBuilder.create(ParticleBuilder.Type.SPARKLE).pos(this.posX, this.posY, this.posZ).vel(x, y, z).clr(150, 255, 150).time(20).spawn(this.world);
             }
             if (this.hasInstantEffect) {
                 ParticleBuilder.create(ParticleBuilder.Type.SPHERE).pos(this.posX, this.posY, this.posZ).clr(150, 255, 150).scale(4.0f).spawn(this.world);
@@ -122,12 +107,17 @@ public class EntityConjuredPotion extends EntityBomb {
     }
 
     public Potion getPotion() {
-        return potionEffect == null ? MobEffects.INSTANT_DAMAGE : potionEffect.getPotion();
+        return this.potionEffect == null ? MobEffects.INSTANT_DAMAGE : potionEffect.getPotion();
     }
 
     public Potion getConjuredPotionEffect() {
-        if (randomEffects) {
-            return WNGUtils.getRandomPotionEffect(false, getPotion().isBadEffect());
+        if (this.randomEffects) {
+            if (this.getPotion().isBadEffect()) {
+                return ExperiencedPotionHandler.getValidPotion(ExperiencedPotionHandler.Context.BAD);
+            } else {
+                return ExperiencedPotionHandler.getValidPotion(ExperiencedPotionHandler.Context.GOOD);
+            }
+            //return WNGUtils.getRandomPotionEffect(false, this.getPotion().isBadEffect());
         } else {
             return getPotion();
         }

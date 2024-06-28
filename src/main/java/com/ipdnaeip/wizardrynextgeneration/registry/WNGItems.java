@@ -154,13 +154,13 @@ public final class WNGItems {
 
         //magical items
         registerItem(registry, "conjured_potion", new ItemConjuredPotion());
-        registerItem(registry, "enchantable_amulet", new ItemEnchantableJewellery(ItemArtefact.Type.AMULET));
-        registerItem(registry, "enchantable_belt", new ItemEnchantableJewellery(ItemArtefact.Type.BELT));
-        registerItem(registry, "enchantable_body", new ItemEnchantableJewellery(ItemArtefact.Type.BODY));
-        registerItem(registry, "enchantable_charm", new ItemEnchantableJewellery(ItemArtefact.Type.CHARM));
-        registerItem(registry, "enchantable_head", new ItemEnchantableJewellery(ItemArtefact.Type.HEAD));
-        registerItem(registry, "enchantable_ring", new ItemEnchantableJewellery(ItemArtefact.Type.RING));
-        registerItem(registry, "enchantable_trinket", new ItemEnchantableJewellery(ItemArtefact.Type.TRINKET));
+        registerItem(registry, "enchantable_amulet", new ItemEnchantableArtefact(ItemArtefact.Type.AMULET));
+        registerItem(registry, "enchantable_belt", new ItemEnchantableArtefact(ItemArtefact.Type.BELT));
+        registerItem(registry, "enchantable_body", new ItemEnchantableArtefact(ItemArtefact.Type.BODY));
+        registerItem(registry, "enchantable_charm", new ItemEnchantableArtefact(ItemArtefact.Type.CHARM));
+        registerItem(registry, "enchantable_head", new ItemEnchantableArtefact(ItemArtefact.Type.HEAD));
+        registerItem(registry, "enchantable_ring", new ItemEnchantableArtefact(ItemArtefact.Type.RING));
+        registerItem(registry, "enchantable_trinket", new ItemEnchantableArtefact(ItemArtefact.Type.TRINKET));
         registerItem(registry, "scroll_wng", new ItemScroll());
         registerItem(registry, "spell_book_wng", new ItemWNGSpellBook());
         registerItem(registry, "spell_encyclopedia", new ItemSpellEncyclopedia());

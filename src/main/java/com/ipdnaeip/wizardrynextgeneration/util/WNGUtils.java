@@ -12,7 +12,6 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.util.CombatRules;
-import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
@@ -83,19 +82,6 @@ public final class WNGUtils {
         return result;
     }
 
-/*    public static <T extends Entity> List<T> getEntitiesWithinCylinder(double radius, double x, double y, double z, double height, World world, Class<T> entityType) {
-        AxisAlignedBB aabb = new AxisAlignedBB(x - radius, y, z - radius, x + radius, y + height, z + radius);
-        List<T> entityList = world.getEntitiesWithinAABB(entityType, aabb);
-        for(T entity : entityList) {
-            if (entity.getDistance(x, entity.posY, z) > radius) {
-                entityList.remove(entity);
-                break;
-            }
-        }
-        return entityList;
-    }*/
-
-
     public static boolean hasSunlight(World world, Entity entity) {
         return world.isDaytime() && world.canSeeSky(new BlockPos(entity.posX, entity.posY + entity.getEyeHeight(), entity.posZ));
     }
@@ -103,23 +89,6 @@ public final class WNGUtils {
 
     public static boolean hasMoonlight(World world, Entity entity) {
         return !world.isDaytime() && world.canSeeSky(new BlockPos(entity.posX, entity.posY + entity.getEyeHeight(), entity.posZ));
-    }
-
-    public static Potion getRandomPotionEffect(boolean all, boolean isBad) {
-        List<Potion> potionList = ForgeRegistries.POTIONS.getValues();
-        List<Potion> potionCuratedList = Lists.newArrayList();
-        for (Potion potion : potionList) {
-            if (potion.getRegistryName().getNamespace().matches("minecraft")) {
-                if (all) {
-                    potionCuratedList.add(potion);
-                } else if (isBad && potion.isBadEffect()) {
-                    potionCuratedList.add(potion);
-                } else if (!isBad && !potion.isBadEffect()) {
-                    potionCuratedList.add(potion);
-                }
-            }
-        }
-        return potionCuratedList.get((int)(Math.random() * (potionCuratedList.size() - 1)));
     }
 
     /**

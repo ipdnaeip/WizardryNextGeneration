@@ -1,5 +1,6 @@
 package com.ipdnaeip.wizardrynextgeneration.item;
 
+import com.ipdnaeip.wizardrynextgeneration.handler.ArtefactEnchantingHandler;
 import electroblob.wizardry.Wizardry;
 import electroblob.wizardry.item.ItemArtefact;
 import net.minecraft.client.util.ITooltipFlag;
@@ -14,18 +15,18 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
-import net.minecraft.world.storage.loot.LootContext;
-import net.minecraft.world.storage.loot.LootTable;
+import net.minecraft.world.storage.loot.*;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Predicate;
 
-public class ItemEnchantableJewellery extends Item {
+public class ItemEnchantableArtefact extends Item {
 
     public ItemArtefact.Type type;
 
-    public ItemEnchantableJewellery(ItemArtefact.Type type) {
+    public ItemEnchantableArtefact(ItemArtefact.Type type) {
         super();
         setMaxStackSize(1);
         this.type = type;
@@ -33,7 +34,7 @@ public class ItemEnchantableJewellery extends Item {
 
     @Override
     public int getMaxItemUseDuration(ItemStack stack) {
-        return 20;
+        return 1;
     }
 
     @Override
@@ -55,19 +56,28 @@ public class ItemEnchantableJewellery extends Item {
     @Override
     public ItemStack onItemUseFinish(ItemStack stack, World world, EntityLivingBase entityLiving) {
         if (entityLiving instanceof EntityPlayer && !world.isRemote) {
-            for (int x = 0; x < 50; x++) {
-                LootTable table = world.getLootTableManager().getLootTableFromLocation(new ResourceLocation(Wizardry.MODID, "chests/shrine"));
-                LootContext context = new LootContext.Builder((WorldServer) world).withPlayer((EntityPlayer) entityLiving).withLuck(0).build();
-                List<ItemStack> artefacts = new ArrayList<>();
-                table.getPool("artefact").generateLoot(artefacts, world.rand, context);
-                for (ItemStack artefact : artefacts) {
-                    if ((artefact.getItem() instanceof ItemArtefact && ((ItemArtefact) (artefact.getItem())).getType() == this.type)) {
-                        return artefact;
-                    }
-                }
+            LootTable lootTable = world.getLootTableManager().getLootTableFromLocation(new ResourceLocation(Wizardry.MODID, "chests/shrine"));
+            LootContext lootContext = new LootContext.Builder((WorldServer) world).withPlayer((EntityPlayer) entityLiving).withLuck(0).build();
+            //Get the artefact LootPool
+            LootPool lootPool = lootTable.getPool("artefact");
+            //Filter the LootPool
+            ArtefactEnchantingHandler.filterLootPool(world, lootPool, itemsToBeRemoved(this));
+            List<ItemStack> artefacts = new ArrayList<>();
+            //Generate a random artefact from the LootPool
+            lootPool.generateLoot(artefacts, world.rand, lootContext);
+            //The list should only contain 1 artefact, but this returns the first artefact anyway
+/*            for (ItemStack artefact : artefacts) {
+                return artefact;
+            }*/
+            for (ItemStack artefact : artefacts) {
+                ((EntityPlayer) entityLiving).addItemStackToInventory(artefact);
             }
         }
         return super.onItemUseFinish(stack, world, entityLiving);
     }
 
+    public static Predicate<Item> itemsToBeRemoved(ItemEnchantableArtefact itemArtefact) {
+        return item -> !(item instanceof ItemArtefact) || ((ItemArtefact)item).getType() != itemArtefact.type;
+    }
 }
+

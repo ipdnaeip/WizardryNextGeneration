@@ -1,10 +1,12 @@
 package com.ipdnaeip.wizardrynextgeneration;
 
+import com.ipdnaeip.wizardrynextgeneration.handler.ExperiencedPotionHandler;
 import com.ipdnaeip.wizardrynextgeneration.handler.WNGGuiHandler;
 import com.ipdnaeip.wizardrynextgeneration.item.ItemWNGWandUpgrade;
 import com.ipdnaeip.wizardrynextgeneration.registry.WNGAdvancementTriggers;
 import com.ipdnaeip.wizardrynextgeneration.registry.WNGItems;
 import com.ipdnaeip.wizardrynextgeneration.registry.WNGLoot;
+import electroblob.wizardry.data.WizardData;
 import electroblob.wizardry.util.SpellNetworkIDSorter;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
@@ -22,7 +24,7 @@ public class WizardryNextGeneration
 {
     public static final String MODID = "wizardrynextgeneration";
     public static final String NAME = "Wizardry Next Generation";
-    public static final String VERSION = "1.0.6";
+    public static final String VERSION = "1.0.7";
     public static Settings settings = new Settings();
     public static Logger logger;
     public static File configDirectory;
@@ -40,6 +42,7 @@ public class WizardryNextGeneration
         WNGItems.registerBookshelfModelTextures();
         WNGAdvancementTriggers.register();
         proxy.registerRenderers();
+        WizardData.registerStoredVariables(ExperiencedPotionHandler.EXPERIENCED_POTION_NAMES);
     }
 
     @EventHandler
