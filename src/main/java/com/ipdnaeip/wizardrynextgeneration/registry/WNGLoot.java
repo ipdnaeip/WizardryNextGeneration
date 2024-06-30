@@ -54,34 +54,35 @@ public class WNGLoot {
             RARE_ARTEFACTS = event.getTable();
         } else if (event.getName().toString().equals(WizardryNextGeneration.MODID + ":subsets/epic_artefacts")) {
             EPIC_ARTEFACTS = event.getTable();
+        } else if (event.getName().toString().equals(WizardryNextGeneration.MODID + ":subsets/epic_artefacts")) {
+            EPIC_ARTEFACTS = event.getTable();
         }
         // Inject books and scrolls to ebwiz tables
         if (event.getName().toString().equals(Wizardry.MODID + ":chests/library_ruins_bookshelf") && LIBRARY_RUINS_BOOKSHELF != null) {
             LootPool targetPool = event.getTable().getPool("wizardry");
-            LootPool sourcePool = LIBRARY_RUINS_BOOKSHELF.getPool("WizardryNextGeneration");
+            LootPool sourcePool = LIBRARY_RUINS_BOOKSHELF.getPool(WizardryNextGeneration.MODID);
             injectEntries(sourcePool, targetPool);
         } else if (event.getName().toString().equals(Wizardry.MODID + ":chests/obelisk") && OBELISK != null) {
             LootPool targetPool = event.getTable().getPool("high_value");
-            LootPool sourcePool = OBELISK.getPool("WizardryNextGeneration");
+            LootPool sourcePool = OBELISK.getPool(WizardryNextGeneration.MODID);
             injectEntries(sourcePool, targetPool);
         } else if (event.getName().toString().equals(Wizardry.MODID + ":chests/shrine") && SHRINE_EXTRAS != null) {
             // add shrine extras
             event.getTable().addPool(SHRINE_EXTRAS.getPool("shrine_extras"));
         } else if (event.getName().toString().equals(Wizardry.MODID + ":chests/wizard_tower") && WIZARD_TOWER != null) {
             LootPool targetPool = event.getTable().getPool("wizardry");
-            LootPool sourcePool = WIZARD_TOWER.getPool("WizardryNextGeneration");
+            LootPool sourcePool = WIZARD_TOWER.getPool(WizardryNextGeneration.MODID);
             injectEntries(sourcePool, targetPool);
         } else if (event.getName().toString().equals(Wizardry.MODID + ":subsets/wand_upgrades") && WAND_UPGRADES != null) {
             LootPool targetPool = event.getTable().getPool("upgrades");
-            LootPool sourcePool = WAND_UPGRADES.getPool("WizardryNextGeneration");
+            LootPool sourcePool = WAND_UPGRADES.getPool(WizardryNextGeneration.MODID);
             injectEntries(sourcePool, targetPool);
         }
 
         if (event.getName().toString().equals(Wizardry.MODID + ":chests/shrine") && SHRINE != null) {
             LootPool targetPool = event.getTable().getPool("high_value");
-            LootPool sourcePool = SHRINE.getPool("WizardryNextGeneration");
+            LootPool sourcePool = SHRINE.getPool(WizardryNextGeneration.MODID);
             injectEntries(sourcePool, targetPool);
-
         }
         // inject artefacts to ebwiz tables
         if (event.getName().toString().equals(Wizardry.MODID + ":subsets/uncommon_artefacts") && UNCOMMON_ARTEFACTS != null) {

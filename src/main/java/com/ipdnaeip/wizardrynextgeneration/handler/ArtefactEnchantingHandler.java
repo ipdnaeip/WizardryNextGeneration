@@ -6,6 +6,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.storage.loot.*;
 import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -16,53 +17,19 @@ public class ArtefactEnchantingHandler {
      * @param world The world from which to obtain the LootTable.
      * @param lootPool The LootPool to filter.
      * @param filter The predicate to determine which items are filtered. I use a static method to create the predicate,
-     *               though there may be a better way to do so that I have no learned yet.
-     */
-    /*public static void filterLootPool(World world, LootPool lootPool, Predicate<Item> filter) {
-        if (lootPool != null) {
-            //Access the private lootEntries in LootPool and remove specific item entries from the loot pool
-            for (LootEntry entry : lootPool.lootEntries) {
-                if (entry instanceof LootEntryItem) {
-                    LootEntryItem entryItem = (LootEntryItem)entry;
-                    Item item = entryItem.item;
-                    // Filter out items that do not match the predicate
-                    if (filter.test(item)) {
-                        lootPool.lootEntries.remove(entry);
-                        break;
-                    }
-                } else if (entry instanceof LootEntryTable) {
-                    LootEntryTable tableEntry = (LootEntryTable)entry;
-                    ResourceLocation tableLocation = tableEntry.table;
-                    LootTable nestedTable = world.getLootTableManager().getLootTableFromLocation(tableLocation);
-                    if (nestedTable != LootTable.EMPTY_LOOT_TABLE) {
-                        for (LootPool nestedPool : nestedTable.pools) {
-                            filterLootPool(world, nestedPool, filter);
-                        }
-                    }
-                }
-            }
-        }
-    }*/
-
-    /**
-     * This method filters items out of a LootPool so that a specific LootPool can be made from which to generate loot.
-     * @param world The world from which to obtain the LootTable.
-     * @param lootPool The LootPool to filter.
-     * @param filter The predicate to determine which items are filtered. I use a static method to create the predicate,
-     *               though there may be a better way to do so that I have no learned yet.
+     *               though there may be a better way to do so that I have not learned yet.
      */
     public static void filterLootPool(World world, LootPool lootPool, Predicate<Item> filter) {
         if (lootPool != null) {
             //Access the private lootEntries in LootPool and remove specific item entries from the loot pool
-            for (LootEntry entry : getLootEntryList(lootPool)) {
+            Iterator<LootEntry> iterator = getLootEntryList(lootPool).iterator();
+            while (iterator.hasNext()) {
+                LootEntry entry = iterator.next();
                 if (entry instanceof LootEntryItem) {
                     LootEntryItem entryItem = (LootEntryItem)entry;
                     Item item = getLootEntryItemItem(entryItem);
-                    // Filter out items that do not match the predicate
                     if (filter.test(item)) {
-                        getLootEntryList(lootPool).remove(entry);
-                        System.out.println(entry);
-                        break;
+                        iterator.remove();
                     }
                 } else if (entry instanceof LootEntryTable) {
                     LootEntryTable tableEntry = (LootEntryTable)entry;
@@ -71,40 +38,6 @@ public class ArtefactEnchantingHandler {
                     if (nestedTable != LootTable.EMPTY_LOOT_TABLE) {
                         for (LootPool nestedPool : getLootPoolList(nestedTable)) {
                             filterLootPool(world, nestedPool, filter);
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    /**
-     * This method filters items out of a LootPool so that a specific LootPool can be made from which to generate loot.
-     * @param world The world from which to obtain the LootTable.
-     * @param lootPoolIn The LootPool to filter.
-     * @param filter The predicate to determine which items are filtered. I use a static method to create the predicate,
-     *               though there may be a better way to do so that I have no learned yet.
-     */
-    public static void createFilteredLootPool(World world, LootPool lootPoolIn, Predicate<Item> filter) {
-        if (lootPoolIn != null) {
-            //Access the private lootEntries in LootPool and remove specific item entries from the loot pool
-            for (LootEntry entry : getLootEntryList(lootPoolIn)) {
-                if (entry instanceof LootEntryItem) {
-                    LootEntryItem entryItem = (LootEntryItem)entry;
-                    Item item = getLootEntryItemItem(entryItem);
-                    // Filter out items that do not match the predicate
-                    if (filter.test(item)) {
-                        getLootEntryList(lootPoolIn).remove(entry);
-                        System.out.println(entry);
-                        break;
-                    }
-                } else if (entry instanceof LootEntryTable) {
-                    LootEntryTable tableEntry = (LootEntryTable)entry;
-                    ResourceLocation tableLocation = getLootEntryTableTable(tableEntry);
-                    LootTable nestedTable = world.getLootTableManager().getLootTableFromLocation(tableLocation);
-                    if (nestedTable != LootTable.EMPTY_LOOT_TABLE) {
-                        for (LootPool nestedPool : getLootPoolList(nestedTable)) {
-                            createFilteredLootPool(world, nestedPool, filter);
                         }
                     }
                 }
