@@ -33,9 +33,9 @@ buildscript {
 }
 
 apply plugin: 'net.minecraftforge.gradle'
+apply plugin: 'org.spongepowered.mixin'
 apply plugin: 'idea'
 apply plugin: 'maven-publish'
-apply plugin: org.ajoberstar.grgit.gradle.GrgitPlugin
 apply plugin: GrgitPlugin
 apply plugin: 'wtf.gofancy.fancygradle'
 
@@ -50,7 +50,7 @@ minecraft {
 
     mappings channel: project.mappings_channel, version: "${project.mappings_version}-${project.mappings_mc_version}"
 
-    accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
+    accessTransformer = file('src/main/resources/META-INF/accesstransformers.cfg')
 
     runs {
         client {
@@ -138,9 +138,11 @@ dependencies {
     // Test link: https://www.cursemaven.com/test/<projectid>/<fileid>/<Classifier?>
 
     //// Dependencies ////
+    annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
 
     implementation fg.deobf("curse.maven:ElectroblobsWizardry-${wizardry_projectid}:${wizardry_fileid}")
     implementation fg.deobf("curse.maven:baubles-${baubles_projectid}:${baubles_fileid}")
+    implementation fg.deobf("curse.maven:MixinBooter-${mixinbooter_projectid}:${mixinbooter_fileid}")
     implementation fg.deobf("mezz.jei:jei_${mc_version}:${jei_version}")
 
     //// Dependencies ////
@@ -166,8 +168,9 @@ jar {
                 "Implementation-Vendor" :"ipdnaeip",
                 "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),
                 "Built-On-Java": "${System.getProperty('java.vm.version')} (${System.getProperty('java.vm.vendor')})",
+                'TweakClass' : "org.spongepowered.asm.launch.MixinTweaker",
                 "Built-On": "${project.mc_version}-${project.forge_version}",
-                "FMLAT": "accesstransformer.cfg"
+                "FMLAT": "accesstransformers.cfg"
         ])
     }
 }
@@ -188,7 +191,12 @@ task sourceJar(type: Jar, dependsOn: classes) {
                 "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),
                 "Built-On-Java": "${System.getProperty('java.vm.version')} (${System.getProperty('java.vm.vendor')})",
                 "Built-On": "${project.mc_version}-${project.forge_version}",
-                "FMLAT": "accesstransformer.cfg"
+                "FMLAT": "accesstransformers.cfg"
         ])
     }
+}
+
+mixin {
+    add sourceSets.main, "wizardrynextgeneration.refmap.json"
+    disableAnnotationProcessorCheck()
 }

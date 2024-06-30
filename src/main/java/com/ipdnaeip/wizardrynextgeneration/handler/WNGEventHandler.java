@@ -112,7 +112,7 @@ public class WNGEventHandler {
                         ItemAmuletMoon.setHasBeenFullMoon(amulet, true);
                     }
                 }
-                if (artefact == WNGItems.belt_potion) {
+/*                if (artefact == WNGItems.belt_potion) {
                     if (player.ticksExisted % 10 == 0) {
                         ItemStack belt = BaublesApi.getBaublesHandler(player).getStackInSlot(3);
                         PotionEffect[] potionEffects = player.getActivePotionEffects().toArray(new PotionEffect[0]);
@@ -124,7 +124,7 @@ public class WNGEventHandler {
                             }
                         }
                     }
-                }
+                }*/
                 if (artefact == WNGItems.charm_bloodstone) {
                     if (player.ticksExisted % ItemCharmBloodstone.TICKS_INBETWEEN == 0 && player.shouldHeal()) {
                         ItemStack stack = BaublesApi.getBaublesHandler(player).getStackInSlot(6);
