@@ -18,7 +18,6 @@ import net.minecraft.world.WorldServer;
 import net.minecraft.world.storage.loot.*;
 
 import javax.annotation.Nullable;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -56,19 +55,14 @@ public class ItemEnchantableArtefact extends Item {
     @Override
     public ItemStack onItemUseFinish(ItemStack stack, World world, EntityLivingBase entityLiving) {
         if (entityLiving instanceof EntityPlayer && !world.isRemote) {
+            //Get the LootTable
             LootTable lootTable = world.getLootTableManager().getLootTableFromLocation(new ResourceLocation(Wizardry.MODID, "chests/shrine"));
+            //Get the LootContext
             LootContext lootContext = new LootContext.Builder((WorldServer) world).withPlayer((EntityPlayer) entityLiving).withLuck(0).build();
             //Get the artefact LootPool
             LootPool lootPool = lootTable.getPool("artefact");
-            //Filter the LootPool
-            ArtefactEnchantingHandler.filterLootPool(world, lootPool, itemsToBeRemoved(this));
-            List<ItemStack> artefacts = new ArrayList<>();
-            //Generate a random artefact from the LootPool
-            lootPool.generateLoot(artefacts, world.rand, lootContext);
-            //The list should only contain 1 artefact, but this returns the first artefact anyway
-/*            for (ItemStack artefact : artefacts) {
-                return artefact;
-            }*/
+            //Filter the LootPool and
+            List<ItemStack> artefacts = ArtefactEnchantingHandler.createFilteredLootPool(world, lootPool, lootContext, itemsToBeRemoved(this));
             for (ItemStack artefact : artefacts) {
                 ((EntityPlayer) entityLiving).addItemStackToInventory(artefact);
             }

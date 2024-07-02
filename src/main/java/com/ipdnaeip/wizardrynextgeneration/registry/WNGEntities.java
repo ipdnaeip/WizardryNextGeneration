@@ -1,15 +1,11 @@
 package com.ipdnaeip.wizardrynextgeneration.registry;
 
 import com.ipdnaeip.wizardrynextgeneration.WizardryNextGeneration;
-import com.ipdnaeip.wizardrynextgeneration.entity.construct.EntityAntiGravitationalField;
-import com.ipdnaeip.wizardrynextgeneration.entity.construct.EntityGravitationalField;
-import com.ipdnaeip.wizardrynextgeneration.entity.construct.EntityNapalm;
-import com.ipdnaeip.wizardrynextgeneration.entity.construct.EntityWhirlpool;
+import com.ipdnaeip.wizardrynextgeneration.entity.construct.*;
 import com.ipdnaeip.wizardrynextgeneration.entity.living.*;
 import com.ipdnaeip.wizardrynextgeneration.entity.projectile.EntityAcceleratedMass;
 import com.ipdnaeip.wizardrynextgeneration.entity.projectile.EntityConjuredPotion;
 import com.ipdnaeip.wizardrynextgeneration.entity.projectile.EntityFissionBlast;
-//import com.ipdnaeip.wizardrynextgeneration.entity.projectile.EntityPiercingMass;
 import com.ipdnaeip.wizardrynextgeneration.entity.projectile.EntityPiercingMass;
 import electroblob.wizardry.Wizardry;
 import net.minecraft.entity.Entity;
