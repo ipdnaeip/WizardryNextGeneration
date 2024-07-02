@@ -17,6 +17,9 @@ buildscript {
             name 'Sponge'
             url 'https://repo.spongepowered.org/repository/maven-public/'
         }
+        maven {
+            url 'https://maven.cleanroommc.com'
+        }
     }
     dependencies {
         classpath 'net.minecraftforge.gradle:ForgeGradle:5.+'
