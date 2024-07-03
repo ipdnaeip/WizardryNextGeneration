@@ -2,7 +2,6 @@ package com.ipdnaeip.wizardrynextgeneration.spell;
 
 import com.ipdnaeip.wizardrynextgeneration.WizardryNextGeneration;
 import com.ipdnaeip.wizardrynextgeneration.registry.WNGItems;
-import com.ipdnaeip.wizardrynextgeneration.registry.WNGPotions;
 import com.ipdnaeip.wizardrynextgeneration.registry.WNGSpells;
 import electroblob.wizardry.item.SpellActions;
 import electroblob.wizardry.registry.WizardryItems;
@@ -14,7 +13,6 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.init.MobEffects;
 import net.minecraft.item.Item;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.tileentity.TileEntityDispenser;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
@@ -56,6 +54,6 @@ public class Humility extends SpellRay {
 
     @Override
     public boolean applicableForItem(Item item) {
-        return item == WNGItems.spell_book_wng || item == WNGItems.scroll_wng;
+        return item == WNGItems.SPELL_BOOK_WNG || item == WNGItems.SCROLL_WNG;
     }
 }

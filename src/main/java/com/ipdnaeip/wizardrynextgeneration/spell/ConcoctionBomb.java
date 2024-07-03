@@ -14,7 +14,7 @@ public class ConcoctionBomb extends SpellProjectile<EntityConjuredPotion> {
 
     public ConcoctionBomb() {
         super(WizardryNextGeneration.MODID, "concoction_bomb", EntityConjuredPotion::new);
-        this.addProperties("blast_radius", "effect_duration");
+        this.addProperties(BLAST_RADIUS, EFFECT_DURATION);
     }
 
     @Override
@@ -24,7 +24,7 @@ public class ConcoctionBomb extends SpellProjectile<EntityConjuredPotion> {
 
     @Override
     public boolean applicableForItem(Item item) {
-        return item == WNGItems.spell_book_wng || item == WNGItems.scroll_wng;
+        return item == WNGItems.SPELL_BOOK_WNG || item == WNGItems.SCROLL_WNG;
     }
 
 }

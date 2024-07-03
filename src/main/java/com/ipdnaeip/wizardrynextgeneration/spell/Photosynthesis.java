@@ -13,7 +13,6 @@ import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
-import net.minecraft.tileentity.TileEntityDispenser;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
@@ -51,7 +50,7 @@ public class Photosynthesis extends Spell {
         }
         //check if the player can be healed and if the sun is out and visible by the player
         if (caster.getHealth() < caster.getMaxHealth() && caster.getHealth() > 0.0F && ticksInUse % 10 == 0 && WNGUtils.hasSunlight(world, caster)) {
-            caster.heal(this.getProperty("health").floatValue() * modifiers.get("potency"));
+            caster.heal(this.getProperty(HEALTH).floatValue() * modifiers.get(SpellModifiers.POTENCY));
             this.playSound(world, caster, ticksInUse, -1, modifiers);
             if (world.isRemote) ParticleBuilder.create(ParticleBuilder.Type.BUFF).entity(caster).clr(0, 170, 0).spawn(world);
             return true;
@@ -66,7 +65,7 @@ public class Photosynthesis extends Spell {
         }
         //check if the player can be healed and if the sun is out and visible by the player
         if (caster.getHealth() < caster.getMaxHealth() && caster.getHealth() > 0.0F && ticksInUse % 10 == 0 && world.isDaytime() && world.canSeeSky(new BlockPos(caster.posX, caster.posY + (double)caster.getEyeHeight(), caster.posZ))) {
-            caster.heal(this.getProperty("health").floatValue() * (1 + modifiers.get("potency")));
+            caster.heal(this.getProperty(HEALTH).floatValue() * (1 + modifiers.get(SpellModifiers.POTENCY)));
             this.playSound(world, caster, ticksInUse, -1, modifiers);
             if (world.isRemote) ParticleBuilder.create(ParticleBuilder.Type.BUFF).entity(caster).clr(0, 170, 0).spawn(world);
             return true;
@@ -76,6 +75,6 @@ public class Photosynthesis extends Spell {
 
     @Override
     public boolean applicableForItem(Item item) {
-        return item == WNGItems.spell_book_wng || item == WNGItems.scroll_wng;
+        return item == WNGItems.SPELL_BOOK_WNG || item == WNGItems.SCROLL_WNG;
     }
 }

@@ -2,6 +2,7 @@ package com.ipdnaeip.wizardrynextgeneration.spell;
 
 import com.ipdnaeip.wizardrynextgeneration.WizardryNextGeneration;
 import com.ipdnaeip.wizardrynextgeneration.registry.WNGItems;
+import com.ipdnaeip.wizardrynextgeneration.util.WNGUtils;
 import electroblob.wizardry.item.SpellActions;
 import electroblob.wizardry.spell.SpellAreaEffect;
 import electroblob.wizardry.util.EntityUtils;
@@ -9,11 +10,8 @@ import electroblob.wizardry.util.MagicDamage;
 import electroblob.wizardry.util.ParticleBuilder;
 import electroblob.wizardry.util.SpellModifiers;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
-import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.Vec3d;
-import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
@@ -31,15 +29,18 @@ public class Justice extends SpellAreaEffect  {
     @Override
     protected boolean affectEntity(World world, Vec3d vec3d, @Nullable EntityLivingBase caster, EntityLivingBase target, int i, int ticksInUse, SpellModifiers modifiers) {
         if (caster != null) {
-            float low_health = target.getHealth() - (target.getMaxHealth() / caster.getMaxHealth() * caster.getHealth());
-            float high_health = Math.min(target.getHealth() - (target.getMaxHealth() / caster.getMaxHealth() * caster.getHealth()), (caster.getMaxHealth() - caster.getHealth()) * (1 + modifiers.get("potency")));
-            if (target.getMaxHealth() <= caster.getMaxHealth()) {
-                this.soundValues(1F, 0.6F, 0.1F);
-                EntityUtils.attackEntityWithoutKnockback(target, MagicDamage.causeDirectMagicDamage(caster, MagicDamage.DamageType.RADIANT), low_health);
-            }
-            if (target.getMaxHealth() > caster.getMaxHealth()) {
-                this.soundValues(1F, 0.4F, 0.1F);
-                EntityUtils.attackEntityWithoutKnockback(target, MagicDamage.causeDirectMagicDamage(caster, MagicDamage.DamageType.RADIANT), high_health);
+            MagicDamage.DamageType damageType = MagicDamage.DamageType.RADIANT;
+            if (WNGUtils.canMagicDamageEntity(caster, target, damageType, this, ticksInUse)) {
+                float low_health = target.getHealth() - (target.getMaxHealth() / caster.getMaxHealth() * caster.getHealth());
+                float high_health = Math.min(target.getHealth() - (target.getMaxHealth() / caster.getMaxHealth() * caster.getHealth()), (caster.getMaxHealth() - caster.getHealth()) * (1 + modifiers.get(SpellModifiers.POTENCY)));
+                if (target.getMaxHealth() <= caster.getMaxHealth()) {
+                    this.soundValues(1F, 0.6F, 0.1F);
+                    EntityUtils.attackEntityWithoutKnockback(target, MagicDamage.causeDirectMagicDamage(caster, damageType), low_health);
+                }
+                if (target.getMaxHealth() > caster.getMaxHealth()) {
+                    this.soundValues(1F, 0.4F, 0.1F);
+                    EntityUtils.attackEntityWithoutKnockback(target, MagicDamage.causeDirectMagicDamage(caster, damageType), high_health);
+                }
             }
         }
         return true;
@@ -53,6 +54,6 @@ public class Justice extends SpellAreaEffect  {
 
     @Override
     public boolean applicableForItem(Item item) {
-        return item == WNGItems.spell_book_wng || item == WNGItems.scroll_wng;
+        return item == WNGItems.SPELL_BOOK_WNG || item == WNGItems.SCROLL_WNG;
     }
 }

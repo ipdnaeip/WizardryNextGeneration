@@ -3,26 +3,15 @@ package com.ipdnaeip.wizardrynextgeneration.spell;
 import com.ipdnaeip.wizardrynextgeneration.WizardryNextGeneration;
 import com.ipdnaeip.wizardrynextgeneration.registry.WNGItems;
 import com.ipdnaeip.wizardrynextgeneration.util.WNGUtils;
-import electroblob.wizardry.item.SpellActions;
-import electroblob.wizardry.registry.WizardryItems;
-import electroblob.wizardry.spell.Spell;
 import electroblob.wizardry.spell.SpellBuff;
-import electroblob.wizardry.util.ParticleBuilder;
 import electroblob.wizardry.util.SpellModifiers;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
-import net.minecraft.init.MobEffects;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.EnumHand;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentTranslation;
-import net.minecraft.world.World;
-
-import java.util.ArrayList;
-import java.util.Iterator;
 
 public class LunarSalve extends SpellBuff {
 
@@ -56,7 +45,7 @@ public class LunarSalve extends SpellBuff {
 
     @Override
     public boolean applicableForItem(Item item) {
-        return item == WNGItems.spell_book_wng || item == WNGItems.scroll_wng;
+        return item == WNGItems.SPELL_BOOK_WNG || item == WNGItems.SCROLL_WNG;
     }
 
 }

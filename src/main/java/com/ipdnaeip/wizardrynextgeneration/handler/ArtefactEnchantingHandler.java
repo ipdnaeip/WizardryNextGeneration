@@ -7,6 +7,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.storage.loot.*;
 import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -25,7 +26,7 @@ public class ArtefactEnchantingHandler {
      * @return List<ItemStack> of the generated loot
      */
 
-    public static List<ItemStack> createFilteredLootPool(World world, LootPool lootPool, LootContext lootContext, Predicate<Item> filter ) {
+    public static List<ItemStack> createFilteredLootPool(World world, LootPool lootPool, LootContext lootContext, @Nullable Predicate<Item> filter ) {
         ArtefactEnchantingHandler.filter = filter;
         List<ItemStack> artefacts = new ArrayList<>();
         //Generate a random artefact from the LootPool with the filter

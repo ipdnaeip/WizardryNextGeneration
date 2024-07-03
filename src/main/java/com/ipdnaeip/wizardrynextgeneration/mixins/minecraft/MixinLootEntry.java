@@ -9,12 +9,12 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
 
 @Mixin(LootEntry.class)
-public class MixinLootEntry implements IMixinLootEntry {
+public abstract class MixinLootEntry implements IMixinLootEntry {
 
     @Shadow @Final protected LootCondition[] conditions;
 
     @Unique
-    public LootCondition[] getConditions() {
+    public LootCondition[] wizardryNextGeneration$getConditions() {
         return this.conditions;
     }
 

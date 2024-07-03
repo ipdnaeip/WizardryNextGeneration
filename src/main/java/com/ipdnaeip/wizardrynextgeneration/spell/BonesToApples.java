@@ -25,7 +25,7 @@ public class BonesToApples extends Spell {
     }
 
     public boolean cast(World world, EntityPlayer caster, EnumHand hand, int ticksInUse, SpellModifiers modifiers) {
-        int usesLeft = (int)(this.getProperty(BONES_CONVERTED).floatValue() * modifiers.get("potency"));
+        int usesLeft = (int)(this.getProperty(BONES_CONVERTED).floatValue() * modifiers.get(SpellModifiers.POTENCY));
         int i;
         for(i = 0; i < caster.inventory.getSizeInventory() && usesLeft > 0; ++i) {
             ItemStack stack = caster.inventory.getStackInSlot(i);
@@ -59,6 +59,6 @@ public class BonesToApples extends Spell {
 
     @Override
     public boolean applicableForItem(Item item) {
-        return item == WNGItems.spell_book_wng || item == WNGItems.scroll_wng;
+        return item == WNGItems.SPELL_BOOK_WNG || item == WNGItems.SCROLL_WNG;
     }
 }

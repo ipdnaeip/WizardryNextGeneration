@@ -6,7 +6,6 @@ import electroblob.wizardry.item.ItemWand;
 import electroblob.wizardry.util.SpellModifiers;
 import electroblob.wizardry.util.WandHelper;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
@@ -18,12 +17,12 @@ public class ItemChargeupWandUpgrade extends ItemWNGWandUpgrade {
         if (event.getCaster() instanceof EntityPlayer) {
             EntityPlayer player = (EntityPlayer)event.getCaster();
             SpellModifiers modifiers = event.getModifiers();
-            if (player.getHeldItemMainhand().getItem() instanceof ItemWand && WandHelper.getUpgradeLevel(player.getHeldItemMainhand(), WNGItems.upgrade_chargeup) > 0) {
-                modifiers.set("chargeup", (1f - 0.25f * (float)(WandHelper.getUpgradeLevel(player.getHeldItemMainhand(), WNGItems.upgrade_chargeup))), false);
-                System.out.println("m " + (1f - 0.25f * (float)(WandHelper.getUpgradeLevel(player.getActiveItemStack(), WNGItems.upgrade_chargeup))) + " " + (WandHelper.getUpgradeLevel(player.getActiveItemStack(), WNGItems.upgrade_chargeup)));
+            if (player.getHeldItemMainhand().getItem() instanceof ItemWand && WandHelper.getUpgradeLevel(player.getHeldItemMainhand(), WNGItems.UPGRADE_CHARGEUP) > 0) {
+                modifiers.set("chargeup", (1f - 0.25f * (float)(WandHelper.getUpgradeLevel(player.getHeldItemMainhand(), WNGItems.UPGRADE_CHARGEUP))), false);
+                System.out.println("m " + (1f - 0.25f * (float)(WandHelper.getUpgradeLevel(player.getActiveItemStack(), WNGItems.UPGRADE_CHARGEUP))) + " " + (WandHelper.getUpgradeLevel(player.getActiveItemStack(), WNGItems.UPGRADE_CHARGEUP)));
             }
-            else if (player.getHeldItemOffhand().getItem() instanceof ItemWand && WandHelper.getUpgradeLevel(player.getHeldItemOffhand(), WNGItems.upgrade_chargeup) > 0) {
-                modifiers.set("chargeup", (1f - 0.25f * (float)(WandHelper.getUpgradeLevel(player.getHeldItemOffhand(), WNGItems.upgrade_chargeup))), false);
+            else if (player.getHeldItemOffhand().getItem() instanceof ItemWand && WandHelper.getUpgradeLevel(player.getHeldItemOffhand(), WNGItems.UPGRADE_CHARGEUP) > 0) {
+                modifiers.set("chargeup", (1f - 0.25f * (float)(WandHelper.getUpgradeLevel(player.getHeldItemOffhand(), WNGItems.UPGRADE_CHARGEUP))), false);
             }
         }
     }

@@ -18,7 +18,7 @@ public class BloodInfusion extends SpellBuff {
     }
 
     protected boolean applyEffects(EntityLivingBase caster, SpellModifiers modifiers) {
-        float infuse = this.getProperty(HEALTH).floatValue() * (1 + modifiers.get("potency"));
+        float infuse = this.getProperty(HEALTH).floatValue() * (1 + modifiers.get(SpellModifiers.POTENCY));
         //check if player can survive initial infusion
         if (caster.getHealth() <= infuse) {
             infuse = Math.min(caster.getHealth() + caster.getAbsorptionAmount() -0.5F, infuse);
@@ -38,6 +38,6 @@ public class BloodInfusion extends SpellBuff {
 
     @Override
     public boolean applicableForItem(Item item) {
-        return item == WNGItems.spell_book_wng || item == WNGItems.scroll_wng;
+        return item == WNGItems.SPELL_BOOK_WNG || item == WNGItems.SCROLL_WNG;
     }
 }

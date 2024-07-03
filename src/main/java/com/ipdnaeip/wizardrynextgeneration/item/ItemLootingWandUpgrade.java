@@ -16,11 +16,11 @@ public class ItemLootingWandUpgrade extends ItemWNGWandUpgrade {
     public static void onLootingLevelEvent(LootingLevelEvent event) {
         if (event.getDamageSource().getTrueSource() instanceof EntityLivingBase) {
             EntityLivingBase entity = (EntityLivingBase)event.getDamageSource().getTrueSource();
-            if (entity.getHeldItemMainhand().getItem() instanceof ItemWand && WandHelper.getUpgradeLevel(entity.getHeldItemMainhand(), WNGItems.upgrade_looting) > 0) {
-                event.setLootingLevel(Math.max(event.getLootingLevel(), WandHelper.getUpgradeLevel(entity.getHeldItemMainhand(), WNGItems.upgrade_looting)));
+            if (entity.getHeldItemMainhand().getItem() instanceof ItemWand && WandHelper.getUpgradeLevel(entity.getHeldItemMainhand(), WNGItems.UPGRADE_LOOTING) > 0) {
+                event.setLootingLevel(Math.max(event.getLootingLevel(), WandHelper.getUpgradeLevel(entity.getHeldItemMainhand(), WNGItems.UPGRADE_LOOTING)));
             }
-            else if (entity.getHeldItemOffhand().getItem() instanceof ItemWand && WandHelper.getUpgradeLevel(entity.getHeldItemOffhand(), WNGItems.upgrade_looting) > 0) {
-                event.setLootingLevel(Math.max(event.getLootingLevel(), WandHelper.getUpgradeLevel(entity.getHeldItemOffhand(), WNGItems.upgrade_looting)));
+            else if (entity.getHeldItemOffhand().getItem() instanceof ItemWand && WandHelper.getUpgradeLevel(entity.getHeldItemOffhand(), WNGItems.UPGRADE_LOOTING) > 0) {
+                event.setLootingLevel(Math.max(event.getLootingLevel(), WandHelper.getUpgradeLevel(entity.getHeldItemOffhand(), WNGItems.UPGRADE_LOOTING)));
             }
         }
     }

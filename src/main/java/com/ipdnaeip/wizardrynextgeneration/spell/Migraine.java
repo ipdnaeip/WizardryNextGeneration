@@ -2,10 +2,8 @@ package com.ipdnaeip.wizardrynextgeneration.spell;
 
 import com.ipdnaeip.wizardrynextgeneration.WizardryNextGeneration;
 import com.ipdnaeip.wizardrynextgeneration.registry.WNGItems;
-import com.ipdnaeip.wizardrynextgeneration.registry.WNGSpells;
+import com.ipdnaeip.wizardrynextgeneration.util.WNGUtils;
 import electroblob.wizardry.item.SpellActions;
-import electroblob.wizardry.registry.WizardryPotions;
-import electroblob.wizardry.registry.WizardrySounds;
 import electroblob.wizardry.spell.SpellRay;
 import electroblob.wizardry.util.EntityUtils;
 import electroblob.wizardry.util.MagicDamage;
@@ -17,13 +15,10 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.MobEffects;
 import net.minecraft.item.Item;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.tileentity.TileEntityDispenser;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
-import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.World;
 
 public class Migraine extends SpellRay {
@@ -52,16 +47,17 @@ public class Migraine extends SpellRay {
     protected boolean onEntityHit(World world, Entity target, Vec3d hit, EntityLivingBase caster, Vec3d origin, int ticksInUse, SpellModifiers modifiers) {
         if (target instanceof EntityLivingBase) {
             EntityLivingBase targetEntity = (EntityLivingBase) target;
-            if (ticksInUse % 10 == 0) {
-                EntityUtils.attackEntityWithoutKnockback(targetEntity, MagicDamage.causeDirectMagicDamage(caster, MagicDamage.DamageType.SHOCK), this.getProperty(DAMAGE).floatValue() * modifiers.get(SpellModifiers.POTENCY));
-                if (targetEntity instanceof EntityPlayer) {
-                    targetEntity.addPotionEffect(new PotionEffect(MobEffects.NAUSEA, this.getProperty(EFFECT_DURATION).intValue(), 0));
-                    targetEntity.addPotionEffect(new PotionEffect(MobEffects.SLOWNESS, this.getProperty(EFFECT_DURATION).intValue(), 0));
+            MagicDamage.DamageType damageType = MagicDamage.DamageType.SHOCK;
+            if (WNGUtils.canMagicDamageEntity(caster, target, damageType, this, ticksInUse)) {
+                if (ticksInUse % 10 == 0) {
+                    EntityUtils.attackEntityWithoutKnockback(targetEntity, MagicDamage.causeDirectMagicDamage(caster, damageType), this.getProperty(DAMAGE).floatValue() * modifiers.get(SpellModifiers.POTENCY));
+                    if (targetEntity instanceof EntityPlayer) {
+                        targetEntity.addPotionEffect(new PotionEffect(MobEffects.NAUSEA, this.getProperty(EFFECT_DURATION).intValue()));
+                        targetEntity.addPotionEffect(new PotionEffect(MobEffects.SLOWNESS, this.getProperty(EFFECT_DURATION).intValue()));
+                    } else {
+                        targetEntity.addPotionEffect(new PotionEffect(MobEffects.SLOWNESS, this.getProperty(EFFECT_DURATION).intValue(), 1));
+                    }
                 }
-                else {
-                    targetEntity.addPotionEffect(new PotionEffect(MobEffects.SLOWNESS, this.getProperty(EFFECT_DURATION).intValue(), 1));
-                }
-
             }
         }
         return true;
@@ -84,6 +80,6 @@ public class Migraine extends SpellRay {
 
     @Override
     public boolean applicableForItem(Item item) {
-        return item == WNGItems.spell_book_wng || item == WNGItems.scroll_wng;
+        return item == WNGItems.SPELL_BOOK_WNG || item == WNGItems.SCROLL_WNG;
     }
 }

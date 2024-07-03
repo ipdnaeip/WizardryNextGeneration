@@ -6,6 +6,7 @@ import com.ipdnaeip.wizardrynextgeneration.registry.WNGPotions;
 import com.ipdnaeip.wizardrynextgeneration.registry.WNGSpells;
 import electroblob.wizardry.item.SpellActions;
 import electroblob.wizardry.registry.WizardryItems;
+import electroblob.wizardry.spell.SpellBuff;
 import electroblob.wizardry.util.*;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.Item;
@@ -23,7 +24,7 @@ public class Veneficium extends SpellBarrage {
 
     protected void barrageEffect(World world, EntityLivingBase target, EntityLivingBase caster, int ticksInUse, SpellModifiers modifiers) {
         int duration = (int)(WNGSpells.veneficium.getProperty(EFFECT_DURATION).floatValue() * modifiers.get(WizardryItems.duration_upgrade));
-        target.addPotionEffect(new PotionEffect(WNGPotions.veneficium, duration, (int) ((modifiers.get("potency") - 1) * 3.5)));
+        target.addPotionEffect(new PotionEffect(WNGPotions.veneficium, duration, SpellBuff.getStandardBonusAmplifier(modifiers.get(SpellModifiers.POTENCY))));
     }
 
     @Override
@@ -40,6 +41,6 @@ public class Veneficium extends SpellBarrage {
 
     @Override
     public boolean applicableForItem(Item item) {
-        return item == WNGItems.spell_book_wng || item == WNGItems.scroll_wng;
+        return item == WNGItems.SPELL_BOOK_WNG || item == WNGItems.SCROLL_WNG;
     }
 }

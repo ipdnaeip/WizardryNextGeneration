@@ -21,6 +21,6 @@ public class SummonRighteousDefender extends SpellMinion<EntityRighteousDefender
 
     @Override
     public boolean applicableForItem(Item item) {
-        return item == WNGItems.spell_book_wng || item == WNGItems.scroll_wng;
+        return item == WNGItems.SPELL_BOOK_WNG || item == WNGItems.SCROLL_WNG;
     }
 }

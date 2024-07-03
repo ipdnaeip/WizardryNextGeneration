@@ -3,14 +3,8 @@ package com.ipdnaeip.wizardrynextgeneration.spell;
 import com.ipdnaeip.wizardrynextgeneration.WizardryNextGeneration;
 import com.ipdnaeip.wizardrynextgeneration.entity.ai.EntityAIAnimalFollowPlayer;
 import com.ipdnaeip.wizardrynextgeneration.registry.WNGItems;
-import electroblob.wizardry.data.IStoredVariable;
-import electroblob.wizardry.data.Persistence;
-import electroblob.wizardry.data.WizardData;
 import electroblob.wizardry.item.SpellActions;
 import electroblob.wizardry.spell.SpellRay;
-import electroblob.wizardry.spell.Transportation;
-import electroblob.wizardry.util.EntityUtils;
-import electroblob.wizardry.util.Location;
 import electroblob.wizardry.util.SpellModifiers;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
@@ -26,14 +20,9 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.World;
-import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 import javax.annotation.Nullable;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
 
 //Modified from Dan Windanesz's Covenant spell
 
@@ -110,7 +99,7 @@ public class Domesticate extends SpellRay {
 
     @Override
     public boolean applicableForItem(Item item) {
-        return item == WNGItems.spell_book_wng || item == WNGItems.scroll_wng;
+        return item == WNGItems.SPELL_BOOK_WNG || item == WNGItems.SCROLL_WNG;
     }
 }
 

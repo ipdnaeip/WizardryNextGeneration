@@ -2,7 +2,6 @@ package com.ipdnaeip.wizardrynextgeneration.spell;
 
 import com.ipdnaeip.wizardrynextgeneration.WizardryNextGeneration;
 import com.ipdnaeip.wizardrynextgeneration.potion.PotionAnimalAllegiance;
-import com.ipdnaeip.wizardrynextgeneration.registry.WNGConstants;
 import com.ipdnaeip.wizardrynextgeneration.registry.WNGItems;
 import com.ipdnaeip.wizardrynextgeneration.registry.WNGPotions;
 import electroblob.wizardry.item.SpellActions;
@@ -19,8 +18,6 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
-import java.util.Comparator;
-import java.util.Iterator;
 import java.util.List;
 
 public class AnimalAllegiance extends SpellAreaEffect  {
@@ -52,6 +49,6 @@ public class AnimalAllegiance extends SpellAreaEffect  {
 
     @Override
     public boolean applicableForItem(Item item) {
-        return item == WNGItems.spell_book_wng || item == WNGItems.scroll_wng;
+        return item == WNGItems.SPELL_BOOK_WNG || item == WNGItems.SCROLL_WNG;
     }
 }

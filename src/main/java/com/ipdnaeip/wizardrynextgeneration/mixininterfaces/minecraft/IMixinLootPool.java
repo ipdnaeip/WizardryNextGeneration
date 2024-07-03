@@ -6,8 +6,8 @@ import java.util.function.Predicate;
 
 public interface IMixinLootPool {
 
-    Predicate<Item> getFilter();
+    Predicate<Item> wizardryNextGeneration$getFilter();
 
-    void setFilter(Predicate<Item> filter);
+    void wizardryNextGeneration$setFilter(Predicate<Item> filter);
 
 }

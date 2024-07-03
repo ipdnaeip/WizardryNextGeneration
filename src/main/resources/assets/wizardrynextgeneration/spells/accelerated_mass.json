@@ -19,6 +19,7 @@
   "base_properties": {
     "range": 20,
     "damage": 5,
-    "damage_max_range_multiplier": 3
+    "max_multiplier": 3,
+    "acceleration": 1.2
   }
 }

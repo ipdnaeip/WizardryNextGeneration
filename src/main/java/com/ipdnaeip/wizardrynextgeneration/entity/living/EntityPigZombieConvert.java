@@ -136,7 +136,7 @@ public class EntityPigZombieConvert extends EntityPigZombie implements ISummoned
 
     @Override
     protected boolean canDespawn() {
-        return getCaster() == null && getOwnerId() == null;
+        return false;
     }
 
     @Override

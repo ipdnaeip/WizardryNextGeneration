@@ -25,15 +25,15 @@ public class BlessMeat extends Spell {
     }
 
     public boolean cast(World world, EntityPlayer caster, EnumHand hand, int ticksInUse, SpellModifiers modifiers) {
-        int usesLeft = (int)(this.getProperty(MEAT_BLESSED).floatValue() * modifiers.get("potency"));
+        int usesLeft = (int)(this.getProperty(MEAT_BLESSED).floatValue() * modifiers.get(SpellModifiers.POTENCY));
 
         int i;
         for(i = 0; i < caster.inventory.getSizeInventory() && usesLeft > 0; ++i) {
             ItemStack stack = caster.inventory.getStackInSlot(i);
             if (!stack.isEmpty() && !world.isRemote && stack.getItem() == Items.ROTTEN_FLESH) {
                     if (stack.getCount() <= usesLeft) {
-                        ItemStack stack2 = new ItemStack(WNGItems.blessed_meat, stack.getCount());
-                        if (InventoryUtils.doesPlayerHaveItem(caster, WNGItems.blessed_meat)) {
+                        ItemStack stack2 = new ItemStack(WNGItems.BLESSED_MEAT, stack.getCount());
+                        if (InventoryUtils.doesPlayerHaveItem(caster, WNGItems.BLESSED_MEAT)) {
                             caster.inventory.addItemStackToInventory(stack2);
                             caster.inventory.setInventorySlotContents(i, ItemStack.EMPTY);
                         } else {
@@ -43,7 +43,7 @@ public class BlessMeat extends Spell {
                         usesLeft -= stack.getCount();
                     } else {
                         caster.inventory.decrStackSize(i, usesLeft);
-                        caster.inventory.addItemStackToInventory(new ItemStack(WNGItems.blessed_meat, usesLeft));
+                        caster.inventory.addItemStackToInventory(new ItemStack(WNGItems.BLESSED_MEAT, usesLeft));
                         usesLeft = 0;
                     }
                 }
@@ -62,6 +62,6 @@ public class BlessMeat extends Spell {
 
     @Override
     public boolean applicableForItem(Item item) {
-        return item == WNGItems.spell_book_wng || item == WNGItems.scroll_wng;
+        return item == WNGItems.SPELL_BOOK_WNG || item == WNGItems.SCROLL_WNG;
     }
 }

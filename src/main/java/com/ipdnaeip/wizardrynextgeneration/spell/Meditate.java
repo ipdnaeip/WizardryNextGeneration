@@ -42,7 +42,6 @@ public class Meditate extends Spell {
 
     @Override
     public boolean cast(World world, EntityPlayer caster, EnumHand hand, int ticksInUse, SpellModifiers modifiers) {
-        System.out.println(WNGUtils.isEntityStill(caster) + " s m " + WNGUtils.isEntityMoving(caster));
         if (WNGUtils.isEntityMoving(caster)) {
             caster.sendStatusMessage(new TextComponentTranslation("spell." + this.getUnlocalisedName() + ".moving"), true);
             return false;
@@ -50,7 +49,7 @@ public class Meditate extends Spell {
         //check if the player can be healed and if the player is standing still
         if (WNGUtils.isEntityStill(caster) && caster.getHealth() < caster.getMaxHealth() && caster.getHealth() > 0.0F && ticksInUse % 10 == 0) {
             //caster.addPotionEffect(new PotionEffect(MobEffects.BLINDNESS, 30, 0));
-            caster.heal(this.getProperty("health").floatValue() * (1 + modifiers.get("potency")));
+            caster.heal(this.getProperty(HEALTH).floatValue() * (1 + modifiers.get(SpellModifiers.POTENCY)));
             this.playSound(world, caster, ticksInUse, -1, modifiers);
             ParticleBuilder.create(ParticleBuilder.Type.BUFF).entity(caster).clr(170, 250, 250).spawn(world);
             return true;
@@ -60,6 +59,6 @@ public class Meditate extends Spell {
 
     @Override
     public boolean applicableForItem(Item item) {
-        return item == WNGItems.spell_book_wng || item == WNGItems.scroll_wng;
+        return item == WNGItems.SPELL_BOOK_WNG || item == WNGItems.SCROLL_WNG;
     }
 }

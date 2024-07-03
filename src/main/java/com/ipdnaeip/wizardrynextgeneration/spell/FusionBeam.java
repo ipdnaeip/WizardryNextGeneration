@@ -2,7 +2,7 @@ package com.ipdnaeip.wizardrynextgeneration.spell;
 
 import com.ipdnaeip.wizardrynextgeneration.WizardryNextGeneration;
 import com.ipdnaeip.wizardrynextgeneration.registry.WNGItems;
-import com.ipdnaeip.wizardrynextgeneration.registry.WNGPotions;
+import com.ipdnaeip.wizardrynextgeneration.util.WNGUtils;
 import electroblob.wizardry.item.SpellActions;
 import electroblob.wizardry.util.MagicDamage;
 import electroblob.wizardry.util.ParticleBuilder;
@@ -10,7 +10,6 @@ import electroblob.wizardry.util.SpellModifiers;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.Item;
-import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
@@ -28,7 +27,10 @@ public class FusionBeam extends SpellRayMultiple {
     @Override
     protected boolean onEntityHit(World world, Entity target, Vec3d hit, EntityLivingBase caster, Vec3d origin, int ticksInUse, SpellModifiers modifiers) {
         if (target instanceof EntityLivingBase) {
-            target.attackEntityFrom(MagicDamage.causeDirectMagicDamage(caster, MagicDamage.DamageType.FIRE), this.getProperty(DAMAGE).floatValue());
+            MagicDamage.DamageType damageType = MagicDamage.DamageType.FIRE;
+            if (WNGUtils.canMagicDamageEntity(caster, target, damageType, this, ticksInUse)) {
+                target.attackEntityFrom(MagicDamage.causeDirectMagicDamage(caster, MagicDamage.DamageType.FIRE), this.getProperty(DAMAGE).floatValue());
+            }
         }
         return true;
     }
@@ -54,7 +56,7 @@ public class FusionBeam extends SpellRayMultiple {
 
     @Override
     public boolean applicableForItem(Item item) {
-        return item == WNGItems.spell_book_wng || item == WNGItems.scroll_wng;
+        return item == WNGItems.SPELL_BOOK_WNG || item == WNGItems.SCROLL_WNG;
     }
 }
 

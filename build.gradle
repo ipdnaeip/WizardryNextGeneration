@@ -142,6 +142,9 @@ dependencies {
 
     //// Dependencies ////
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
+    annotationProcessor 'org.ow2.asm:asm-debug-all:5.2'
+    annotationProcessor 'com.google.guava:guava:24.1.1-jre'
+    annotationProcessor 'com.google.code.gson:gson:2.8.6'
 
     implementation fg.deobf("curse.maven:ElectroblobsWizardry-${wizardry_projectid}:${wizardry_fileid}")
     implementation fg.deobf("curse.maven:baubles-${baubles_projectid}:${baubles_fileid}")
@@ -203,5 +206,4 @@ mixin {
     add sourceSets.main, "wizardrynextgeneration.refmap.json"
     config "wizardrynextgeneration.minecraft.mixins.json"
     config "wizardrynextgeneration.ebwizardry.mixins.json"
-    disableAnnotationProcessorCheck()
 }

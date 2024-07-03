@@ -2,27 +2,18 @@ package com.ipdnaeip.wizardrynextgeneration.spell;
 
 import com.ipdnaeip.wizardrynextgeneration.WizardryNextGeneration;
 import com.ipdnaeip.wizardrynextgeneration.registry.WNGItems;
-import com.ipdnaeip.wizardrynextgeneration.registry.WNGSpells;
+import com.ipdnaeip.wizardrynextgeneration.util.WNGUtils;
 import electroblob.wizardry.block.BlockStatue;
 import electroblob.wizardry.item.SpellActions;
 import electroblob.wizardry.registry.WizardryBlocks;
 import electroblob.wizardry.registry.WizardryItems;
 import electroblob.wizardry.registry.WizardryPotions;
-import electroblob.wizardry.spell.SpellRay;
 import electroblob.wizardry.util.*;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.init.MobEffects;
 import net.minecraft.item.Item;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
-
-import java.util.Iterator;
-import java.util.List;
 
 public class IceBarrage extends SpellBarrage {
 
@@ -35,11 +26,13 @@ public class IceBarrage extends SpellBarrage {
 
     @Override
     protected void barrageEffect(World world, EntityLivingBase target, EntityLivingBase caster, int ticksInUse, SpellModifiers modifiers) {
-
-        EntityUtils.attackEntityWithoutKnockback(target, MagicDamage.causeDirectMagicDamage(caster, MagicDamage.DamageType.FROST), getProperty(DAMAGE).floatValue() * modifiers.get(SpellModifiers.POTENCY));
-        if (target instanceof EntityLiving && !world.isRemote && ((BlockStatue) WizardryBlocks.ice_statue).convertToStatue((EntityLiving) target, caster, (int) (this.getProperty("ice_duration").floatValue() * modifiers.get(WizardryItems.duration_upgrade)))) {
+        MagicDamage.DamageType damageType = MagicDamage.DamageType.FROST;
+        if (WNGUtils.canMagicDamageEntity(caster, target, damageType, this, ticksInUse)) {
+            EntityUtils.attackEntityWithoutKnockback(target, MagicDamage.causeDirectMagicDamage(caster, damageType), getProperty(DAMAGE).floatValue() * modifiers.get(SpellModifiers.POTENCY));
+            if (target instanceof EntityLiving && !world.isRemote && ((BlockStatue) WizardryBlocks.ice_statue).convertToStatue((EntityLiving) target, caster, (int) (this.getProperty(ICE_DURATION).floatValue() * modifiers.get(WizardryItems.duration_upgrade)))) {
+            }
+            target.addPotionEffect(new PotionEffect(WizardryPotions.frost, (int) (this.getProperty(EFFECT_DURATION).floatValue() * modifiers.get(WizardryItems.duration_upgrade)), 1));
         }
-        target.addPotionEffect(new PotionEffect(WizardryPotions.frost, (int)(this.getProperty(EFFECT_DURATION).floatValue() * modifiers.get(WizardryItems.duration_upgrade)), 1));
     }
 
     @Override
@@ -51,6 +44,6 @@ public class IceBarrage extends SpellBarrage {
 
     @Override
     public boolean applicableForItem(Item item) {
-        return item == WNGItems.spell_book_wng || item == WNGItems.scroll_wng;
+        return item == WNGItems.SPELL_BOOK_WNG || item == WNGItems.SCROLL_WNG;
     }
 }

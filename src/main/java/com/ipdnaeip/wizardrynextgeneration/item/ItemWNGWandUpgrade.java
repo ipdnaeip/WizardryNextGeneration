@@ -13,9 +13,9 @@ public class ItemWNGWandUpgrade extends ItemWandUpgrade {
     }
 
     public static void init() {
-        WandHelper.registerSpecialUpgrade(WNGItems.upgrade_chargeup, "chargeup_upgrade");
-        WandHelper.registerSpecialUpgrade(WNGItems.upgrade_looting, "looting_upgrade");
-        WandHelper.registerSpecialUpgrade(WNGItems.upgrade_movement, "movement_upgrade");
+        WandHelper.registerSpecialUpgrade(WNGItems.UPGRADE_CHARGEUP, "chargeup_upgrade");
+        WandHelper.registerSpecialUpgrade(WNGItems.UPGRADE_LOOTING, "looting_upgrade");
+        WandHelper.registerSpecialUpgrade(WNGItems.UPGRADE_MOVEMENT, "movement_upgrade");
     }
 
 

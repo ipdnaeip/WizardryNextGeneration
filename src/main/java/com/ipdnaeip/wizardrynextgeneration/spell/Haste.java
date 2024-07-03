@@ -2,9 +2,7 @@ package com.ipdnaeip.wizardrynextgeneration.spell;
 
 import com.ipdnaeip.wizardrynextgeneration.WizardryNextGeneration;
         import com.ipdnaeip.wizardrynextgeneration.registry.WNGItems;
-        import com.ipdnaeip.wizardrynextgeneration.registry.WNGPotions;
-        import electroblob.wizardry.registry.WizardryPotions;
-        import electroblob.wizardry.spell.SpellBuff;
+import electroblob.wizardry.spell.SpellBuff;
         import net.minecraft.init.MobEffects;
         import net.minecraft.item.Item;
 
@@ -16,6 +14,6 @@ public class Haste extends SpellBuff {
 
     @Override
     public boolean applicableForItem(Item item) {
-        return item == WNGItems.spell_book_wng || item == WNGItems.scroll_wng;
+        return item == WNGItems.SPELL_BOOK_WNG || item == WNGItems.SCROLL_WNG;
     }
 }

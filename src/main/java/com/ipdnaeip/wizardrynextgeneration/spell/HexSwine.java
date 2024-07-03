@@ -3,7 +3,6 @@ package com.ipdnaeip.wizardrynextgeneration.spell;
 import com.ipdnaeip.wizardrynextgeneration.WizardryNextGeneration;
 import com.ipdnaeip.wizardrynextgeneration.entity.living.EntityPigZombieConvert;
 import com.ipdnaeip.wizardrynextgeneration.registry.WNGItems;
-import electroblob.wizardry.entity.living.ISummonedCreature;
 import electroblob.wizardry.item.SpellActions;
 import electroblob.wizardry.spell.SpellRay;
 import electroblob.wizardry.util.ParticleBuilder;
@@ -57,7 +56,7 @@ public class HexSwine extends SpellRay {
 
     @Override
     public boolean applicableForItem(Item item) {
-        return item == WNGItems.spell_book_wng || item == WNGItems.scroll_wng;
+        return item == WNGItems.SPELL_BOOK_WNG || item == WNGItems.SCROLL_WNG;
     }
 
 }

@@ -2,26 +2,23 @@ package com.ipdnaeip.wizardrynextgeneration.spell;
 
 import com.ipdnaeip.wizardrynextgeneration.WizardryNextGeneration;
 import com.ipdnaeip.wizardrynextgeneration.registry.WNGItems;
-import com.ipdnaeip.wizardrynextgeneration.registry.WNGPotions;
 import com.ipdnaeip.wizardrynextgeneration.registry.WNGSpells;
+import com.ipdnaeip.wizardrynextgeneration.util.WNGUtils;
 import electroblob.wizardry.item.SpellActions;
-import electroblob.wizardry.registry.Spells;
 import electroblob.wizardry.registry.WizardryItems;
+import electroblob.wizardry.spell.SpellBuff;
 import electroblob.wizardry.spell.SpellRay;
-import electroblob.wizardry.util.EntityUtils;
 import electroblob.wizardry.util.MagicDamage;
 import electroblob.wizardry.util.ParticleBuilder;
 import electroblob.wizardry.util.SpellModifiers;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.MobEffects;
 import net.minecraft.item.Item;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
-import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.World;
 
 public class SapStrength extends SpellRay {
@@ -35,15 +32,17 @@ public class SapStrength extends SpellRay {
 
     @Override
     protected boolean onEntityHit(World world, Entity target, Vec3d hit, EntityLivingBase caster, Vec3d origin, int ticksInUse, SpellModifiers modifiers) {
-
         if (target instanceof EntityLivingBase) {
             EntityLivingBase targetEntity = (EntityLivingBase) target;
             if (world.isRemote) {
                 ParticleBuilder.create(ParticleBuilder.Type.LIGHTNING).entity(caster).pos(caster != null ? origin.subtract(caster.getPositionVector()) : origin).target(target).clr(170, 0, 170).spawn(world);
                 ParticleBuilder.spawnShockParticles(world, target.posX, target.posY + (double)(target.height / 2.0F), target.posZ);
             }
-            target.attackEntityFrom(MagicDamage.causeDirectMagicDamage(caster, MagicDamage.DamageType.SHOCK), getProperty(DAMAGE).floatValue() * modifiers.get(SpellModifiers.POTENCY));
-            targetEntity.addPotionEffect(new PotionEffect(WNGPotions.disempowerment, (int)(WNGSpells.sap_strength.getProperty(EFFECT_DURATION).floatValue() * modifiers.get(WizardryItems.duration_upgrade)),(int)((modifiers.get(SpellModifiers.POTENCY) -1) * 3.5), false, false));
+            MagicDamage.DamageType damageType = MagicDamage.DamageType.SHOCK;
+            if (WNGUtils.canMagicDamageEntity(caster, target, damageType, this, ticksInUse)) {
+                target.attackEntityFrom(MagicDamage.causeDirectMagicDamage(caster, damageType), getProperty(DAMAGE).floatValue() * modifiers.get(SpellModifiers.POTENCY));
+                targetEntity.addPotionEffect(new PotionEffect(MobEffects.WEAKNESS, (int) (WNGSpells.sap_intellect.getProperty(EFFECT_DURATION).floatValue() * modifiers.get(WizardryItems.duration_upgrade)), SpellBuff.getStandardBonusAmplifier(modifiers.get(SpellModifiers.POTENCY)), false, false));
+            }
             return true;
         }
         return false;
@@ -61,6 +60,6 @@ public class SapStrength extends SpellRay {
 
     @Override
     public boolean applicableForItem(Item item) {
-        return item == WNGItems.spell_book_wng || item == WNGItems.scroll_wng;
+        return item == WNGItems.SPELL_BOOK_WNG || item == WNGItems.SCROLL_WNG;
     }
 }

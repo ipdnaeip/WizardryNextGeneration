@@ -105,25 +105,17 @@ import com.ipdnaeip.wizardrynextgeneration.WizardryNextGeneration;
 import com.ipdnaeip.wizardrynextgeneration.registry.WNGItems;
 import com.ipdnaeip.wizardrynextgeneration.registry.WNGPotions;
 import com.ipdnaeip.wizardrynextgeneration.registry.WNGSpells;
+import com.ipdnaeip.wizardrynextgeneration.util.WNGUtils;
 import electroblob.wizardry.item.SpellActions;
 import electroblob.wizardry.registry.WizardryItems;
-import electroblob.wizardry.spell.SpellRay;
 import electroblob.wizardry.util.*;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.init.MobEffects;
 import net.minecraft.item.Item;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
 import net.minecraft.util.EnumParticleTypes;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
-
-import java.util.Iterator;
-import java.util.List;
 
 public class SmokeBarrage extends SpellBarrage {
 
@@ -134,10 +126,13 @@ public class SmokeBarrage extends SpellBarrage {
     }
 
     protected void barrageEffect(World world, EntityLivingBase target, EntityLivingBase caster, int ticksInUse, SpellModifiers modifiers) {
-        int duration = (int)(WNGSpells.smoke_barrage.getProperty(EFFECT_DURATION).floatValue() * modifiers.get(WizardryItems.duration_upgrade));
-        EntityUtils.attackEntityWithoutKnockback(target, MagicDamage.causeDirectMagicDamage(caster, MagicDamage.DamageType.FIRE), getProperty(DAMAGE).floatValue() * modifiers.get(SpellModifiers.POTENCY));
-        target.addPotionEffect(new PotionEffect(MobEffects.BLINDNESS, duration, 0));
-        target.addPotionEffect(new PotionEffect(WNGPotions.suffocation, duration, 1));
+        MagicDamage.DamageType damageType = MagicDamage.DamageType.FIRE;
+        if (WNGUtils.canMagicDamageEntity(caster, target, damageType, this, ticksInUse)) {
+            int duration = (int) (WNGSpells.smoke_barrage.getProperty(EFFECT_DURATION).floatValue() * modifiers.get(WizardryItems.duration_upgrade));
+            EntityUtils.attackEntityWithoutKnockback(target, MagicDamage.causeDirectMagicDamage(caster, damageType), getProperty(DAMAGE).floatValue() * modifiers.get(SpellModifiers.POTENCY));
+            target.addPotionEffect(new PotionEffect(MobEffects.BLINDNESS, duration));
+            target.addPotionEffect(new PotionEffect(WNGPotions.suffocation, duration, 1));
+        }
     }
 
     @Override
@@ -160,6 +155,6 @@ public class SmokeBarrage extends SpellBarrage {
 
     @Override
     public boolean applicableForItem(Item item) {
-        return item == WNGItems.spell_book_wng || item == WNGItems.scroll_wng;
+        return item == WNGItems.SPELL_BOOK_WNG || item == WNGItems.SCROLL_WNG;
     }
 }

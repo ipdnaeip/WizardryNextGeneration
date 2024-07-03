@@ -2,11 +2,9 @@ package com.ipdnaeip.wizardrynextgeneration.spell;
 
 import com.ipdnaeip.wizardrynextgeneration.WizardryNextGeneration;
 import com.ipdnaeip.wizardrynextgeneration.registry.WNGItems;
-import com.ipdnaeip.wizardrynextgeneration.registry.WNGPotions;
-import com.ipdnaeip.wizardrynextgeneration.registry.WNGSpells;
+import com.ipdnaeip.wizardrynextgeneration.util.WNGUtils;
 import electroblob.wizardry.item.SpellActions;
 import electroblob.wizardry.registry.WizardryItems;
-import electroblob.wizardry.registry.WizardrySounds;
 import electroblob.wizardry.spell.SpellRay;
 import electroblob.wizardry.util.EntityUtils;
 import electroblob.wizardry.util.MagicDamage;
@@ -38,14 +36,17 @@ public class ShadowBlitz extends SpellRay {
     protected boolean onEntityHit(World world, Entity target, Vec3d hit, EntityLivingBase caster, Vec3d origin, int ticksInUse, SpellModifiers modifiers) {
         if (target instanceof EntityLivingBase) {
             EntityLivingBase targetEntity = (EntityLivingBase) target;
-            int duration = (int) (this.getProperty(EFFECT_DURATION).floatValue() * modifiers.get(WizardryItems.duration_upgrade));
-            float damage = this.getProperty(DAMAGE).floatValue() * modifiers.get(SpellModifiers.POTENCY);
-            if (targetEntity.getBrightness() < 0.25f) {
-                damage *= this.getProperty(DARKNESS_MULTIPLIER).floatValue();
-                targetEntity.addPotionEffect(new PotionEffect(MobEffects.BLINDNESS, duration, 0));
-                world.playSound(null, target.getPosition(), SoundEvents.ENTITY_ENDERDRAGON_FLAP, SoundCategory.BLOCKS, 1f, 0.9f + world.rand.nextFloat() * 0.2f);
+            MagicDamage.DamageType damageType = MagicDamage.DamageType.WITHER;
+            if (WNGUtils.canMagicDamageEntity(caster, target, damageType, this, ticksInUse)) {
+                int duration = (int) (this.getProperty(EFFECT_DURATION).floatValue() * modifiers.get(WizardryItems.duration_upgrade));
+                float damage = this.getProperty(DAMAGE).floatValue() * modifiers.get(SpellModifiers.POTENCY);
+                if (targetEntity.getBrightness() < 0.25f) {
+                    damage *= this.getProperty(DARKNESS_MULTIPLIER).floatValue();
+                    targetEntity.addPotionEffect(new PotionEffect(MobEffects.BLINDNESS, duration));
+                    world.playSound(null, target.getPosition(), SoundEvents.ENTITY_ENDERDRAGON_FLAP, SoundCategory.BLOCKS, 1f, 0.9f + world.rand.nextFloat() * 0.2f);
+                }
+                EntityUtils.attackEntityWithoutKnockback(targetEntity, MagicDamage.causeDirectMagicDamage(caster, damageType), damage);
             }
-            EntityUtils.attackEntityWithoutKnockback(targetEntity, MagicDamage.causeDirectMagicDamage(caster, MagicDamage.DamageType.WITHER), damage);
         }
         return true;
     }
@@ -67,6 +68,6 @@ public class ShadowBlitz extends SpellRay {
 
     @Override
     public boolean applicableForItem(Item item) {
-        return item == WNGItems.spell_book_wng || item == WNGItems.scroll_wng;
+        return item == WNGItems.SPELL_BOOK_WNG || item == WNGItems.SCROLL_WNG;
     }
 }

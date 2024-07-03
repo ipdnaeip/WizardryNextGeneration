@@ -49,13 +49,13 @@ public class Chomp extends SpellRay {
         Vec3d direction = hit.subtract(origin).normalize();
         float yaw = (float)MathHelper.atan2(direction.z, direction.x);
         EntityEvokerFangs fangs = new EntityEvokerFangs(world, hit.x, hit.y, hit.z, yaw, 0, caster);
-        fangs.getEntityData().setFloat("ebwizardryDamageModifier", modifiers.get("potency"));
+        fangs.getEntityData().setFloat("ebwizardryDamageModifier", modifiers.get(SpellModifiers.POTENCY));
         world.spawnEntity(fangs);
     }
 
     @Override
     public boolean applicableForItem(Item item) {
-        return item == WNGItems.spell_book_wng || item == WNGItems.scroll_wng;
+        return item == WNGItems.SPELL_BOOK_WNG || item == WNGItems.SCROLL_WNG;
     }
 
 }

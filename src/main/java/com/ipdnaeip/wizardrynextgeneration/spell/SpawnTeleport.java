@@ -53,7 +53,7 @@ public class SpawnTeleport extends Spell {
                 if (destination.dimension == 0) {
                     this.playSound(world, caster, 0, -1, modifiers);
                     caster.addPotionEffect(new PotionEffect(MobEffects.NAUSEA, 150, 0));
-                    data.setVariable(COUNTDOWN_KEY, this.getProperty("teleport_countdown").intValue());
+                    data.setVariable(COUNTDOWN_KEY, this.getProperty(TELEPORT_COUNTDOWN).intValue());
                     return true;
                 } else {
                     if (!world.isRemote) caster.sendStatusMessage(new TextComponentTranslation("spell." + this.getUnlocalisedName() + ".wrongdimension"), true);
@@ -94,7 +94,7 @@ public class SpawnTeleport extends Spell {
 
     @Override
     public boolean applicableForItem(Item item) {
-        return item == WNGItems.spell_book_wng || item == WNGItems.scroll_wng;
+        return item == WNGItems.SPELL_BOOK_WNG || item == WNGItems.SCROLL_WNG;
     }
 
 

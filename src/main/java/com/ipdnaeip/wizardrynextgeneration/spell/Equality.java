@@ -2,6 +2,7 @@ package com.ipdnaeip.wizardrynextgeneration.spell;
 
 import com.ipdnaeip.wizardrynextgeneration.WizardryNextGeneration;
 import com.ipdnaeip.wizardrynextgeneration.registry.WNGItems;
+import com.ipdnaeip.wizardrynextgeneration.util.WNGUtils;
 import electroblob.wizardry.item.SpellActions;
 import electroblob.wizardry.spell.SpellRay;
 import electroblob.wizardry.util.EntityUtils;
@@ -32,28 +33,29 @@ public class Equality extends SpellRay {
     protected boolean onEntityHit(World world, Entity target, Vec3d hit, EntityLivingBase caster, Vec3d origin, int ticksInUse, SpellModifiers modifiers) {
         if (target instanceof EntityLivingBase) {
             EntityLivingBase enemy = (EntityLivingBase)target;
+            MagicDamage.DamageType damageType = MagicDamage.DamageType.RADIANT;
             if (caster != null) {
-                //l = tC - (tM/cM) * cC)
-                float low_health = enemy.getHealth() - (enemy.getMaxHealth() / caster.getMaxHealth() * caster.getHealth());
-                //float high_health = (float)Math.pow(enemy.getHealth() - (enemy.getMaxHealth() / caster.getMaxHealth() * caster.getHealth()), 0.65);
-                //float high_health = (float)Math.sqrt(enemy.getHealth() - (enemy.getMaxHealth() / caster.getMaxHealth() * caster.getHealth()));
-                float high_health = Math.min(enemy.getHealth() - (enemy.getMaxHealth() / caster.getMaxHealth() * caster.getHealth()), (caster.getMaxHealth() - caster.getHealth()) * (1 + modifiers.get("potency")));
-                if (enemy.getHealth() / enemy.getMaxHealth() <= caster.getHealth() / caster.getMaxHealth() || caster.getHealth() == caster.getMaxHealth()) {
-                    if (!world.isRemote && caster instanceof EntityPlayer) {
-                        ((EntityPlayer) caster).sendStatusMessage(new TextComponentTranslation("spell." + this.getUnlocalisedName() + ".no_effect"), true);
+                if (WNGUtils.canMagicDamageEntity(caster, enemy, damageType, this, ticksInUse)) {
+                    //l = tC - (tM/cM) * cC)
+                    float low_health = enemy.getHealth() - (enemy.getMaxHealth() / caster.getMaxHealth() * caster.getHealth());
+                    float high_health = Math.min(enemy.getHealth() - (enemy.getMaxHealth() / caster.getMaxHealth() * caster.getHealth()), (caster.getMaxHealth() - caster.getHealth()) * (1 + modifiers.get(SpellModifiers.POTENCY)));
+                    if (enemy.getHealth() / enemy.getMaxHealth() <= caster.getHealth() / caster.getMaxHealth() || caster.getHealth() == caster.getMaxHealth()) {
+                        if (!world.isRemote && caster instanceof EntityPlayer) {
+                            ((EntityPlayer)caster).sendStatusMessage(new TextComponentTranslation("spell." + this.getUnlocalisedName() + ".no_effect"), true);
+                        }
+                        return false;
                     }
-                    return false;
-                }
-                if (enemy.getMaxHealth() <= caster.getMaxHealth()) {
-                    this.soundValues(1F, 0.6F, 0.1F);
-                    EntityUtils.attackEntityWithoutKnockback(enemy, MagicDamage.causeDirectMagicDamage(caster, MagicDamage.DamageType.RADIANT), low_health);
-                }
-                if (enemy.getMaxHealth() > caster.getMaxHealth()) {
-                    if (!world.isRemote && caster instanceof EntityPlayer) {
-                        ((EntityPlayer) caster).sendStatusMessage(new TextComponentTranslation("spell." + this.getUnlocalisedName() + ".high_health"), true);
+                    if (enemy.getMaxHealth() <= caster.getMaxHealth()) {
+                        this.soundValues(1F, 0.6F, 0.1F);
+                        EntityUtils.attackEntityWithoutKnockback(enemy, MagicDamage.causeDirectMagicDamage(caster, damageType), low_health);
                     }
-                    this.soundValues(1F, 0.4F, 0.1F);
-                    EntityUtils.attackEntityWithoutKnockback(enemy, MagicDamage.causeDirectMagicDamage(caster, MagicDamage.DamageType.RADIANT), high_health);
+                    if (enemy.getMaxHealth() > caster.getMaxHealth()) {
+                        if (!world.isRemote && caster instanceof EntityPlayer) {
+                            ((EntityPlayer) caster).sendStatusMessage(new TextComponentTranslation("spell." + this.getUnlocalisedName() + ".high_health"), true);
+                        }
+                        this.soundValues(1F, 0.4F, 0.1F);
+                        EntityUtils.attackEntityWithoutKnockback(enemy, MagicDamage.causeDirectMagicDamage(caster, damageType), high_health);
+                    }
                 }
             }
             return true;
@@ -84,6 +86,6 @@ public class Equality extends SpellRay {
 
     @Override
     public boolean applicableForItem(Item item) {
-        return item == WNGItems.spell_book_wng || item == WNGItems.scroll_wng;
+        return item == WNGItems.SPELL_BOOK_WNG || item == WNGItems.SCROLL_WNG;
     }
 }

@@ -1,16 +1,16 @@
 package com.ipdnaeip.wizardrynextgeneration.util;
 
-import com.google.common.collect.Lists;
 import com.ipdnaeip.wizardrynextgeneration.WizardryNextGeneration;
 import electroblob.wizardry.entity.ICustomHitbox;
+import electroblob.wizardry.spell.Spell;
 import electroblob.wizardry.util.EntityUtils;
+import electroblob.wizardry.util.MagicDamage;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.potion.Potion;
 import net.minecraft.util.CombatRules;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
@@ -18,7 +18,6 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.common.registry.ForgeRegistries;
 
 import java.util.*;
 import java.util.function.Predicate;
@@ -153,5 +152,28 @@ public final class WNGUtils {
             ((EntityPlayer) player).sendStatusMessage(new TextComponentTranslation(translationKey, args), actionBar);
         }
     }
+
+    /**
+     * Checks if an entity is immune to the DamageType and sends the player the spell resist message.
+     *
+     * @param caster     The caster (only sends the message if the caster is a player).
+     * @param target     The target Entity.
+     * @param damageType The DamageType to check for.
+     * @param spell      The Spell being used.
+     * @param ticksInUse The tick of the spell, used for not spamming with continuous spells.
+     * @return whether the target entity is immune or not.
+     */
+    public static boolean canMagicDamageEntity(EntityLivingBase caster, Entity target, MagicDamage.DamageType damageType, Spell spell, int ticksInUse) {
+        if (MagicDamage.isEntityImmune(damageType, target)) {
+            if (!caster.world.isRemote && caster instanceof EntityPlayer) {
+                if (!spell.isContinuous || ticksInUse == 1) {
+                    ((EntityPlayer) caster).sendStatusMessage(new TextComponentTranslation("spell.resist", target.getName(), spell.getNameForTranslationFormatted()), true);
+                }
+            }
+            return false;
+        }
+        return true;
+    }
+
 
 }

@@ -28,7 +28,7 @@ public abstract class MixinPotionEffect {
     private void onUpdate(EntityLivingBase entityLivingBase, CallbackInfoReturnable<Boolean> info) {
         if (entityLivingBase instanceof EntityPlayer) {
             EntityPlayer player = (EntityPlayer)entityLivingBase;
-            if (ItemArtefact.isArtefactActive(player, WNGItems.belt_potion)) {
+            if (ItemArtefact.isArtefactActive(player, WNGItems.BELT_POTION)) {
                 if (!this.potion.isBadEffect()) {
                     ItemStack belt = BaublesApi.getBaublesHandler(player).getStackInSlot(3);
                     if (belt.getMaxDamage() - belt.getItemDamage() >= this.amplifier + 1) {

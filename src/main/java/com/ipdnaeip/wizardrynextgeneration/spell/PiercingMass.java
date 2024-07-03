@@ -14,7 +14,7 @@ public class PiercingMass extends SpellArrow<EntityPiercingMass> {
 
     public PiercingMass() {
         super(WizardryNextGeneration.MODID, "piercing_mass", EntityPiercingMass::new);
-        this.addProperties("damage");
+        this.addProperties(DAMAGE);
     }
 
     @Override
@@ -25,6 +25,6 @@ public class PiercingMass extends SpellArrow<EntityPiercingMass> {
 
     @Override
     public boolean applicableForItem(Item item) {
-        return item == WNGItems.spell_book_wng || item == WNGItems.scroll_wng;
+        return item == WNGItems.SPELL_BOOK_WNG || item == WNGItems.SCROLL_WNG;
     }
 }

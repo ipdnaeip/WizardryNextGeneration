@@ -4,6 +4,7 @@ import com.ipdnaeip.wizardrynextgeneration.WizardryNextGeneration;
 import com.ipdnaeip.wizardrynextgeneration.registry.WNGItems;
 import com.ipdnaeip.wizardrynextgeneration.registry.WNGPotions;
 import com.ipdnaeip.wizardrynextgeneration.registry.WNGSpells;
+import com.ipdnaeip.wizardrynextgeneration.util.WNGUtils;
 import electroblob.wizardry.item.SpellActions;
 import electroblob.wizardry.registry.WizardryItems;
 import electroblob.wizardry.spell.SpellRay;
@@ -44,10 +45,13 @@ public class SmokeBlitz extends SpellRay {
         }
         if (target instanceof EntityLivingBase) {
             EntityLivingBase targetEntity = (EntityLivingBase) target;
-            int duration = (int) (WNGSpells.smoke_blitz.getProperty(EFFECT_DURATION).floatValue() * modifiers.get(WizardryItems.duration_upgrade));
-            EntityUtils.attackEntityWithoutKnockback(targetEntity, MagicDamage.causeDirectMagicDamage(caster, MagicDamage.DamageType.FIRE), getProperty(DAMAGE).floatValue() * modifiers.get(SpellModifiers.POTENCY));
-            targetEntity.addPotionEffect(new PotionEffect(MobEffects.BLINDNESS, duration, 0));
-            targetEntity.addPotionEffect(new PotionEffect(WNGPotions.suffocation, duration, 0));
+            MagicDamage.DamageType damageType = MagicDamage.DamageType.FIRE;
+            if (WNGUtils.canMagicDamageEntity(caster, target, damageType, this, ticksInUse)) {
+                int duration = (int) (WNGSpells.smoke_blitz.getProperty(EFFECT_DURATION).floatValue() * modifiers.get(WizardryItems.duration_upgrade));
+                EntityUtils.attackEntityWithoutKnockback(targetEntity, MagicDamage.causeDirectMagicDamage(caster, damageType), getProperty(DAMAGE).floatValue() * modifiers.get(SpellModifiers.POTENCY));
+                targetEntity.addPotionEffect(new PotionEffect(MobEffects.BLINDNESS, duration));
+                targetEntity.addPotionEffect(new PotionEffect(WNGPotions.suffocation, duration));
+            }
         }
         return true;
     }
@@ -68,6 +72,6 @@ public class SmokeBlitz extends SpellRay {
 
     @Override
     public boolean applicableForItem(Item item) {
-        return item == WNGItems.spell_book_wng || item == WNGItems.scroll_wng;
+        return item == WNGItems.SPELL_BOOK_WNG || item == WNGItems.SCROLL_WNG;
     }
 }

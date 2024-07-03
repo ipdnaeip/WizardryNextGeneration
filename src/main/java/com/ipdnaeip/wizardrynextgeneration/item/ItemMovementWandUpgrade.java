@@ -19,10 +19,10 @@ public class ItemMovementWandUpgrade extends ItemWNGWandUpgrade {
         EntityPlayer player = event.getEntityPlayer();
         ItemStack stack = player.getActiveItemStack();
         MovementInput input = event.getMovementInput();
-        if (player.isHandActive() && stack.getItem() instanceof ItemWand && WandHelper.getUpgradeLevel(player.getActiveItemStack(), WNGItems.upgrade_movement) > 0) {
+        if (player.isHandActive() && stack.getItem() instanceof ItemWand && WandHelper.getUpgradeLevel(player.getActiveItemStack(), WNGItems.UPGRADE_MOVEMENT) > 0) {
             player.setSprinting(false);
-            input.moveStrafe *= 1F + WandHelper.getUpgradeLevel(player.getActiveItemStack(), WNGItems.upgrade_movement);
-            input.moveForward *= 1F + WandHelper.getUpgradeLevel(player.getActiveItemStack(), WNGItems.upgrade_movement);
+            input.moveStrafe *= 1F + WandHelper.getUpgradeLevel(player.getActiveItemStack(), WNGItems.UPGRADE_MOVEMENT);
+            input.moveForward *= 1F + WandHelper.getUpgradeLevel(player.getActiveItemStack(), WNGItems.UPGRADE_MOVEMENT);
         }
     }
 

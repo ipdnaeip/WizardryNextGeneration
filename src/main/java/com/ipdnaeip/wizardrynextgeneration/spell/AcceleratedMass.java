@@ -12,9 +12,12 @@ import net.minecraft.world.World;
 
 public class AcceleratedMass extends SpellArrow<EntityAcceleratedMass> {
 
+    public static final String MAX_MULTIPLIER = "max_multiplier";
+    public static final String ACCELERATION = "acceleration";
+
     public AcceleratedMass() {
         super(WizardryNextGeneration.MODID, "accelerated_mass", EntityAcceleratedMass::new);
-        this.addProperties("damage", "damage_max_range_multiplier");
+        this.addProperties(DAMAGE, MAX_MULTIPLIER, ACCELERATION);
     }
 
     @Override
@@ -25,6 +28,6 @@ public class AcceleratedMass extends SpellArrow<EntityAcceleratedMass> {
 
     @Override
     public boolean applicableForItem(Item item) {
-        return item == WNGItems.spell_book_wng || item == WNGItems.scroll_wng;
+        return item == WNGItems.SPELL_BOOK_WNG || item == WNGItems.SCROLL_WNG;
     }
 }

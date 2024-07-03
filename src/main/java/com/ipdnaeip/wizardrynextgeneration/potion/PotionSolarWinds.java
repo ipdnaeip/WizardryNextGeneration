@@ -49,7 +49,7 @@ public class PotionSolarWinds extends PotionMagicEffect implements ICustomPotion
                     if (!Wizardry.settings.replaceVanillaFallDamage) {
                         entity.fallDistance = 0.0F;
                     }
-                    if (ItemArtefact.isArtefactActive(entityPlayer, WNGItems.head_ra)) {
+                    if (ItemArtefact.isArtefactActive(entityPlayer, WNGItems.HEAD_RA)) {
                         entity.jumpMovementFactor = 0.05F;
                     }
                 }

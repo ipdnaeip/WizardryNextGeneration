@@ -20,8 +20,6 @@ public final class WNGSpells {
 
     private WNGSpells() {}
 
-    private static final String modId = WizardryNextGeneration.MODID;
-
     @Nonnull
     @SuppressWarnings("ConstantConditions")
     private static <T> T placeholder() { return null; }

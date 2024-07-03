@@ -3,6 +3,7 @@ package com.ipdnaeip.wizardrynextgeneration.spell;
 import com.ipdnaeip.wizardrynextgeneration.WizardryNextGeneration;
 import com.ipdnaeip.wizardrynextgeneration.registry.WNGItems;
 import com.ipdnaeip.wizardrynextgeneration.registry.WNGPotions;
+import com.ipdnaeip.wizardrynextgeneration.util.WNGUtils;
 import electroblob.wizardry.item.SpellActions;
 import electroblob.wizardry.util.*;
 import net.minecraft.entity.Entity;
@@ -26,7 +27,10 @@ public class HyperBeam extends SpellRayMultiple {
     @Override
     protected boolean onEntityHit(World world, Entity target, Vec3d hit, EntityLivingBase caster, Vec3d origin, int ticksInUse, SpellModifiers modifiers) {
         if (target instanceof EntityLivingBase) {
-            target.attackEntityFrom(MagicDamage.causeDirectMagicDamage(caster, MagicDamage.DamageType.MAGIC), this.getProperty(DAMAGE).floatValue());
+            MagicDamage.DamageType damageType = MagicDamage.DamageType.MAGIC;
+            if (WNGUtils.canMagicDamageEntity(caster, target, damageType, this, ticksInUse)) {
+                target.attackEntityFrom(MagicDamage.causeDirectMagicDamage(caster, damageType), this.getProperty(DAMAGE).floatValue());
+            }
         }
         if (caster != null) caster.addPotionEffect(new PotionEffect(WNGPotions.disempowerment, this.getProperty(EFFECT_DURATION).intValue(), 7));
         return true;
@@ -54,7 +58,7 @@ public class HyperBeam extends SpellRayMultiple {
 
     @Override
     public boolean applicableForItem(Item item) {
-        return item == WNGItems.spell_book_wng || item == WNGItems.scroll_wng;
+        return item == WNGItems.SPELL_BOOK_WNG || item == WNGItems.SCROLL_WNG;
     }
 }
 

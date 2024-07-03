@@ -14,7 +14,7 @@ public abstract class MixinLootEntryItem implements IMixinLootEntryItem {
     @Shadow @Final protected Item item;
 
     @Unique
-    public Item getItem() {
+    public Item wizardryNextGeneration$getItem() {
         return this.item;
     }
 

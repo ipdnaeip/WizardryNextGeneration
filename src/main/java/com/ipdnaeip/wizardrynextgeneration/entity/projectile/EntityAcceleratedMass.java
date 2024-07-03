@@ -2,7 +2,9 @@ package com.ipdnaeip.wizardrynextgeneration.entity.projectile;
 
 import com.ipdnaeip.wizardrynextgeneration.registry.WNGAdvancementTriggers;
 import com.ipdnaeip.wizardrynextgeneration.registry.WNGSpells;
+import com.ipdnaeip.wizardrynextgeneration.spell.AcceleratedMass;
 import electroblob.wizardry.entity.projectile.EntityMagicArrow;
+import electroblob.wizardry.spell.Spell;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
@@ -15,8 +17,9 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class EntityAcceleratedMass extends EntityMagicArrow {
 
-    double damage = WNGSpells.accelerated_mass.getProperty("damage").doubleValue();
-    double damage_multiplier = WNGSpells.accelerated_mass.getProperty("damage_max_range_multiplier").intValue();
+    double damage = WNGSpells.accelerated_mass.getProperty(Spell.DAMAGE).doubleValue();
+    double damage_multiplier = WNGSpells.accelerated_mass.getProperty(AcceleratedMass.MAX_MULTIPLIER).doubleValue();
+    double acceleration = WNGSpells.accelerated_mass.getProperty(AcceleratedMass.ACCELERATION).doubleValue();
 
     public EntityAcceleratedMass(World world) {
             super(world);
@@ -53,7 +56,7 @@ public class EntityAcceleratedMass extends EntityMagicArrow {
     @Override
     public void onEntityHit(EntityLivingBase entityHit) {
         this.playSound(SoundEvents.BLOCK_ANVIL_PLACE, 0.5F, 0.7F + (this.rand.nextFloat() * 0.1F));
-        if (damage == WNGSpells.accelerated_mass.getProperty("damage").doubleValue() * damage_multiplier && this.getCaster() instanceof EntityPlayer) {
+        if (damage == WNGSpells.accelerated_mass.getProperty(Spell.DAMAGE).doubleValue() * damage_multiplier && this.getCaster() instanceof EntityPlayer) {
             WNGAdvancementTriggers.accelerated_mass_max_damage.triggerFor((EntityPlayer)(this.getCaster()));
         }
     }
@@ -66,26 +69,21 @@ public class EntityAcceleratedMass extends EntityMagicArrow {
     @Override
     public void onUpdate() {
         super.onUpdate();
-        this.motionX *= 1.1;
-        this.motionY *= 1.1;
-        this.motionZ *= 1.1;
-        damage = Math.min(damage * 1.2, WNGSpells.accelerated_mass.getProperty("damage").doubleValue() * damage_multiplier);
+        this.motionX *= acceleration;
+        this.motionY *= acceleration;
+        this.motionZ *= acceleration;
+        damage = Math.min(damage * acceleration, WNGSpells.accelerated_mass.getProperty(Spell.DAMAGE).doubleValue() * damage_multiplier);
     }
 
     public int getLifetime() {
             return 100;
     }
 
-/*    @Override
+    @Override
     @SideOnly(Side.CLIENT)
     public boolean isInRangeToRenderDist(double distance)
     {
-        double d0 = this.getEntityBoundingBox().getAverageEdgeLength() * 10.0D;
-        if (Double.isNaN(d0))
-        {
-            d0 = 1.0D;
-        }
-        d0 = d0 * 64.0D * getRenderDistanceWeight();
-        return distance < d0 * d0;
-    }*/
+        return super.isInRangeToRenderDist(distance / 2);
+    }
+
 }

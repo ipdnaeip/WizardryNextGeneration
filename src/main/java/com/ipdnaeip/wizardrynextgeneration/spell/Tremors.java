@@ -2,13 +2,12 @@ package com.ipdnaeip.wizardrynextgeneration.spell;
 
 import com.ipdnaeip.wizardrynextgeneration.WizardryNextGeneration;
 import com.ipdnaeip.wizardrynextgeneration.registry.WNGItems;
+import com.ipdnaeip.wizardrynextgeneration.util.WNGUtils;
 import electroblob.wizardry.Wizardry;
 import electroblob.wizardry.item.SpellActions;
-import electroblob.wizardry.registry.WizardryItems;
 import electroblob.wizardry.spell.SpellAreaEffect;
 import electroblob.wizardry.util.EntityUtils;
 import electroblob.wizardry.util.MagicDamage;
-import electroblob.wizardry.util.ParticleBuilder;
 import electroblob.wizardry.util.SpellModifiers;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
@@ -19,7 +18,6 @@ import net.minecraft.item.Item;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.EnumParticleTypes;
-import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
@@ -68,13 +66,16 @@ public class Tremors extends SpellAreaEffect {
     protected boolean affectEntity(World world, Vec3d origin, @Nullable EntityLivingBase caster, EntityLivingBase target, int i, int ticksInUse, SpellModifiers modifiers) {
         double velocityFactor = origin.distanceTo(target.getPositionVector()) * 4;
         if (target.onGround) {
-            target.attackEntityFrom(MagicDamage.causeDirectMagicDamage(caster, MagicDamage.DamageType.BLAST), this.getProperty("damage").floatValue() * modifiers.get("potency"));
-            double dx = target.posX - origin.x;
-            double dy = target.posY + 1.0 - origin.y;
-            double dz = target.posZ - origin.z;
-            target.motionX = dx / velocityFactor;
-            target.motionY = dy / velocityFactor;
-            target.motionZ = dz / velocityFactor;
+            MagicDamage.DamageType damageType = MagicDamage.DamageType.BLAST;
+            if (WNGUtils.canMagicDamageEntity(caster, target, damageType, this, ticksInUse)) {
+                target.attackEntityFrom(MagicDamage.causeDirectMagicDamage(caster, damageType), this.getProperty(DAMAGE).floatValue() * modifiers.get(SpellModifiers.POTENCY));
+                double dx = target.posX - origin.x;
+                double dy = target.posY + 1.0 - origin.y;
+                double dz = target.posZ - origin.z;
+                target.motionX = dx / velocityFactor;
+                target.motionY = dy / velocityFactor;
+                target.motionZ = dz / velocityFactor;
+            }
             return true;
         }
         return false;
@@ -93,7 +94,7 @@ public class Tremors extends SpellAreaEffect {
 
     @Override
     public boolean applicableForItem(Item item) {
-        return item == WNGItems.spell_book_wng || item == WNGItems.scroll_wng;
+        return item == WNGItems.SPELL_BOOK_WNG || item == WNGItems.SCROLL_WNG;
     }
 }
 

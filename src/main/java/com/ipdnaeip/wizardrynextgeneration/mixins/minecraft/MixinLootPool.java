@@ -30,29 +30,29 @@ public abstract class MixinLootPool implements IMixinLootPool {
 
     @Shadow @Final private List<LootEntry> lootEntries;
     @Unique
-    private Predicate<Item> filter;
+    private Predicate<Item> wizardryNextGeneration$filter;
 
     @Unique
-    public Predicate<Item> getFilter() {
-        return filter;
+    public Predicate<Item> wizardryNextGeneration$getFilter() {
+        return wizardryNextGeneration$filter;
     }
 
     @Unique
-    public void setFilter(Predicate<Item> filter) {
-        this.filter = filter;
+    public void wizardryNextGeneration$setFilter(Predicate<Item> filter) {
+        this.wizardryNextGeneration$filter = filter;
     }
 
     @Inject(method = "createLootRoll", at = @At("HEAD"), cancellable = true)
     public void createLootRoll(Collection<ItemStack> stacks, Random rand, LootContext context, CallbackInfo info) {
         if (ArtefactEnchantingHandler.filter != null) {
             info.cancel();
-            List<LootEntry> list = Lists.<LootEntry>newArrayList();
+            List<LootEntry> list = Lists.newArrayList();
             int i = 0;
             for (LootEntry lootentry : this.lootEntries) {
-                if (LootConditionManager.testAllConditions(((IMixinLootEntry) lootentry).getConditions(), rand, context)) {
+                if (LootConditionManager.testAllConditions(((IMixinLootEntry) lootentry).wizardryNextGeneration$getConditions(), rand, context)) {
                     int j = lootentry.getEffectiveWeight(context.getLuck());
                     if (j > 0) {
-                        if (!(lootentry instanceof LootEntryItem && ArtefactEnchantingHandler.filter.test(((IMixinLootEntryItem) lootentry).getItem()))) {
+                        if (!(lootentry instanceof LootEntryItem && ArtefactEnchantingHandler.filter.test(((IMixinLootEntryItem) lootentry).wizardryNextGeneration$getItem()))) {
                             list.add(lootentry);
                             i += j;
                         }

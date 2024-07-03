@@ -13,7 +13,7 @@ import net.minecraft.item.ItemStack;
 public class ConjurePotion extends SpellConjuration {
 
     public ConjurePotion() {
-        super(WizardryNextGeneration.MODID, "conjure_potion", WNGItems.conjured_potion);
+        super(WizardryNextGeneration.MODID, "conjure_potion", WNGItems.CONJURED_POTION);
     }
 
     @Override
@@ -26,6 +26,6 @@ public class ConjurePotion extends SpellConjuration {
 
     @Override
     public boolean applicableForItem(Item item) {
-        return item == WNGItems.spell_book_wng || item == WNGItems.scroll_wng;
+        return item == WNGItems.SPELL_BOOK_WNG || item == WNGItems.SCROLL_WNG;
     }
 }

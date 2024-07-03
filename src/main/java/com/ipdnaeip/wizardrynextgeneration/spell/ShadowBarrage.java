@@ -103,8 +103,7 @@ package com.ipdnaeip.wizardrynextgeneration.spell;
 
 import com.ipdnaeip.wizardrynextgeneration.WizardryNextGeneration;
 import com.ipdnaeip.wizardrynextgeneration.registry.WNGItems;
-import com.ipdnaeip.wizardrynextgeneration.registry.WNGPotions;
-import com.ipdnaeip.wizardrynextgeneration.registry.WNGSpells;
+import com.ipdnaeip.wizardrynextgeneration.util.WNGUtils;
 import electroblob.wizardry.item.SpellActions;
 import electroblob.wizardry.registry.WizardryItems;
 import electroblob.wizardry.util.EntityUtils;
@@ -116,9 +115,7 @@ import net.minecraft.init.MobEffects;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.SoundCategory;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
 public class ShadowBarrage extends SpellBarrage {
@@ -132,14 +129,17 @@ public class ShadowBarrage extends SpellBarrage {
     }
 
     protected void barrageEffect(World world, EntityLivingBase target, EntityLivingBase caster, int ticksInUse, SpellModifiers modifiers) {
-        int duration = (int) (this.getProperty(EFFECT_DURATION).floatValue() * modifiers.get(WizardryItems.duration_upgrade));
-        float damage = this.getProperty(DAMAGE).floatValue() * modifiers.get(SpellModifiers.POTENCY);
-        if (target.getBrightness() < 0.25f) {
-            damage *= this.getProperty(DARKNESS_MULTIPLIER).floatValue();
-            target.addPotionEffect(new PotionEffect(MobEffects.BLINDNESS, duration, 0));
-            world.playSound(null, target.getPosition(), SoundEvents.ENTITY_ENDERDRAGON_FLAP, SoundCategory.BLOCKS, 1f, 0.9f + world.rand.nextFloat() * 0.2f);
+        MagicDamage.DamageType damageType = MagicDamage.DamageType.WITHER;
+        if (WNGUtils.canMagicDamageEntity(caster, target, damageType, this, ticksInUse)) {
+            int duration = (int) (this.getProperty(EFFECT_DURATION).floatValue() * modifiers.get(WizardryItems.duration_upgrade));
+            float damage = this.getProperty(DAMAGE).floatValue() * modifiers.get(SpellModifiers.POTENCY);
+            if (target.getBrightness() < 0.25f) {
+                damage *= this.getProperty(DARKNESS_MULTIPLIER).floatValue();
+                target.addPotionEffect(new PotionEffect(MobEffects.BLINDNESS, duration));
+                world.playSound(null, target.getPosition(), SoundEvents.ENTITY_ENDERDRAGON_FLAP, SoundCategory.BLOCKS, 1f, 0.9f + world.rand.nextFloat() * 0.2f);
+            }
+            EntityUtils.attackEntityWithoutKnockback(target, MagicDamage.causeDirectMagicDamage(caster, damageType), damage);
         }
-        EntityUtils.attackEntityWithoutKnockback(target, MagicDamage.causeDirectMagicDamage(caster, MagicDamage.DamageType.WITHER), damage);
     }
 
     @Override
@@ -149,6 +149,6 @@ public class ShadowBarrage extends SpellBarrage {
 
     @Override
     public boolean applicableForItem(Item item) {
-        return item == WNGItems.spell_book_wng || item == WNGItems.scroll_wng;
+        return item == WNGItems.SPELL_BOOK_WNG || item == WNGItems.SCROLL_WNG;
     }
 }

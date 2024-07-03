@@ -23,7 +23,7 @@ public abstract class MixinEntityHailstorm extends EntityScaledConstruct {
     @Inject(method = "onUpdate", at = @At("HEAD"), cancellable = true)
     private void onUpdate(CallbackInfo info) {
         EntityHailstorm thisEntityHailstorm = (EntityHailstorm)(Object)this;
-        if (thisEntityHailstorm.getCaster() instanceof EntityPlayer && ItemArtefact.isArtefactActive((EntityPlayer) thisEntityHailstorm.getCaster(), WNGItems.charm_icicle)) {
+        if (thisEntityHailstorm.getCaster() instanceof EntityPlayer && ItemArtefact.isArtefactActive((EntityPlayer) thisEntityHailstorm.getCaster(), WNGItems.CHARM_ICICLE)) {
             info.cancel();
             super.onUpdate();
             if (!thisEntityHailstorm.world.isRemote) {

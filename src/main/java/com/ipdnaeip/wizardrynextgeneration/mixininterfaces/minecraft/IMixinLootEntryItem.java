@@ -4,6 +4,6 @@ import net.minecraft.item.Item;
 
 public interface IMixinLootEntryItem {
 
-    Item getItem();
+    Item wizardryNextGeneration$getItem();
 
 }

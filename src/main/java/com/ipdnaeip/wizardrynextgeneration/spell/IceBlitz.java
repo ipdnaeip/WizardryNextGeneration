@@ -2,6 +2,7 @@ package com.ipdnaeip.wizardrynextgeneration.spell;
 
 import com.ipdnaeip.wizardrynextgeneration.WizardryNextGeneration;
 import com.ipdnaeip.wizardrynextgeneration.registry.WNGItems;
+import com.ipdnaeip.wizardrynextgeneration.util.WNGUtils;
 import electroblob.wizardry.block.BlockStatue;
 import electroblob.wizardry.item.SpellActions;
 import electroblob.wizardry.registry.WizardryBlocks;
@@ -18,7 +19,6 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.Item;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
@@ -35,11 +35,14 @@ public class IceBlitz extends SpellRay {
     @Override
     protected boolean onEntityHit(World world, Entity target, Vec3d hit, EntityLivingBase caster, Vec3d origin, int ticksInUse, SpellModifiers modifiers) {
         if (target instanceof EntityLivingBase) {
-            EntityUtils.attackEntityWithoutKnockback(target, MagicDamage.causeDirectMagicDamage(caster, MagicDamage.DamageType.FROST), getProperty(DAMAGE).floatValue() * modifiers.get(SpellModifiers.POTENCY));
-            if (target instanceof EntityLiving && !world.isRemote && ((BlockStatue) WizardryBlocks.ice_statue).convertToStatue((EntityLiving) target, caster, (int) (this.getProperty("ice_duration").floatValue() * modifiers.get(WizardryItems.duration_upgrade)))) {
+            MagicDamage.DamageType damageType = MagicDamage.DamageType.FROST;
+            if (WNGUtils.canMagicDamageEntity(caster, target, damageType, this, ticksInUse)) {
+                EntityUtils.attackEntityWithoutKnockback(target, MagicDamage.causeDirectMagicDamage(caster, damageType), getProperty(DAMAGE).floatValue() * modifiers.get(SpellModifiers.POTENCY));
+                if (target instanceof EntityLiving && !world.isRemote && ((BlockStatue) WizardryBlocks.ice_statue).convertToStatue((EntityLiving) target, caster, (int) (this.getProperty(ICE_DURATION).floatValue() * modifiers.get(WizardryItems.duration_upgrade)))) {
+                }
+                EntityLivingBase targetEntity = (EntityLivingBase) target;
+                targetEntity.addPotionEffect(new PotionEffect(WizardryPotions.frost, (int) (this.getProperty(EFFECT_DURATION).intValue() * modifiers.get(WizardryItems.duration_upgrade)), 1));
             }
-            EntityLivingBase targetEntity = (EntityLivingBase) target;
-            targetEntity.addPotionEffect(new PotionEffect(WizardryPotions.frost, (int) (this.getProperty("effect_duration").intValue() * modifiers.get(WizardryItems.duration_upgrade)), 1));
         }
         return true;
     }
@@ -63,6 +66,6 @@ public class IceBlitz extends SpellRay {
 
     @Override
     public boolean applicableForItem(Item item) {
-        return item == WNGItems.spell_book_wng || item == WNGItems.scroll_wng;
+        return item == WNGItems.SPELL_BOOK_WNG || item == WNGItems.SCROLL_WNG;
     }
 }

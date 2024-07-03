@@ -46,7 +46,7 @@ public class WNGClientEventHandler {
             input.moveStrafe *= 1F + (0.75f * level);
             input.moveForward *= 1F + (0.75f * level);
         }
-        if (ItemArtefact.isArtefactActive(player, WNGItems.body_hashashin) && ItemArtefact.isArtefactActive(player, WNGItems.head_hashashin) && player.isSneaking()) {
+        if (ItemArtefact.isArtefactActive(player, WNGItems.BODY_HASHASHIN) && ItemArtefact.isArtefactActive(player, WNGItems.HEAD_HASHASHIN) && player.isSneaking()) {
             input.moveForward *= 2F;
             input.moveStrafe *= 2F;
         }

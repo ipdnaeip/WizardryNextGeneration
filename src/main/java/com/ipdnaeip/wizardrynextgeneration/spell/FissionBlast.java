@@ -3,11 +3,8 @@ package com.ipdnaeip.wizardrynextgeneration.spell;
 import com.ipdnaeip.wizardrynextgeneration.WizardryNextGeneration;
 import com.ipdnaeip.wizardrynextgeneration.entity.projectile.EntityFissionBlast;
 import com.ipdnaeip.wizardrynextgeneration.registry.WNGItems;
-import electroblob.wizardry.entity.living.ISpellCaster;
-import electroblob.wizardry.entity.projectile.EntityMagicArrow;
 import electroblob.wizardry.registry.WizardryItems;
 import electroblob.wizardry.spell.SpellArrow;
-import electroblob.wizardry.util.EntityUtils;
 import electroblob.wizardry.util.SpellModifiers;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
@@ -20,18 +17,20 @@ import net.minecraft.world.World;
 
 public class FissionBlast extends SpellArrow<EntityFissionBlast> {
 
+    public static String SHOTS = "shots";
+
     public FissionBlast() {
         super(WizardryNextGeneration.MODID, "fission_blast", EntityFissionBlast::new);
-        this.addProperties(DAMAGE, "shots");
+        this.addProperties(DAMAGE, SHOTS);
     }
 
     @Override
     public boolean cast(World world, EntityPlayer caster, EnumHand hand, int ticksInUse, SpellModifiers modifiers) {
         if (!world.isRemote) {
-            for (int i = 0; i < this.getProperty("shots").floatValue() * modifiers.get(WizardryItems.blast_upgrade); i++) {
+            for (int i = 0; i < this.getProperty(SHOTS).floatValue() * modifiers.get(WizardryItems.blast_upgrade); i++) {
                 EntityFissionBlast projectile = this.arrowFactory.apply(world);
                 projectile.aim(caster, this.calculateVelocity(projectile, modifiers, caster.getEyeHeight() - 0.1F));
-                projectile.damageMultiplier = modifiers.get("potency");
+                projectile.damageMultiplier = modifiers.get(SpellModifiers.POTENCY);
                 this.addArrowExtras(projectile, caster, modifiers);
                 world.spawnEntity(projectile);
             }
@@ -44,10 +43,10 @@ public class FissionBlast extends SpellArrow<EntityFissionBlast> {
     public boolean cast(World world, EntityLiving caster, EnumHand hand, int ticksInUse, EntityLivingBase target, SpellModifiers modifiers) {
         if (target != null) {
             if (!world.isRemote) {
-                for (int i = 0; i < this.getProperty("shots").floatValue() * modifiers.get(WizardryItems.blast_upgrade); i++) {
+                for (int i = 0; i < this.getProperty(SHOTS).floatValue() * modifiers.get(WizardryItems.blast_upgrade); i++) {
                     EntityFissionBlast projectile = this.arrowFactory.apply(world);
                     projectile.aim(caster, target, this.calculateVelocity(projectile, modifiers, caster.getEyeHeight() - 0.1F), (float)(Math.random() * 3F) + 3F);
-                    projectile.damageMultiplier = modifiers.get("potency");
+                    projectile.damageMultiplier = modifiers.get(SpellModifiers.POTENCY);
                     this.addArrowExtras(projectile, caster, modifiers);
                     world.spawnEntity(projectile);
                 }
@@ -63,12 +62,12 @@ public class FissionBlast extends SpellArrow<EntityFissionBlast> {
     @Override
     public boolean cast(World world, double x, double y, double z, EnumFacing direction, int ticksInUse, int duration, SpellModifiers modifiers) {
         if (!world.isRemote) {
-            for (int i = 0; i < this.getProperty("shots").floatValue() * modifiers.get(WizardryItems.blast_upgrade); i++) {
+            for (int i = 0; i < this.getProperty(SHOTS).floatValue() * modifiers.get(WizardryItems.blast_upgrade); i++) {
                 EntityFissionBlast projectile = this.arrowFactory.apply(world);
                 projectile.setPosition(x, y, z);
                 Vec3i vec = direction.getDirectionVec();
                 projectile.shoot(vec.getX(), vec.getY(), vec.getZ(), this.calculateVelocity(projectile, modifiers, 0.375F), (float)(Math.random() * 3F) + 3F);
-                projectile.damageMultiplier = modifiers.get("potency");
+                projectile.damageMultiplier = modifiers.get(SpellModifiers.POTENCY);
                 this.addArrowExtras(projectile, null, modifiers);
                 world.spawnEntity(projectile);
             }
@@ -79,6 +78,6 @@ public class FissionBlast extends SpellArrow<EntityFissionBlast> {
 
     @Override
     public boolean applicableForItem(Item item) {
-        return item == WNGItems.spell_book_wng || item == WNGItems.scroll_wng;
+        return item == WNGItems.SPELL_BOOK_WNG || item == WNGItems.SCROLL_WNG;
     }
 }
