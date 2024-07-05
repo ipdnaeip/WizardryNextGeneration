@@ -387,4 +387,8 @@ spell.wizardrynextgeneration:whirlpool.desc=Создаёт водоворот н
 #tabs
 
 itemGroup.wizardrynextgeneration=Wizardry: Next Generation
+<<<<<<< HEAD
 itemGroup.wizardrynextgenerationgear=Wizardry: Next Generation | Снаряжение
+=======
+itemGroup.wizardrynextgenerationgear=Wizardry: Next Generation | Снаряжение
+>>>>>>> 08472a96d697a663e0329715fb2b9d5000043abd
