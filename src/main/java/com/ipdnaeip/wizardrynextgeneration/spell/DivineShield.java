@@ -9,7 +9,7 @@ import net.minecraft.item.Item;
 public class DivineShield extends SpellBuff {
 
     public DivineShield() {
-        super(WizardryNextGeneration.MODID, "divine_shield", 1f, 1f, 0.333f, () -> WNGPotions.divine_shield);
+        super(WizardryNextGeneration.MODID, "divine_shield", 1f, 1f, 0.333f, () -> WNGPotions.DIVINE_SHIELD);
     }
 
     @Override

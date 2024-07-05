@@ -38,7 +38,7 @@ public class SmokeBlitz extends SpellRay {
             world.spawnParticle(EnumParticleTypes.EXPLOSION_LARGE, target.posX, target.posY + target.getEyeHeight() - 0.5F, target.posZ, 0.0, 0.0, 0.0);
             for (int i = 0; (float) i < 20F; ++i) {
                 float brightness = world.rand.nextFloat() * 0.1F + 0.1F;
-                ParticleBuilder.create(ParticleBuilder.Type.CLOUD, world.rand, target.posX, target.posY + target.getEyeHeight() - 0.5F, target.posZ, 1F, false).clr(brightness, brightness, brightness).time(WNGSpells.smoke_blitz.getProperty(EFFECT_DURATION).intValue() + world.rand.nextInt(12)).shaded(true).spawn(world);
+                ParticleBuilder.create(ParticleBuilder.Type.CLOUD, world.rand, target.posX, target.posY + target.getEyeHeight() - 0.5F, target.posZ, 1F, false).clr(brightness, brightness, brightness).time(WNGSpells.SMOKE_BLITZ.getProperty(EFFECT_DURATION).intValue() + world.rand.nextInt(12)).shaded(true).spawn(world);
                 brightness = world.rand.nextFloat() * 0.3F;
                 ParticleBuilder.create(ParticleBuilder.Type.DARK_MAGIC, world.rand, target.posX, target.posY + target.getEyeHeight() - 0.5F, target.posZ, (1F), false).clr(brightness, brightness, brightness).spawn(world);
             }
@@ -47,10 +47,10 @@ public class SmokeBlitz extends SpellRay {
             EntityLivingBase targetEntity = (EntityLivingBase) target;
             MagicDamage.DamageType damageType = MagicDamage.DamageType.FIRE;
             if (WNGUtils.canMagicDamageEntity(caster, target, damageType, this, ticksInUse)) {
-                int duration = (int) (WNGSpells.smoke_blitz.getProperty(EFFECT_DURATION).floatValue() * modifiers.get(WizardryItems.duration_upgrade));
+                int duration = (int) (WNGSpells.SMOKE_BLITZ.getProperty(EFFECT_DURATION).floatValue() * modifiers.get(WizardryItems.duration_upgrade));
                 EntityUtils.attackEntityWithoutKnockback(targetEntity, MagicDamage.causeDirectMagicDamage(caster, damageType), getProperty(DAMAGE).floatValue() * modifiers.get(SpellModifiers.POTENCY));
                 targetEntity.addPotionEffect(new PotionEffect(MobEffects.BLINDNESS, duration));
-                targetEntity.addPotionEffect(new PotionEffect(WNGPotions.suffocation, duration));
+                targetEntity.addPotionEffect(new PotionEffect(WNGPotions.SUFFOCATION, duration));
             }
         }
         return true;

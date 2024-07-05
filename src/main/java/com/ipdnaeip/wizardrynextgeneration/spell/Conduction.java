@@ -47,7 +47,7 @@ public class Conduction extends SpellRay {
                 if (targetEntity.isInWater()) {
                     damage = damage * getProperty(MULTIPLIER_TAG).floatValue();
                     targetEntity.attackEntityFrom(MagicDamage.causeDirectMagicDamage(caster, MagicDamage.DamageType.SHOCK), damage);
-                    targetEntity.addPotionEffect(new PotionEffect(WizardryPotions.paralysis, (int)(WNGSpells.conduction.getProperty(EFFECT_DURATION).floatValue() * modifiers.get(WizardryItems.duration_upgrade))));
+                    targetEntity.addPotionEffect(new PotionEffect(WizardryPotions.paralysis, (int)(WNGSpells.CONDUCTION.getProperty(EFFECT_DURATION).floatValue() * modifiers.get(WizardryItems.duration_upgrade))));
                     world.playSound(null, target.getPosition(), SoundEvents.BLOCK_FIRE_EXTINGUISH, SoundCategory.BLOCKS, 1.0F, world.rand.nextFloat() * 0.2F + 0.9F);
                 } else {
                     targetEntity.attackEntityFrom(MagicDamage.causeDirectMagicDamage(caster, MagicDamage.DamageType.SHOCK), damage);

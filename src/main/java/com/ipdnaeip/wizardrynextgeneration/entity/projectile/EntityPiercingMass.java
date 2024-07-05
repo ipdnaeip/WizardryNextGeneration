@@ -2,6 +2,7 @@ package com.ipdnaeip.wizardrynextgeneration.entity.projectile;
 
 import com.ipdnaeip.wizardrynextgeneration.registry.WNGSpells;
 import electroblob.wizardry.entity.projectile.EntityMagicArrow;
+import electroblob.wizardry.spell.Spell;
 import electroblob.wizardry.util.MagicDamage;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
@@ -19,7 +20,7 @@ import java.util.List;
 
 public class EntityPiercingMass extends EntityMagicArrow {
 
-    double piercing_damage = WNGSpells.piercing_mass.getProperty("damage").doubleValue();
+    double piercing_damage = WNGSpells.PIERCING_MASS.getProperty(Spell.DAMAGE).doubleValue();
 
     public EntityPiercingMass(World world) {
         super(world);

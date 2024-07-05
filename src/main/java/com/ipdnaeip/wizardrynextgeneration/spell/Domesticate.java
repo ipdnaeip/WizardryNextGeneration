@@ -3,6 +3,7 @@ package com.ipdnaeip.wizardrynextgeneration.spell;
 import com.ipdnaeip.wizardrynextgeneration.WizardryNextGeneration;
 import com.ipdnaeip.wizardrynextgeneration.entity.ai.EntityAIAnimalFollowPlayer;
 import com.ipdnaeip.wizardrynextgeneration.registry.WNGItems;
+import com.ipdnaeip.wizardrynextgeneration.util.WNGUtils;
 import electroblob.wizardry.item.SpellActions;
 import electroblob.wizardry.spell.SpellRay;
 import electroblob.wizardry.util.SpellModifiers;
@@ -38,16 +39,14 @@ public class Domesticate extends SpellRay {
         if (caster instanceof EntityPlayer && target instanceof EntityAnimal) {
             EntityPlayer player = (EntityPlayer) caster;
             EntityAnimal animal = (EntityAnimal) target;
-            if (!world.isRemote) {
-                if (isAlreadyFollowing(animal)) {
-                    endAlliance(player, animal);
-                    player.sendStatusMessage(new TextComponentTranslation("spell." + WizardryNextGeneration.MODID + ":domesticate.no_longer_following", animal.getDisplayName()), false);
-                }
-                else {
-                    allyWithAnimal(player, animal);
-                    player.sendStatusMessage(new TextComponentTranslation("spell." + WizardryNextGeneration.MODID + ":domesticate.following", animal.getDisplayName()), false);
-                    return true;
-                }
+            if (isAlreadyFollowing(animal)) {
+                endAlliance(player, animal);
+                WNGUtils.sendMessage(player, "spell." + WizardryNextGeneration.MODID + ":domesticate.no_longer_following", false, animal.getDisplayName());
+            }
+            else {
+                allyWithAnimal(player, animal);
+                WNGUtils.sendMessage(player, "spell." + WizardryNextGeneration.MODID + ":domesticate.following", false, animal.getDisplayName());
+                return true;
             }
         }
         return false;

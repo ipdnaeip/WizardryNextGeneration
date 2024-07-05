@@ -23,8 +23,8 @@ public class LunarSalve extends SpellBuff {
 
     @Override
     protected boolean applyEffects(EntityLivingBase caster, SpellModifiers modifiers) {
-        if (!WNGUtils.hasMoonlight(caster.world, caster) && caster instanceof EntityPlayer) {
-            if(!caster.world.isRemote) ((EntityPlayer)caster).sendStatusMessage(new TextComponentTranslation("spell." + this.getUnlocalisedName() + ".no_moonlight"), true);
+        if (!WNGUtils.hasMoonlight(caster.world, caster)) {
+            WNGUtils.sendMessage(caster, "spell." + this.getUnlocalisedName() + ".no_moonlight", true);
             return false;
         }
         else if (!caster.getActivePotionEffects().isEmpty() && WNGUtils.hasMoonlight(caster.world, caster)) {

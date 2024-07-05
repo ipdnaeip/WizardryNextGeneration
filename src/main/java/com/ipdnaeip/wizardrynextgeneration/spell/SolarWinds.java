@@ -50,7 +50,7 @@ import net.minecraft.item.Item;
 public class SolarWinds extends SpellBuff {
 
     public SolarWinds() {
-        super(WizardryNextGeneration.MODID, "solar_winds", 1f, 0.706f, 0.196f, () -> WNGPotions.solar_winds);
+        super(WizardryNextGeneration.MODID, "solar_winds", 1f, 0.706f, 0.196f, () -> WNGPotions.SOLAR_WINDS);
     }
 
     @Override

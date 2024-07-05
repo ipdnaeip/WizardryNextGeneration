@@ -45,7 +45,7 @@ public class Photosynthesis extends Spell {
     @Override
     public boolean cast(World world, EntityPlayer caster, EnumHand hand, int ticksInUse, SpellModifiers modifiers) {
         if (!WNGUtils.hasSunlight(world, caster)) {
-            if(!world.isRemote) caster.sendStatusMessage(new TextComponentTranslation("spell." + this.getUnlocalisedName() + ".no_sunlight"), true);
+            WNGUtils.sendMessage(caster, "spell." + this.getUnlocalisedName() + ".no_sunlight", true);
             return false;
         }
         //check if the player can be healed and if the sun is out and visible by the player

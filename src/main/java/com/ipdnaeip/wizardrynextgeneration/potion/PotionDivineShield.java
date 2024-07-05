@@ -17,15 +17,14 @@ public class PotionDivineShield extends PotionMagicEffect {
 
     public PotionDivineShield() {
         super(false, 0xFFD651, new ResourceLocation(WizardryNextGeneration.MODID, "textures/gui/potion_icons/divine_shield.png"));
-        this.setPotionName("potion." + WizardryNextGeneration.MODID + ":divine_shield");
     }
 
     @SubscribeEvent
     public static void onLivingDamageEvent(LivingDamageEvent event) {
         EntityLivingBase entity = event.getEntityLiving();
-        if (entity.isPotionActive(WNGPotions.divine_shield)) {
+        if (entity.isPotionActive(WNGPotions.DIVINE_SHIELD)) {
             event.setCanceled(true);
-            entity.removePotionEffect(WNGPotions.divine_shield);
+            entity.removePotionEffect(WNGPotions.DIVINE_SHIELD);
             entity.world.playSound(null, entity.posX, entity.posY, entity.posZ, SoundEvents.ITEM_SHIELD_BLOCK, SoundCategory.PLAYERS, 1.25F, 1.0F);
             entity.world.playSound(null, entity.posX, entity.posY, entity.posZ, WizardrySounds.ENTITY_SHIELD_DEFLECT, SoundCategory.PLAYERS, 1.25F, 1.0F);
         }

@@ -16,19 +16,18 @@ public class PotionPacify extends PotionMagicEffect {
 
     public PotionPacify() {
         super(false, 0xFFF7C1, new ResourceLocation(WizardryNextGeneration.MODID, "textures/gui/potion_icons/pacify.png"));
-        this.setPotionName("potion." + WizardryNextGeneration.MODID + ":pacify");
     }
 
     @SubscribeEvent
     public static void onLivingAttackEvent(LivingAttackEvent event) {
-        if (event.getSource() != null && event.getSource().getTrueSource() instanceof EntityLivingBase && event.getEntityLiving().isPotionActive(WNGPotions.pacify)) {
-            event.getEntityLiving().removePotionEffect(WNGPotions.pacify);
+        if (event.getSource() != null && event.getSource().getTrueSource() instanceof EntityLivingBase && event.getEntityLiving().isPotionActive(WNGPotions.PACIFY)) {
+            event.getEntityLiving().removePotionEffect(WNGPotions.PACIFY);
         }
     }
 
     @SubscribeEvent
     public static void onLivingSetAttackTargetEvent(LivingSetAttackTargetEvent event) {
-        if (event.getEntityLiving().isPotionActive(WNGPotions.pacify) && event.getEntityLiving() instanceof EntityLiving && event.getTarget() != null) {
+        if (event.getEntityLiving().isPotionActive(WNGPotions.PACIFY) && event.getEntityLiving() instanceof EntityLiving && event.getTarget() != null) {
             ((EntityLiving)event.getEntityLiving()).setAttackTarget(null);
         }
     }

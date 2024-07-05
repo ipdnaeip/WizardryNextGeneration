@@ -26,7 +26,6 @@ public class PotionSolarWinds extends PotionMagicEffect implements ICustomPotion
 
     public PotionSolarWinds() {
         super(false, 0xFFB432, new ResourceLocation(WizardryNextGeneration.MODID, "textures/gui/potion_icons/solar_winds.png"));
-        this.setPotionName("potion." + WizardryNextGeneration.MODID + ":solar_winds");
     }
 
     public void spawnCustomParticle(World world, double x, double y, double z) {
@@ -38,7 +37,7 @@ public class PotionSolarWinds extends PotionMagicEffect implements ICustomPotion
         EntityLivingBase entity = event.getEntityLiving();
         if (entity instanceof EntityPlayer) {
             EntityPlayer entityPlayer = (EntityPlayer) event.getEntityLiving();
-            if (entity.isPotionActive(WNGPotions.solar_winds)) {
+            if (entity.isPotionActive(WNGPotions.SOLAR_WINDS)) {
                 boolean flying = false;
                 entity.getEntityWorld().playSound(null, entity.getPosition(), SoundEvents.ENTITY_BLAZE_BURN, SoundCategory.BLOCKS, 0.5F, entity.getEntityWorld().rand.nextFloat() * 0.2F + 0.9F);
                 if (!entity.onGround && GameSettings.isKeyDown(Minecraft.getMinecraft().gameSettings.keyBindJump)) {

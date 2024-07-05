@@ -26,7 +26,7 @@ public class Betrayal extends SpellBarrage {
     protected void barrageEffect(World world, EntityLivingBase target, EntityLivingBase caster, int ticksInUse, SpellModifiers modifiers) {
         if (target instanceof EntityLiving && target instanceof IMob) {
             int bonusAmplifier = SpellBuff.getStandardBonusAmplifier(modifiers.get(SpellModifiers.POTENCY));
-            target.addPotionEffect(new PotionEffect(WNGPotions.betrayal, this.getProperty(EFFECT_DURATION).intValue(), (int)this.getProperty(EFFECT_STRENGTH).floatValue() + bonusAmplifier));
+            target.addPotionEffect(new PotionEffect(WNGPotions.BETRAYAL, this.getProperty(EFFECT_DURATION).intValue(), (int)this.getProperty(EFFECT_STRENGTH).floatValue() + bonusAmplifier));
         }
     }
 

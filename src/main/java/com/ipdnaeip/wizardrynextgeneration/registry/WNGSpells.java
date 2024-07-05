@@ -1,6 +1,4 @@
-
 package com.ipdnaeip.wizardrynextgeneration.registry;
-
 
 import com.ipdnaeip.wizardrynextgeneration.WizardryNextGeneration;
 import com.ipdnaeip.wizardrynextgeneration.spell.*;
@@ -11,108 +9,99 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.registries.IForgeRegistry;
 
-import javax.annotation.Nonnull;
-
-@SuppressWarnings("unused")
 @GameRegistry.ObjectHolder(WizardryNextGeneration.MODID)
 @Mod.EventBusSubscriber
 public final class WNGSpells {
 
     private WNGSpells() {}
 
-    @Nonnull
-    @SuppressWarnings("ConstantConditions")
-    private static <T> T placeholder() { return null; }
-
     // WNG 1.0.0 Spells
-    public static final Spell photosynthesis = placeholder();
-    public static final Spell scorch = placeholder();
-    public static final Spell blood_infusion = placeholder();
-    public static final Spell accelerated_mass = placeholder();
-    public static final Spell moonlight = placeholder();
-    public static final Spell sap_intellect = placeholder();
-    public static final Spell sap_strength = placeholder();
-    public static final Spell equality = placeholder();
-    public static final Spell tase = placeholder();
-    public static final Spell justice = placeholder();
-    public static final Spell humility = placeholder();
-    public static final Spell smokescreen = placeholder();
-    public static final Spell bless_meat = placeholder();
-    public static final Spell smoke_blitz = placeholder();
-    public static final Spell smoke_barrage = placeholder();
-    public static final Spell ice_blitz = placeholder();
-    public static final Spell ice_barrage = placeholder();
-    public static final Spell divine_shield = placeholder();
-    public static final Spell haste = placeholder();
-    public static final Spell bones_to_apples = placeholder();
-    public static final Spell conduction = placeholder();
-    public static final Spell solar_winds = placeholder();
-    public static final Spell pacify = placeholder();
-    public static final Spell tranquility = placeholder();
-    public static final Spell frenzy = placeholder();
-    public static final Spell scapegoat = placeholder();
-    public static final Spell cleansing_flames = placeholder();
-    public static final Spell solar_sentinel = placeholder();
-    public static final Spell migraine = placeholder();
-    public static final Spell frostbite = placeholder();
-    public static final Spell righteous_defense = placeholder();
-    public static final Spell frostburn = placeholder();
-    public static final Spell veneficium = placeholder();
-    public static final Spell meditate = placeholder();
-    public static final Spell assassinate = placeholder();
-    public static final Spell anti_gravitational_push = placeholder();
-    public static final Spell gravitational_pull = placeholder();
-    public static final Spell cloak_of_the_void = placeholder();
-    public static final Spell gravitational_field = placeholder();
-    public static final Spell anti_gravitational_field = placeholder();
-    public static final Spell smite = placeholder();
-    public static final Spell fission_blast = placeholder();
-    public static final Spell piercing_mass = placeholder();
+    public static final Spell PHOTOSYNTHESIS = new Photosynthesis();
+    public static final Spell SCORCH = new Scorch();
+    public static final Spell BLOOD_INFUSION = new BloodInfusion();
+    public static final Spell ACCELERATED_MASS = new AcceleratedMass();
+    public static final Spell MOONLIGHT = new Moonlight();
+    public static final Spell SAP_INTELLECT = new SapIntellect();
+    public static final Spell SAP_STRENGTH = new SapStrength();
+    public static final Spell EQUALITY = new Equality();
+    public static final Spell TASE = new Tase();
+    public static final Spell JUSTICE = new Justice();
+    public static final Spell HUMILITY = new Humility();
+    public static final Spell SMOKESCREEN = new Smokescreen();
+    public static final Spell BLESS_MEAT = new BlessMeat();
+    public static final Spell SMOKE_BLITZ = new SmokeBlitz();
+    public static final Spell SMOKE_BARRAGE = new SmokeBarrage();
+    public static final Spell ICE_BLITZ = new IceBlitz();
+    public static final Spell ICE_BARRAGE = new IceBarrage();
+    public static final Spell DIVINE_SHIELD = new DivineShield();
+    public static final Spell HASTE = new Haste();
+    public static final Spell BONES_TO_APPLES = new BonesToApples();
+    public static final Spell CONDUCTION = new Conduction();
+    public static final Spell SOLAR_WINDS = new SolarWinds();
+    public static final Spell PACIFY = new Pacify();
+    public static final Spell TRANQUILITY = new Tranquility();
+    public static final Spell FRENZY = new Frenzy();
+    public static final Spell SCAPEGOAT = new Scapegoat();
+    public static final Spell CLEANSING_FLAMES = new CleansingFlames();
+    public static final Spell SOLAR_SENTINEL = new SolarSentinel();
+    public static final Spell MIGRAINE = new Migraine();
+    public static final Spell FROSTBITE = new Frostbite();
+    public static final Spell RIGHTEOUS_DEFENSE = new RighteousDefense();
+    public static final Spell FROSTBURN = new Frostburn();
+    public static final Spell VENEFICIUM = new Veneficium();
+    public static final Spell MEDITATE = new Meditate();
+    public static final Spell ASSASSINATE = new Assassinate();
+    public static final Spell ANTI_GRAVITATIONAL_PUSH = new AntiGravitationalPush();
+    public static final Spell GRAVITATIONAL_PULL = new GravitationalPull();
+    public static final Spell CLOAK_OF_THE_VOID = new CloakOfTheVoid();
+    public static final Spell GRAVITATIONAL_FIELD = new GravitationalField();
+    public static final Spell ANTI_GRAVITATIONAL_FIELD = new AntiGravitationalField();
+    public static final Spell SMITE = new Smite();
+    public static final Spell FISSION_BLAST = new FissionBlast();
+    public static final Spell PIERCING_MASS = new PiercingMass();
 
     // WNG 1.0.2 Spells
-    public static final Spell summon_webspitter = placeholder();
-    public static final Spell vicious_bite = placeholder();
-    public static final Spell betrayal = placeholder();
-    public static final Spell summon_righteous_defender = placeholder();
-    public static final Spell preparation = placeholder();
-    public static final Spell flesh_feed = placeholder();
-    public static final Spell lunar_salve = placeholder();
-    public static final Spell hyper_beam = placeholder();
-    public static final Spell spit_web = placeholder();
-    public static final Spell domesticate = placeholder();
-    public static final Spell tremors = placeholder();
-    public static final Spell biden_blast = placeholder();
-    public static final Spell blood_barrage = placeholder();
-    public static final Spell blood_blitz = placeholder();
-    public static final Spell shadow_blitz = placeholder();
-    public static final Spell shadow_barrage = placeholder();
-    public static final Spell fusion_beam = placeholder();
-    public static final Spell pull = placeholder();
-    public static final Spell whirlpool = placeholder();
-    public static final Spell combustion = placeholder();
+    public static final Spell SUMMON_WEBSPITTER = new SummonWebspitter();
+    public static final Spell VICIOUS_BITE = new ViciousBite();
+    public static final Spell BETRAYAL = new Betrayal();
+    public static final Spell SUMMON_RIGHTEOUS_DEFENDER = new SummonRighteousDefender();
+    public static final Spell PREPARATION = new Preparation();
+    public static final Spell FLESH_FEED = new FleshFeed();
+    public static final Spell LUNAR_SALVE = new LunarSalve();
+    public static final Spell HYPER_BEAM = new HyperBeam();
+    public static final Spell DOMESTICATE = new Domesticate();
+    public static final Spell TREMORS = new Tremors();
+    public static final Spell BIDEN_BLAST = new BidenBlast();
+    public static final Spell BLOOD_BARRAGE = new BloodBarrage();
+    public static final Spell BLOOD_BLITZ = new BloodBlitz();
+    public static final Spell SHADOW_BLITZ = new ShadowBlitz();
+    public static final Spell SHADOW_BARRAGE = new ShadowBarrage();
+    public static final Spell FUSION_BEAM = new FusionBeam();
+    public static final Spell PULL = new Pull();
+    public static final Spell WHIRLPOOL = new Whirlpool();
+    public static final Spell COMBUSTION = new Combustion();
 
     // WNG 1.0.3 Spells
-    public static final Spell hex_swine = placeholder();
-    public static final Spell potion_bomb = placeholder();
-    public static final Spell conjure_potion = placeholder();
-    public static final Spell home_teleport = placeholder();
-    public static final Spell spawn_teleport = placeholder();
-    public static final Spell concoction_bomb = placeholder();
-    public static final Spell napalm = placeholder();
-    public static final Spell enchant_cauldron = placeholder();
-    public static final Spell chomp = placeholder();
-    //public static final Spell celestial_beam = placeholder();
+    public static final Spell HEX_SWINE = new HexSwine();
+    public static final Spell POTION_BOMB = new PotionBomb();
+    public static final Spell CONJURE_POTION = new ConjurePotion();
+    public static final Spell HOME_TELEPORT = new HomeTeleport();
+    public static final Spell SPAWN_TELEPORT = new SpawnTeleport();
+    public static final Spell CONCOCTION_BOMB = new ConcoctionBomb();
+    public static final Spell NAPALM = new Napalm();
+    public static final Spell ENCHANT_CAULDRON = new EnchantCauldron();
+    public static final Spell CHOMP = new Chomp();
 
     //WNG 1.0.4 Spells
-    public static final Spell summon_vampire_bat = placeholder();
-    public static final Spell energize = placeholder();
-    public static final Spell lightning_reflexes = placeholder();
-    public static final Spell retribution = placeholder();
-    public static final Spell eye_for_an_eye = placeholder();
+    public static final Spell SUMMON_VAMPIRE_BAT = new SummonVampireBat();
+    public static final Spell TAN_FLESH = new TanFlesh();
+    public static final Spell LIGHTNING_REFLEXES = new LightningReflexes();
+    public static final Spell RETRIBUTION = new Retribution();
+    public static final Spell EYE_FOR_AN_EYE = new EyeForAnEye();
 
     //WNG 1.0.5 Spells
-    public static final Spell animal_allegiance = placeholder();
-    public static final Spell boost_morale = placeholder();
+    public static final Spell ANIMAL_ALLEGIANCE = new AnimalAllegiance();
+    //public static final Spell BOOST_MORALE = new Inspire();
 
     @SubscribeEvent
     public static void register(RegistryEvent.Register<Spell> event) {
@@ -121,102 +110,96 @@ public final class WNGSpells {
 
         // WNG 1.0.0 Spells (42)
 
-        registry.register(new Photosynthesis());
-        registry.register(new Scorch());
-        registry.register(new BloodInfusion());
-        registry.register(new AcceleratedMass());
-        registry.register(new Moonlight());
-        registry.register(new SapIntellect());
-        registry.register(new SapStrength());
-        registry.register(new Equality());
-        registry.register(new Tase());
-        registry.register(new Justice());
-        registry.register(new Humility());
-        registry.register(new Smokescreen());
-        registry.register(new BlessMeat());
-        registry.register(new SmokeBlitz());
-        registry.register(new SmokeBarrage());
-        registry.register(new IceBlitz());
-        registry.register(new IceBarrage());
-        registry.register(new DivineShield());
-        registry.register(new Haste());
-        registry.register(new BonesToApples());
-        registry.register(new Conduction());
-        registry.register(new SolarWinds());
-        registry.register(new Pacify());
-        registry.register(new Tranquility());
-        registry.register(new Frenzy());
-        registry.register(new Scapegoat());
-        registry.register(new CleansingFlames());
-        registry.register(new SolarSentinel());
-        registry.register(new Migraine());
-        registry.register(new Frostbite());
-        registry.register(new RighteousDefense());
-        registry.register(new Frostburn());
-        registry.register(new Veneficium());
-        registry.register(new Meditate());
-        registry.register(new Assassinate());
-        registry.register(new AntiGravitationalPush());
-        registry.register(new GravitationalPull());
-        registry.register(new CloakOfTheVoid());
-        registry.register(new GravitationalField());
-        registry.register(new AntiGravitationalField());
-        registry.register(new Smite());
-        registry.register(new FissionBlast());
+        registry.register(PHOTOSYNTHESIS);
+        registry.register(SCORCH);
+        registry.register(BLOOD_INFUSION);
+        registry.register(ACCELERATED_MASS);
+        registry.register(MOONLIGHT);
+        registry.register(SAP_INTELLECT);
+        registry.register(SAP_STRENGTH);
+        registry.register(EQUALITY);
+        registry.register(TASE);
+        registry.register(JUSTICE);
+        registry.register(HUMILITY);
+        registry.register(SMOKESCREEN);
+        registry.register(BLESS_MEAT);
+        registry.register(SMOKE_BLITZ);
+        registry.register(SMOKE_BARRAGE);
+        registry.register(ICE_BLITZ);
+        registry.register(ICE_BARRAGE);
+        registry.register(DIVINE_SHIELD);
+        registry.register(HASTE);
+        registry.register(BONES_TO_APPLES);
+        registry.register(CONDUCTION);
+        registry.register(SOLAR_WINDS);
+        registry.register(PACIFY);
+        registry.register(TRANQUILITY);
+        registry.register(FRENZY);
+        registry.register(SCAPEGOAT);
+        registry.register(CLEANSING_FLAMES);
+        registry.register(SOLAR_SENTINEL);
+        registry.register(MIGRAINE);
+        registry.register(FROSTBITE);
+        registry.register(RIGHTEOUS_DEFENSE);
+        registry.register(FROSTBURN);
+        registry.register(VENEFICIUM);
+        registry.register(MEDITATE);
+        registry.register(ASSASSINATE);
+        registry.register(ANTI_GRAVITATIONAL_PUSH);
+        registry.register(GRAVITATIONAL_PULL);
+        registry.register(CLOAK_OF_THE_VOID);
+        registry.register(GRAVITATIONAL_FIELD);
+        registry.register(ANTI_GRAVITATIONAL_FIELD);
+        registry.register(SMITE);
+        registry.register(FISSION_BLAST);
 
         // WNG 1.0.2 Spells (19)
 
-        registry.register(new SummonWebspitter());
-        registry.register(new ViciousBite());
-        registry.register(new Betrayal());
-        registry.register(new SummonRighteousDefender());
-        registry.register(new Preparation());
-        registry.register(new FleshFeed());
-        registry.register(new LunarSalve());
-        registry.register(new HyperBeam());
-        registry.register(new Domesticate());
-        registry.register(new Tremors());
-        registry.register(new BidenBlast());
-        registry.register(new BloodBarrage());
-        registry.register(new BloodBlitz());
-        registry.register(new ShadowBlitz());
-        registry.register(new ShadowBarrage());
-        registry.register(new FusionBeam());
-        registry.register(new Pull());
-        registry.register(new Whirlpool());
-        registry.register(new Combustion());
+        registry.register(SUMMON_WEBSPITTER);
+        registry.register(VICIOUS_BITE);
+        registry.register(BETRAYAL);
+        registry.register(SUMMON_RIGHTEOUS_DEFENDER);
+        registry.register(PREPARATION);
+        registry.register(FLESH_FEED);
+        registry.register(LUNAR_SALVE);
+        registry.register(HYPER_BEAM);
+        registry.register(DOMESTICATE);
+        registry.register(TREMORS);
+        registry.register(BIDEN_BLAST);
+        registry.register(BLOOD_BARRAGE);
+        registry.register(BLOOD_BLITZ);
+        registry.register(SHADOW_BLITZ);
+        registry.register(SHADOW_BARRAGE);
+        registry.register(FUSION_BEAM);
+        registry.register(PULL);
+        registry.register(WHIRLPOOL);
+        registry.register(COMBUSTION);
 
         // WNG 1.0.3 Spells (9)
 
-        registry.register(new HexSwine());
-        registry.register(new PotionBomb());
-        registry.register(new ConjurePotion());
-        registry.register(new HomeTeleport());
-        registry.register(new SpawnTeleport());
-        registry.register(new ConcoctionBomb());
-        registry.register(new Napalm());
-        registry.register(new EnchantCauldron());
-        registry.register(new Chomp());
-        //beam isn't fluid and targeting system is flawed
-        //registry.register(new CelestialBeam());
+        registry.register(HEX_SWINE);
+        registry.register(POTION_BOMB);
+        registry.register(CONJURE_POTION);
+        registry.register(HOME_TELEPORT);
+        registry.register(SPAWN_TELEPORT);
+        registry.register(CONCOCTION_BOMB);
+        registry.register(NAPALM);
+        registry.register(ENCHANT_CAULDRON);
+        registry.register(CHOMP);
 
         // WNG 1.0.4 Spells (5)
 
-        registry.register(new LightningReflexes());
-        registry.register(new SummonVampireBat());
-        registry.register(new TanFlesh());
-        registry.register(new Retribution());
-        registry.register(new EyeForAnEye());
-        //cant make the projectile travel properly through walls
-        //registry.register(new PiercingMass());
-        //not sure if this is even possible
-        //registry.register(new Energize());
+        registry.register(SUMMON_VAMPIRE_BAT);
+        registry.register(TAN_FLESH);
+        registry.register(LIGHTNING_REFLEXES);
+        registry.register(RETRIBUTION);
+        registry.register(EYE_FOR_AN_EYE);
 
-        // WNG 1.0.5 Spells (2)
+        // WNG 1.0.5 Spells (1)
 
-        registry.register(new AnimalAllegiance());
-        //registry.register(new Inspire());
+        registry.register(ANIMAL_ALLEGIANCE);
 
     }
 }
+
 

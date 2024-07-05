@@ -9,7 +9,7 @@ import net.minecraft.item.Item;
 public class Retribution extends SpellBuff {
 
     public Retribution() {
-        super(WizardryNextGeneration.MODID, "retribution", 1f, 0.84f, 0.32f, () -> WNGPotions.retribution);
+        super(WizardryNextGeneration.MODID, "retribution", 1f, 0.84f, 0.32f, () -> WNGPotions.RETRIBUTION);
     }
 
     @Override

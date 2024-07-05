@@ -3,30 +3,20 @@ package com.ipdnaeip.wizardrynextgeneration.entity.living;
 import com.google.common.base.Predicate;
 import com.ipdnaeip.wizardrynextgeneration.registry.WNGPotions;
 import electroblob.wizardry.Wizardry;
-import electroblob.wizardry.entity.living.EntityWizard;
 import electroblob.wizardry.entity.living.ISummonedCreature;
-import electroblob.wizardry.util.AllyDesignationSystem;
 import electroblob.wizardry.util.ParticleBuilder;
 import net.minecraft.entity.*;
-import net.minecraft.entity.ai.*;
-import net.minecraft.entity.monster.EntitySpider;
-import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
-import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentTranslation;
-import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 
-import java.util.Arrays;
 import java.util.UUID;
 
 public class EntityRighteousDefenderMinion extends EntityRighteousDefender implements ISummonedCreature {
@@ -68,7 +58,7 @@ public class EntityRighteousDefenderMinion extends EntityRighteousDefender imple
     public void onUpdate(){
         super.onUpdate();
         this.updateDelegate();
-        this.addPotionEffect(new PotionEffect(WNGPotions.taunt, 20, taunt_strength));
+        this.addPotionEffect(new PotionEffect(WNGPotions.TAUNT, 20, taunt_strength));
     }
 
     @Override

@@ -19,28 +19,18 @@ public class WNGClientEventHandler {
 
     private WNGClientEventHandler() {}
 
-/*    @SubscribeEvent
-    public static void onRenderLivingEvent(RenderLivingEvent.Pre event) {
-        if (Minecraft.getMinecraft().player.isPotionActive(WNGPotions.empowerment)) {
-            GlStateManager.enableColorMaterial();
-            GlStateManager.enableOutlineMode(1000);
-            GlStateManager.disableOutlineMode();
-            GlStateManager.disableColorMaterial();
-        }
-    }*/
-
     @SubscribeEvent
     public static void onInputUpdateEvent(InputUpdateEvent event) {
         EntityPlayer player = event.getEntityPlayer();
         ItemStack stack = player.getActiveItemStack();
         MovementInput input = event.getMovementInput();
-        int level = EnchantmentHelper.getEnchantmentLevel(WNGEnchantments.ranger, stack);
+        int level = EnchantmentHelper.getEnchantmentLevel(WNGEnchantments.RANGER, stack);
         if (player.isHandActive() && stack.getItem() instanceof ItemBow) {
             player.setSprinting(false);
             input.moveStrafe *= 1F + (0.75f * level);
             input.moveForward *= 1F + (0.75f * level);
         }
-        level = EnchantmentHelper.getEnchantmentLevel(WNGEnchantments.phalanx, stack);
+        level = EnchantmentHelper.getEnchantmentLevel(WNGEnchantments.PHALANX, stack);
         if (player.isHandActive() && stack.getItem() instanceof ItemShield) {
             player.setSprinting(false);
             input.moveStrafe *= 1F + (0.75f * level);

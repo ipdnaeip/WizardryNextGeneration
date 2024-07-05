@@ -9,7 +9,7 @@ import net.minecraft.item.Item;
 public class CleansingFlames extends SpellBuff {
 
     public CleansingFlames() {
-        super(WizardryNextGeneration.MODID, "cleansing_flames", 1f, 0.784f, 0.235f, () -> WNGPotions.cleansing_flames);
+        super(WizardryNextGeneration.MODID, "cleansing_flames", 1f, 0.784f, 0.235f, () -> WNGPotions.CLEANSING_FLAMES);
     }
 
     @Override

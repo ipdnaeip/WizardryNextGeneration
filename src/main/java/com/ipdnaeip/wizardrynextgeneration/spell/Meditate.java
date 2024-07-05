@@ -43,7 +43,7 @@ public class Meditate extends Spell {
     @Override
     public boolean cast(World world, EntityPlayer caster, EnumHand hand, int ticksInUse, SpellModifiers modifiers) {
         if (WNGUtils.isEntityMoving(caster)) {
-            caster.sendStatusMessage(new TextComponentTranslation("spell." + this.getUnlocalisedName() + ".moving"), true);
+            WNGUtils.sendMessage(caster, "spell." + this.getUnlocalisedName() + ".moving", true);
             return false;
         }
         //check if the player can be healed and if the player is standing still

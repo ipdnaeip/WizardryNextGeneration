@@ -12,7 +12,6 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.world.World;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
-import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
@@ -21,7 +20,6 @@ public class PotionCleansingFlames extends PotionMagicEffect implements ICustomP
 
     public PotionCleansingFlames() {
         super(false, 0xFFC83C, new ResourceLocation(WizardryNextGeneration.MODID, "textures/gui/potion_icons/cleansing_flames.png"));
-        this.setPotionName("potion." + WizardryNextGeneration.MODID + ":cleansing_flames");
     }
 
     public void spawnCustomParticle(World world, double x, double y, double z) {
@@ -31,14 +29,14 @@ public class PotionCleansingFlames extends PotionMagicEffect implements ICustomP
     @SubscribeEvent
     public static void onLivingUpdateEvent(LivingEvent.LivingUpdateEvent event) {
         EntityLivingBase entity = event.getEntityLiving();
-        if (entity.isPotionActive(WNGPotions.cleansing_flames)) {
+        if (entity.isPotionActive(WNGPotions.CLEANSING_FLAMES)) {
             if (entity.isBurning()) {
                 entity.extinguish();
             }
             if (entity.ticksExisted % 20 == 0) {
                 entity.getEntityWorld().playSound(null, entity.getPosition(), SoundEvents.ENTITY_BLAZE_BURN, SoundCategory.PLAYERS, 0.5F, entity.getEntityWorld().rand.nextFloat() * 0.2F + 0.9F);
             }
-            if (entity.ticksExisted % 20 / (entity.getActivePotionEffect(WNGPotions.cleansing_flames).getAmplifier() + 1) == 0)  {
+            if (entity.ticksExisted % 20 / (entity.getActivePotionEffect(WNGPotions.CLEANSING_FLAMES).getAmplifier() + 1) == 0)  {
                 entity.heal(0.5F);
             }
         }
@@ -46,7 +44,7 @@ public class PotionCleansingFlames extends PotionMagicEffect implements ICustomP
 
     @SubscribeEvent
     public static void onLivingAttackEvent(LivingAttackEvent event) {
-        if (event.getEntityLiving().isPotionActive(WNGPotions.cleansing_flames) && event.getSource().isFireDamage()) {
+        if (event.getEntityLiving().isPotionActive(WNGPotions.CLEANSING_FLAMES) && event.getSource().isFireDamage()) {
             event.setCanceled(true);
         }
     }

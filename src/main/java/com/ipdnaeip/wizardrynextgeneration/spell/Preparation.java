@@ -9,7 +9,7 @@ import com.ipdnaeip.wizardrynextgeneration.WizardryNextGeneration;
 public class Preparation extends SpellBuff {
 
     public Preparation() {
-        super(WizardryNextGeneration.MODID, "preparation", 0.745f, 0.745f, 0.51f, () -> WNGPotions.preparation);
+        super(WizardryNextGeneration.MODID, "preparation", 0.745f, 0.745f, 0.51f, () -> WNGPotions.PREPARATION);
     }
 
     @Override

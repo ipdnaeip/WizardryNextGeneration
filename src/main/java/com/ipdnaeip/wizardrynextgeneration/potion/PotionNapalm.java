@@ -14,15 +14,14 @@ public class PotionNapalm extends PotionMagicEffect {
 
     public PotionNapalm() {
         super(true, 0xD86631, new ResourceLocation(WizardryNextGeneration.MODID, "textures/gui/potion_icons/napalm.png"));
-        this.setPotionName("potion." + WizardryNextGeneration.MODID + ":napalm");
     }
 
     @SubscribeEvent
     public static void onLivingHurtEvent(LivingHurtEvent event) {
         EntityLivingBase entity = event.getEntityLiving();
-        if (entity.isPotionActive(WNGPotions.napalm) && event.getSource().isFireDamage()) {
-            entity.setFire(5 * entity.getActivePotionEffect(WNGPotions.napalm).getAmplifier() + 1);
-            entity.removePotionEffect(WNGPotions.napalm);
+        if (entity.isPotionActive(WNGPotions.NAPALM) && event.getSource().isFireDamage()) {
+            entity.setFire(5 * entity.getActivePotionEffect(WNGPotions.NAPALM).getAmplifier() + 1);
+            entity.removePotionEffect(WNGPotions.NAPALM);
         }
     }
 }

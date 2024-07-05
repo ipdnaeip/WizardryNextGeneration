@@ -146,16 +146,23 @@ potion.wizardrynextgeneration:eye_for_an_eye=Eye for An Eye
 potion.wizardrynextgeneration:frenzy=Frenzy
 potion.wizardrynextgeneration:gravity=Gravity
 potion.wizardrynextgeneration:lightning_reflexes=Lightning Reflexes
-potion.wizardrynextgeneration:magic_weakness=Magic Weakness
 potion.wizardrynextgeneration:napalm=Napalm
 potion.wizardrynextgeneration:pacify=Pacify
 potion.wizardrynextgeneration:preparation=Preparation
 potion.wizardrynextgeneration:retribution=Retribution
-potion.wizardrynextgeneration:shock_weakness=Shock Weakness
 potion.wizardrynextgeneration:solar_winds=Solar Winds
 potion.wizardrynextgeneration:suffocation=Suffocation
 potion.wizardrynextgeneration:taunt=Taunt
 potion.wizardrynextgeneration:veneficium=Veneficium
+potion.wizardrynextgeneration:vulnerability_magic=Magic Vulnerability
+potion.wizardrynextgeneration:vulnerability_fire=Fire Vulnerability
+potion.wizardrynextgeneration:vulnerability_frost=Frost Vulnerability
+potion.wizardrynextgeneration:vulnerability_shock=Shock Vulnerability
+potion.wizardrynextgeneration:vulnerability_wither=Wither Vulnerability
+potion.wizardrynextgeneration:vulnerability_poison=Poison Vulnerability
+potion.wizardrynextgeneration:vulnerability_force=Force Vulnerability
+potion.wizardrynextgeneration:vulnerability_blast=Blast Vulnerability
+potion.wizardrynextgeneration:vulnerability_radiant=Radiant Vulnerability
 
 #potioneffect
 

@@ -32,7 +32,7 @@ public class HyperBeam extends SpellRayMultiple {
                 target.attackEntityFrom(MagicDamage.causeDirectMagicDamage(caster, damageType), this.getProperty(DAMAGE).floatValue());
             }
         }
-        if (caster != null) caster.addPotionEffect(new PotionEffect(WNGPotions.disempowerment, this.getProperty(EFFECT_DURATION).intValue(), 7));
+        if (caster != null) caster.addPotionEffect(new PotionEffect(WNGPotions.DISEMPOWERMENT, this.getProperty(EFFECT_DURATION).intValue(), 7));
         return true;
     }
 
@@ -43,7 +43,7 @@ public class HyperBeam extends SpellRayMultiple {
 
     @Override
     protected boolean onMiss(World world, EntityLivingBase caster, Vec3d origin, Vec3d direction, int ticksInUse, SpellModifiers modifiers) {
-        if (caster != null) caster.addPotionEffect(new PotionEffect(WNGPotions.disempowerment, this.getProperty(EFFECT_DURATION).intValue(), 7));
+        if (caster != null) caster.addPotionEffect(new PotionEffect(WNGPotions.DISEMPOWERMENT, this.getProperty(EFFECT_DURATION).intValue(), 7));
         return true;
     }
 

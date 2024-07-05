@@ -29,7 +29,7 @@ public class AnimalAllegiance extends SpellAreaEffect  {
 
     @Override
     protected boolean affectEntity(World world, Vec3d vec3d, @Nullable EntityLivingBase caster, EntityLivingBase target, int targetCount, int ticksInUse, SpellModifiers modifiers) {
-        target.addPotionEffect(new PotionEffect(WNGPotions.animal_allegiance, this.getProperty(EFFECT_DURATION).intValue(), 0));
+        target.addPotionEffect(new PotionEffect(WNGPotions.ANIMAL_ALLEGIANCE, this.getProperty(EFFECT_DURATION).intValue(), 0));
         if (caster != null) {
             NBTTagCompound entityNBT = target.getEntityData();
             entityNBT.setUniqueId(PotionAnimalAllegiance.ANIMAL_ALLEGIANCE_CASTER, caster.getUniqueID());

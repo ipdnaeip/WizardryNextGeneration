@@ -16,7 +16,6 @@ public class PotionGravity extends PotionMagicEffect {
 
     public PotionGravity() {
         super(true, 0x55FF55, new ResourceLocation(WizardryNextGeneration.MODID, "textures/gui/potion_icons/gravity.png"));
-        this.setPotionName("potion." + WizardryNextGeneration.MODID + ":gravity");
     }
 
     @SubscribeEvent
@@ -24,8 +23,8 @@ public class PotionGravity extends PotionMagicEffect {
         EntityLivingBase entity = event.getEntityLiving();
         if (entity instanceof EntityPlayer) {
             EntityPlayer entityPlayer = (EntityPlayer) event.getEntityLiving();
-            if (entity.isPotionActive(WNGPotions.gravity) && !entityPlayer.capabilities.isFlying) {
-                entity.motionY -= 0.025 * (entity.getActivePotionEffect(WNGPotions.gravity).getAmplifier() + 1);
+            if (entity.isPotionActive(WNGPotions.GRAVITY) && !entityPlayer.capabilities.isFlying) {
+                entity.motionY -= 0.025 * (entity.getActivePotionEffect(WNGPotions.GRAVITY).getAmplifier() + 1);
             }
         }
     }
@@ -33,8 +32,8 @@ public class PotionGravity extends PotionMagicEffect {
     @SubscribeEvent
     public static void onLivingFallEvent(LivingFallEvent event) {
         EntityLivingBase entity = event.getEntityLiving();
-        if (entity.isPotionActive(WNGPotions.gravity)) {
-            event.setDamageMultiplier(entity.getActivePotionEffect(WNGPotions.gravity).getAmplifier() + 2);
+        if (entity.isPotionActive(WNGPotions.GRAVITY)) {
+            event.setDamageMultiplier(entity.getActivePotionEffect(WNGPotions.GRAVITY).getAmplifier() + 2);
         }
     }
 

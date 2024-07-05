@@ -227,7 +227,7 @@ public class EntityVampireBat extends EntityMob
                     i = 120;
                 }
                 if (i > 0) {
-                    ((EntityLivingBase)entityIn).addPotionEffect(new PotionEffect(WNGPotions.bleed, i, 0));
+                    ((EntityLivingBase)entityIn).addPotionEffect(new PotionEffect(WNGPotions.BLEED, i, 0));
                     this.addPotionEffect(new PotionEffect(MobEffects.REGENERATION, i, 0));
                 }
             }

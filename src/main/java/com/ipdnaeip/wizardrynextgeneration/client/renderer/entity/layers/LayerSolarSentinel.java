@@ -3,7 +3,6 @@ package com.ipdnaeip.wizardrynextgeneration.client.renderer.entity.layers;
 import com.ipdnaeip.wizardrynextgeneration.WizardryNextGeneration;
 import com.ipdnaeip.wizardrynextgeneration.registry.WNGPotions;
 import electroblob.wizardry.client.renderer.entity.layers.LayerTiledOverlay;
-import electroblob.wizardry.registry.WizardryPotions;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.RenderLivingBase;
 import net.minecraft.entity.EntityLivingBase;
@@ -18,7 +17,7 @@ public class LayerSolarSentinel extends LayerTiledOverlay<EntityLivingBase> {
         }
 
     public boolean shouldRender(EntityLivingBase entity, float partialTicks) {
-        return !entity.isInvisible() && entity.isPotionActive(WNGPotions.solar_winds) && entity.isPotionActive(WNGPotions.cleansing_flames);
+        return !entity.isInvisible() && entity.isPotionActive(WNGPotions.SOLAR_WINDS) && entity.isPotionActive(WNGPotions.CLEANSING_FLAMES);
     }
 
     public ResourceLocation getTexture(EntityLivingBase entity, float partialTicks) {

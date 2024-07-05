@@ -128,10 +128,10 @@ public class SmokeBarrage extends SpellBarrage {
     protected void barrageEffect(World world, EntityLivingBase target, EntityLivingBase caster, int ticksInUse, SpellModifiers modifiers) {
         MagicDamage.DamageType damageType = MagicDamage.DamageType.FIRE;
         if (WNGUtils.canMagicDamageEntity(caster, target, damageType, this, ticksInUse)) {
-            int duration = (int) (WNGSpells.smoke_barrage.getProperty(EFFECT_DURATION).floatValue() * modifiers.get(WizardryItems.duration_upgrade));
+            int duration = (int) (WNGSpells.SMOKE_BARRAGE.getProperty(EFFECT_DURATION).floatValue() * modifiers.get(WizardryItems.duration_upgrade));
             EntityUtils.attackEntityWithoutKnockback(target, MagicDamage.causeDirectMagicDamage(caster, damageType), getProperty(DAMAGE).floatValue() * modifiers.get(SpellModifiers.POTENCY));
             target.addPotionEffect(new PotionEffect(MobEffects.BLINDNESS, duration));
-            target.addPotionEffect(new PotionEffect(WNGPotions.suffocation, duration, 1));
+            target.addPotionEffect(new PotionEffect(WNGPotions.SUFFOCATION, duration, 1));
         }
     }
 
@@ -141,7 +141,7 @@ public class SmokeBarrage extends SpellBarrage {
         world.spawnParticle(EnumParticleTypes.EXPLOSION_LARGE, hit.x, hit.y, hit.z, 0.0, 0.0, 0.0);
         for (int i = 0; (float) i < 60.0F * this.getProperty(EFFECT_RADIUS).floatValue(); ++i) {
             float brightness = world.rand.nextFloat() * 0.1F + 0.1F;
-            ParticleBuilder.create(ParticleBuilder.Type.CLOUD, world.rand, hit.x, hit.y, hit.z, (2.0F * modifiers.get(WizardryItems.blast_upgrade)), false).clr(brightness, brightness, brightness).time(WNGSpells.smoke_barrage.getProperty(EFFECT_DURATION).intValue() + world.rand.nextInt(12)).shaded(true).spawn(world);
+            ParticleBuilder.create(ParticleBuilder.Type.CLOUD, world.rand, hit.x, hit.y, hit.z, (2.0F * modifiers.get(WizardryItems.blast_upgrade)), false).clr(brightness, brightness, brightness).time(WNGSpells.SMOKE_BARRAGE.getProperty(EFFECT_DURATION).intValue() + world.rand.nextInt(12)).shaded(true).spawn(world);
             brightness = world.rand.nextFloat() * 0.3F;
             ParticleBuilder.create(ParticleBuilder.Type.DARK_MAGIC, world.rand, hit.x, hit.y, hit.z, (2.0F * modifiers.get(WizardryItems.blast_upgrade)), false).clr(brightness, brightness, brightness).spawn(world);
         }

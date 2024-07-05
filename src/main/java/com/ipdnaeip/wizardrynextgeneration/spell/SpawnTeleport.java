@@ -2,6 +2,7 @@ package com.ipdnaeip.wizardrynextgeneration.spell;
 
 import com.ipdnaeip.wizardrynextgeneration.WizardryNextGeneration;
 import com.ipdnaeip.wizardrynextgeneration.registry.WNGItems;
+import com.ipdnaeip.wizardrynextgeneration.util.WNGUtils;
 import electroblob.wizardry.data.IStoredVariable;
 import electroblob.wizardry.data.Persistence;
 import electroblob.wizardry.data.WizardData;
@@ -56,7 +57,7 @@ public class SpawnTeleport extends Spell {
                     data.setVariable(COUNTDOWN_KEY, this.getProperty(TELEPORT_COUNTDOWN).intValue());
                     return true;
                 } else {
-                    if (!world.isRemote) caster.sendStatusMessage(new TextComponentTranslation("spell." + this.getUnlocalisedName() + ".wrongdimension"), true);
+                    WNGUtils.sendMessage(caster, "spell." + this.getUnlocalisedName() + ".wrongdimension", true);
                     return false;
                 }
             }

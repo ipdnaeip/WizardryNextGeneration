@@ -2,7 +2,6 @@ package com.ipdnaeip.wizardrynextgeneration.entity.construct;
 
 import com.ipdnaeip.wizardrynextgeneration.registry.WNGPotions;
 import com.ipdnaeip.wizardrynextgeneration.registry.WNGSpells;
-import com.ipdnaeip.wizardrynextgeneration.util.WNGUtils;
 import electroblob.wizardry.entity.construct.EntityScaledConstruct;
 import electroblob.wizardry.registry.WizardrySounds;
 import electroblob.wizardry.spell.SpellBuff;
@@ -22,7 +21,7 @@ public class EntityGravitationalField extends EntityScaledConstruct {
 
     public EntityGravitationalField(World world) {
         super(world);
-        this.setSize(WNGSpells.gravitational_field.getProperty("effect_radius").floatValue() * 2.0F, 10F);
+        this.setSize(WNGSpells.GRAVITATIONAL_FIELD.getProperty("effect_radius").floatValue() * 2.0F, 10F);
     }
 
     public void onUpdate() {
@@ -34,7 +33,7 @@ public class EntityGravitationalField extends EntityScaledConstruct {
             List<Entity> targets = EntityUtils.getEntitiesWithinCylinder((this.width / 2.0F), this.posX, this.posY, this.posZ, this.height * sizeMultiplier, this.world, Entity.class);
             for (Entity target : targets) {
                 if (target instanceof EntityLivingBase) {
-                    ((EntityLivingBase)target).addPotionEffect(new PotionEffect(WNGPotions.gravity, 10, SpellBuff.getStandardBonusAmplifier(damageMultiplier)));
+                    ((EntityLivingBase)target).addPotionEffect(new PotionEffect(WNGPotions.GRAVITY, 10, SpellBuff.getStandardBonusAmplifier(damageMultiplier)));
                 }
                 //else target.motionY -= Math.pow(0.025, damageMultiplier);
             }

@@ -39,7 +39,7 @@ public class FleshFeed extends SpellRay {
         if (target instanceof EntityAnimal && caster != null && caster.getHealth() > 0 && caster.getHealth() < caster.getMaxHealth()) {
             if (WNGUtils.canMagicDamageEntity(caster, target, damageType, this, ticksInUse)) {
                 EntityUtils.attackEntityWithoutKnockback(target, MagicDamage.causeDirectMagicDamage(caster, damageType), damage);
-                ((EntityAnimal) target).addPotionEffect(new PotionEffect(WNGPotions.bleed, getProperty(EFFECT_DURATION).intValue(), 0));
+                ((EntityAnimal) target).addPotionEffect(new PotionEffect(WNGPotions.BLEED, getProperty(EFFECT_DURATION).intValue(), 0));
                 ((EntityPlayer) caster).getFoodStats().addStats((int) damage, getProperty(SATURATION_MODIFIER).floatValue());
                 caster.heal(damage);
                 return true;

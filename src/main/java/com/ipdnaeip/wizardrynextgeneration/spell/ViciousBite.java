@@ -33,7 +33,7 @@ public class ViciousBite extends SpellRay {
             if (WNGUtils.canMagicDamageEntity(caster, target, damageType, this, ticksInUse)) {
                 EntityLivingBase targetEntity = (EntityLivingBase) target;
                 targetEntity.attackEntityFrom(MagicDamage.causeDirectMagicDamage(caster, damageType), getProperty(DAMAGE).floatValue() * modifiers.get(SpellModifiers.POTENCY));
-                targetEntity.addPotionEffect(new PotionEffect(WNGPotions.bleed, (int) (getProperty(EFFECT_DURATION).floatValue() * modifiers.get(WizardryItems.duration_upgrade)), SpellBuff.getStandardBonusAmplifier(modifiers.get(SpellModifiers.POTENCY))));
+                targetEntity.addPotionEffect(new PotionEffect(WNGPotions.BLEED, (int) (getProperty(EFFECT_DURATION).floatValue() * modifiers.get(WizardryItems.duration_upgrade)), SpellBuff.getStandardBonusAmplifier(modifiers.get(SpellModifiers.POTENCY))));
             }
             return true;
         }

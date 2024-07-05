@@ -33,12 +33,11 @@ public class PotionAnimalAllegiance extends PotionMagicEffect {
 
     public PotionAnimalAllegiance() {
         super(false, 0xFFE293, new ResourceLocation(WizardryNextGeneration.MODID, "textures/gui/potion_icons/animal_alliance.png"));
-        this.setPotionName("potion." + WizardryNextGeneration.MODID + ":animal_allegiance");
     }
 
     @SubscribeEvent
     public static void onLivingSetAttackTargetEvent(LivingSetAttackTargetEvent event) {
-        if (event.getEntityLiving().isPotionActive(WNGPotions.animal_allegiance) && event.getEntityLiving() instanceof EntityLiving && event.getTarget() != null) {
+        if (event.getEntityLiving().isPotionActive(WNGPotions.ANIMAL_ALLEGIANCE) && event.getEntityLiving() instanceof EntityLiving && event.getTarget() != null) {
             EntityLiving entity = (EntityLiving)event.getEntityLiving();
             if (event.getTarget() == EntityUtils.getEntityByUUID(entity.world, entity.getEntityData().getUniqueId(ANIMAL_ALLEGIANCE_CASTER))) {
                 ((EntityLiving) event.getEntityLiving()).setAttackTarget(null);
@@ -48,7 +47,7 @@ public class PotionAnimalAllegiance extends PotionMagicEffect {
 
     @SubscribeEvent
     public static void onPotionAddedEvent(PotionEvent.PotionAddedEvent event) {
-        if (event.getEntityLiving() instanceof EntityAnimal && event.getPotionEffect().getPotion() == WNGPotions.animal_allegiance) {
+        if (event.getEntityLiving() instanceof EntityAnimal && event.getPotionEffect().getPotion() == WNGPotions.ANIMAL_ALLEGIANCE) {
             EntityAnimal entity = (EntityAnimal) event.getEntityLiving();
             float attackDamage = entity.getAttributeMap().getAllAttributes().contains(SharedMonsterAttributes.ATTACK_DAMAGE) ? (float)(entity.getAttributeMap().getAttributeInstance(SharedMonsterAttributes.ATTACK_DAMAGE).getAttributeValue()) : (float)SharedMonsterAttributes.ATTACK_DAMAGE.getDefaultValue();
             attackDamage *= entity.getEntityData().hasKey(ANIMAL_ATTACK_MULTIPLIER) ? entity.getEntityData().getFloat(ANIMAL_ATTACK_MULTIPLIER) : 1f;

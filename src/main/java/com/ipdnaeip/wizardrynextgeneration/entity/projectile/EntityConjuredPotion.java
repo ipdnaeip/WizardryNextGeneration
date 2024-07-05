@@ -61,8 +61,8 @@ public class EntityConjuredPotion extends EntityBomb {
         if (!this.world.isRemote) {
             this.isLingering = this.getThrower() instanceof EntityPlayer && WizardryBaublesIntegration.isBaubleEquipped((EntityPlayer)this.getThrower(), WNGItems.CHARM_LINGERING);
             this.playSound(SoundEvents.ENTITY_SPLASH_POTION_BREAK, 1.5F, this.rand.nextFloat() * 0.4F + 0.6F);
-            double range = (WNGSpells.potion_bomb.getProperty("blast_radius").floatValue() * this.blastMultiplier);
-            int duration = (int)(WNGSpells.potion_bomb.getProperty("effect_duration").floatValue() * durationMultiplier);
+            double range = (WNGSpells.POTION_BOMB.getProperty("blast_radius").floatValue() * this.blastMultiplier);
+            int duration = (int)(WNGSpells.POTION_BOMB.getProperty("effect_duration").floatValue() * durationMultiplier);
             List<EntityLivingBase> targets = EntityUtils.getLivingWithinRadius(range, this.posX, this.posY, this.posZ, this.world);
             if (this.hasInstantEffect) {
                 for (EntityLivingBase target : targets) {

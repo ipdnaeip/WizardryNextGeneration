@@ -30,7 +30,7 @@ public class Tranquility extends SpellAreaEffect  {
 
     @Override
     protected boolean affectEntity(World world, Vec3d vec3d, @Nullable EntityLivingBase caster, EntityLivingBase target, int i, int i1, SpellModifiers modifiers) {
-        target.addPotionEffect(new PotionEffect(WNGPotions.pacify, (int)(WNGSpells.pacify.getProperty(EFFECT_DURATION).floatValue() * modifiers.get(WizardryItems.duration_upgrade))));
+        target.addPotionEffect(new PotionEffect(WNGPotions.PACIFY, (int)(WNGSpells.PACIFY.getProperty(EFFECT_DURATION).floatValue() * modifiers.get(WizardryItems.duration_upgrade))));
         return true;
     }
 

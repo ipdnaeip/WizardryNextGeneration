@@ -1,0 +1,390 @@
+#advancement
+advancement.wizardrynextgeneration:accelerated_mass_max_damage=Максимальная скорость!
+advancement.wizardrynextgeneration:accelerated_mass_max_damage.desc=Нанесите максимальное количество урона ускоренной массой снаряда.
+
+
+#enchantment
+enchantment.wizardrynextgeneration:ranger=Рейнджер
+enchantment.wizardrynextgeneration:ranger.desc=Понижает штраф передвижения во время натяжения лука.
+enchantment.wizardrynextgeneration:phalanx=Фаланга
+enchantment.wizardrynextgeneration:phalanx.desc=Понижает штраф передвижения во время блокирования щитом.
+
+#item
+
+#misc
+item.wizardrynextgeneration:blessed_meat.name=Благословенное мясо
+
+#magical item
+item.wizardrynextgeneration:conjured_potion.name=Наколдованное зелье
+item.wizardrynextgeneration:scroll_wng.name=Свиток %1$s
+item.wizardrynextgeneration:spell_book_wng.name=Колдовская книга
+item.wizardrynextgeneration:spell_encyclopedia.name=Энциклопедия заклинаний
+item.wizardrynextgeneration:upgrade_chargeup.name=Улучшение для жезла: Подзарядка
+item.wizardrynextgeneration:upgrade_chargeup.desc=Повышает скорость зарядки заклинания.
+item.wizardrynextgeneration:upgrade_looting.name=Улучшение для жезла: Добыча
+item.wizardrynextgeneration:upgrade_looting.desc=Повышает уровень добычи жезла.
+item.wizardrynextgeneration:upgrade_movement.name=Улучшение для жезла: Передвижение
+item.wizardrynextgeneration:upgrade_movement.desc=Повышает скорость передвижения во время использования заклинания.
+
+#amulet
+item.wizardrynextgeneration:amulet_moon.name=Лунный амулет
+item.wizardrynextgeneration:amulet_moon.desc=Лунное благословение предотвращает вашу будущую смерть. Перезаряжается каждое полнолуние, если экипирован.
+
+#belt
+item.wizardrynextgeneration:belt_potion.name=Пояс с зельями Бабы Яги
+item.wizardrynextgeneration:belt_potion.desc=Непрерывно потребляет ману для продления срока усиливающих заклинаний.
+
+#body
+item.wizardrynextgeneration:body_hashashin.name=Нагрудник Ассасина
+item.wizardrynextgeneration:body_hashashin.desc=Нагрудник бывшего ассасина. Позволяет оставаться бесшумным в темноте во время крадения.
+item.wizardrynextgeneration:body_artemis.name=Колчан Артемиды
+item.wizardrynextgeneration:body_artemis.desc=Есть вероятность, что стрелы вернутся в инвентарь. Промахнувшиеся стрелы всегда будут возвращаться в инвентарь.
+
+#charm
+item.wizardrynextgeneration:charm_bloodstone.name=Гематит
+item.wizardrynextgeneration:charm_bloodstone.desc=Постепенно восстанавливает ваше здоровье в течение продолжительного периода за счёт накопленной маны. Можно активировать для повышения скорости восстановления здоровья, которая будет значительно много тратить ману.
+item.wizardrynextgeneration:charm_dice.name=Магическая игральная кость
+item.wizardrynextgeneration:charm_dice.desc=Вероятность повысить или понизить силу заклинания!
+item.wizardrynextgeneration:charm_horn.name=Священный рог
+item.wizardrynextgeneration:charm_horn.desc=При получении урона при низком уровне здоровья в окружении врагов, к вам на помощь призывается Праведный защитник. Появляется раз в день.
+item.wizardrynextgeneration:charm_icicle.name=Ледяная сосулька
+item.wizardrynextgeneration:charm_icicle.desc=Сильный град стреляет ледяными сосульками, а не ледяными осколками
+item.wizardrynextgeneration:charm_lingering.name=Туманная фляжка
+item.wizardrynextgeneration:charm_lingering.desc=Ваши магические взрывные зелья становятся туманными.
+item.wizardrynextgeneration:charm_pyramid.name=Кристалл-пирамида
+item.wizardrynextgeneration:charm_pyramid.desc=Заклинания новичка, подмастерья и продвинутые получают повышение силы на 30%%, 20%% и 10%%, соответственно.
+item.wizardrynextgeneration:charm_yang.name=Эмблема Ян
+item.wizardrynextgeneration:charm_yang.desc=Исцеляющие заклинания на 30%% мощнее при свете.
+item.wizardrynextgeneration:charm_yin.name=Эмблема Инь
+item.wizardrynextgeneration:charm_yin.desc=Заклинания некромантии на 30%% мощнее в темноте.
+item.wizardrynextgeneration:charm_yin_yang.name=Эмблема Инь и Ян
+item.wizardrynextgeneration:charm_yin_yang.desc=Исцеляющие заклинания на 30%% мощнее на свету, а заклинания некромантии на 30%% в темноте. Совместив Инь и Ян можно создать эмблему.
+
+#head
+
+item.wizardrynextgeneration:head_hashashin.name=Капюшон Ассасина
+item.wizardrynextgeneration:head_hashashin.desc=Маска бывшего ассасина. Позволяет более преимущественно скрываться в темноте во время крадения.
+item.wizardrynextgeneration:head_ra.name=Солнечный диск Ра
+item.wizardrynextgeneration:head_ra.desc=Корона бога солнца позволяет вам лучше управлять горизонтальным движением при солнечных ветрах.
+item.wizardrynextgeneration:head_rally.name=Корона правителя
+item.wizardrynextgeneration:head_rally.desc=Повышает эффективность заклинаний, что накладывают эффект ???.
+item.wizardrynextgeneration:head_raijin.name=Маска Райдзин
+item.wizardrynextgeneration:head_raijin.desc=Маска лорда грома позволяет повысить интенсивность грозовых заклинаний, чтобы обездвижить существ.
+item.wizardrynextgeneration:head_thorns.name=Терновый венец
+item.wizardrynextgeneration:head_thorns.desc=У вас есть 15%% вероятность нанести небольшое количество урона, нападающих существ.
+
+#ring
+
+item.wizardrynextgeneration:ring_9th_circle.name=Кольцо девятого круга
+item.wizardrynextgeneration:ring_9th_circle.desc=Ледяные заклинания на 30%% мощнее в Незере.
+item.wizardrynextgeneration:ring_anodized.name=Анодируемое кольцо
+item.wizardrynextgeneration:ring_anodized.desc=Использование грозовых заклинаний закаляет наружный вид, обеспечивая вам сопротивление.
+item.wizardrynextgeneration:ring_looting.name=Обод охотника
+item.wizardrynextgeneration:ring_looting.desc=Предоставляет +1 к добычи.
+item.wizardrynextgeneration:ring_nullification.name=Кольцо обнуления
+item.wizardrynextgeneration:ring_nullification.desc=Вероятность, что заклинания колдовства вообще не потратят ману.
+item.wizardrynextgeneration:ring_rainbow.name=Кольцо радужного кристалла
+item.wizardrynextgeneration:ring_rainbow.desc=Заклинания другой стихии, чем последней, использует заклинание на 30%% мощнее.
+item.wizardrynextgeneration:ring_static_shock.name=Кольцо электростатического разряда
+item.wizardrynextgeneration:ring_static_shock.desc=Повреждение существа грозовым заклинанием накладывает слабость к электрический разряду, достигающей до «Слабость к электрический разряду 3»
+item.wizardrynextgeneration:ring_void.name=Кольцо пустоты
+item.wizardrynextgeneration:ring_void.desc=Заклинания колдовства на 30%% мощнее в Энде.
+
+#entity
+
+#construct
+
+entity.wizardrynextgeneration:anti_gravitational_field.name=Антигравитационное поле
+entity.wizardrynextgeneration:gravitational_field.name=Гравитационное поле
+entity.wizardrynextgeneration:napalm.name=Напалм
+entity.wizardrynextgeneration:whirlpool_field.name=Водоворот
+
+#living
+
+entity.wizardrynextgeneration:pig_zombie_convert.name=Свинозомби
+entity.wizardrynextgeneration:righteous_defender.name=Праведный защитник
+entity.wizardrynextgeneration:righteous_defender_minion.name=Праведный защитник
+entity.wizardrynextgeneration:vampire_bat.name=Вампировая летучая мышь
+entity.wizardrynextgeneration:vampire_bat_minion.name=Вампировая летучая мышь
+entity.wizardrynextgeneration:webspitter.name=Паутинник
+entity.wizardrynextgeneration:webspitter_minion.name=Паутинник
+
+#projectile
+
+entity.wizardrynextgeneration:accelerated_mass.name=Магическая
+entity.wizardrynextgeneration:conjured_potion.effect_learned=Experienced the %1$s effect
+entity.wizardrynextgeneration:conjured_potion.name=Магическое
+entity.wizardrynextgeneration:fission_blast.name=Магический
+entity.wizardrynextgeneration:piercing_mass.name=Магическая
+
+#potion
+
+potion.wizardrynextgeneration:animal_allegiance=Звериная преданность
+potion.wizardrynextgeneration:betrayal=Предательство
+potion.wizardrynextgeneration:bleed=Кровотечение
+potion.wizardrynextgeneration:cleansing_flames=Очистительное пламя
+potion.wizardrynextgeneration:disempowerment=Лишение силы
+potion.wizardrynextgeneration:disempowerment.failed_cast=Ваша сила слишком слаба, чтобы использовать заклинание.
+potion.wizardrynextgeneration:divine_shield=Божественный щит
+potion.wizardrynextgeneration:empowerment=Наделение силой магии
+potion.wizardrynextgeneration:empowerment_earth=Наделение силой земли
+potion.wizardrynextgeneration:empowerment_fire=Наделение силой огня
+potion.wizardrynextgeneration:empowerment_healing=Наделение силой исцеления
+potion.wizardrynextgeneration:empowerment_ice=Наделение силой льда
+potion.wizardrynextgeneration:empowerment_lightning=Наделение силой грозы
+potion.wizardrynextgeneration:empowerment_necromancy=Наделение силой некромантии
+potion.wizardrynextgeneration:empowerment_sorcery=Наделение силой колдовства
+potion.wizardrynextgeneration:eye_for_an_eye=Око за Око
+potion.wizardrynextgeneration:frenzy=Безумие
+potion.wizardrynextgeneration:gravity=Гравитация
+potion.wizardrynextgeneration:lightning_reflexes=Грозовые рефлексы
+potion.wizardrynextgeneration:magic_weakness=Слабость к магии
+potion.wizardrynextgeneration:napalm=Напалм
+potion.wizardrynextgeneration:pacify=Усмирить
+potion.wizardrynextgeneration:preparation=Подготовка
+potion.wizardrynextgeneration:retribution=Кара
+potion.wizardrynextgeneration:shock_weakness=Слабость к электрический разряду
+potion.wizardrynextgeneration:solar_winds=Солнечный ветер
+potion.wizardrynextgeneration:suffocation=Удушение
+potion.wizardrynextgeneration:taunt=Издевательство
+potion.wizardrynextgeneration:veneficium=Отравление
+
+#potioneffect
+
+potion.effect.wizardrynextgeneration:empowerment=Зелье наделение магической силой
+splash_potion.effect.wizardrynextgeneration:empowerment=Взрывное зелье наделения магической силой
+lingering_potion.effect.wizardrynextgeneration:empowerment=Туманное зелье наделения магической силой
+tipped_arrow.effect.wizardrynextgeneration:empowerment=Стрела наделения магической силой
+potion.effect.wizardrynextgeneration:empowerment_earth=Зелье наделения силой земли
+splash_potion.effect.wizardrynextgeneration:empowerment_earth=Взрывное зелье наделения силой земли
+lingering_potion.effect.wizardrynextgeneration:empowerment_earth=Туманное зелье наделения силой земли
+tipped_arrow.effect.wizardrynextgeneration:empowerment_earth=Стрела наделения силой земли
+potion.effect.wizardrynextgeneration:empowerment_fire=Зелье наделения силой огня
+splash_potion.effect.wizardrynextgeneration:empowerment_fire=Взрывное зелье наделения силой огня
+lingering_potion.effect.wizardrynextgeneration:empowerment_fire=Туманное зелье наделения силой огня
+tipped_arrow.effect.wizardrynextgeneration:empowerment_fire=Стрела наделения силой огня
+potion.effect.wizardrynextgeneration:empowerment_healing=Зелье наделения силой исцеления
+splash_potion.effect.wizardrynextgeneration:empowerment_healing=Взрывное зелье наделения силой исцеления
+lingering_potion.effect.wizardrynextgeneration:empowerment_healing=Туманное зелье наделения силой исцеления
+tipped_arrow.effect.wizardrynextgeneration:empowerment_healing=Стрела наделения силой исцеления
+potion.effect.wizardrynextgeneration:empowerment_ice=Зелье наделения силой льда
+splash_potion.effect.wizardrynextgeneration:empowerment_ice=Взрывное зелье наделения силой льда
+lingering_potion.effect.wizardrynextgeneration:empowerment_ice=Туманное зелье наделения силой льда
+tipped_arrow.effect.wizardrynextgeneration:empowerment_ice=Стрела наделения силой льда
+potion.effect.wizardrynextgeneration:empowerment_lightning=Зелье наделения силой грозы
+splash_potion.effect.wizardrynextgeneration:empowerment_lightning=Взрывное зелье наделения силой грозы
+lingering_potion.effect.wizardrynextgeneration:empowerment_lightning=Туманное зелье наделения силой грозы
+tipped_arrow.effect.wizardrynextgeneration:empowerment_lightning=Стрела наделения силой грозы
+potion.effect.wizardrynextgeneration:empowerment_necromancy=Зелье наделения силой некромантии
+splash_potion.effect.wizardrynextgeneration:empowerment_necromancy=Взрывное зелье наделения силой некромантии
+lingering_potion.effect.wizardrynextgeneration:empowerment_necromancy=Туманное зелье наделения силой некромантии
+tipped_arrow.effect.wizardrynextgeneration:empowerment_necromancy=Стрела наделения силой некромантии
+potion.effect.wizardrynextgeneration:empowerment_sorcery=Зелье наделения силой колдовства
+splash_potion.effect.wizardrynextgeneration:empowerment_sorcery=Взрывное зелье наделения силой колдовства
+lingering_potion.effect.wizardrynextgeneration:empowerment_sorcery=Туманное зелье наделения силой колдовства
+tipped_arrow.effect.wizardrynextgeneration:empowerment_sorcery=Стрела наделения силой колдовства
+
+#discipline
+
+discipline.all=Все
+discipline.demon=Демон
+discipline.draco=Дракон
+discipline.druid=Друид
+discipline.earth=Земля
+discipline.fire=Огонь
+discipline.healing=Исцеление
+discipline.holy=Святой
+discipline.ice=Лёд
+discipline.lich=Лич
+discipline.lightning=Гроза
+discipline.lunar=Лунный
+discipline.nature=Природа
+discipline.necromancy=Некромантия
+discipline.occult=Оккультное
+discipline.shaman=Знахарь
+discipline.sorcery=Колдовство
+discipline.terra=Земля
+discipline.vampire=Вампир
+discipline.void=Пустота
+discipline.witch=Ведьма
+
+#spell
+
+spell.wizardrynextgeneration:accelerated_mass=Ускоренная масса
+spell.wizardrynextgeneration:accelerated_mass.desc=Выпускает кусок металла, который по мере движения увеличивает скорость и урон.
+spell.wizardrynextgeneration:animal_allegiance=Звериная преданность
+spell.wizardrynextgeneration:animal_allegiance.desc=Созывает зверей дикой природы на вашу сторону.
+spell.wizardrynextgeneration:anti_gravitational_field=Антигравитационное поле
+spell.wizardrynextgeneration:anti_gravitational_field.desc=Создаёт область обратной гравитации в указанное место. Держится в течение 30 секунд.
+spell.wizardrynextgeneration:anti_gravitational_push=Антигравитация
+spell.wizardrynextgeneration:anti_gravitational_push.desc=Заряжайте и отпустите для получения временной левитации.
+spell.wizardrynextgeneration:assassinate=Убийство
+spell.wizardrynextgeneration:assassinate.desc=Поражает существо убийственной тенью, что наносит дополнительный урон, если оно не в курсе вашего присутствия.
+spell.wizardrynextgeneration:betrayal=Предательство
+spell.wizardrynextgeneration:betrayal.desc=Никому не верьте.
+spell.wizardrynextgeneration:biden_blast=Взрыв Байдена
+spell.wizardrynextgeneration:biden_blast.desc=Заклинание божественной силой, что создано древним личом. Говорят, его копии не остаются в мире.
+spell.wizardrynextgeneration:bless_meat=Благословенное мясо
+spell.wizardrynextgeneration:bless_meat.desc=Благословляет гнилую плоть весьма в питательный эквивалент.
+spell.wizardrynextgeneration:blood_barrage=Выпивка крови
+spell.wizardrynextgeneration:blood_barrage.desc=Хранилище донорской крови для древнего мага.
+spell.wizardrynextgeneration:blood_blitz=Разнос крови
+spell.wizardrynextgeneration:blood_blitz.desc=Пополняет ваше здоровье, истощая жизненную эссенцию из существа.
+spell.wizardrynextgeneration:blood_infusion=Вливание крови
+spell.wizardrynextgeneration:blood_infusion.desc=Преобразует часть вашего здоровья в поглощающие сердца.
+spell.wizardrynextgeneration:blood_infusion.full_shield=Вы пока не можете преобразовать здоровье.
+spell.wizardrynextgeneration:blood_infusion.low_health=У вас недостаточно здоровья для преобразования.
+spell.wizardrynextgeneration:bones_to_apples=Кости в яблоки
+spell.wizardrynextgeneration:bones_to_apples.desc=Преобразует кости в яблоки.
+spell.wizardrynextgeneration:chomp=Чавкать
+spell.wizardrynextgeneration:chomp.desc=Призывает пара кусающих челюстей в указанное место.
+spell.wizardrynextgeneration:cleansing_flames=Очистительное пламя
+spell.wizardrynextgeneration:cleansing_flames.desc=Обволакивает Благодатным Огнём, наделяя вас огнестойкостью и исцелением.
+spell.wizardrynextgeneration:cloak_of_the_void=Мантия пустоты
+spell.wizardrynextgeneration:cloak_of_the_void.desc=Окутывает пустотой, делая вас невидимым и бесшумным.
+spell.wizardrynextgeneration:combustion=Сожжение
+spell.wizardrynextgeneration:combustion.desc=Поражает существо таким накалом, что если он умрёт, то взрывается, нанося урон и горение близлежащим существам.
+spell.wizardrynextgeneration:concoction_bomb=Бомба-зелье
+spell.wizardrynextgeneration:concoction_bomb.desc=Бросает взрывное зелье, что при ударе наносит дополнительный эффект.
+spell.wizardrynextgeneration:conduction=Теплопроводность
+spell.wizardrynextgeneration:conduction.desc=Поражает током существо, нанося ему дополнительный урон и парализуя, при условии, что он в воде.
+spell.wizardrynextgeneration:conjure_potion=Наколдовать зелье
+spell.wizardrynextgeneration:conjure_potion.desc=Наколдовывает метаемое зелье.
+spell.wizardrynextgeneration:divine_shield=Святой щит
+spell.wizardrynextgeneration:divine_shield.desc=Станьте неуязвимыми к будущему проявлению полученного вами урона.
+spell.wizardrynextgeneration:domesticate=Приручить
+spell.wizardrynextgeneration:domesticate.desc=Заставляет животное следовать за вами.
+spell.wizardrynextgeneration:domesticate.following=%1$s следует за вами.
+spell.wizardrynextgeneration:domesticate.no_longer_following=%1$s теперь не следует за вами.
+spell.wizardrynextgeneration:enchant_cauldron=Зачаровать котёл
+spell.wizardrynextgeneration:enchant_cauldron.desc=Зачаровывает котёл, чтобы в нём никогда не кончалась вода.
+spell.wizardrynextgeneration:equality=Равноправие
+spell.wizardrynextgeneration:equality.desc=Понижает здоровье цели вплоть до потерянного вашего здоровья.
+spell.wizardrynextgeneration:equality.high_health=Цель сопротивляется урону.
+spell.wizardrynextgeneration:equality.no_effect=Цель не поражена.
+spell.wizardrynextgeneration:eye_for_an_eye=Око за око
+spell.wizardrynextgeneration:eye_for_an_eye.desc=Отражает следующий момент полученного вами урона.
+spell.wizardrynextgeneration:fission_blast=Картечь
+spell.wizardrynextgeneration:fission_blast.desc=Стреляет обоймой из острого металла.
+spell.wizardrynextgeneration:flesh_feed=Поедание плоти
+spell.wizardrynextgeneration:flesh_feed.desc=Поедает плоть животного, оставляя ему кровоточащую рану.
+spell.wizardrynextgeneration:frenzy=Безумие
+spell.wizardrynextgeneration:frenzy.desc=Злит существ в пределах области, заставляя их атаковать друг друга.
+spell.wizardrynextgeneration:frostbite=Обморожение
+spell.wizardrynextgeneration:frostbite.desc=Поражает существо, нанося ему дополнительный урон, при условии, что он заморожен.
+spell.wizardrynextgeneration:frostburn=Ледяной ожог
+spell.wizardrynextgeneration:frostburn.desc=Замораживает существо холодом так сурово, что его кожа обжигается.
+spell.wizardrynextgeneration:fusion_beam=Термоядерный луч
+spell.wizardrynextgeneration:fusion_beam.desc=Стреляет заряженным лучом энергии, проходящим сквозь блоки и существ.
+spell.wizardrynextgeneration:gravitational_field=Гравитационное поле
+spell.wizardrynextgeneration:gravitational_field.desc=Создаёт область повышенной гравитации.
+spell.wizardrynextgeneration:gravitational_pull=Гравитация
+spell.wizardrynextgeneration:gravitational_pull.desc=Увеличивает гравитацию существа.
+spell.wizardrynextgeneration:haste=Спешка
+spell.wizardrynextgeneration:haste.desc=Увеличивает скорость взмахивания рук.
+spell.wizardrynextgeneration:hex_swine=Свиное проклятие
+spell.wizardrynextgeneration:hex_swine.desc=Перечит законам природы и перевоплощает свинью в свинозомби!
+spell.wizardrynextgeneration:home_teleport=Телепортация домой
+spell.wizardrynextgeneration:home_teleport.desc=Телепортирует на местонахождение кровати.
+spell.wizardrynextgeneration:home_teleport.missing=Кровать пропала или заграждена препятствием...
+spell.wizardrynextgeneration:home_teleport.wrongdimension=Нет запоминаемого дома в этом измерении...
+spell.wizardrynextgeneration:humility=Смирение
+spell.wizardrynextgeneration:humility.desc=Усмиряет существо, ослабляя его атаки.
+spell.wizardrynextgeneration:hyper_beam=Сверх-луч
+spell.wizardrynextgeneration:hyper_beam.desc=Что будет, если используйте более 10% вашей магической мощи?
+spell.wizardrynextgeneration:ice_barrage=Ледяной залп
+spell.wizardrynextgeneration:ice_barrage.desc=Подходит для совков.
+spell.wizardrynextgeneration:ice_blitz=Ледяной авиаудар
+spell.wizardrynextgeneration:ice_blitz.desc=Замораживает существо блоком льда и наносит ему урон.
+spell.wizardrynextgeneration:inspire=Inspire
+spell.wizardrynextgeneration:inspire.desc=Rally your nearby pets and summons.
+spell.wizardrynextgeneration:justice=Фемида
+spell.wizardrynextgeneration:justice.desc=Правосудие для всех!
+spell.wizardrynextgeneration:justice.high_health=Цель сопротивляется урону.
+spell.wizardrynextgeneration:justice.no_effect=Цель не поражена.
+spell.wizardrynextgeneration:lightning_reflexes=Грозовые рефлексы
+spell.wizardrynextgeneration:lightning_reflexes.desc=Электролизует ваши мускулы для быстрых атак.
+spell.wizardrynextgeneration:lunar_salve=Лунный бальзам
+spell.wizardrynextgeneration:lunar_salve.desc=Снимает все негативные статусные эффекты.
+spell.wizardrynextgeneration:lunar_salve.no_moonlight=Вы не под прямым лунным светом.
+spell.wizardrynextgeneration:meditate=Медитация
+spell.wizardrynextgeneration:meditate.desc=Лечит ваши раны путём самоанализа.
+spell.wizardrynextgeneration:meditate.moving=Вам нужно медитировать.
+spell.wizardrynextgeneration:migraine=Мигрень
+spell.wizardrynextgeneration:migraine.desc=Мучит цель непрекращающимися моральными страданиями.
+spell.wizardrynextgeneration:moonlight=Лунный свет
+spell.wizardrynextgeneration:moonlight.desc=Использует лунный свет для исцеления ран.
+spell.wizardrynextgeneration:moonlight.no_moonlight=Вы не под прямыми лучами лунного света.
+spell.wizardrynextgeneration:napalm=Напалм
+spell.wizardrynextgeneration:napalm.desc=Создаёт лужу напалма, которая при поджигании взрывается в большой огненный шар.
+spell.wizardrynextgeneration:pacify=Усмирить
+spell.wizardrynextgeneration:pacify.desc=Отнимает желание существа сражаться.
+spell.wizardrynextgeneration:photosynthesis=Фотосинтез
+spell.wizardrynextgeneration:photosynthesis.desc=Направляет силу солнечного света на восстановление здоровья.
+spell.wizardrynextgeneration:photosynthesis.no_sunlight=Вы не под прямыми лучами солнца.
+spell.wizardrynextgeneration:piercing_mass=Пронзительная масса
+spell.wizardrynextgeneration:piercing_mass.desc=Выпускает кусок металла, проходящий сквозь блоки.
+spell.wizardrynextgeneration:potion_bomb=Ядовитая бомба
+spell.wizardrynextgeneration:potion_bomb.desc=Бросает взрывное зелье.
+spell.wizardrynextgeneration:preparation=Подготовка
+spell.wizardrynextgeneration:preparation.desc=Сосредоточьте разум на снижение времени заряда и расход маны следующего заклинания.
+spell.wizardrynextgeneration:pull=Притяжение
+spell.wizardrynextgeneration:pull.desc=Тянет цель в вашу сторону.
+spell.wizardrynextgeneration:retribution=Расплата
+spell.wizardrynextgeneration:retribution.desc=Отражает любой полученный урон в течение определённого времени.
+spell.wizardrynextgeneration:righteous_defense=Праведная защита
+spell.wizardrynextgeneration:righteous_defense.desc=Заставляет вашу цель враждовать со всеми существами в течение некоторого времени.
+spell.wizardrynextgeneration:sap_intellect=Ослабить интеллект
+spell.wizardrynextgeneration:sap_intellect.desc=Истощает жизнь вашего врага, нанося ему урон и ослабевая его магическую мощь.
+spell.wizardrynextgeneration:sap_strength=Ослабить силу
+spell.wizardrynextgeneration:sap_strength.desc=Истощает жизнь вашего врага, нанося ему урон и ослабевая.
+spell.wizardrynextgeneration:scapegoat=Козёл отпущения
+spell.wizardrynextgeneration:scapegoat.desc=Заставляет существо покушаться на других близлежащих существ.
+spell.wizardrynextgeneration:scorch=Подгорание
+spell.wizardrynextgeneration:scorch.desc=Поражает существо, нанося ему критический урон, при условии, что он горит.
+spell.wizardrynextgeneration:shadow_blitz=Теневой авиаудар
+spell.wizardrynextgeneration:shadow_blitz.desc=Поражает существо тенью, ослепляя и нанося дополнительный урон в темноте.
+spell.wizardrynextgeneration:shadow_barrage=Теневой обстрел
+spell.wizardrynextgeneration:shadow_barrage.desc=Древние маги пользовались этой технологией для ночных полётов.
+spell.wizardrynextgeneration:smite=Небесная кара
+spell.wizardrynextgeneration:smite.desc=Поражает существо благодатным огнём, поджигая нежить.
+spell.wizardrynextgeneration:smoke_barrage=Дымовой залп
+spell.wizardrynextgeneration:smoke_barrage.desc=Душит во тьме.
+spell.wizardrynextgeneration:smoke_blitz=Дымовой авиаудар
+spell.wizardrynextgeneration:smoke_blitz.desc=Обволакивает существо в дыму, ослепляя, нанося ему урон и удушая.
+spell.wizardrynextgeneration:smokescreen=Дымовая завеса
+spell.wizardrynextgeneration:smokescreen.desc=Скройтесь в облаке дыма.
+spell.wizardrynextgeneration:solar_winds=Солнечный ветер
+spell.wizardrynextgeneration:solar_winds.desc=Оседлайте волну солнечной энергии.
+spell.wizardrynextgeneration:solar_sentinel=Солнечный страж
+spell.wizardrynextgeneration:solar_sentinel.desc=Вознеситесь до вершин самих богов.
+spell.wizardrynextgeneration:spawn_teleport=Телепорт к точке возрождения
+spell.wizardrynextgeneration:spawn_teleport.desc=Телепортирует к точке возрождения.
+spell.wizardrynextgeneration:spawn_teleport.wrongdimension=Вы должны быть в надземном мире.
+spell.wizardrynextgeneration:spit_web=Плевок паутиной
+spell.wizardrynextgeneration:spit_web.desc=Извергает паутинные шары в цель, взрываясь при контакте с блоком.
+spell.wizardrynextgeneration:summon_righteous_defender=Призыв праведного защитника
+spell.wizardrynextgeneration:summon_righteous_defender.desc=Призывает праведного защитника, сражающегося за вас. Приспешник исчезнет по истечении 30 секунд или пока не умрёт.
+spell.wizardrynextgeneration:summon_vampire_bat=Призыв вампировой летучей мыши
+spell.wizardrynextgeneration:summon_vampire_bat.desc=Призывает вампировую летучую мышь, сражающуюся за вас. Приспешник исчезнет по истечении 30 секунд или пока не умрёт.
+spell.wizardrynextgeneration:summon_webspitter=Призыв паутинника
+spell.wizardrynextgeneration:summon_webspitter.desc=Призывает паутинника, сражающегося за вас. Приспешник исчезнет по истечении 30 секунд или же умрёт.
+spell.wizardrynextgeneration:tan_flesh=Дублённая плоть
+spell.wizardrynextgeneration:tan_flesh.desc=Дубит гнилую плоть в кожу.
+spell.wizardrynextgeneration:tase=Электрошок
+spell.wizardrynextgeneration:tase.desc=Направьте грозу в существо, ограничивая его передвижение.
+spell.wizardrynextgeneration:tranquility=Умиротворение
+spell.wizardrynextgeneration:tranquility.desc=Успокаивает существ около вас.
+spell.wizardrynextgeneration:tremors=Подземный толчок
+spell.wizardrynextgeneration:tremors.desc=Сотрясает землю около вас.
+spell.wizardrynextgeneration:veneficium=Отравление
+spell.wizardrynextgeneration:veneficium.desc=До последнего издыхания.
+spell.wizardrynextgeneration:vicious_bite=Свирепый укус
+spell.wizardrynextgeneration:vicious_bite.desc=Вгрызается в существо, причиняя ему кровотечение.
+spell.wizardrynextgeneration:whirlpool=Водоворот
+spell.wizardrynextgeneration:whirlpool.desc=Создаёт водоворот на земле, затягивая и нанося урон по существам в своей области.
+
+#tabs
+
+itemGroup.wizardrynextgeneration=Wizardry: Next Generation
+itemGroup.wizardrynextgenerationgear=Wizardry: Next Generation | Снаряжение

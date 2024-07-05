@@ -23,7 +23,7 @@ public class Frenzy extends SpellBarrage {
 
     @Override
     protected void barrageEffect(World world, EntityLivingBase target, EntityLivingBase caster, int ticksInUse, SpellModifiers modifiers) {
-        target.addPotionEffect(new PotionEffect(WNGPotions.frenzy, this.getProperty(EFFECT_DURATION).intValue(), SpellBuff.getStandardBonusAmplifier(modifiers.get(SpellModifiers.POTENCY))));
+        target.addPotionEffect(new PotionEffect(WNGPotions.FRENZY, this.getProperty(EFFECT_DURATION).intValue(), SpellBuff.getStandardBonusAmplifier(modifiers.get(SpellModifiers.POTENCY))));
     }
 
     /*@Override

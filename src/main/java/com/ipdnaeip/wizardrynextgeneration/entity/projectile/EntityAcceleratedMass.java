@@ -8,7 +8,6 @@ import electroblob.wizardry.spell.Spell;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
-import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
@@ -17,9 +16,9 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class EntityAcceleratedMass extends EntityMagicArrow {
 
-    double damage = WNGSpells.accelerated_mass.getProperty(Spell.DAMAGE).doubleValue();
-    double damage_multiplier = WNGSpells.accelerated_mass.getProperty(AcceleratedMass.MAX_MULTIPLIER).doubleValue();
-    double acceleration = WNGSpells.accelerated_mass.getProperty(AcceleratedMass.ACCELERATION).doubleValue();
+    double damage = WNGSpells.ACCELERATED_MASS.getProperty(Spell.DAMAGE).doubleValue();
+    double damage_multiplier = WNGSpells.ACCELERATED_MASS.getProperty(AcceleratedMass.MAX_MULTIPLIER).doubleValue();
+    double acceleration = WNGSpells.ACCELERATED_MASS.getProperty(AcceleratedMass.ACCELERATION).doubleValue();
 
     public EntityAcceleratedMass(World world) {
             super(world);
@@ -56,7 +55,7 @@ public class EntityAcceleratedMass extends EntityMagicArrow {
     @Override
     public void onEntityHit(EntityLivingBase entityHit) {
         this.playSound(SoundEvents.BLOCK_ANVIL_PLACE, 0.5F, 0.7F + (this.rand.nextFloat() * 0.1F));
-        if (damage == WNGSpells.accelerated_mass.getProperty(Spell.DAMAGE).doubleValue() * damage_multiplier && this.getCaster() instanceof EntityPlayer) {
+        if (damage == WNGSpells.ACCELERATED_MASS.getProperty(Spell.DAMAGE).doubleValue() * damage_multiplier && this.getCaster() instanceof EntityPlayer) {
             WNGAdvancementTriggers.accelerated_mass_max_damage.triggerFor((EntityPlayer)(this.getCaster()));
         }
     }
@@ -72,7 +71,7 @@ public class EntityAcceleratedMass extends EntityMagicArrow {
         this.motionX *= acceleration;
         this.motionY *= acceleration;
         this.motionZ *= acceleration;
-        damage = Math.min(damage * acceleration, WNGSpells.accelerated_mass.getProperty(Spell.DAMAGE).doubleValue() * damage_multiplier);
+        damage = Math.min(damage * acceleration, WNGSpells.ACCELERATED_MASS.getProperty(Spell.DAMAGE).doubleValue() * damage_multiplier);
     }
 
     public int getLifetime() {

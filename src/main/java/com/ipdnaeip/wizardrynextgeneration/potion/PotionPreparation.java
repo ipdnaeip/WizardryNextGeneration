@@ -16,16 +16,15 @@ public class PotionPreparation extends PotionMagicEffect {
 
     public PotionPreparation() {
         super(false, 0xBEBE82, new ResourceLocation(WizardryNextGeneration.MODID, "textures/gui/potion_icons/preparation.png"));
-        this.setPotionName("potion." + WizardryNextGeneration.MODID + ":preparation");
     }
 
     @SubscribeEvent
     public static void onSpellCastPreEvent(SpellCastEvent.Pre event) {
         if (event.getCaster() instanceof EntityPlayer) {
             EntityPlayer player = (EntityPlayer) event.getCaster();
-            if (player.isPotionActive(WNGPotions.preparation)) {
+            if (player.isPotionActive(WNGPotions.PREPARATION)) {
                 SpellModifiers modifiers = event.getModifiers();
-                float multiplier = (2f / (player.getActivePotionEffect(WNGPotions.preparation).getAmplifier() + 3f));
+                float multiplier = (2f / (player.getActivePotionEffect(WNGPotions.PREPARATION).getAmplifier() + 3f));
                 modifiers.set(SpellModifiers.COST, multiplier, false);
                 modifiers.set(SpellModifiers.CHARGEUP, multiplier, false);
             }
@@ -35,8 +34,8 @@ public class PotionPreparation extends PotionMagicEffect {
     public static void onSpellCastPostEvent(SpellCastEvent.Post event) {
         if (event.getCaster() instanceof EntityPlayer) {
             EntityPlayer player = (EntityPlayer) event.getCaster();
-            if (player.isPotionActive(WNGPotions.preparation) && event.getSpell() != WNGSpells.preparation) {
-                player.removePotionEffect(WNGPotions.preparation);
+            if (player.isPotionActive(WNGPotions.PREPARATION) && event.getSpell() != WNGSpells.PREPARATION) {
+                player.removePotionEffect(WNGPotions.PREPARATION);
             }
         }
     }

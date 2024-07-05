@@ -9,7 +9,7 @@ import net.minecraft.item.Item;
 public class LightningReflexes extends SpellBuff {
 
     public LightningReflexes() {
-        super(WizardryNextGeneration.MODID, "lightning_reflexes", .6f, 1f, 0.75f, () -> WNGPotions.lightning_reflexes);
+        super(WizardryNextGeneration.MODID, "lightning_reflexes", .6f, 1f, 0.75f, () -> WNGPotions.LIGHTNING_REFLEXES);
     }
 
     @Override

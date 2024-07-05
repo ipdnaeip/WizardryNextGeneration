@@ -67,10 +67,10 @@ public class WNGEventHandler {
             }
             if (ItemArtefact.isArtefactActive(player, WNGItems.RING_STATIC_SHOCK)) {
                 if (event.getSource() instanceof IElementalDamage && ((IElementalDamage) event.getSource()).getType() == MagicDamage.DamageType.SHOCK) {
-                    if (entity.isPotionActive(WNGPotions.shock_weakness)) {
-                        entity.addPotionEffect(new PotionEffect(WNGPotions.shock_weakness, 100, Math.max(entity.getActivePotionEffect(WNGPotions.shock_weakness).getAmplifier() + 1, 2)));
+                    if (entity.isPotionActive(WNGPotions.VULNERABILITY_SHOCK)) {
+                        entity.addPotionEffect(new PotionEffect(WNGPotions.VULNERABILITY_SHOCK, 100, Math.max(entity.getActivePotionEffect(WNGPotions.VULNERABILITY_SHOCK).getAmplifier() + 1, 2)));
                     } else {
-                        entity.addPotionEffect(new PotionEffect(WNGPotions.shock_weakness, 100, 0));
+                        entity.addPotionEffect(new PotionEffect(WNGPotions.VULNERABILITY_SHOCK, 100, 0));
                     }
                 }
             }

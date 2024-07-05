@@ -2,6 +2,7 @@ package com.ipdnaeip.wizardrynextgeneration.spell;
 
 import com.ipdnaeip.wizardrynextgeneration.WizardryNextGeneration;
 import com.ipdnaeip.wizardrynextgeneration.registry.WNGItems;
+import com.ipdnaeip.wizardrynextgeneration.util.WNGUtils;
 import electroblob.wizardry.spell.SpellBuff;
 import electroblob.wizardry.util.SpellModifiers;
 import net.minecraft.entity.EntityLivingBase;
@@ -24,11 +25,11 @@ public class BloodInfusion extends SpellBuff {
             infuse = Math.min(caster.getHealth() + caster.getAbsorptionAmount() -0.5F, infuse);
         }
         if (caster.getHealth() <= 0.5F) {
-            if(!caster.world.isRemote && caster instanceof EntityPlayer) ((EntityPlayer)caster).sendStatusMessage(new TextComponentTranslation("spell." + this.getUnlocalisedName() + ".low_health"), true);
+            WNGUtils.sendMessage(caster, "spell." + this.getUnlocalisedName() + ".low_health", true);
             return false;
         }
         if(infuse <= caster.getAbsorptionAmount()) {
-            if(!caster.world.isRemote && caster instanceof EntityPlayer) ((EntityPlayer)caster).sendStatusMessage(new TextComponentTranslation("spell." + this.getUnlocalisedName() + ".full_shield"), true);
+            WNGUtils.sendMessage(caster, "spell." + this.getUnlocalisedName() + ".full_shield", true);
             return false;
         }
         caster.setHealth(caster.getHealth() + caster.getAbsorptionAmount() - infuse);

@@ -9,7 +9,7 @@ import net.minecraft.item.Item;
 public class EyeForAnEye extends SpellBuff {
 
     public EyeForAnEye() {
-        super(WizardryNextGeneration.MODID, "eye_for_an_eye", 1f, 0.84f, 0.32f, () -> WNGPotions.eye_for_an_eye);
+        super(WizardryNextGeneration.MODID, "eye_for_an_eye", 1f, 0.84f, 0.32f, () -> WNGPotions.EYE_FOR_AN_EYE);
     }
 
     @Override

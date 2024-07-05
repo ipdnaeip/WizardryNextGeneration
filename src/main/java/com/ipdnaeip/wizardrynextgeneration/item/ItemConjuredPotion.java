@@ -27,7 +27,7 @@ public class ItemConjuredPotion extends Item implements IConjuredItem {
 
     @Override
     public int getMaxDamage(ItemStack stack) {
-        return this.getMaxDamageFromNBT(stack, WNGSpells.conjure_potion);
+        return this.getMaxDamageFromNBT(stack, WNGSpells.CONJURE_POTION);
     }
 
     @Override

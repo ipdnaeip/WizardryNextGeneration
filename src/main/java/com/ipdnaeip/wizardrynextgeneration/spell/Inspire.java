@@ -29,7 +29,7 @@ public class Inspire extends SpellAreaEffect  {
     @Override
     protected boolean affectEntity(World world, Vec3d vec3d, @Nullable EntityLivingBase caster, EntityLivingBase target, int i, int ticksInUse, SpellModifiers modifiers) {
         if (target instanceof IEntityOwnable) {
-            target.addPotionEffect(new PotionEffect(WNGPotions.rally, this.getProperty(EFFECT_DURATION).intValue(), this.getProperty(EFFECT_STRENGTH).intValue() + SpellBuff.getStandardBonusAmplifier(modifiers.get(SpellModifiers.POTENCY))));
+            target.addPotionEffect(new PotionEffect(WNGPotions.RALLY, this.getProperty(EFFECT_DURATION).intValue(), this.getProperty(EFFECT_STRENGTH).intValue() + SpellBuff.getStandardBonusAmplifier(modifiers.get(SpellModifiers.POTENCY))));
         }
         return true;
     }

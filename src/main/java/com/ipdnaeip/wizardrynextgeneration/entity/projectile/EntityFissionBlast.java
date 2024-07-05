@@ -2,8 +2,6 @@ package com.ipdnaeip.wizardrynextgeneration.entity.projectile;
 
 import com.ipdnaeip.wizardrynextgeneration.registry.WNGSpells;
 import electroblob.wizardry.entity.projectile.EntityMagicArrow;
-import electroblob.wizardry.util.ParticleBuilder;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.util.math.MathHelper;
@@ -12,7 +10,7 @@ import net.minecraft.world.World;
 
 public class EntityFissionBlast extends EntityMagicArrow {
 
-    double fission_damage = WNGSpells.fission_blast.getProperty("damage").doubleValue();
+    double fission_damage = WNGSpells.FISSION_BLAST.getProperty("damage").doubleValue();
 
     public EntityFissionBlast(World world) {
         super(world);

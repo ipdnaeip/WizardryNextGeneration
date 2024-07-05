@@ -17,7 +17,7 @@ public class LayerHolyThorns extends LayerTiledOverlay<EntityLivingBase> {
         }
 
     public boolean shouldRender(EntityLivingBase entity, float partialTicks) {
-        return !entity.isInvisible() && entity.isPotionActive(WNGPotions.eye_for_an_eye) || entity.isPotionActive(WNGPotions.retribution);
+        return !entity.isInvisible() && entity.isPotionActive(WNGPotions.EYE_FOR_AN_EYE) || entity.isPotionActive(WNGPotions.RETRIBUTION);
     }
 
     public ResourceLocation getTexture(EntityLivingBase entity, float partialTicks) {

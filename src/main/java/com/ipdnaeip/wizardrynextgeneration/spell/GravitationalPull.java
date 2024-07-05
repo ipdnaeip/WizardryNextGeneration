@@ -29,7 +29,7 @@ public class GravitationalPull extends SpellRay {
     protected boolean onEntityHit(World world, Entity target, Vec3d hit, EntityLivingBase caster, Vec3d origin, int ticksInUse, SpellModifiers modifiers) {
         if (target instanceof  EntityLivingBase) {
             EntityLivingBase targetEntity = (EntityLivingBase) target;
-            targetEntity.addPotionEffect(new PotionEffect(WNGPotions.gravity, (int) (this.getProperty(EFFECT_DURATION).floatValue() * modifiers.get(WizardryItems.duration_upgrade)), SpellBuff.getStandardBonusAmplifier(modifiers.get(SpellModifiers.POTENCY))));
+            targetEntity.addPotionEffect(new PotionEffect(WNGPotions.GRAVITY, (int) (this.getProperty(EFFECT_DURATION).floatValue() * modifiers.get(WizardryItems.duration_upgrade)), SpellBuff.getStandardBonusAmplifier(modifiers.get(SpellModifiers.POTENCY))));
             return true;
         }
         return false;

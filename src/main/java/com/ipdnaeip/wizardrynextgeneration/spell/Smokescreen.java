@@ -41,9 +41,9 @@ public class Smokescreen extends Spell {
             }
         }
         if (!world.isRemote) {
-            double range = (WNGSpells.smokescreen.getProperty(EFFECT_RADIUS).floatValue() * modifiers.get(WizardryItems.blast_upgrade));
+            double range = (WNGSpells.SMOKESCREEN.getProperty(EFFECT_RADIUS).floatValue() * modifiers.get(WizardryItems.blast_upgrade));
             List<EntityLivingBase> targets = EntityUtils.getLivingWithinRadius(range, caster.posX, caster.posY, caster.posZ, world);
-            int duration = (int)(WNGSpells.smokescreen.getProperty(EFFECT_DURATION).floatValue() * modifiers.get(WizardryItems.duration_upgrade));
+            int duration = (int)(WNGSpells.SMOKESCREEN.getProperty(EFFECT_DURATION).floatValue() * modifiers.get(WizardryItems.duration_upgrade));
             for (EntityLivingBase target : targets) {
                 if (AllyDesignationSystem.isValidTarget(caster, target)) {
                     target.addPotionEffect(new PotionEffect(MobEffects.BLINDNESS, duration, 0));

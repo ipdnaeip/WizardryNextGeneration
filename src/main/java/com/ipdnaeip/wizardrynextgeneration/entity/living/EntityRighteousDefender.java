@@ -9,11 +9,8 @@ import electroblob.wizardry.util.AllyDesignationSystem;
 import java.util.Arrays;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.*;
-import net.minecraft.entity.monster.EntitySpider;
 import net.minecraft.entity.monster.IMob;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
-import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
@@ -93,7 +90,7 @@ public class EntityRighteousDefender extends EntityCreature {
         super.onLivingUpdate();
         this.updateArmSwingProgress();
         if (this.ticksExisted % 50 == 1) {
-            this.addPotionEffect(new PotionEffect(WNGPotions.taunt, 50, 0, false, false));
+            this.addPotionEffect(new PotionEffect(WNGPotions.TAUNT, 50, 0, false, false));
         }
     }
 }

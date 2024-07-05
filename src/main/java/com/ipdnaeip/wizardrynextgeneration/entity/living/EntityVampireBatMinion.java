@@ -85,7 +85,7 @@ public class EntityVampireBatMinion extends EntityVampireBat implements ISummone
     {
         this.playSound(WNGSounds.VAMPIRE_BAT_BITE, 1f, 0.9f + this.rand.nextFloat() + 0.2f);
         int i = MathHelper.ceil(40 * multiplier);
-        entityIn.addPotionEffect(new PotionEffect(WNGPotions.bleed, i, 0));
+        entityIn.addPotionEffect(new PotionEffect(WNGPotions.BLEED, i, 0));
         this.addPotionEffect(new PotionEffect(MobEffects.REGENERATION, i, 0));
     }
 

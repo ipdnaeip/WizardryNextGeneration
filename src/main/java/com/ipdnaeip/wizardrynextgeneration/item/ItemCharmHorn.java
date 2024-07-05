@@ -15,6 +15,6 @@ public class ItemCharmHorn extends ItemCooldownArtefact {
     }
 
     public void action(EntityPlayer player, ItemStack stack) {
-        WNGSpells.summon_righteous_defender.cast(player.world, player, player.getActiveHand(), 0, new SpellModifiers());
+        WNGSpells.SUMMON_RIGHTEOUS_DEFENDER.cast(player.world, player, player.getActiveHand(), 0, new SpellModifiers());
     }
 }

@@ -17,7 +17,7 @@ public class LayerDivineShield extends LayerTiledOverlay<EntityLivingBase> {
         }
 
     public boolean shouldRender(EntityLivingBase entity, float partialTicks) {
-        return !entity.isInvisible() && entity.isPotionActive(WNGPotions.divine_shield);
+        return !entity.isInvisible() && entity.isPotionActive(WNGPotions.DIVINE_SHIELD);
     }
 
     public ResourceLocation getTexture(EntityLivingBase entity, float partialTicks) {

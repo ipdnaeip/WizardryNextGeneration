@@ -41,7 +41,7 @@ public class SapStrength extends SpellRay {
             MagicDamage.DamageType damageType = MagicDamage.DamageType.SHOCK;
             if (WNGUtils.canMagicDamageEntity(caster, target, damageType, this, ticksInUse)) {
                 target.attackEntityFrom(MagicDamage.causeDirectMagicDamage(caster, damageType), getProperty(DAMAGE).floatValue() * modifiers.get(SpellModifiers.POTENCY));
-                targetEntity.addPotionEffect(new PotionEffect(MobEffects.WEAKNESS, (int) (WNGSpells.sap_intellect.getProperty(EFFECT_DURATION).floatValue() * modifiers.get(WizardryItems.duration_upgrade)), SpellBuff.getStandardBonusAmplifier(modifiers.get(SpellModifiers.POTENCY)), false, false));
+                targetEntity.addPotionEffect(new PotionEffect(MobEffects.WEAKNESS, (int) (WNGSpells.SAP_INTELLECT.getProperty(EFFECT_DURATION).floatValue() * modifiers.get(WizardryItems.duration_upgrade)), SpellBuff.getStandardBonusAmplifier(modifiers.get(SpellModifiers.POTENCY)), false, false));
             }
             return true;
         }

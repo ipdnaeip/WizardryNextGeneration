@@ -45,7 +45,7 @@ public class Moonlight extends Spell {
     @Override
     public boolean cast(World world, EntityPlayer caster, EnumHand hand, int ticksInUse, SpellModifiers modifiers) {
         if (!WNGUtils.hasMoonlight(world, caster)) {
-            if(!world.isRemote) caster.sendStatusMessage(new TextComponentTranslation("spell." + this.getUnlocalisedName() + ".no_moonlight"), true);
+            WNGUtils.sendMessage(caster, "spell." + this.getUnlocalisedName() + ".no_moonlight", true);
             return false;
         }
         //check if the player can be healed and if the moon is out and visible by the player

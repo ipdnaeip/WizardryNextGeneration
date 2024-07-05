@@ -2,6 +2,7 @@ package com.ipdnaeip.wizardrynextgeneration.spell;
 
 import com.ipdnaeip.wizardrynextgeneration.WizardryNextGeneration;
 import com.ipdnaeip.wizardrynextgeneration.registry.WNGItems;
+import com.ipdnaeip.wizardrynextgeneration.util.WNGUtils;
 import electroblob.wizardry.data.IStoredVariable;
 import electroblob.wizardry.data.Persistence;
 import electroblob.wizardry.data.WizardData;
@@ -50,12 +51,12 @@ public class HomeTeleport extends Spell {
             if (countdown == null || countdown == 0) {
                 //IntelliJ says bedlocation cannot be null, but it can be null!
                 if (caster.getBedLocation() == null) {
-                    if (!world.isRemote) caster.sendStatusMessage(new TextComponentTranslation("spell." + this.getUnlocalisedName() + ".wrongdimension"), true);
+                    WNGUtils.sendMessage(caster, "spell." + this.getUnlocalisedName() + ".wrongdimension", true);
                     return false;
                 }
                 BlockPos pos = EntityPlayer.getBedSpawnLocation(caster.world, caster.getBedLocation(), false);
                 if (pos == null) {
-                    if (!world.isRemote) caster.sendStatusMessage(new TextComponentTranslation("spell." + this.getUnlocalisedName() + ".missing"), true);
+                    WNGUtils.sendMessage(caster, "spell." + this.getUnlocalisedName() + ".missing", true);
                     return false;
                 }
                 Location destination = new Location(pos, caster.dimension);

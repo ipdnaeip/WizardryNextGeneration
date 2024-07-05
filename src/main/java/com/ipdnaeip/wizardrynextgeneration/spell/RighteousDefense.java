@@ -11,7 +11,7 @@ import net.minecraft.item.Item;
 public class RighteousDefense extends SpellBuff {
 
     public RighteousDefense() {
-        super(WizardryNextGeneration.MODID, "righteous_defense", 1f, 1f, 0.3f, () -> WNGPotions.taunt);
+        super(WizardryNextGeneration.MODID, "righteous_defense", 1f, 1f, 0.3f, () -> WNGPotions.TAUNT);
     }
 
     @Override

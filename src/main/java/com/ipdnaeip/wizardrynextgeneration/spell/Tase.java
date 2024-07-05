@@ -53,7 +53,7 @@ public class Tase extends SpellRay {
                 EntityLivingBase targetEntity = (EntityLivingBase) target;
                 EntityUtils.attackEntityWithoutKnockback(target, MagicDamage.causeDirectMagicDamage(caster, damageType), this.getProperty(DAMAGE).floatValue() * modifiers.get(SpellModifiers.POTENCY));
                 if (Math.random() < 0.3F * (1 + modifiers.get(SpellModifiers.POTENCY))) {
-                    targetEntity.addPotionEffect(new PotionEffect(WizardryPotions.paralysis, WNGSpells.tase.getProperty(EFFECT_DURATION).intValue(), 0));
+                    targetEntity.addPotionEffect(new PotionEffect(WizardryPotions.paralysis, WNGSpells.TASE.getProperty(EFFECT_DURATION).intValue(), 0));
                     world.playSound(null, target.getPosition(), WizardrySounds.ENTITY_LIGHTNING_ARROW_HIT, WizardrySounds.SPELLS, 1.0F, world.rand.nextFloat() * 0.2F + 1.2F);
                 }
             }

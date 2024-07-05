@@ -23,8 +23,8 @@ public class Veneficium extends SpellBarrage {
     }
 
     protected void barrageEffect(World world, EntityLivingBase target, EntityLivingBase caster, int ticksInUse, SpellModifiers modifiers) {
-        int duration = (int)(WNGSpells.veneficium.getProperty(EFFECT_DURATION).floatValue() * modifiers.get(WizardryItems.duration_upgrade));
-        target.addPotionEffect(new PotionEffect(WNGPotions.veneficium, duration, SpellBuff.getStandardBonusAmplifier(modifiers.get(SpellModifiers.POTENCY))));
+        int duration = (int)(WNGSpells.VENEFICIUM.getProperty(EFFECT_DURATION).floatValue() * modifiers.get(WizardryItems.duration_upgrade));
+        target.addPotionEffect(new PotionEffect(WNGPotions.VENEFICIUM, duration, SpellBuff.getStandardBonusAmplifier(modifiers.get(SpellModifiers.POTENCY))));
     }
 
     @Override

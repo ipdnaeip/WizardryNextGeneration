@@ -165,10 +165,8 @@ public final class WNGUtils {
      */
     public static boolean canMagicDamageEntity(EntityLivingBase caster, Entity target, MagicDamage.DamageType damageType, Spell spell, int ticksInUse) {
         if (MagicDamage.isEntityImmune(damageType, target)) {
-            if (!caster.world.isRemote && caster instanceof EntityPlayer) {
-                if (!spell.isContinuous || ticksInUse == 1) {
-                    ((EntityPlayer) caster).sendStatusMessage(new TextComponentTranslation("spell.resist", target.getName(), spell.getNameForTranslationFormatted()), true);
-                }
+            if (!spell.isContinuous || ticksInUse == 1) {
+                WNGUtils.sendMessage(caster, "spell.resist", true, target.getName(), spell.getNameForTranslationFormatted());
             }
             return false;
         }
