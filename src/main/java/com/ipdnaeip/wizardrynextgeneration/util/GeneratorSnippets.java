@@ -8,13 +8,10 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntityDispenser;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
-import net.minecraftforge.registries.IForgeRegistry;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.rmi.registry.Registry;
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
@@ -45,6 +42,8 @@ public class GeneratorSnippets {
                                 + "| Element | " + spell.getElement().getDisplayName() + " |\n"
                                 + "| Type | " + spell.getType().getDisplayName() + " |\n"
                                 + "| Mana Cost | " + spell.getCost() + " |\n"
+                                + "| Chargeup | " + spell.getChargeup() + " |\n"
+                                + "| Cooldown | " + spell.getCooldown() + " |\n"
                                 + "| Continuous | " + (spell.isContinuous ? "Yes" : "No") + " |\n"
                                 + "| Cast by wizards | " + (spell.isEnabled(SpellProperties.Context.NPCS) ? "Yes" : "No") + " |\n"
                                 + "| Cast by dispensers | " + ((spell.isEnabled(SpellProperties.Context.DISPENSERS) && spell.canBeCastBy(new TileEntityDispenser())) ? "Yes" : "No") + " |\n"
@@ -158,8 +157,8 @@ public class GeneratorSnippets {
                 + "## List of Artefacts"
                 + "\n"
                 + "\n"
-                + "| Icon | Name | Type | Rarity | Effect description |" + "\n"
-                + "|---|---|---|---|---|" + "\n"
+                + "| # | Icon | Name | Type | Rarity | Effect description |" + "\n"
+                + "|---|---|---|---|---|---|" + "\n"
 
             );
 
