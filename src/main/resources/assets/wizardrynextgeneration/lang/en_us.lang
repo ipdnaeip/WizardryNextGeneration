@@ -78,6 +78,8 @@ item.wizardrynextgeneration:head_rally.name=Leader's Crown
 item.wizardrynextgeneration:head_rally.desc=Increase the effectiveness of spells that apply the rally effect
 item.wizardrynextgeneration:head_raijin.name=Mask of Raijin
 item.wizardrynextgeneration:head_raijin.desc=The mask of the thunderlord allows high intensity lightning spells to paralyze creatures
+item.wizardrynextgeneration:head_sleeping_cap.name=Sleeping Cap
+item.wizardrynextgeneration:head_sleeping_cap.desc=Allows you to sleep during the day
 item.wizardrynextgeneration:head_thorns.name=Crown of Thorns
 item.wizardrynextgeneration:head_thorns.desc=You have a 15%% chance to deal a small amount of damage to creatures that damage you
 
@@ -109,6 +111,7 @@ entity.wizardrynextgeneration:whirlpool_field.name=Whirlpool
 
    #living
 
+entity.wizardrynextgeneration:pack_mule.name=Pack Mule
 entity.wizardrynextgeneration:pig_zombie_convert.name=Pigman
 entity.wizardrynextgeneration:righteous_defender.name=Righteous Defender
 entity.wizardrynextgeneration:righteous_defender_minion.name=Righteous Defender
@@ -223,6 +226,9 @@ discipline.vampire=Vampire
 discipline.void=Void
 discipline.witch=Witch
 
+#settings
+settings.wizardrynextgeneration:general_settings=General Settings
+
 #spell
 
 spell.wizardrynextgeneration:accelerated_mass=Accelerated Mass
@@ -251,6 +257,9 @@ spell.wizardrynextgeneration:blood_infusion.full_shield=You cannot convert anymo
 spell.wizardrynextgeneration:blood_infusion.low_health=You do not have enough health to convert
 spell.wizardrynextgeneration:bones_to_apples=Bones to Apples
 spell.wizardrynextgeneration:bones_to_apples.desc=Convert bones into apples.
+spell.wizardrynextgeneration:call_pack_mule=Call Pack Mule
+spell.wizardrynextgeneration:call_pack_mule.desc=Calls a pack mule to carry your burdens or teleports your pack mule to you.
+spell.wizardrynextgeneration:call_pack_mule.no_access=This is not your pack mule.
 spell.wizardrynextgeneration:chomp=Chomp
 spell.wizardrynextgeneration:chomp.desc=Summon a pair of biting fangs at a target location.
 spell.wizardrynextgeneration:cleansing_flames=Cleansing Flames
@@ -345,6 +354,8 @@ spell.wizardrynextgeneration:preparation=Preparation
 spell.wizardrynextgeneration:preparation.desc=Focus your mind to reduce the chargeup time and mana consumption of your next spell.
 spell.wizardrynextgeneration:pull=Pull
 spell.wizardrynextgeneration:pull.desc=Pull a target toward you.
+spell.wizardrynextgeneration:rest=Rest
+spell.wizardrynextgeneration:rest.desc=Start sleeping, healing over time.
 spell.wizardrynextgeneration:retribution=Retribution
 spell.wizardrynextgeneration:retribution.desc=Reflect all damage taken for a period of time.
 spell.wizardrynextgeneration:righteous_defense=Righteous Defense

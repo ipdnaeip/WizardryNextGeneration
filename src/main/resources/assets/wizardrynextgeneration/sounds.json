@@ -15,6 +15,7 @@
   "spell.blood_blitz":                    {"category": "spells", "sounds": ["random/fizz"]},
   "spell.blood_infusion":                 {"category": "spells", "sounds": ["random/fizz"]},
   "spell.bones_to_apples":                {"category": "spells", "sounds": ["ebwizardry:buff"]},
+  "spell.call_pack_mule": 				  {"category": "spells", "sounds": ["wizardrynextgeneration:whistle1", "wizardrynextgeneration:whistle2"]},
   "spell.chomp": 						  {"category": "spells", "sounds": ["mob/evocation_illager/prepare_attack1", "mob/evocation_illager/prepare_attack2"]},
   "spell.cleansing_flames":               {"category": "spells", "sounds": ["ebwizardry:buff"]},
   "spell.cloak_of_the_void":              {"category": "spells", "sounds": ["mob/enderdragon/wings1", "mob/enderdragon/wings2", "mob/enderdragon/wings3", "mob/enderdragon/wings4", "mob/enderdragon/wings5", "mob/enderdragon/wings6"]},

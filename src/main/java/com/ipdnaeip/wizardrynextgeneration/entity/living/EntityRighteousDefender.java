@@ -2,11 +2,14 @@ package com.ipdnaeip.wizardrynextgeneration.entity.living;
 
 import com.google.common.base.Predicate;
 import com.ipdnaeip.wizardrynextgeneration.registry.WNGPotions;
+import com.ipdnaeip.wizardrynextgeneration.registry.WNGSpells;
 import electroblob.wizardry.Wizardry;
 import electroblob.wizardry.entity.living.ISummonedCreature;
 import electroblob.wizardry.registry.WizardrySounds;
 import electroblob.wizardry.util.AllyDesignationSystem;
 import java.util.Arrays;
+
+import electroblob.wizardry.util.SpellModifiers;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.monster.IMob;
@@ -15,12 +18,14 @@ import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
 
 public class EntityRighteousDefender extends EntityCreature {
-    public final double AISpeed = 0.5;
+    private final double AISpeed = 0.5;
+    private int cooldown;
     protected Predicate<Entity> targetSelector;
 
     public EntityRighteousDefender(World world) {
@@ -52,7 +57,7 @@ public class EntityRighteousDefender extends EntityCreature {
     @Override
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
-        this.getAttributeMap().registerAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(4.0);
+        this.getAttributeMap().registerAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(1.0);
         this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(this.AISpeed);
         this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(20);
         this.getEntityAttribute(SharedMonsterAttributes.ARMOR).setBaseValue(12);
@@ -85,12 +90,24 @@ public class EntityRighteousDefender extends EntityCreature {
         return entityIn.attackEntityFrom(DamageSource.causeMobDamage(this), (float) this.getAttributeMap().getAttributeInstance(SharedMonsterAttributes.ATTACK_DAMAGE).getAttributeValue());
     }
 
+    public int getCooldown() {
+        return cooldown;
+    }
+
+    public void setCooldown(int cooldown) {
+        this.cooldown = cooldown;
+    }
+
     @Override
     public void onLivingUpdate() {
         super.onLivingUpdate();
         this.updateArmSwingProgress();
-        if (this.ticksExisted % 50 == 1) {
-            this.addPotionEffect(new PotionEffect(WNGPotions.TAUNT, 50, 0, false, false));
+        if (this.cooldown > 0) {
+            this.cooldown--;
+        }
+        if (cooldown == 0 && this.getAttackTarget() != null) {
+            WNGSpells.RIGHTEOUS_DEFENSE.cast(this.world, this, EnumHand.MAIN_HAND, 0, this.getAttackTarget(), new SpellModifiers());
+            this.cooldown = WNGSpells.RIGHTEOUS_DEFENSE.getCooldown();
         }
     }
 }

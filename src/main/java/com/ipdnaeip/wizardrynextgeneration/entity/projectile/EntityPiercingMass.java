@@ -24,7 +24,6 @@ public class EntityPiercingMass extends EntityMagicArrow {
 
     public EntityPiercingMass(World world) {
         super(world);
-        this.noClip = true;
     }
 
     public double getDamage() {
@@ -74,9 +73,14 @@ public class EntityPiercingMass extends EntityMagicArrow {
 
     @Override
     public void onUpdate() {
-        this.noClip = true;
-        super.onUpdate();
-//        this.noClip = false;
+
+        //From Entity.onUpdate
+        if (!this.world.isRemote)
+        {
+            this.setFlag(6, this.isGlowing());
+        }
+        this.onEntityUpdate();
+
         if (this.getLifetime() >= 0 && this.ticksExisted > this.getLifetime()) {
             this.setDead();
         }
@@ -84,10 +88,11 @@ public class EntityPiercingMass extends EntityMagicArrow {
         Vec3d vec3d1 = new Vec3d(this.posX, this.posY, this.posZ);
         Vec3d vec3d = new Vec3d(this.posX + this.motionX, this.posY + this.motionY, this.posZ + this.motionZ);
         RayTraceResult raytraceresult = new RayTraceResult(this);
+
+        //Finds the closest entity to the projectile
         Entity entity = null;
         List<?> list = this.world.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox().expand(this.motionX, this.motionY, this.motionZ).grow(1.0, 1.0, 1.0));
         double d0 = 0.0;
-
         Entity damagesource;
         for(int i = 0; i < list.size(); ++i) {
             damagesource = (Entity)list.get(i);
@@ -160,11 +165,6 @@ public class EntityPiercingMass extends EntityMagicArrow {
         if (this.doGravity()) {
             this.motionY -= 0.05;
         }
-    }
-
-    @Override
-    public void doBlockCollisions() {
-
     }
 
     public int getLifetime() {

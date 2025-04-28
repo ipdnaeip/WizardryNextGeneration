@@ -11,7 +11,9 @@ import electroblob.wizardry.util.ParticleBuilder;
 import electroblob.wizardry.util.SpellModifiers;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.MobEffects;
 import net.minecraft.item.Item;
+import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.text.TextComponentTranslation;
@@ -20,7 +22,7 @@ import net.minecraft.world.World;
 public class Meditate extends Spell {
 
     public Meditate() {
-        super(WizardryNextGeneration.MODID, "meditate", SpellActions.IMBUE, true);
+        super(WizardryNextGeneration.MODID, "meditate", SpellActions.IMBUE, false);
         this.soundValues(1F, 1.0F, 0.2F);
         addProperties(HEALTH);
     }
@@ -42,13 +44,13 @@ public class Meditate extends Spell {
 
     @Override
     public boolean cast(World world, EntityPlayer caster, EnumHand hand, int ticksInUse, SpellModifiers modifiers) {
-        if (WNGUtils.isEntityMoving(caster)) {
+        if (!WNGUtils.isEntityStill(caster)) {
             WNGUtils.sendMessage(caster, "spell." + this.getUnlocalisedName() + ".moving", true);
             return false;
         }
         //check if the player can be healed and if the player is standing still
-        if (WNGUtils.isEntityStill(caster) && caster.getHealth() < caster.getMaxHealth() && caster.getHealth() > 0.0F && ticksInUse % 10 == 0) {
-            //caster.addPotionEffect(new PotionEffect(MobEffects.BLINDNESS, 30, 0));
+        else if (WNGUtils.isEntityStill(caster) && caster.getHealth() < caster.getMaxHealth() && caster.getHealth() > 0.0F && ticksInUse % 10 == 0) {
+            caster.addPotionEffect(new PotionEffect(MobEffects.BLINDNESS, 20, 0));
             caster.heal(this.getProperty(HEALTH).floatValue() * (1 + modifiers.get(SpellModifiers.POTENCY)));
             this.playSound(world, caster, ticksInUse, -1, modifiers);
             ParticleBuilder.create(ParticleBuilder.Type.BUFF).entity(caster).clr(170, 250, 250).spawn(world);

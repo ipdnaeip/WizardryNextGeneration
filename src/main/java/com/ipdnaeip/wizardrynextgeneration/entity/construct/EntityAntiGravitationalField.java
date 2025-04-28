@@ -9,6 +9,7 @@ import electroblob.wizardry.util.ParticleBuilder;
 import electroblob.wizardry.util.ParticleBuilder.Type;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.MoverType;
 import net.minecraft.init.MobEffects;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.math.MathHelper;
@@ -30,11 +31,15 @@ public class EntityAntiGravitationalField extends EntityScaledConstruct {
         super.onUpdate();
         if (!this.world.isRemote) {
             List<Entity> targets = EntityUtils.getEntitiesWithinCylinder((this.width / 2.0F), this.posX, this.posY, this.posZ, this.height * sizeMultiplier, this.world, Entity.class);
+            targets.removeIf(target -> target == this);
             for (Entity target : targets) {
                 if (target instanceof EntityLivingBase) {
                     ((EntityLivingBase)target).addPotionEffect(new PotionEffect(MobEffects.LEVITATION, 10, SpellBuff.getStandardBonusAmplifier(damageMultiplier)));
                 }
-                //else target.motionY += (0.05D * (((damageMultiplier - 1) * 3.5) + 1) - target.motionY) * 0.2D;
+/*                else {
+                    target.motionY += (0.05D * (((damageMultiplier - 1) * 3.5) + 1) - target.motionY) * 0.2D;
+                    target.move(MoverType.SELF, target.motionX, target.motionY, target.motionZ);
+                }*/
             }
         } else if (this.rand.nextInt(15) == 0) {
             double radius = (0.5 + this.rand.nextDouble() * 0.3) * (double)this.width / 2.0;

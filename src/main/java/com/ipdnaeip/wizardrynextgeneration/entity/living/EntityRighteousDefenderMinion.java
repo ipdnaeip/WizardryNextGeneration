@@ -25,7 +25,6 @@ public class EntityRighteousDefenderMinion extends EntityRighteousDefender imple
     protected Predicate<Entity> targetSelector;
     private int lifetime = -1;
     private UUID casterUUID;
-    public int taunt_strength = 0;
 
     // Setter + getter implementations
     @Override
@@ -40,7 +39,7 @@ public class EntityRighteousDefenderMinion extends EntityRighteousDefender imple
     @Override
     public void setOwnerId(UUID uuid){ this.casterUUID = uuid; }
 
-    /** Creates a new webspitter minion in the given world. */
+    /** Creates a new righteous defender minion in the given world. */
 
     public EntityRighteousDefenderMinion(World world){
         super(world);
@@ -58,7 +57,6 @@ public class EntityRighteousDefenderMinion extends EntityRighteousDefender imple
     public void onUpdate(){
         super.onUpdate();
         this.updateDelegate();
-        this.addPotionEffect(new PotionEffect(WNGPotions.TAUNT, 20, taunt_strength));
     }
 
     @Override
@@ -74,7 +72,7 @@ public class EntityRighteousDefenderMinion extends EntityRighteousDefender imple
     private void spawnParticleEffect(){
         if(this.world.isRemote){
             for(int i = 0; i < 15; i++){
-                ParticleBuilder.create(ParticleBuilder.Type.DARK_MAGIC)
+                ParticleBuilder.create(ParticleBuilder.Type.SPARKLE)
                         .pos(this.posX + this.rand.nextFloat(), this.posY + this.rand.nextFloat(), this.posZ + this.rand.nextFloat())
                         .clr(0.1f, 0.2f, 0.0f)
                         .spawn(world);

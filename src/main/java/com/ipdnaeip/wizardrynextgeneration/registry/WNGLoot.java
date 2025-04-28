@@ -1,10 +1,12 @@
 package com.ipdnaeip.wizardrynextgeneration.registry;
 
 import com.ipdnaeip.wizardrynextgeneration.WizardryNextGeneration;
+import com.ipdnaeip.wizardrynextgeneration.accessor.LootPoolAccessor;
 import electroblob.wizardry.Wizardry;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.storage.loot.*;
 import net.minecraft.world.storage.loot.conditions.LootCondition;
+import net.minecraft.world.storage.loot.functions.LootFunction;
 import net.minecraftforge.event.LootTableLoadEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
@@ -46,15 +48,12 @@ public class WNGLoot {
 
     @SubscribeEvent
     public static void onLootTableLoadEvent(LootTableLoadEvent event) {
-
         // Fortunately the loot tables load before wizardry, so we can make a static reference to them and reuse it
         if (event.getName().toString().equals(WizardryNextGeneration.MODID + ":subsets/uncommon_artefacts")) {
             UNCOMMON_ARTEFACTS = event.getTable();
-        } else if (event.getName().toString().equals(WizardryNextGeneration.MODID + ":subsets/rare_artefacts")) {
+        } if (event.getName().toString().equals(WizardryNextGeneration.MODID + ":subsets/rare_artefacts")) {
             RARE_ARTEFACTS = event.getTable();
-        } else if (event.getName().toString().equals(WizardryNextGeneration.MODID + ":subsets/epic_artefacts")) {
-            EPIC_ARTEFACTS = event.getTable();
-        } else if (event.getName().toString().equals(WizardryNextGeneration.MODID + ":subsets/epic_artefacts")) {
+        } if (event.getName().toString().equals(WizardryNextGeneration.MODID + ":subsets/epic_artefacts")) {
             EPIC_ARTEFACTS = event.getTable();
         }
         // Inject books and scrolls to ebwiz tables
@@ -103,6 +102,15 @@ public class WNGLoot {
     }
 
     private static void injectEntries(LootPool sourcePool, LootPool targetPool) {
+        if (sourcePool != null && targetPool != null) {
+            List<LootEntry> lootEntries = ((LootPoolAccessor)sourcePool).wizardrynextgeneration$getLootEntries();
+            for (LootEntry entry : lootEntries) {
+                targetPool.addEntry(entry);
+            }
+        }
+    }
+
+/*    private static void injectEntries(LootPool sourcePool, LootPool targetPool) {
         // Accessing {@link net.minecraft.world.storage.loot.LootPool.lootEntries}
         if (sourcePool != null && targetPool != null) {
             List<LootEntry> lootEntries = ObfuscationReflectionHelper.getPrivateValue(LootPool.class, sourcePool, "field_186453_a");
@@ -113,17 +121,6 @@ public class WNGLoot {
         } else {
             WizardryNextGeneration.logger.warn("Attempted to inject to null pool source or target.");
         }
-    }
-
-    private static LootPool getAdditive(String entryName, String poolName) {
-        return new LootPool(new LootEntry[] {getAdditiveEntry(entryName, 1)}, new LootCondition[0],
-                new RandomValueRange(1), new RandomValueRange(0, 1), WizardryNextGeneration.MODID + "_" + poolName);
-    }
-
-    private static LootEntryTable getAdditiveEntry(String name, int weight) {
-        return new LootEntryTable(new ResourceLocation(name), weight, 0, new LootCondition[0],
-                WizardryNextGeneration.MODID + "_additive_entry");
-    }
-
+    }*/
 
 }

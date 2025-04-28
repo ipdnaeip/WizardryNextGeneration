@@ -15,7 +15,7 @@ public final class WNGTabs {
     public static final CreativeTabs WIZARDRYNEXTGENERATION_GEAR = new CreativeTabs("wizardrynextgenerationgear") {
         @Override
         public ItemStack createIcon() {
-            return new ItemStack(WNGItems.RING_VOID);
+            return new ItemStack(WNGItems.HEAD_SLEEPING_CAP);
         }
     };
 

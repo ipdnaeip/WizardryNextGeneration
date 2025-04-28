@@ -4,16 +4,14 @@ import com.ipdnaeip.wizardrynextgeneration.CommonProxy;
 import com.ipdnaeip.wizardrynextgeneration.WizardryNextGeneration;
 import com.ipdnaeip.wizardrynextgeneration.client.renderer.entity.construct.RenderNapalm;
 import com.ipdnaeip.wizardrynextgeneration.client.renderer.entity.layers.LayerHolyThorns;
+import com.ipdnaeip.wizardrynextgeneration.client.renderer.entity.living.RenderPackMule;
 import com.ipdnaeip.wizardrynextgeneration.client.renderer.entity.living.RenderVampireBat;
 import com.ipdnaeip.wizardrynextgeneration.client.renderer.entity.living.RenderRighteousDefender;
 import com.ipdnaeip.wizardrynextgeneration.client.renderer.entity.living.RenderWebspitter;
 import com.ipdnaeip.wizardrynextgeneration.client.renderer.entity.layers.LayerDivineShield;
 import com.ipdnaeip.wizardrynextgeneration.client.renderer.entity.layers.LayerSolarSentinel;
 import com.ipdnaeip.wizardrynextgeneration.entity.construct.*;
-import com.ipdnaeip.wizardrynextgeneration.entity.living.EntityVampireBat;
-import com.ipdnaeip.wizardrynextgeneration.entity.living.EntityPigZombieConvert;
-import com.ipdnaeip.wizardrynextgeneration.entity.living.EntityRighteousDefender;
-import com.ipdnaeip.wizardrynextgeneration.entity.living.EntityWebspitter;
+import com.ipdnaeip.wizardrynextgeneration.entity.living.*;
 import com.ipdnaeip.wizardrynextgeneration.entity.projectile.EntityAcceleratedMass;
 import com.ipdnaeip.wizardrynextgeneration.entity.projectile.EntityFissionBlast;
 import com.ipdnaeip.wizardrynextgeneration.entity.projectile.EntityConjuredPotion;
@@ -22,7 +20,9 @@ import electroblob.wizardry.client.renderer.entity.RenderMagicArrow;
 import electroblob.wizardry.client.renderer.entity.RenderProjectile;
 import electroblob.wizardry.client.renderer.entity.RenderSigil;
 import electroblob.wizardry.client.renderer.entity.layers.LayerTiledOverlay;
+import net.minecraft.client.renderer.entity.RenderAbstractHorse;
 import net.minecraft.client.renderer.entity.RenderPigZombie;
+import net.minecraft.entity.passive.EntityMule;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 
@@ -43,6 +43,7 @@ public class ClientProxy extends CommonProxy {
         RenderingRegistry.registerEntityRenderingHandler(EntityWhirlpool.class, manager -> new RenderSigil(manager, new ResourceLocation(WizardryNextGeneration.MODID, "textures/entity/whirlpool.png"), -5F, false));
 
         //living
+        RenderingRegistry.registerEntityRenderingHandler(EntityPackMule.class, RenderPackMule::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityPigZombieConvert.class, RenderPigZombie::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityRighteousDefender.class, RenderRighteousDefender::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityVampireBat.class, RenderVampireBat::new);

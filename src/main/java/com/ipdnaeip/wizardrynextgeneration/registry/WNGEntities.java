@@ -77,6 +77,7 @@ public class WNGEntities {
         registry.register(createEntry(EntityWhirlpool.class, "whirlpool", TrackingType.CONSTRUCT).build());
 
         //living
+        registry.register(createEntry(EntityPackMule.class, "pack_mule", TrackingType.LIVING).build());
         registry.register(createEntry(EntityPigZombieConvert.class, "pig_zombie_convert", TrackingType.LIVING).build());
         registry.register(createEntry(EntityRighteousDefender.class, "righteous_defender", TrackingType.LIVING).egg(16764218, 16769387).build());
         registry.register(createEntry(EntityRighteousDefenderMinion.class, "righteous_defender_minion", TrackingType.LIVING).build());

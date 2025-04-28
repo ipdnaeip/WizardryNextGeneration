@@ -3,13 +3,16 @@ package com.ipdnaeip.wizardrynextgeneration.handler;
 import com.ipdnaeip.wizardrynextgeneration.registry.WNGEnchantments;
 import com.ipdnaeip.wizardrynextgeneration.registry.WNGItems;
 import electroblob.wizardry.item.ItemArtefact;
+import net.minecraft.client.Minecraft;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.MobEffects;
 import net.minecraft.item.ItemBow;
 import net.minecraft.item.ItemShield;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.MovementInput;
 import net.minecraftforge.client.event.InputUpdateEvent;
+import net.minecraftforge.client.event.RenderLivingEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
@@ -40,7 +43,6 @@ public class WNGClientEventHandler {
             input.moveForward *= 2F;
             input.moveStrafe *= 2F;
         }
-
     }
 
 }

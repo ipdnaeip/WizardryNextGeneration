@@ -92,16 +92,21 @@ public final class WNGSpells {
     public static final Spell ENCHANT_CAULDRON = new EnchantCauldron();
     public static final Spell CHOMP = new Chomp();
 
-    //WNG 1.0.4 Spells
+    // WNG 1.0.4 Spells
     public static final Spell SUMMON_VAMPIRE_BAT = new SummonVampireBat();
     public static final Spell TAN_FLESH = new TanFlesh();
     public static final Spell LIGHTNING_REFLEXES = new LightningReflexes();
     public static final Spell RETRIBUTION = new Retribution();
     public static final Spell EYE_FOR_AN_EYE = new EyeForAnEye();
 
-    //WNG 1.0.5 Spells
+    // WNG 1.0.5 Spells
     public static final Spell ANIMAL_ALLEGIANCE = new AnimalAllegiance();
     //public static final Spell BOOST_MORALE = new Inspire();
+
+    // WNG 1.0.7 Spells
+    public static final Spell CALL_PACK_MULE = new CallPackMule();
+    public static final Spell REST = new Rest();
+
 
     @SubscribeEvent
     public static void register(RegistryEvent.Register<Spell> event) {
@@ -198,6 +203,11 @@ public final class WNGSpells {
         // WNG 1.0.5 Spells (1)
 
         registry.register(ANIMAL_ALLEGIANCE);
+        //registry.register(PIERCING_MASS);
+
+        // WNG 1.0.7 Spells
+        registry.register(CALL_PACK_MULE);
+        registry.register(REST);
 
     }
 }

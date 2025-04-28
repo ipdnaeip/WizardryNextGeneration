@@ -32,12 +32,17 @@ public final class WNGUtils {
     }
 
     public static boolean isEntityStill(Entity entity) {
-        return entity.world.isRemote && entity.motionX == 0.0 && entity.motionZ == 0.0 && entity.onGround;
+        return !entity.world.isRemote && entity.motionX == 0.0 && entity.motionZ == 0.0 && entity.onGround;
     }
 
     public static boolean isEntityMoving(Entity entity) {
         return entity.world.isRemote && (entity.motionX != 0.0 || entity.motionZ != 0.0 || !entity.onGround);
     }
+
+/*    public static boolean isEntityStill(Entity entity) {
+        System.out.println(entity.prevPosX + "" + entity.posX + "" + entity.prevPosY + "" + entity.posY + "" + entity.prevPosZ + "" + entity.posZ);
+        return entity.prevPosX == entity.posX && entity.prevPosY == entity.posY && entity.prevPosZ == entity.posZ;
+    }*/
 
     public static List<RayTraceResult> rayTraceMultiple(World world, Vec3d origin, Vec3d endpoint, float aimAssist, boolean hitLiquids, boolean ignoreUncollidables, boolean returnLastUncollidable, boolean penetratesBlocks, Class<? extends Entity> entityType, Predicate<? super Entity> filter) {
         float borderSize = 1.0F + aimAssist;
@@ -161,7 +166,7 @@ public final class WNGUtils {
      * @param damageType The DamageType to check for.
      * @param spell      The Spell being used.
      * @param ticksInUse The tick of the spell, used for not spamming with continuous spells.
-     * @return whether the target entity is immune or not.
+     * @return whether the target can be damaged by the MagicDamage.
      */
     public static boolean canMagicDamageEntity(EntityLivingBase caster, Entity target, MagicDamage.DamageType damageType, Spell spell, int ticksInUse) {
         if (MagicDamage.isEntityImmune(damageType, target)) {

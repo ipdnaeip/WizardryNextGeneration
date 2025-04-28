@@ -1,6 +1,6 @@
 package com.ipdnaeip.wizardrynextgeneration.mixins.minecraft;
 
-import com.ipdnaeip.wizardrynextgeneration.mixininterfaces.minecraft.IMixinLootEntry;
+import com.ipdnaeip.wizardrynextgeneration.accessor.LootEntryAccessor;
 import net.minecraft.world.storage.loot.LootEntry;
 import net.minecraft.world.storage.loot.conditions.LootCondition;
 import org.spongepowered.asm.mixin.Final;
@@ -9,12 +9,12 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
 
 @Mixin(LootEntry.class)
-public abstract class MixinLootEntry implements IMixinLootEntry {
+public abstract class MixinLootEntry implements LootEntryAccessor {
 
     @Shadow @Final protected LootCondition[] conditions;
 
     @Unique
-    public LootCondition[] wizardryNextGeneration$getConditions() {
+    public LootCondition[] wizardrynextgeneration$getConditions() {
         return this.conditions;
     }
 

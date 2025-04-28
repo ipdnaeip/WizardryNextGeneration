@@ -21,8 +21,6 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.registries.IForgeRegistry;
 
-import javax.annotation.Nonnull;
-
 @GameRegistry.ObjectHolder(WizardryNextGeneration.MODID)
 @Mod.EventBusSubscriber
 public final class WNGItems {
@@ -73,12 +71,13 @@ public final class WNGItems {
     //head
     public static final Item HEAD_HASHASHIN = new ItemWNGArtefact(EnumRarity.RARE, ItemArtefact.Type.HEAD);
     public static final Item HEAD_RA = new ItemWNGArtefact(EnumRarity.EPIC, ItemArtefact.Type.HEAD);
-    //public static final Item HEAD_RALLY = new ItemWNGArtefact(EnumRarity.RARE, ItemArtefact.Type.HEAD);
+    public static final Item HEAD_RALLY = new ItemWNGArtefact(EnumRarity.RARE, ItemArtefact.Type.HEAD);
     public static final Item HEAD_RAIJIN = new ItemWNGArtefact(EnumRarity.EPIC, ItemArtefact.Type.HEAD);
+    public static final Item HEAD_SLEEPING_CAP = new ItemWNGArtefact(EnumRarity.RARE, ItemArtefact.Type.HEAD);
     public static final Item HEAD_THORNS = new ItemWNGArtefact(EnumRarity.RARE, ItemArtefact.Type.HEAD);
 
     //ring
-    public static final Item RING_9_TH_CIRCLE = new ItemWNGArtefact(EnumRarity.UNCOMMON, ItemArtefact.Type.RING);
+    public static final Item RING_9TH_CIRCLE = new ItemWNGArtefact(EnumRarity.UNCOMMON, ItemArtefact.Type.RING);
     public static final Item RING_ANODIZED = new ItemWNGArtefact(EnumRarity.RARE, ItemArtefact.Type.RING);
     public static final Item RING_LOOTING = new ItemWNGArtefact(EnumRarity.UNCOMMON, ItemArtefact.Type.RING);
     public static final Item RING_NULLIFICATION = new ItemWNGArtefact(EnumRarity.RARE, ItemArtefact.Type.RING);
@@ -145,7 +144,7 @@ public final class WNGItems {
         //block
 
         //misc
-        registerItem(registry, "blessed_meat", new ItemBlessedMeat());
+        registerItem(registry, "blessed_meat", BLESSED_MEAT);
 
         //magical items
         registerItem(registry, "conjured_potion", CONJURED_POTION);
@@ -187,12 +186,13 @@ public final class WNGItems {
         //head
         registerItem(registry, "head_hashashin", HEAD_HASHASHIN);
         registerItem(registry, "head_ra", HEAD_RA);
-        //registerItem(registry, "head_rally", HEAD_RALLY);
+        registerItem(registry, "head_rally", HEAD_RALLY);
         registerItem(registry, "head_raijin", HEAD_RAIJIN);
+        registerItem(registry, "head_sleeping_cap", HEAD_SLEEPING_CAP);
         registerItem(registry, "head_thorns", HEAD_THORNS);
 
         //ring
-        registerItem(registry, "ring_9th_circle", RING_9_TH_CIRCLE);
+        registerItem(registry, "ring_9th_circle", RING_9TH_CIRCLE);
         registerItem(registry, "ring_anodized", RING_ANODIZED);
         registerItem(registry, "ring_looting", RING_LOOTING);
         registerItem(registry, "ring_nullification", RING_NULLIFICATION);

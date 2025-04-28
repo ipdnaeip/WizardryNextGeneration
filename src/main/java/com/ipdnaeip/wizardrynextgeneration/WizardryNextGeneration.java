@@ -6,8 +6,11 @@ import com.ipdnaeip.wizardrynextgeneration.item.ItemWNGWandUpgrade;
 import com.ipdnaeip.wizardrynextgeneration.registry.WNGAdvancementTriggers;
 import com.ipdnaeip.wizardrynextgeneration.registry.WNGItems;
 import com.ipdnaeip.wizardrynextgeneration.registry.WNGLoot;
+import com.ipdnaeip.wizardrynextgeneration.registry.WNGTabs;
+import com.ipdnaeip.wizardrynextgeneration.util.GeneratorSnippets;
 import electroblob.wizardry.data.WizardData;
 import electroblob.wizardry.util.SpellNetworkIDSorter;
+import net.minecraft.client.resources.I18n;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.SidedProxy;
@@ -52,6 +55,7 @@ public class WizardryNextGeneration
         WNGItems.registerDispenseBehaviours();
         WNGItems.registerBookItems();
         ItemWNGWandUpgrade.init();
+        GeneratorSnippets.generateAll(MODID, NAME, "ipdnaeip/WizardryNextGeneration/tree/main", I18n.format(WNGTabs.WIZARDRYNEXTGENERATION_GEAR.getTranslationKey()));
     }
 
     @EventHandler

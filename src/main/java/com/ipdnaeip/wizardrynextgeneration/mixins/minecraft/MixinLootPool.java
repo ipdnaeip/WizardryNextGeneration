@@ -1,10 +1,13 @@
 package com.ipdnaeip.wizardrynextgeneration.mixins.minecraft;
 
 import com.google.common.collect.Lists;
+import com.ipdnaeip.wizardrynextgeneration.accessor.LootContextAccessor;
 import com.ipdnaeip.wizardrynextgeneration.handler.ArtefactEnchantingHandler;
-import com.ipdnaeip.wizardrynextgeneration.mixininterfaces.minecraft.IMixinLootEntry;
-import com.ipdnaeip.wizardrynextgeneration.mixininterfaces.minecraft.IMixinLootEntryItem;
-import com.ipdnaeip.wizardrynextgeneration.mixininterfaces.minecraft.IMixinLootPool;
+import com.ipdnaeip.wizardrynextgeneration.accessor.LootEntryAccessor;
+import com.ipdnaeip.wizardrynextgeneration.accessor.LootEntryItemAccessor;
+import com.ipdnaeip.wizardrynextgeneration.accessor.LootPoolAccessor;
+import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.storage.loot.LootContext;
@@ -16,8 +19,7 @@ import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.Collection;
@@ -26,33 +28,25 @@ import java.util.Random;
 import java.util.function.Predicate;
 
 @Mixin(LootPool.class)
-public abstract class MixinLootPool implements IMixinLootPool {
+public abstract class MixinLootPool implements LootPoolAccessor {
 
     @Shadow @Final private List<LootEntry> lootEntries;
-    @Unique
-    private Predicate<Item> wizardryNextGeneration$filter;
 
-    @Unique
-    public Predicate<Item> wizardryNextGeneration$getFilter() {
-        return wizardryNextGeneration$filter;
-    }
-
-    @Unique
-    public void wizardryNextGeneration$setFilter(Predicate<Item> filter) {
-        this.wizardryNextGeneration$filter = filter;
+    public List<LootEntry> wizardrynextgeneration$getLootEntries() {
+        return this.lootEntries;
     }
 
     @Inject(method = "createLootRoll", at = @At("HEAD"), cancellable = true)
     public void createLootRoll(Collection<ItemStack> stacks, Random rand, LootContext context, CallbackInfo info) {
-        if (ArtefactEnchantingHandler.filter != null) {
+        if (((LootContextAccessor)context).wizardrynextgeneration$getFilter() != null) {
             info.cancel();
             List<LootEntry> list = Lists.newArrayList();
             int i = 0;
             for (LootEntry lootentry : this.lootEntries) {
-                if (LootConditionManager.testAllConditions(((IMixinLootEntry) lootentry).wizardryNextGeneration$getConditions(), rand, context)) {
+                if (LootConditionManager.testAllConditions(((LootEntryAccessor) lootentry).wizardrynextgeneration$getConditions(), rand, context)) {
                     int j = lootentry.getEffectiveWeight(context.getLuck());
                     if (j > 0) {
-                        if (!(lootentry instanceof LootEntryItem && ArtefactEnchantingHandler.filter.test(((IMixinLootEntryItem) lootentry).wizardryNextGeneration$getItem()))) {
+                        if (!(lootentry instanceof LootEntryItem) || ((LootContextAccessor)context).wizardrynextgeneration$getFilter().test(((LootEntryItemAccessor)lootentry).wizardrynextgeneration$getItem())) {
                             list.add(lootentry);
                             i += j;
                         }
@@ -71,4 +65,18 @@ public abstract class MixinLootPool implements IMixinLootPool {
             }
         }
     }
+
+/*    @ModifyVariable(method = "createLootRoll", at = @At(value = "LOAD"), ordinal = 1)
+    public boolean injectCreateLootRoll(boolean b, Collection<ItemStack> stacks, Random rand, LootContext lootContext, LootEntry lootEntry) {
+        return b && (((LootContextAccessor)lootContext).wizardrynextgeneration$getFilter() == null || (lootEntry instanceof LootEntryItem && ((LootContextAccessor)lootContext).wizardrynextgeneration$getFilter().test(((LootEntryItemAccessor)lootEntry).wizardrynextgeneration$getItem())));
+    }*/
+
+/*    @ModifyVariable(method = "Lnet/minecraft/world/storage/loot/LootPool;createLootRoll(Ljava/util/Collection;Ljava/util/Random;Lnet/minecraft/world/storage/loot/LootContext;)V", at = @At("STORE"), ordinal = 1)
+    public int modifyCreateLootRoll(int j, Collection<ItemStack> stacks, Random rand, LootContext context, LootEntry entry) {
+        if (((LootContextAccessor)context).wizardrynextgeneration$getFilter() == null || !(entry instanceof LootEntryItem) || ((LootContextAccessor)context).wizardrynextgeneration$getFilter().test(((LootEntryItemAccessor)entry).wizardrynextgeneration$getItem())) {
+            return j;
+        } else {
+            return 0;
+        }
+    }*/
 }
