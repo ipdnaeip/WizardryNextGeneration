@@ -6,12 +6,10 @@ import com.ipdnaeip.wizardrynextgeneration.util.WNGUtils;
 import electroblob.wizardry.spell.SpellBuff;
 import electroblob.wizardry.util.SpellModifiers;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.text.TextComponentTranslation;
 
 public class LunarSalve extends SpellBuff {
 
@@ -23,11 +21,11 @@ public class LunarSalve extends SpellBuff {
 
     @Override
     protected boolean applyEffects(EntityLivingBase caster, SpellModifiers modifiers) {
-        if (!WNGUtils.hasMoonlight(caster.world, caster)) {
+        if (!WNGUtils.hasMoonlight(caster)) {
             WNGUtils.sendMessage(caster, "spell." + this.getUnlocalisedName() + ".no_moonlight", true);
             return false;
         }
-        else if (!caster.getActivePotionEffects().isEmpty() && WNGUtils.hasMoonlight(caster.world, caster)) {
+        else if (!caster.getActivePotionEffects().isEmpty() && WNGUtils.hasMoonlight(caster)) {
             ItemStack milk = new ItemStack(Items.MILK_BUCKET);
             boolean flag = false;
             for (PotionEffect effect : caster.getActivePotionEffects()) {

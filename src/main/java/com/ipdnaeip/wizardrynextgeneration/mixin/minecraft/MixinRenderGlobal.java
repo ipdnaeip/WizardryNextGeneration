@@ -1,4 +1,4 @@
-package com.ipdnaeip.wizardrynextgeneration.mixins.minecraft;
+package com.ipdnaeip.wizardrynextgeneration.mixin.minecraft;
 
 import electroblob.wizardry.util.EntityUtils;
 import net.minecraft.client.Minecraft;

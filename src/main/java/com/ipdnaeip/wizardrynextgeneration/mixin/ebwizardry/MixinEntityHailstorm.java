@@ -1,4 +1,4 @@
-package com.ipdnaeip.wizardrynextgeneration.mixins.ebwizardry;
+package com.ipdnaeip.wizardrynextgeneration.mixin.ebwizardry;
 
 import com.ipdnaeip.wizardrynextgeneration.registry.WNGItems;
 import electroblob.wizardry.entity.construct.EntityHailstorm;

@@ -1,4 +1,4 @@
-package com.ipdnaeip.wizardrynextgeneration.mixins.minecraft;
+package com.ipdnaeip.wizardrynextgeneration.mixin.minecraft;
 
 import com.ipdnaeip.wizardrynextgeneration.accessor.EntityArrowAccessor;
 import net.minecraft.entity.projectile.EntityArrow;
@@ -8,7 +8,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 
 @Mixin(EntityArrow.class)
-public abstract class MixinEntityArrowAccessor implements EntityArrowAccessor {
+public abstract class MixinEntityArrow implements EntityArrowAccessor {
 
     @Shadow
     @Final

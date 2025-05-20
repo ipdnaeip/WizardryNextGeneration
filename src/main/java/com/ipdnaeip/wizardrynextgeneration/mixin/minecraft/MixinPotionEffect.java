@@ -1,4 +1,4 @@
-package com.ipdnaeip.wizardrynextgeneration.mixins.minecraft;
+package com.ipdnaeip.wizardrynextgeneration.mixin.minecraft;
 
 import baubles.api.BaublesApi;
 import com.ipdnaeip.wizardrynextgeneration.registry.WNGItems;

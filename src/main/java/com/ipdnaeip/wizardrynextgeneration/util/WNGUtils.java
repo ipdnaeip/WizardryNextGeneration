@@ -9,8 +9,6 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.CombatRules;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
@@ -19,6 +17,7 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.World;
 
+import javax.annotation.Nullable;
 import java.util.*;
 import java.util.function.Predicate;
 
@@ -31,19 +30,47 @@ public final class WNGUtils {
         return WizardryNextGeneration.MODID + "." + key;
     }
 
-    public static boolean isEntityStill(Entity entity) {
-        return !entity.world.isRemote && entity.motionX == 0.0 && entity.motionZ == 0.0 && entity.onGround;
+    public static List<RayTraceResult> rayTraceMultiple2(World world, Vec3d origin, Vec3d endpoint, float aimAssist, boolean hitLiquids, boolean ignoreUncollidables, boolean returnLastUncollidable, boolean penetratesBlocks, Class<? extends Entity> entityType, Predicate<? super Entity> filter) {
+        float borderSize = 1.0F + aimAssist;
+        AxisAlignedBB searchVolume = (new AxisAlignedBB(origin.x, origin.y, origin.z, endpoint.x, endpoint.y, endpoint.z)).grow(borderSize, borderSize, borderSize);
+        List<Entity> entities = world.getEntitiesWithinAABB(entityType, searchVolume);
+        entities.removeIf(filter);
+        List<RayTraceResult> result = new ArrayList<>();
+        RayTraceResult rayTraceResult = world.rayTraceBlocks(origin, endpoint, hitLiquids, ignoreUncollidables, returnLastUncollidable);
+        if (rayTraceResult != null && !penetratesBlocks) {
+            endpoint = rayTraceResult.hitVec;
+        }
+        Vec3d intercept = null;
+        for (Entity entity : entities) {
+            float fuzziness = EntityUtils.isLiving(entity) ? aimAssist : 0.0F;
+            float entityBorderSize;
+            if (entity instanceof ICustomHitbox) {
+                intercept = ((ICustomHitbox) entity).calculateIntercept(origin, endpoint, fuzziness);
+            } else {
+                AxisAlignedBB entityBounds = entity.getEntityBoundingBox();
+                entityBorderSize = entity.getCollisionBorderSize();
+                if (entityBorderSize != 0.0F) {
+                    entityBounds = entityBounds.grow(entityBorderSize, entityBorderSize, entityBorderSize);
+                }
+                if (fuzziness != 0.0F) {
+                    entityBounds = entityBounds.grow(fuzziness, fuzziness, fuzziness);
+                }
+                RayTraceResult hit = entityBounds.calculateIntercept(origin, endpoint);
+                if (hit != null) {
+                    intercept = hit.hitVec;
+                }
+            }
+            if (intercept != null) {
+                entityBorderSize = (float)intercept.distanceTo(origin);
+                float closestHitDistance = (float)endpoint.distanceTo(origin);
+                if (entityBorderSize < closestHitDistance) {
+                    RayTraceResult entityResult = new RayTraceResult(entity, intercept);
+                    result.add(entityResult);
+                }
+            }
+        }
+        return result;
     }
-
-    public static boolean isEntityMoving(Entity entity) {
-        return entity.world.isRemote && (entity.motionX != 0.0 || entity.motionZ != 0.0 || !entity.onGround);
-    }
-
-/*    public static boolean isEntityStill(Entity entity) {
-        System.out.println(entity.prevPosX + "" + entity.posX + "" + entity.prevPosY + "" + entity.posY + "" + entity.prevPosZ + "" + entity.posZ);
-        return entity.prevPosX == entity.posX && entity.prevPosY == entity.posY && entity.prevPosZ == entity.posZ;
-    }*/
-
     public static List<RayTraceResult> rayTraceMultiple(World world, Vec3d origin, Vec3d endpoint, float aimAssist, boolean hitLiquids, boolean ignoreUncollidables, boolean returnLastUncollidable, boolean penetratesBlocks, Class<? extends Entity> entityType, Predicate<? super Entity> filter) {
         float borderSize = 1.0F + aimAssist;
         AxisAlignedBB searchVolume = (new AxisAlignedBB(origin.x, origin.y, origin.z, endpoint.x, endpoint.y, endpoint.z)).grow(borderSize, borderSize, borderSize);
@@ -86,13 +113,12 @@ public final class WNGUtils {
         return result;
     }
 
-    public static boolean hasSunlight(World world, Entity entity) {
-        return world.isDaytime() && world.canSeeSky(new BlockPos(entity.posX, entity.posY + entity.getEyeHeight(), entity.posZ));
+    public static boolean hasSunlight(Entity entity) {
+        return entity.world.isDaytime() && entity.world.canSeeSky(new BlockPos(entity.posX, entity.posY + entity.getEyeHeight(), entity.posZ));
     }
 
-
-    public static boolean hasMoonlight(World world, Entity entity) {
-        return !world.isDaytime() && world.canSeeSky(new BlockPos(entity.posX, entity.posY + entity.getEyeHeight(), entity.posZ));
+    public static boolean hasMoonlight(Entity entity) {
+        return !entity.world.isDaytime() && entity.world.canSeeSky(new BlockPos(entity.posX, entity.posY + entity.getEyeHeight(), entity.posZ));
     }
 
     /**
@@ -118,43 +144,12 @@ public final class WNGUtils {
         return damage;
     }
 
-    public static boolean doesPlayerHaveLessThanItem(EntityPlayer player, Item item, int amount) {
-        int check = 0;
-        for (ItemStack stack : player.inventory.mainInventory) {
-            if (stack.getItem() == item) check++;
-        }
-        for (ItemStack stack : player.inventory.armorInventory) {
-            if (stack.getItem() == item) check++;
-        }
-        for (ItemStack stack : player.inventory.offHandInventory) {
-            if (stack.getItem() == item) check++;
-        }
-        if (check < amount) {
-            return true;
-        }
-        return false;
-    }
-
-    public static int playerExcessItems(EntityPlayer player, Item item, int amount) {
-        int check = 0;
-        for (ItemStack stack : player.inventory.mainInventory) {
-            if (stack.getItem() == item) check++;
-        }
-        for (ItemStack stack : player.inventory.armorInventory) {
-            if (stack.getItem() == item) check++;
-        }
-        for (ItemStack stack : player.inventory.offHandInventory) {
-            if (stack.getItem() == item) check++;
-        }
-        return amount - check;
-    }
-
     /**
      * Shorthand method to do instance check and sideonly checks for player messages
      */
     public static void sendMessage(Entity player, String translationKey, boolean actionBar, Object... args) {
         if (player instanceof EntityPlayer && !player.world.isRemote) {
-            ((EntityPlayer) player).sendStatusMessage(new TextComponentTranslation(translationKey, args), actionBar);
+            ((EntityPlayer)player).sendStatusMessage(new TextComponentTranslation(translationKey, args), actionBar);
         }
     }
 
@@ -178,5 +173,31 @@ public final class WNGUtils {
         return true;
     }
 
+    /**
+     * Modified from SpellBuff to allow for continuous buff spells to return the nearest entity to a dispenser.
+     *
+     * @param world The world of the affected entity.
+     * @param x The x coordinate in front of the dispenser.
+     * @param y The y coordinate in front of the dispenser.
+     * @param z The z coordinate in front of the dispenser.
+     * @return the nearest entity to the dispenser.
+     */
+    @Nullable
+    public static EntityLivingBase dispenseNearestEntity(World world, double x, double y, double z) {
+        // Gets a 1x1x1 bounding box corresponding to the block in front of the dispenser
+        AxisAlignedBB boundingBox = new AxisAlignedBB(new BlockPos(x, y, z));
+        List<EntityLivingBase> entities = world.getEntitiesWithinAABB(EntityLivingBase.class, boundingBox);
+        float distance = -1;
+        EntityLivingBase nearestEntity = null;
+        // Finds the nearest entity within the bounding box
+        for(EntityLivingBase entity : entities){
+            float newDistance = (float)entity.getDistance(x, y, z);
+            if(distance == -1 || newDistance < distance){
+                distance = newDistance;
+                nearestEntity = entity;
+            }
+        }
+        return nearestEntity;
+    }
 
 }

@@ -126,6 +126,7 @@ public class GeneratorSnippets {
         }
     }
 
+    @SuppressWarnings("deprecation")
     public static void writeArtefactSummaryPage(String modid, String modDisplayName, String githubRepo, String creativeTab) {
         int i = 1;
         List<Item> artefacts = ForgeRegistries.ITEMS.getValuesCollection().stream()

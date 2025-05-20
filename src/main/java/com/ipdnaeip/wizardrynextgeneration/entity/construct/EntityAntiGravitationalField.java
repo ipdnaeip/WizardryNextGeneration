@@ -36,10 +36,11 @@ public class EntityAntiGravitationalField extends EntityScaledConstruct {
                 if (target instanceof EntityLivingBase) {
                     ((EntityLivingBase)target).addPotionEffect(new PotionEffect(MobEffects.LEVITATION, 10, SpellBuff.getStandardBonusAmplifier(damageMultiplier)));
                 }
-/*                else {
-                    target.motionY += (0.05D * (((damageMultiplier - 1) * 3.5) + 1) - target.motionY) * 0.2D;
-                    target.move(MoverType.SELF, target.motionX, target.motionY, target.motionZ);
-                }*/
+                else {
+                    target.motionY += 0.05D * damageMultiplier;
+                    target.velocityChanged = true;
+
+                }
             }
         } else if (this.rand.nextInt(15) == 0) {
             double radius = (0.5 + this.rand.nextDouble() * 0.3) * (double)this.width / 2.0;

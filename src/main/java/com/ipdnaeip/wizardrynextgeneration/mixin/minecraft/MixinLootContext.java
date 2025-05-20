@@ -1,4 +1,4 @@
-package com.ipdnaeip.wizardrynextgeneration.mixins.minecraft;
+package com.ipdnaeip.wizardrynextgeneration.mixin.minecraft;
 
 import com.ipdnaeip.wizardrynextgeneration.accessor.LootContextAccessor;
 import net.minecraft.item.Item;

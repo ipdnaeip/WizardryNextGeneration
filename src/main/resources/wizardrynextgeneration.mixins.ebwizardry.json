@@ -1,5 +1,5 @@
 {
-  "package": "com.ipdnaeip.wizardrynextgeneration.mixins.ebwizardry",
+  "package": "com.ipdnaeip.wizardrynextgeneration.mixin.ebwizardry",
   "refmap": "wizardrynextgeneration.refmap.json",
   "minVersion": "0.8",
   "compatibilityLevel": "JAVA_8",

@@ -37,10 +37,10 @@ public class EntityGravitationalField extends EntityScaledConstruct {
                 if (target instanceof EntityLivingBase) {
                     ((EntityLivingBase)target).addPotionEffect(new PotionEffect(WNGPotions.GRAVITY, 10, SpellBuff.getStandardBonusAmplifier(damageMultiplier)));
                 }
-/*                else {
+                else {
                     target.motionY -= Math.pow(0.025, damageMultiplier);
-                    target.move(MoverType.SELF, target.motionX, target.motionY, target.motionZ);
-                }*/
+                    target.velocityChanged = true;
+                }
             }
         } else if (this.rand.nextInt(15) == 0) {
             double radius = (0.5 + this.rand.nextDouble() * 0.3) * (double)this.width / 2.0;

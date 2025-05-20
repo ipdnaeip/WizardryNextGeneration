@@ -12,28 +12,36 @@ import net.minecraft.util.text.TextComponentTranslation;
 
 public class BloodInfusion extends SpellBuff {
 
+    public static final String MINIMUM_HEALTH = "minimum_health";
+
     public BloodInfusion() {
         super(WizardryNextGeneration.MODID, "blood_infusion", 0.667f, 0, 0);
         this.soundValues(2f, 1f, 0.2f);
-        this.addProperties(HEALTH);
+        this.addProperties(HEALTH, MINIMUM_HEALTH);
     }
 
     protected boolean applyEffects(EntityLivingBase caster, SpellModifiers modifiers) {
-        float infuse = this.getProperty(HEALTH).floatValue() * (1 + modifiers.get(SpellModifiers.POTENCY));
-        //check if player can survive initial infusion
-        if (caster.getHealth() <= infuse) {
-            infuse = Math.min(caster.getHealth() + caster.getAbsorptionAmount() -0.5F, infuse);
-        }
-        if (caster.getHealth() <= 0.5F) {
+        float health = caster.getHealth();
+        float absorption = caster.getAbsorptionAmount();
+        float infuse = this.getProperty(HEALTH).floatValue() * modifiers.get(SpellModifiers.POTENCY) - absorption;
+        float minimum_health = this.getProperty(MINIMUM_HEALTH).floatValue();
+        //check if the player has enough health to infuse
+        if (health <= minimum_health) {
             WNGUtils.sendMessage(caster, "spell." + this.getUnlocalisedName() + ".low_health", true);
             return false;
         }
-        if(infuse <= caster.getAbsorptionAmount()) {
+        //check if the player can gain any more absorption
+        if(infuse <= 0) {
             WNGUtils.sendMessage(caster, "spell." + this.getUnlocalisedName() + ".full_shield", true);
             return false;
         }
-        caster.setHealth(caster.getHealth() + caster.getAbsorptionAmount() - infuse);
-        caster.setAbsorptionAmount(infuse);
+        //check if player can survive initial infusion
+        if (health - minimum_health < infuse) {
+            infuse = health - minimum_health;
+        }
+        //trade health for absorption
+        caster.setHealth(health - infuse);
+        caster.setAbsorptionAmount(infuse + absorption);
         return true;
     }
 

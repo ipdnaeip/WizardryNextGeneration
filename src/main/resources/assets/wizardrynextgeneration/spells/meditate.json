@@ -17,6 +17,7 @@
   "chargeup": 10,
   "cooldown": 10,
   "base_properties": {
-    "health": 0.5
+    "health": 0.5,
+    "blindness_duration": 35
   }
 }

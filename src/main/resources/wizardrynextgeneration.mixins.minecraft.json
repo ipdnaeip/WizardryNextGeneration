@@ -1,10 +1,10 @@
 {
-  "package": "com.ipdnaeip.wizardrynextgeneration.mixins.minecraft",
+  "package": "com.ipdnaeip.wizardrynextgeneration.mixin.minecraft",
   "refmap": "wizardrynextgeneration.refmap.json",
   "minVersion": "0.8",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
-    "MixinEntityArrowAccessor",
+    "MixinEntityArrow",
     "MixinLootContext",
     "MixinLootEntry",
     "MixinLootEntryItem",

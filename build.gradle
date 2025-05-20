@@ -204,6 +204,6 @@ task sourceJar(type: Jar, dependsOn: classes) {
 
 mixin {
     add sourceSets.main, "wizardrynextgeneration.refmap.json"
-    config "wizardrynextgeneration.minecraft.mixins.json"
-    config "wizardrynextgeneration.ebwizardry.mixins.json"
+    config "wizardrynextgeneration.mixins.ebwizardry.json"
+    config "wizardrynextgeneration.mixins.minecraft.json"
 }
