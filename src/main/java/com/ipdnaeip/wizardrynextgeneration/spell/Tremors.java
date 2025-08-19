@@ -34,32 +34,35 @@ public class Tremors extends SpellAreaEffect {
 
     @Override
     public boolean cast(World world, EntityPlayer caster, EnumHand hand, int ticksInUse, SpellModifiers modifiers) {
-        if (ticksInUse % 10 == 0 && caster.onGround) {
-            this.playSound(world, caster, ticksInUse, -1, modifiers);
+        if (!caster.onGround) {
+            return false;
+        } else if (ticksInUse % 10 == 0) {
             this.findAndAffectEntities(world, caster.getPositionVector(), caster, ticksInUse, modifiers);
-            return true;
+            this.playSound(world, caster, ticksInUse, -1, modifiers);
         }
-        return false;
+        return true;
     }
 
     @Override
     public boolean cast(World world, EntityLiving caster, EnumHand hand, int ticksInUse, EntityLivingBase target, SpellModifiers modifiers) {
-        if (ticksInUse % 10 == 0 && caster.onGround) {
-            this.playSound(world, caster, ticksInUse, -1, modifiers);
+        if (!caster.onGround) {
+            return false;
+        } else if (ticksInUse % 10 == 0) {
             this.findAndAffectEntities(world, caster.getPositionVector(), caster, ticksInUse, modifiers);
-            return true;
+            this.playSound(world, caster, ticksInUse, -1, modifiers);
         }
-        return false;
+        return true;
     }
 
     @Override
     public boolean cast(World world, double x, double y, double z, EnumFacing direction, int ticksInUse, int duration, SpellModifiers modifiers) {
-        if (ticksInUse % 10 == 0 && world.getBlockState(new BlockPos(x, y, z).down()).getBlock().isCollidable()) {
-            this.playSound(world, x, y, z, ticksInUse, -1, modifiers);
+        if (!world.getBlockState(new BlockPos(x, y, z).down()).getBlock().isCollidable()) {
+            return false;
+        } else if (ticksInUse % 10 == 0) {
             this.findAndAffectEntities(world, new Vec3d(x, y, z), null, ticksInUse, modifiers);
-            return true;
+            this.playSound(world, x, y, z, ticksInUse, -1, modifiers);
         }
-        return false;
+        return true;
     }
 
     @Override

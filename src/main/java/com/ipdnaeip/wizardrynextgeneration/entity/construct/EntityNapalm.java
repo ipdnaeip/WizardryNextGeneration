@@ -2,6 +2,7 @@ package com.ipdnaeip.wizardrynextgeneration.entity.construct;
 
 import com.ipdnaeip.wizardrynextgeneration.registry.WNGPotions;
 import com.ipdnaeip.wizardrynextgeneration.registry.WNGSpells;
+import electroblob.wizardry.spell.Spell;
 import electroblob.wizardry.spell.SpellBuff;
 import electroblob.wizardry.util.BlockUtils;
 import electroblob.wizardry.util.EntityUtils;
@@ -26,7 +27,7 @@ public class EntityNapalm extends EntityLivingScaledConstruct {
     public EntityNapalm(World world) {
         super(world);
         this.textureIndex = this.rand.nextInt(10);
-        this.setSize(WNGSpells.NAPALM.getProperty("effect_radius").floatValue(), 0.2F);
+        this.setSize(WNGSpells.NAPALM.getProperty(Spell.EFFECT_RADIUS).floatValue(), 0.2F);
     }
 
     @Override
@@ -40,7 +41,7 @@ public class EntityNapalm extends EntityLivingScaledConstruct {
             for (EntityLivingBase target : targets) {
                 if (isValidTarget(target)) {
                     if (!target.isPotionActive(WNGPotions.NAPALM)) {
-                        target.addPotionEffect(new PotionEffect(WNGPotions.NAPALM, WNGSpells.NAPALM.getProperty("effect_duration").intValue(), SpellBuff.getStandardBonusAmplifier(damageMultiplier)));
+                        target.addPotionEffect(new PotionEffect(WNGPotions.NAPALM, WNGSpells.NAPALM.getProperty(Spell.EFFECT_DURATION).intValue(), SpellBuff.getStandardBonusAmplifier(damageMultiplier)));
                     }
                     if (target.isBurning()) {
                         this.burningEntity = true;

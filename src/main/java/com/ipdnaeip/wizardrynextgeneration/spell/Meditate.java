@@ -57,6 +57,21 @@ public class Meditate extends Spell {
 
     @Override
     public boolean cast(World world, EntityPlayer caster, EnumHand hand, int ticksInUse, SpellModifiers modifiers) {
+/*        if (world.isRemote) {
+            System.out.println("client normal " + (caster.posX == caster.prevPosX && caster.posY == caster.prevPosY && caster.posZ == caster.prevPosZ));
+        }
+        if (!world.isRemote) {
+            System.out.println("server normal " + (caster.posX == caster.prevPosX && caster.posY == caster.prevPosY && caster.posZ == caster.prevPosZ));
+        }
+        WizardData data = WizardData.get(caster);
+        if (data != null) {
+            if (world.isRemote) {
+                System.out.println("client data " + ((data.getVariable(PREVIOUS_X) == caster.posX) && (data.getVariable(PREVIOUS_Y) == caster.posY) && ((data.getVariable(PREVIOUS_Z) == caster.posZ))));
+            }
+            if (!world.isRemote) {
+                System.out.println("server data " + ((data.getVariable(PREVIOUS_X) == caster.posX) && (data.getVariable(PREVIOUS_Y) == caster.posY) && ((data.getVariable(PREVIOUS_Z) == caster.posZ))));
+            }
+        }*/
         if (!isPlayerStill(caster)) {
             WNGUtils.sendMessage(caster, "spell." + this.getUnlocalisedName() + ".moving", true);
             return false;
@@ -67,9 +82,8 @@ public class Meditate extends Spell {
             caster.heal(this.getProperty(HEALTH).floatValue() * modifiers.get(SpellModifiers.POTENCY));
             this.playSound(world, caster, ticksInUse, -1, modifiers);
             if (world.isRemote) this.spawnParticles(world, caster, modifiers);
-            return true;
         }
-        return false;
+        return true;
     }
 
     @SubscribeEvent
@@ -86,7 +100,6 @@ public class Meditate extends Spell {
     public static boolean isPlayerStill(EntityPlayer player) {
         WizardData data = WizardData.get(player);
         if (data != null) {
-            System.out.println((data.getVariable(PREVIOUS_X) == player.posX) + " " + (data.getVariable(PREVIOUS_Y) == player.posY) + " " + ((data.getVariable(PREVIOUS_Z) == player.posZ)));
             if (data.getVariable(PREVIOUS_X) != player.posX) {
                 return false;
             } else if (data.getVariable(PREVIOUS_Y) != player.posY) {
@@ -100,7 +113,7 @@ public class Meditate extends Spell {
         return false;
     }
 
-    protected void spawnParticles(World world, EntityLivingBase caster, SpellModifiers modifiers){
+    public void spawnParticles(World world, EntityLivingBase caster, SpellModifiers modifiers){
         for(int i = 0; i < 10; i++){
             double x = caster.posX + world.rand.nextDouble() * 2 - 1;
             double y = caster.posY + caster.getEyeHeight() - 0.5 + world.rand.nextDouble();

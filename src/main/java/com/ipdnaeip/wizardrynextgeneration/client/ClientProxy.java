@@ -16,22 +16,24 @@ import com.ipdnaeip.wizardrynextgeneration.entity.projectile.EntityAcceleratedMa
 import com.ipdnaeip.wizardrynextgeneration.entity.projectile.EntityFissionBlast;
 import com.ipdnaeip.wizardrynextgeneration.entity.projectile.EntityConjuredPotion;
 import com.ipdnaeip.wizardrynextgeneration.entity.projectile.EntityPiercingMass;
+import com.ipdnaeip.wizardrynextgeneration.packet.s2c.PacketPhotosynthesis;
 import electroblob.wizardry.client.renderer.entity.RenderMagicArrow;
 import electroblob.wizardry.client.renderer.entity.RenderProjectile;
 import electroblob.wizardry.client.renderer.entity.RenderSigil;
 import electroblob.wizardry.client.renderer.entity.layers.LayerTiledOverlay;
-import net.minecraft.client.renderer.entity.RenderAbstractHorse;
 import net.minecraft.client.renderer.entity.RenderPigZombie;
-import net.minecraft.entity.passive.EntityMule;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 
 public class ClientProxy extends CommonProxy {
 
+    public void handlePhotosynthesisPacket(PacketPhotosynthesis.Message message) {
+
+    }
+
     @Override
     public void registerParticles() {
     }
-
 
     @Override
     public void registerRenderers() {

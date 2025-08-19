@@ -129,7 +129,7 @@ public final class WNGUtils {
      * @param entity The entity whose armor is being penetrated
      * @param damage The damage being modified
      * @param penetration The penetration value
-     * @param subtract If true, the penetration value is subtracted from the entity's total armor, otherwise the it penetrates a percentage of the entity's armor
+     * @param subtract If true, the penetration value is subtracted from the entity's total armor, otherwise it penetrates a percentage of the entity's armor
      * @return The damage amount post armor and penetration calculations
      */
     public static float penetrationDamage(EntityLivingBase entity, float damage, float penetration, boolean subtract) {

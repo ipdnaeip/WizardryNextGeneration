@@ -6,8 +6,8 @@ import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 
 public class ItemBlessedMeat extends ItemFood {
-    public ItemBlessedMeat() {
 
+    public ItemBlessedMeat() {
         super(8, 1.2F, true);
         this.setCreativeTab(WNGTabs.WIZARDRYNEXTGENERATION);
     }

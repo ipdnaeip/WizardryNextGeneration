@@ -10,6 +10,7 @@ import net.minecraft.world.storage.loot.LootContext;
 import net.minecraft.world.storage.loot.LootEntry;
 import net.minecraft.world.storage.loot.LootEntryItem;
 import net.minecraft.world.storage.loot.LootPool;
+import net.minecraft.world.storage.loot.conditions.LootCondition;
 import net.minecraft.world.storage.loot.conditions.LootConditionManager;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
@@ -30,7 +31,7 @@ public abstract class MixinLootPool implements LootPoolAccessor {
         return this.lootEntries;
     }
 
-    @Inject(method = "createLootRoll", at = @At("HEAD"), cancellable = true)
+/*    @Inject(method = "createLootRoll", at = @At("HEAD"), cancellable = true)
     public void createLootRoll(Collection<ItemStack> stacks, Random rand, LootContext context, CallbackInfo info) {
         if (((LootContextAccessor)context).wizardrynextgeneration$getFilter() != null) {
             info.cancel();
@@ -58,6 +59,19 @@ public abstract class MixinLootPool implements LootPoolAccessor {
                 }
             }
         }
+    }*/
+
+    @Redirect(method = "createLootRoll", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/storage/loot/LootEntry;getEffectiveWeight(F)I"))
+    private int redirectGetEffectiveWeight(LootEntry instance, float luck, Collection<ItemStack> stacks, Random rand, LootContext context) {
+        if (((LootContextAccessor)context).wizardrynextgeneration$getFilter() != null) {
+            if (instance instanceof LootEntryItem) {
+                LootEntryItem lootEntryItem = (LootEntryItem)instance;
+                if (((LootContextAccessor)context).wizardrynextgeneration$getFilter().test(((LootEntryItemAccessor)lootEntryItem).wizardrynextgeneration$getItem())) {
+                    return 0;
+                }
+            }
+        }
+        return instance.getEffectiveWeight(luck);
     }
 
 /*    @ModifyVariable(method = "createLootRoll", at = @At(value = "LOAD"), ordinal = 1)

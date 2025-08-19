@@ -49,7 +49,7 @@ public class Moonlight extends Spell {
             return false;
         }
         //check if the player can be healed and if the moon is out and visible by the player
-        if (caster.getHealth() < caster.getMaxHealth() && caster.getHealth() > 0.0F && ticksInUse % 10 == 0 && WNGUtils.hasMoonlight(caster)) {
+        if (caster.getHealth() < caster.getMaxHealth() && caster.getHealth() > 0.0F && ticksInUse % 10 == 0/* && WNGUtils.hasMoonlight(caster)*/) {
             caster.heal(this.getProperty(HEALTH).floatValue() * modifiers.get(SpellModifiers.POTENCY));
             this.playSound(world, caster, ticksInUse, -1, modifiers);
             if (world.isRemote) this.spawnParticles(world, caster, modifiers);
@@ -79,9 +79,10 @@ public class Moonlight extends Spell {
         if (entity != null && entity.getHealth() < entity.getMaxHealth() && entity.getHealth() > 0 && ticksInUse % 10 == 0 && WNGUtils.hasMoonlight(entity)) {
             entity.heal(this.getProperty(HEALTH).floatValue() * (1 + modifiers.get(SpellModifiers.POTENCY)));
             if (world.isRemote) this.spawnParticles(world, entity, modifiers);
+            this.playSound(world, x - direction.getXOffset(), y - direction.getYOffset(), z - direction.getZOffset(), ticksInUse, duration, modifiers);
+            return true;
         }
-        this.playSound(world, x - direction.getXOffset(), y - direction.getYOffset(), z - direction.getZOffset(), ticksInUse, duration, modifiers);
-        return true;
+        return false;
     }
 
     @Override
@@ -94,7 +95,7 @@ public class Moonlight extends Spell {
         return true;
     }
 
-    protected void spawnParticles(World world, EntityLivingBase caster, SpellModifiers modifiers){
+    public void spawnParticles(World world, EntityLivingBase caster, SpellModifiers modifiers){
         for(int i = 0; i < 10; i++){
             double x = caster.posX + world.rand.nextDouble() * 2 - 1;
             double y = caster.posY + caster.getEyeHeight() - 0.5 + world.rand.nextDouble();

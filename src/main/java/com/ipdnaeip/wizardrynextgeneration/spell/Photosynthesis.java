@@ -42,16 +42,27 @@ public class Photosynthesis extends Spell {
 
     @Override
     public boolean cast(World world, EntityPlayer caster, EnumHand hand, int ticksInUse, SpellModifiers modifiers) {
+        if (world.isRemote && WNGUtils.hasSunlight(caster)) {
+            System.out.println("client yes");
+        }
+        if (!world.isRemote && WNGUtils.hasSunlight(caster)) {
+            System.out.println("server yes");
+        }
+        if (world.isRemote && !WNGUtils.hasSunlight(caster)) {
+            System.out.println("client no");
+        }
+        if (!world.isRemote && !WNGUtils.hasSunlight(caster)) {
+            System.out.println("server no");
+        }
         if (!WNGUtils.hasSunlight(caster)) {
             WNGUtils.sendMessage(caster, "spell." + this.getUnlocalisedName() + ".no_sunlight", true);
             return false;
         }
         //check if the player can be healed and if the sun is out and visible by the player
-        if (caster.getHealth() < caster.getMaxHealth() && caster.getHealth() > 0.0F && ticksInUse % 10 == 0 && WNGUtils.hasSunlight(caster)) {
+        if (caster.getHealth() < caster.getMaxHealth() && caster.getHealth() > 0.0F && ticksInUse % 10 == 0/* && WNGUtils.hasSunlight(caster)*/) {
             caster.heal(this.getProperty(HEALTH).floatValue() * modifiers.get(SpellModifiers.POTENCY));
             this.playSound(world, caster, ticksInUse, -1, modifiers);
             if (world.isRemote) this.spawnParticles(world, caster, modifiers);
-            System.out.println(ticksInUse);
             return true;
         }
         return false;
@@ -78,9 +89,10 @@ public class Photosynthesis extends Spell {
         if (entity != null && entity.getHealth() < entity.getMaxHealth() && entity.getHealth() > 0 && ticksInUse % 10 == 0 && WNGUtils.hasSunlight(entity)) {
             entity.heal(this.getProperty(HEALTH).floatValue() * modifiers.get(SpellModifiers.POTENCY));
             if (world.isRemote) this.spawnParticles(world, entity, modifiers);
+            this.playSound(world, x - direction.getXOffset(), y - direction.getYOffset(), z - direction.getZOffset(), ticksInUse, duration, modifiers);
+            return true;
         }
-        this.playSound(world, x - direction.getXOffset(), y - direction.getYOffset(), z - direction.getZOffset(), ticksInUse, duration, modifiers);
-        return true;
+        return false;
     }
 
     @Override
@@ -93,7 +105,7 @@ public class Photosynthesis extends Spell {
         return true;
     }
 
-    protected void spawnParticles(World world, EntityLivingBase caster, SpellModifiers modifiers){
+    public void spawnParticles(World world, EntityLivingBase caster, SpellModifiers modifiers){
         for(int i = 0; i < 10; i++){
             double x = caster.posX + world.rand.nextDouble() * 2 - 1;
             double y = caster.posY + caster.getEyeHeight() - 0.5 + world.rand.nextDouble();

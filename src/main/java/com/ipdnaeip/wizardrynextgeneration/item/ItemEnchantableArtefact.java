@@ -1,6 +1,8 @@
 package com.ipdnaeip.wizardrynextgeneration.item;
 
+import com.google.common.collect.Lists;
 import com.ipdnaeip.wizardrynextgeneration.accessor.LootContextAccessor;
+import com.ipdnaeip.wizardrynextgeneration.accessor.LootPoolAccessor;
 import com.ipdnaeip.wizardrynextgeneration.handler.ArtefactEnchantingHandler;
 import electroblob.wizardry.Wizardry;
 import electroblob.wizardry.item.ItemArtefact;
@@ -14,13 +16,17 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import net.minecraft.world.storage.loot.*;
+import net.minecraft.world.storage.loot.conditions.LootConditionManager;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+import java.util.Random;
 import java.util.function.Predicate;
 
 public class ItemEnchantableArtefact extends Item {
@@ -93,11 +99,11 @@ public class ItemEnchantableArtefact extends Item {
             //Get the LootContext
             LootContext lootContext = new LootContext.Builder((WorldServer) world).withPlayer((EntityPlayer) entityLiving).withLuck(player.getLuck()).build();
             //Set the filter
-            ((LootContextAccessor)lootContext).wizardrynextgeneration$setFilter(itemsToBeAdded(this));
+            ((LootContextAccessor)lootContext).wizardrynextgeneration$setFilter(itemsToBeRemoved(this));
             //Get the artefact LootPool
             List<ItemStack> artefacts = lootTable.generateLootForPools(itemRand, lootContext);
             for (ItemStack artefact : artefacts) {
-                ((EntityPlayer) entityLiving).addItemStackToInventory(artefact);
+                ((EntityPlayer)entityLiving).addItemStackToInventory(artefact);
             }
         }
         return super.onItemUseFinish(stack, world, entityLiving);

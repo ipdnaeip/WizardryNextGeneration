@@ -8,8 +8,7 @@ buildscript {
             url 'https://maven.minecraftforge.net/'
         }
         maven {
-            name 'Garden of Fancy'
-            url 'https://maven.gofancy.wtf/releases'
+            url 'https://gitlab.com/api/v4/projects/70917004/packages/maven'
         }
         //fallback for fancygradle maven
         //mavenLocal()
@@ -53,7 +52,11 @@ minecraft {
 
     mappings channel: project.mappings_channel, version: "${project.mappings_version}-${project.mappings_mc_version}"
 
-    accessTransformer = file('src/main/resources/META-INF/accesstransformers.cfg')
+    def argsz = ["-Dmixin.debug.export=true",
+                 '-Dmixin.hotSwap=true',
+                 '-Dmixin.checks.interfaces=true',
+                 '--username', 'ipdnaeip', '--user', 'ipdnaeip', '--uuid', 'ed54ba92-c7f9-469c-b255-f46532efefdd',
+                 '-Dfml.coreMods.load=' + coremod_plugin_class_name]
 
     runs {
         client {
@@ -64,7 +67,7 @@ minecraft {
 
             // Recommended logging level for the console
             property 'forge.logging.console.level', 'info'
-            args '--username', 'ipdnaeip', '--user', 'ipdnaeip', '--uuid', 'ed54ba92-c7f9-469c-b255-f46532efefdd'
+            args argsz
         }
 
         server {
@@ -104,6 +107,7 @@ repositories {
     maven {
         url = uri('https://m2.dv8tion.net/releases')
     }
+    maven { url = 'https://maven.cleanroommc.com' }
     maven {
         url = uri('https://jitpack.io')
     }
@@ -111,37 +115,13 @@ repositories {
         // location for sources
         dirs 'build/libs'
     }
-
-    // For local development
-    flatDir {
-        dirs '../Wizardry/build/libs'
-    }
 }
 
 dependencies {
     //// MC version ////
-    // Specify the version of Minecraft to use, If this is any group other then 'net.minecraft' it is assumed
-    // that the dep is a ForgeGradle 'patcher' dependency. And it's patches will be applied.
-    // The userdev artifact is a special name and will get all sorts of transformations applied to it.
     minecraft "net.minecraftforge:forge:${project.mc_version}-${project.forge_version}"
-    //// MC version ////
-
-    // CurseForge Maven
-    // Currently unused
-    // CurseForge Maven usage: https://support.curseforge.com/en/support/solutions/articles/9000197321-curseforge-api
-    // Format: compile '{projectSlug}:{mavenArtifact}:{mavenVersion}:{projectFileNameTag}'
-
-    // CurseMaven - https://www.cursemaven.com/
-    // Format: curse.maven:<descriptor>-<projectid>:<fileid>
-    // Fields:
-    // curse.maven -> Required. Marks the dependency to be resolved by the curse maven website.
-    // <descriptor> -> Can be anything you want. This file downloaded will have this in it's name, so it's good to use this to show which files are what. A good practice would be to have this as the project slug.
-    // <projectid> -> The project id of the file you want to add as a dependency.
-    // <fileid> -> The file id of the file you want to add as a dependency.
-    // Test link: https://www.cursemaven.com/test/<projectid>/<fileid>/<Classifier?>
 
     //// Dependencies ////
-    annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
     annotationProcessor 'org.ow2.asm:asm-debug-all:5.2'
     annotationProcessor 'com.google.guava:guava:24.1.1-jre'
     annotationProcessor 'com.google.code.gson:gson:2.8.6'
@@ -151,7 +131,11 @@ dependencies {
     implementation fg.deobf("curse.maven:MixinBooter-${mixinbooter_projectid}:${mixinbooter_fileid}")
     implementation fg.deobf("mezz.jei:jei_${mc_version}:${jei_version}")
 
-    //// Dependencies ////
+}
+
+mixin {
+    add sourceSets.main, "wizardrynextgeneration.refmap.json"
+    disableAnnotationProcessorCheck()
 }
 
 fancyGradle {
@@ -202,8 +186,21 @@ task sourceJar(type: Jar, dependsOn: classes) {
     }
 }
 
-mixin {
-    add sourceSets.main, "wizardrynextgeneration.refmap.json"
-    config "wizardrynextgeneration.mixins.ebwizardry.json"
-    config "wizardrynextgeneration.mixins.minecraft.json"
+jar {
+    manifest {
+        attributes([
+                "Maven-Artifact"             : "${project.maven_group}:${project.archivesBaseName}:${project.version}",
+                "Specification-Title"        : archivesBaseName,
+                "Specification-Vendor"       : "ipdnaeip",
+                "Specification-Version"      : "1", // We are version 1 of ourselves
+                "Implementation-Title"       : project.name,
+                "Implementation-Version"     : "${version}",
+                "Implementation-Vendor"      : "ipdnaeip",
+                "Implementation-Timestamp"   : new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),
+                "FMLCorePlugin"              : "${coremod_plugin_class_name}",
+                "FMLCorePluginContainsFMLMod": true,
+                "Built-On-Java"              : "${System.getProperty('java.vm.version')} (${System.getProperty('java.vm.vendor')})",
+                "Built-On"                   : "${project.mc_version}-${project.forge_version}"
+        ])
+    }
 }
