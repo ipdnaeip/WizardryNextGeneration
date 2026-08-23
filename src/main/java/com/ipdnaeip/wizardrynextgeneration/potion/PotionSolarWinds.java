@@ -1,28 +1,21 @@
 package com.ipdnaeip.wizardrynextgeneration.potion;
 
 import com.ipdnaeip.wizardrynextgeneration.WizardryNextGeneration;
-import com.ipdnaeip.wizardrynextgeneration.registry.WNGItems;
-import com.ipdnaeip.wizardrynextgeneration.registry.WNGPotions;
-import electroblob.wizardry.Wizardry;
-import electroblob.wizardry.item.ItemArtefact;
 import electroblob.wizardry.potion.ICustomPotionParticles;
 import electroblob.wizardry.potion.PotionMagicEffect;
 import electroblob.wizardry.util.ParticleBuilder;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.settings.GameSettings;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.world.World;
-import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 
 @Mod.EventBusSubscriber
 public class PotionSolarWinds extends PotionMagicEffect implements ICustomPotionParticles {
+
+    //It doesn't look like I can feasibly allow NPCs to use this effect
 
     public PotionSolarWinds() {
         super(false, 0xFFB432, new ResourceLocation(WizardryNextGeneration.MODID, "textures/gui/potion_icons/solar_winds.png"));
@@ -32,7 +25,18 @@ public class PotionSolarWinds extends PotionMagicEffect implements ICustomPotion
         ParticleBuilder.create(ParticleBuilder.Type.MAGIC_FIRE).pos(x, y, z).clr(255, 180, 50).time(10).spawn(world);
     }
 
-    @SubscribeEvent
+    @Override
+    public boolean isReady(int duration, int amplifier) {
+        return duration % 20 == 0;
+    }
+
+    @Override
+    public void performEffect(EntityLivingBase entity, int strength) {
+        super.performEffect(entity, strength);
+        entity.getEntityWorld().playSound(null, entity.getPosition(), SoundEvents.ENTITY_BLAZE_BURN, SoundCategory.BLOCKS, 0.5F, entity.getEntityWorld().rand.nextFloat() * 0.2F + 0.9F);
+    }
+
+/*    @SubscribeEvent
     public static void onLivingUpdateEvent(LivingEvent.LivingUpdateEvent event) {
         EntityLivingBase entity = event.getEntityLiving();
         if (entity instanceof EntityPlayer) {
@@ -54,5 +58,5 @@ public class PotionSolarWinds extends PotionMagicEffect implements ICustomPotion
                 }
             }
         }
-    }
+    }*/
 }

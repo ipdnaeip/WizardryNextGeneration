@@ -16,7 +16,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(PotionEffect.class)
-public abstract class MixinPotionEffect {
+public abstract class MixinPotionEffect implements AccessorPotionEffect {
 
     @Shadow @Final private Potion potion;
 
@@ -24,6 +24,7 @@ public abstract class MixinPotionEffect {
 
     @Shadow private int amplifier;
 
+    //Replace this with an event that checks if the belt is equipped then adds +1 duration to all spells
     @Inject(method = "onUpdate", at = @At("HEAD"))
     private void onUpdate(EntityLivingBase entityLivingBase, CallbackInfoReturnable<Boolean> info) {
         if (entityLivingBase instanceof EntityPlayer) {

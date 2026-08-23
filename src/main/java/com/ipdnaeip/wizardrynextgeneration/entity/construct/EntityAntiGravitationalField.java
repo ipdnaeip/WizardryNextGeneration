@@ -3,6 +3,7 @@ package com.ipdnaeip.wizardrynextgeneration.entity.construct;
 import com.ipdnaeip.wizardrynextgeneration.registry.WNGSpells;
 import electroblob.wizardry.entity.construct.EntityScaledConstruct;
 import electroblob.wizardry.registry.WizardrySounds;
+import electroblob.wizardry.spell.Spell;
 import electroblob.wizardry.spell.SpellBuff;
 import electroblob.wizardry.util.EntityUtils;
 import electroblob.wizardry.util.ParticleBuilder;
@@ -21,7 +22,7 @@ public class EntityAntiGravitationalField extends EntityScaledConstruct {
 
     public EntityAntiGravitationalField(World world) {
         super(world);
-        this.setSize(WNGSpells.ANTI_GRAVITATIONAL_FIELD.getProperty("effect_radius").floatValue() * 2.0F, 10F);
+        this.setSize(WNGSpells.ANTI_GRAVITATIONAL_FIELD.getProperty(Spell.EFFECT_RADIUS).floatValue() * 2.0F, 10F);
     }
 
     public void onUpdate() {

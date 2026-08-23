@@ -1,6 +1,7 @@
 package com.ipdnaeip.wizardrynextgeneration.potion;
 
 import com.ipdnaeip.wizardrynextgeneration.WizardryNextGeneration;
+import com.ipdnaeip.wizardrynextgeneration.accessor.AccessorEntityLivingBase;
 import com.ipdnaeip.wizardrynextgeneration.registry.WNGPotions;
 import electroblob.wizardry.potion.PotionMagicEffect;
 import net.minecraft.entity.EntityList;
@@ -25,11 +26,17 @@ public class PotionBleed extends PotionMagicEffect {
         super(true, 0xAA0000, new ResourceLocation(WizardryNextGeneration.MODID, "textures/gui/potion_icons/bleed.png"));
     }
 
+    public static boolean canBleed(EntityLivingBase entity) {
+        if (WizardryNextGeneration.settings.bleedEffectWhitelist.contains(EntityList.getKey(entity.getClass()))) {
+            return true;
+        } else return !entity.isEntityUndead() && !(entity instanceof EntityGolem) && !WizardryNextGeneration.settings.bleedEffectBlacklist.contains(EntityList.getKey(entity.getClass()));
+	}
+
     @SubscribeEvent
     public static void onLivingUpdateEvent(LivingEvent.LivingUpdateEvent event) {
         EntityLivingBase entity = event.getEntityLiving();
         if (entity.isPotionActive(WNGPotions.BLEED)) {
-            if (entity.ticksExisted % (Math.max(40 - (entity.getActivePotionEffect(WNGPotions.BLEED).getAmplifier() * 5), 10)) == 0) {
+            if (entity.ticksExisted % (Math.max(30 - (entity.getActivePotionEffect(WNGPotions.BLEED).getAmplifier() * 2), 10)) == 0) {
                 entity.attackEntityFrom(DamageSource.WITHER, 1F);
             }
         }
@@ -45,19 +52,12 @@ public class PotionBleed extends PotionMagicEffect {
     }
 
     @SubscribeEvent
-    public static void onPotionAddedEvent(PotionEvent.PotionAddedEvent event) {
-        if (event.getOldPotionEffect() != null && event.getPotionEffect().getPotion() == WNGPotions.BLEED && event.getOldPotionEffect().getPotion() == WNGPotions.BLEED) {
-            event.getEntityLiving().removePotionEffect(WNGPotions.BLEED);
-            event.getEntityLiving().addPotionEffect(new PotionEffect(WNGPotions.BLEED, event.getPotionEffect().getDuration(), event.getOldPotionEffect().getAmplifier() + event.getPotionEffect().getAmplifier() + 1));
-        }
-    }
-
-    @SubscribeEvent
     public static void onLivingHealEvent(LivingHealEvent event) {
         EntityLivingBase entity = event.getEntityLiving();
-        if (entity.isPotionActive(WNGPotions.BLEED) && event.getAmount() > 0.5f) {
+        if (entity.isPotionActive(WNGPotions.BLEED) && !((AccessorEntityLivingBase)entity).wizardrynextgeneration$isNaturalHeal()) {
             entity.removePotionEffect(WNGPotions.BLEED);
         }
+        ((AccessorEntityLivingBase)entity).wizardrynextgeneration$setNaturalHeal(false);
     }
 
 }

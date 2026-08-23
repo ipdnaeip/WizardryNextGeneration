@@ -9,6 +9,8 @@ import javax.annotation.Nonnull;
 
 public class EnchantmentRanger extends Enchantment {
 
+    public static final float MOVEMENT_SPEED_PER_LEVEL = 0.75f;
+
     public EnchantmentRanger() {
         super(Rarity.RARE, EnumEnchantmentType.BOW, new EntityEquipmentSlot[]{EntityEquipmentSlot.MAINHAND});
     }

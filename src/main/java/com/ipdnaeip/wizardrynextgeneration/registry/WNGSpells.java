@@ -106,6 +106,8 @@ public final class WNGSpells {
     // WNG 1.0.7 Spells
     public static final Spell CALL_PACK_MULE = new CallPackMule();
     public static final Spell REST = new Rest();
+    public static final Spell CELESTIAL_BEAM = new CelestialBeam();
+
 
 
     @SubscribeEvent
@@ -208,6 +210,7 @@ public final class WNGSpells {
         // WNG 1.0.7 Spells
         registry.register(CALL_PACK_MULE);
         registry.register(REST);
+        registry.register(CELESTIAL_BEAM);
 
     }
 }

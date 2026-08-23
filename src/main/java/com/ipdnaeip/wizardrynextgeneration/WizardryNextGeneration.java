@@ -3,10 +3,7 @@ package com.ipdnaeip.wizardrynextgeneration;
 import com.ipdnaeip.wizardrynextgeneration.handler.ExperiencedPotionHandler;
 import com.ipdnaeip.wizardrynextgeneration.handler.WNGGuiHandler;
 import com.ipdnaeip.wizardrynextgeneration.item.ItemWNGWandUpgrade;
-import com.ipdnaeip.wizardrynextgeneration.registry.WNGAdvancementTriggers;
-import com.ipdnaeip.wizardrynextgeneration.registry.WNGItems;
-import com.ipdnaeip.wizardrynextgeneration.registry.WNGLoot;
-import com.ipdnaeip.wizardrynextgeneration.registry.WNGTabs;
+import com.ipdnaeip.wizardrynextgeneration.registry.*;
 import com.ipdnaeip.wizardrynextgeneration.util.GeneratorSnippets;
 import electroblob.wizardry.data.WizardData;
 import electroblob.wizardry.util.SpellNetworkIDSorter;
@@ -52,6 +49,7 @@ public class WizardryNextGeneration
     public void init(FMLInitializationEvent event) {
         NetworkRegistry.INSTANCE.registerGuiHandler(this, new WNGGuiHandler());
         proxy.registerParticles();
+        WNGPackets.initPackets();
         WNGItems.registerDispenseBehaviours();
         WNGItems.registerBookItems();
         ItemWNGWandUpgrade.init();

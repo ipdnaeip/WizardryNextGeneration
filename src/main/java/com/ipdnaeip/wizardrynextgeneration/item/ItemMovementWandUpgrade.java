@@ -14,16 +14,6 @@ import net.minecraftforge.fml.relauncher.Side;
 @Mod.EventBusSubscriber({Side.CLIENT})
 public class ItemMovementWandUpgrade extends ItemWNGWandUpgrade {
 
-    @SubscribeEvent
-    public static void onInputUpdateEvent(InputUpdateEvent event) {
-        EntityPlayer player = event.getEntityPlayer();
-        ItemStack stack = player.getActiveItemStack();
-        MovementInput input = event.getMovementInput();
-        if (player.isHandActive() && stack.getItem() instanceof ItemWand && WandHelper.getUpgradeLevel(player.getActiveItemStack(), WNGItems.UPGRADE_MOVEMENT) > 0) {
-            player.setSprinting(false);
-            input.moveStrafe *= 1F + WandHelper.getUpgradeLevel(player.getActiveItemStack(), WNGItems.UPGRADE_MOVEMENT);
-            input.moveForward *= 1F + WandHelper.getUpgradeLevel(player.getActiveItemStack(), WNGItems.UPGRADE_MOVEMENT);
-        }
-    }
+    public static final float MOVEMENT_PER_LEVEL = 1f;
 
 }

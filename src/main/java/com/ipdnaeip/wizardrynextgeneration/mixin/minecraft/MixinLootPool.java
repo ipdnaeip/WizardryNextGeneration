@@ -61,7 +61,7 @@ public abstract class MixinLootPool implements LootPoolAccessor {
         }
     }*/
 
-    @Redirect(method = "createLootRoll", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/storage/loot/LootEntry;getEffectiveWeight(F)I"))
+    @Redirect(method = "createLootRoll", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/storage/loot/LootEntry;getEffectiveWeight(F)I", ordinal = 0))
     private int redirectGetEffectiveWeight(LootEntry instance, float luck, Collection<ItemStack> stacks, Random rand, LootContext context) {
         if (((LootContextAccessor)context).wizardrynextgeneration$getFilter() != null) {
             if (instance instanceof LootEntryItem) {

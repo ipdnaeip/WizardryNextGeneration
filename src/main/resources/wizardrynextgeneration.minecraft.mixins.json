@@ -4,14 +4,19 @@
   "minVersion": "0.8",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
-    "MixinEntityArrow",
+    "AccessorEntityArrow",
+    "AccessorPotionEffect",
+    "MixinEntityLivingBase",
+    "MixinEntityPlayer",
+    "MixinFoodStats",
     "MixinLootContext",
     "MixinLootEntry",
     "MixinLootEntryItem",
     "MixinLootPool",
-    "MixinPotionEffect",
-    "MixinRender",
-    "MixinRenderGlobal"
+    "MixinTileEntityDispenser",
+    "MixinPotionEffect"
   ],
-  "client": []
+  "client": [
+    "MixinRender",
+    "MixinRenderGlobal"]
 }

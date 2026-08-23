@@ -37,14 +37,14 @@ item.wizardrynextgeneration:amulet_moon.desc=The lunar blessing prevents your ne
 
   #belt
 
-item.wizardrynextgeneration:belt_potion.name=Baba Yaga's Potion Belt
+item.wizardrynextgeneration:belt_potion.name=Potion Belt of the Crone
 item.wizardrynextgeneration:belt_potion.desc=Uses mana to extend the duration of your buff spells permanently
 
   #body
 
 item.wizardrynextgeneration:body_hashashin.name=Chestplate of the Hashashin
 item.wizardrynextgeneration:body_hashashin.desc=The chestplate of an ancient assassin. It allows you to stay quiet in the dark while sneaking
-item.wizardrynextgeneration:body_artemis.name=Quiver of Artemis
+item.wizardrynextgeneration:body_artemis.name=Quiver of the Huntress
 item.wizardrynextgeneration:body_artemis.desc=Arrows have a chance to return to your inventory. Arrows that miss will always return to your inventory
 
   #charm
@@ -72,12 +72,12 @@ item.wizardrynextgeneration:charm_yin_yang.desc=Healing spells are 30%% in the l
 
 item.wizardrynextgeneration:head_hashashin.name=Hood of the Hashashin
 item.wizardrynextgeneration:head_hashashin.desc=The mask of an ancient assassin. It allows you to hide better in the dark while sneaking
-item.wizardrynextgeneration:head_ra.name=Sun-Disk of Ra
+item.wizardrynextgeneration:head_ra.name=Sun-Disk of the Shining One
 item.wizardrynextgeneration:head_ra.desc=The crown of the sun god allows you to have better horizontal control in solar winds
-item.wizardrynextgeneration:head_rally.name=Leader's Crown
+item.wizardrynextgeneration:head_rally.name=Crown of the Future King
 item.wizardrynextgeneration:head_rally.desc=Increase the effectiveness of spells that apply the rally effect
-item.wizardrynextgeneration:head_raijin.name=Mask of Raijin
-item.wizardrynextgeneration:head_raijin.desc=The mask of the thunderlord allows high intensity lightning spells to paralyze creatures
+item.wizardrynextgeneration:head_raijin.name=Mask of the Thunder Lord
+item.wizardrynextgeneration:head_raijin.desc=The mask of the thunder lord allows high intensity lightning spells to paralyze creatures
 item.wizardrynextgeneration:head_sleeping_cap.name=Sleeping Cap
 item.wizardrynextgeneration:head_sleeping_cap.desc=Allows you to sleep during the day
 item.wizardrynextgeneration:head_thorns.name=Crown of Thorns

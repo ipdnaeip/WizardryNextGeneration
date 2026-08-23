@@ -43,14 +43,14 @@ public class WNGPotions {
     public static final Potion TAUNT = new PotionTaunt();
     public static final Potion VENEFICIUM = new PotionVeneficium();
     public static final Potion VULNERABILITY_MAGIC = new PotionVulnerability(8611773, new ResourceLocation(WizardryNextGeneration.MODID, "textures/gui/potion_icons/magic_weakness.png"));
-    public static final Potion VULNERABILITY_FIRE = new PotionEmpowerment(11141120, new ResourceLocation(WizardryNextGeneration.MODID, "textures/gui/potion_icons/magic_weakness.png"));
-    public static final Potion VULNERABILITY_FROST = new PotionEmpowerment(5636095, new ResourceLocation(WizardryNextGeneration.MODID, "textures/gui/potion_icons/magic_weakness.png"));
-    public static final Potion VULNERABILITY_SHOCK = new PotionEmpowerment(43690, new ResourceLocation(WizardryNextGeneration.MODID, "textures/gui/potion_icons/magic_weakness.png"));
-    public static final Potion VULNERABILITY_WITHER = new PotionEmpowerment(11141290, new ResourceLocation(WizardryNextGeneration.MODID, "textures/gui/potion_icons/magic_weakness.png"));
-    public static final Potion VULNERABILITY_POISON = new PotionEmpowerment(43520, new ResourceLocation(WizardryNextGeneration.MODID, "textures/gui/potion_icons/magic_weakness.png"));
-    public static final Potion VULNERABILITY_FORCE = new PotionEmpowerment(5635925, new ResourceLocation(WizardryNextGeneration.MODID, "textures/gui/potion_icons/magic_weakness.png"));
-    public static final Potion VULNERABILITY_BLAST = new PotionEmpowerment(5635925, new ResourceLocation(WizardryNextGeneration.MODID, "textures/gui/potion_icons/magic_weakness.png"));
-    public static final Potion VULNERABILITY_RADIANT = new PotionEmpowerment(16777045, new ResourceLocation(WizardryNextGeneration.MODID, "textures/gui/potion_icons/magic_weakness.png"));
+    public static final Potion VULNERABILITY_FIRE = new PotionVulnerability(11141120, new ResourceLocation(WizardryNextGeneration.MODID, "textures/gui/potion_icons/magic_weakness.png"));
+    public static final Potion VULNERABILITY_FROST = new PotionVulnerability(5636095, new ResourceLocation(WizardryNextGeneration.MODID, "textures/gui/potion_icons/magic_weakness.png"));
+    public static final Potion VULNERABILITY_SHOCK = new PotionVulnerability(43690, new ResourceLocation(WizardryNextGeneration.MODID, "textures/gui/potion_icons/magic_weakness.png"));
+    public static final Potion VULNERABILITY_WITHER = new PotionVulnerability(11141290, new ResourceLocation(WizardryNextGeneration.MODID, "textures/gui/potion_icons/magic_weakness.png"));
+    public static final Potion VULNERABILITY_POISON = new PotionVulnerability(43520, new ResourceLocation(WizardryNextGeneration.MODID, "textures/gui/potion_icons/magic_weakness.png"));
+    public static final Potion VULNERABILITY_FORCE = new PotionVulnerability(5635925, new ResourceLocation(WizardryNextGeneration.MODID, "textures/gui/potion_icons/magic_weakness.png"));
+    public static final Potion VULNERABILITY_BLAST = new PotionVulnerability(5635925, new ResourceLocation(WizardryNextGeneration.MODID, "textures/gui/potion_icons/magic_weakness.png"));
+    public static final Potion VULNERABILITY_RADIANT = new PotionVulnerability(16777045, new ResourceLocation(WizardryNextGeneration.MODID, "textures/gui/potion_icons/magic_weakness.png"));
 
     public static void registerPotion(IForgeRegistry<Potion> registry, String name, Potion potion) {
         potion.setRegistryName(WizardryNextGeneration.MODID, name);

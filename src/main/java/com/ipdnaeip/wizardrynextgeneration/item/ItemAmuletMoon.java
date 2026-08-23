@@ -23,16 +23,6 @@ public class ItemAmuletMoon extends ItemCooldownArtefact {
         this.addReadinessPropertyOverride();
     }
 
-    @Override
-    public boolean isReady(World world, ItemStack stack) {
-        if (world != null && !stack.isEmpty() && stack.hasTagCompound() && stack.getTagCompound().hasKey(CD_ARTEFACT_LAST_TIME_ACTIVATED)) {
-            long currentWorldTime = world.getTotalWorldTime();
-            long lastAccess = stack.getTagCompound().getLong(CD_ARTEFACT_LAST_TIME_ACTIVATED);
-            return isCooldownReset(lastAccess, currentWorldTime) && stack.getTagCompound().getBoolean(AMULET_MOON_FULL_MOON);
-        }
-        return true;
-    }
-
     public void action(EntityPlayer player, ItemStack stack) {
         player.setHealth(1F);
         player.clearActivePotions();

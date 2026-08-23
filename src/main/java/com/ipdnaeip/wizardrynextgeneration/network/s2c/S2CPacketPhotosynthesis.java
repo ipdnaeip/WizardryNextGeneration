@@ -1,4 +1,4 @@
-package com.ipdnaeip.wizardrynextgeneration.packet.s2c;
+package com.ipdnaeip.wizardrynextgeneration.network.s2c;
 
 import com.ipdnaeip.wizardrynextgeneration.WizardryNextGeneration;
 import io.netty.buffer.ByteBuf;
@@ -7,7 +7,7 @@ import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 
-public class PacketPhotosynthesis implements IMessageHandler<PacketPhotosynthesis.Message, IMessage> {
+public class S2CPacketPhotosynthesis implements IMessageHandler<S2CPacketPhotosynthesis.Message, IMessage> {
 
     @Override
     public IMessage onMessage(Message message, MessageContext ctx){

@@ -1,14 +1,17 @@
 package com.ipdnaeip.wizardrynextgeneration.handler;
 
 import baubles.api.BaublesApi;
+import com.ipdnaeip.wizardrynextgeneration.entity.living.EntityVampireBat;
+import com.ipdnaeip.wizardrynextgeneration.entity.living.EntityWebspitter;
 import com.ipdnaeip.wizardrynextgeneration.item.ItemAmuletMoon;
 import com.ipdnaeip.wizardrynextgeneration.item.ItemCharmBloodstone;
 import com.ipdnaeip.wizardrynextgeneration.item.ItemCharmHorn;
-import com.ipdnaeip.wizardrynextgeneration.accessor.EntityArrowAccessor;
-import com.ipdnaeip.wizardrynextgeneration.potion.PotionRally;
+import com.ipdnaeip.wizardrynextgeneration.mixin.minecraft.AccessorEntityArrow;
+import com.ipdnaeip.wizardrynextgeneration.potion.PotionBleed;
 import com.ipdnaeip.wizardrynextgeneration.registry.WNGItems;
 import com.ipdnaeip.wizardrynextgeneration.registry.WNGPotions;
 import com.ipdnaeip.wizardrynextgeneration.util.WNGUtils;
+import electroblob.wizardry.Wizardry;
 import electroblob.wizardry.constants.Element;
 import electroblob.wizardry.constants.Tier;
 import electroblob.wizardry.event.SpellCastEvent;
@@ -21,27 +24,25 @@ import electroblob.wizardry.util.MagicDamage;
 import electroblob.wizardry.util.SpellModifiers;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.init.MobEffects;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.event.entity.ProjectileImpactEvent;
-import net.minecraftforge.event.entity.living.LivingEvent;
-import net.minecraftforge.event.entity.living.LivingHurtEvent;
-import net.minecraftforge.event.entity.living.LootingLevelEvent;
-import net.minecraftforge.event.entity.living.PotionEvent;
+import net.minecraftforge.event.entity.living.*;
 import net.minecraftforge.event.entity.player.SleepingTimeCheckEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 import net.minecraftforge.fml.common.eventhandler.Event;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import org.apache.commons.lang3.ArrayUtils;
 
 import java.lang.reflect.Method;
 
@@ -49,12 +50,22 @@ import static electroblob.wizardry.item.ItemArtefact.getActiveArtefacts;
 
 
 @Mod.EventBusSubscriber
-public class WNGEventHandler {
+public class WNGServerEvents {
 
-    private static final Method getArrowStack = ObfuscationReflectionHelper.findMethod(EntityArrow.class, "func_184550_j", ItemStack.class);
     public static final String LAST_SPELL_ELEMENT = WNGUtils.registerTag("last_spell_element");
 
-    private WNGEventHandler() {}
+    private WNGServerEvents() {}
+
+    @SubscribeEvent
+    public static void onCheckSpawnEvent(LivingSpawnEvent.CheckSpawn event){
+        EntityLivingBase entity = event.getEntityLiving();
+        if (event.getSpawner() == null) {
+            if (entity instanceof EntityVampireBat || entity instanceof EntityWebspitter) {
+                if (!ArrayUtils.contains(Wizardry.settings.mobSpawnDimensions, event.getWorld().provider.getDimension()))
+                    event.setResult(Event.Result.DENY);
+            }
+        }
+    }
 
     @SubscribeEvent
     public static void onLivingHurtEvent(LivingHurtEvent event) {
@@ -254,18 +265,32 @@ public class WNGEventHandler {
     }
 
     @SubscribeEvent
-    public static void onPotionApplicableEvent(PotionEvent.PotionApplicableEvent event) {
-        if (event.getPotionEffect().getPotion() == WNGPotions.RALLY) {
-            if (event.getEntityLiving() instanceof EntityPlayer) {
-                EntityPlayer player = (EntityPlayer)event.getEntityLiving();
-                if (ItemArtefact.isArtefactActive(player, WNGItems.HEAD_RALLY)) {
-                    event.setResult(Event.Result.DENY);
-                    player.addPotionEffect(new PotionEffect(WNGPotions.RALLY, event.getPotionEffect().getDuration(), event.getPotionEffect().getAmplifier() + PotionRally.HEAD_RALLY_INCREASE));
-                }
-            }
+    public static void onPotionAddedEvent(PotionEvent.PotionAddedEvent event) {
+        PotionEffect potionEffect = event.getPotionEffect();
+        Potion potion = potionEffect.getPotion();
+        if (potion == WNGPotions.TAUNT) {
+
         }
     }
 
+    @SubscribeEvent
+    public static void onPotionApplicableEvent(PotionEvent.PotionApplicableEvent event) {
+        PotionEffect potionEffect = event.getPotionEffect();
+        Potion potion = potionEffect.getPotion();
+        EntityLivingBase entity = event.getEntityLiving();
+        if (potion == WNGPotions.SOLAR_WINDS) {
+            //Only players can fly with this effect!
+            if (!(entity instanceof EntityPlayer)) {
+                event.setResult(Event.Result.DENY);
+            }
+        } else if (potion == WNGPotions.BETRAYAL) {
+            event.setResult(Event.Result.DENY);
+        } else if (potion == WNGPotions.BLEED) {
+            if (!PotionBleed.canBleed(entity)) {
+                event.setResult(Event.Result.DENY);
+            }
+        }
+    }
 
     @SubscribeEvent
     public static void onProjectileImpactArrowEvent(ProjectileImpactEvent.Arrow event) {
@@ -273,7 +298,7 @@ public class WNGEventHandler {
             if (event.getArrow().shootingEntity instanceof EntityPlayer) {
                 EntityPlayer player = (EntityPlayer) event.getArrow().shootingEntity;
                 if (ItemArtefact.isArtefactActive(player, WNGItems.BODY_ARTEMIS) && !player.isCreative()) {
-                    ItemStack stack = ((EntityArrowAccessor)event.getArrow()).wizardrynextgeneration$getArrowStack();
+                    ItemStack stack = ((AccessorEntityArrow)event.getArrow()).wizardrynextgeneration$getArrowStack();
                     if (event.getRayTraceResult().entityHit instanceof EntityLivingBase) {
                         if (player.world.rand.nextFloat() < 0.5F) {
                             player.addItemStackToInventory(stack);

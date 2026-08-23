@@ -9,6 +9,8 @@ import javax.annotation.Nonnull;
 
 public class EnchantmentPhalanx extends Enchantment {
 
+    public static final float MOVEMENT_SPEED_PER_LEVEL = 0.75f;
+
     public EnchantmentPhalanx() {
         super(Rarity.RARE, WNGEnchantmentType.SHIELD, new EntityEquipmentSlot[]{EntityEquipmentSlot.MAINHAND});
     }

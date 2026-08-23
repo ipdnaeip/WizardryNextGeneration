@@ -27,7 +27,7 @@ public final class WNGUtils {
     }
 
     public static String registerTag(String key) {
-        return WizardryNextGeneration.MODID + "." + key;
+        return WizardryNextGeneration.MODID + "$" + key;
     }
 
     public static List<RayTraceResult> rayTraceMultiple2(World world, Vec3d origin, Vec3d endpoint, float aimAssist, boolean hitLiquids, boolean ignoreUncollidables, boolean returnLastUncollidable, boolean penetratesBlocks, Class<? extends Entity> entityType, Predicate<? super Entity> filter) {
@@ -81,17 +81,17 @@ public final class WNGUtils {
         if (rayTraceResult != null && !penetratesBlocks) {
             endpoint = rayTraceResult.hitVec;
         }
-        Vec3d intercept = null;
         for (Entity entity : entities) {
+            Vec3d intercept = null;
             float fuzziness = EntityUtils.isLiving(entity) ? aimAssist : 0.0F;
-            float currentHitDistance;
+            float collisionBorderSize;
             if (entity instanceof ICustomHitbox) {
-                intercept = ((ICustomHitbox) entity).calculateIntercept(origin, endpoint, fuzziness);
+                intercept = ((ICustomHitbox)entity).calculateIntercept(origin, endpoint, fuzziness);
             } else {
                 AxisAlignedBB entityBounds = entity.getEntityBoundingBox();
-                currentHitDistance = entity.getCollisionBorderSize();
-                if (currentHitDistance != 0.0F) {
-                    entityBounds = entityBounds.grow(currentHitDistance, currentHitDistance, currentHitDistance);
+                collisionBorderSize = entity.getCollisionBorderSize();
+                if (collisionBorderSize != 0.0F) {
+                    entityBounds = entityBounds.grow(collisionBorderSize, collisionBorderSize, collisionBorderSize);
                 }
                 if (fuzziness != 0.0F) {
                     entityBounds = entityBounds.grow(fuzziness, fuzziness, fuzziness);
@@ -102,15 +102,19 @@ public final class WNGUtils {
                 }
             }
             if (intercept != null) {
-                currentHitDistance = (float)intercept.distanceTo(origin);
-                float closestHitDistance = (float)endpoint.distanceTo(origin);
-                if (currentHitDistance < closestHitDistance) {
-                    RayTraceResult entityResult = new RayTraceResult(entity, intercept);
-                    result.add(entityResult);
-                }
+                RayTraceResult entityResult = new RayTraceResult(entity, intercept);
+                result.add(entityResult);
             }
         }
         return result;
+    }
+
+    public static Comparator<EntityLivingBase> compareClosestEntity(EntityLivingBase self) {
+        return (first, second) -> {
+			double distanceFirst = self.getDistanceSq(first);
+			double distanceSecond = self.getDistanceSq(second);
+			return Double.compare(distanceFirst, distanceSecond);
+		};
     }
 
     public static boolean hasSunlight(Entity entity) {

@@ -45,12 +45,20 @@ import com.ipdnaeip.wizardrynextgeneration.WizardryNextGeneration;
 import com.ipdnaeip.wizardrynextgeneration.registry.WNGItems;
 import com.ipdnaeip.wizardrynextgeneration.registry.WNGPotions;
 import electroblob.wizardry.spell.SpellBuff;
+import net.minecraft.entity.EntityLiving;
 import net.minecraft.item.Item;
 
 public class SolarWinds extends SpellBuff {
 
+    //SpellBuff should check if a potion is applicable before applying via dispenser
+
     public SolarWinds() {
         super(WizardryNextGeneration.MODID, "solar_winds", 1f, 0.706f, 0.196f, () -> WNGPotions.SOLAR_WINDS);
+    }
+
+    @Override
+    public boolean canBeCastBy(EntityLiving npc, boolean override) {
+        return false;
     }
 
     @Override

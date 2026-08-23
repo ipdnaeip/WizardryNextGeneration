@@ -2,6 +2,7 @@ package com.ipdnaeip.wizardrynextgeneration.potion;
 
 import com.ipdnaeip.wizardrynextgeneration.WizardryNextGeneration;
 import com.ipdnaeip.wizardrynextgeneration.registry.WNGPotions;
+import com.ipdnaeip.wizardrynextgeneration.util.WNGUtils;
 import electroblob.wizardry.potion.PotionMagicEffect;
 import electroblob.wizardry.util.EntityUtils;
 import net.minecraft.entity.EntityLiving;
@@ -25,11 +26,14 @@ public class PotionBetrayal extends PotionMagicEffect {
     public static void onLivingUpdateEvent(LivingEvent.LivingUpdateEvent event) {
         EntityLivingBase entity = event.getEntityLiving();
         if (entity instanceof EntityLiving) {
-            if (entity.isPotionActive(WNGPotions.BETRAYAL)) {
-                List<EntityLivingBase> targets = EntityUtils.getLivingWithinRadius(8 + (4 * entity.getActivePotionEffect(WNGPotions.BETRAYAL).getAmplifier()), entity.posX, entity.posY, entity.posZ, entity.getEntityWorld());
+            EntityLiving entityLiving = (EntityLiving)entity;
+            if (entityLiving.isPotionActive(WNGPotions.BETRAYAL) && !(entityLiving.getAttackTarget() instanceof IMob)) {
+                List<EntityLivingBase> targets = EntityUtils.getLivingWithinRadius(8 + (4 * entityLiving.getActivePotionEffect(WNGPotions.BETRAYAL).getAmplifier()), entityLiving.posX, entityLiving.posY, entityLiving.posZ, entityLiving.world);
+                targets.sort(WNGUtils.compareClosestEntity(entityLiving));
                 for (EntityLivingBase targetEntity : targets) {
-                    if (targetEntity != entity && entity instanceof IMob && targetEntity instanceof IMob) {
-                        ((EntityLiving)entity).setAttackTarget(targetEntity);
+                    if (targetEntity != entityLiving && entityLiving instanceof IMob && targetEntity instanceof IMob) {
+                        entityLiving.setAttackTarget(targetEntity);
+                        break;
                     }
                 }
             }

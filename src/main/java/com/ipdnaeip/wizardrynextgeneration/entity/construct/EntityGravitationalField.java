@@ -4,6 +4,7 @@ import com.ipdnaeip.wizardrynextgeneration.registry.WNGPotions;
 import com.ipdnaeip.wizardrynextgeneration.registry.WNGSpells;
 import electroblob.wizardry.entity.construct.EntityScaledConstruct;
 import electroblob.wizardry.registry.WizardrySounds;
+import electroblob.wizardry.spell.Spell;
 import electroblob.wizardry.spell.SpellBuff;
 import electroblob.wizardry.util.EntityUtils;
 import electroblob.wizardry.util.ParticleBuilder;
@@ -22,7 +23,7 @@ public class EntityGravitationalField extends EntityScaledConstruct {
 
     public EntityGravitationalField(World world) {
         super(world);
-        this.setSize(WNGSpells.GRAVITATIONAL_FIELD.getProperty("effect_radius").floatValue() * 2.0F, 10F);
+        this.setSize(WNGSpells.GRAVITATIONAL_FIELD.getProperty(Spell.EFFECT_RADIUS).floatValue() * 2.0F, 10F);
     }
 
     public void onUpdate() {

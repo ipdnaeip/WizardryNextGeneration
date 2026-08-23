@@ -4,10 +4,12 @@ import com.ipdnaeip.wizardrynextgeneration.WizardryNextGeneration;
 import com.ipdnaeip.wizardrynextgeneration.registry.WNGPotions;
 import electroblob.wizardry.entity.living.ISummonedCreature;
 import electroblob.wizardry.potion.PotionMagicEffect;
+import electroblob.wizardry.util.AllyDesignationSystem;
 import electroblob.wizardry.util.EntityUtils;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.monster.IMob;
+import net.minecraft.util.EntitySelectors;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -22,18 +24,26 @@ public class PotionTaunt extends PotionMagicEffect {
         super(false, 0xAA6464, new ResourceLocation(WizardryNextGeneration.MODID, "textures/gui/potion_icons/taunt.png"));
     }
 
+    public static void tauntEnemies(EntityLivingBase taunter, double radius, boolean forceAttack) {
+        List<EntityLiving> tauntedEntities = EntityUtils.getEntitiesWithinRadius(radius, taunter.posX, taunter.posY, taunter.posZ, taunter.world, EntityLiving.class);
+        for (EntityLiving tauntedEntity : tauntedEntities) {
+            if (forceAttack || tauntedEntity.getAttackTarget() == null) {
+                if (AllyDesignationSystem.isValidTarget(tauntedEntity, taunter) && EntitySelectors.CAN_AI_TARGET.test(tauntedEntity)) {
+                    tauntedEntity.setAttackTarget(taunter);
+                }
+            }
+        }
+    }
+
+    public static double getRadiusForAmplifier(int amplifier) {
+        return 8 + 4 * amplifier;
+    }
+
     @SubscribeEvent
     public static void onLivingUpdateEvent(LivingEvent.LivingUpdateEvent event) {
         EntityLivingBase entity = event.getEntityLiving();
         if (entity.isPotionActive(WNGPotions.TAUNT)) {
-            List<EntityLivingBase> targets = EntityUtils.getLivingWithinRadius(8 + (4 * entity.getActivePotionEffect(WNGPotions.TAUNT).getAmplifier()), entity.posX, entity.posY, entity.posZ, entity.getEntityWorld());
-            for (EntityLivingBase targetEntity : targets) {
-                if (targetEntity != entity && targetEntity instanceof IMob && targetEntity instanceof EntityLiving) {
-                    if (!(targetEntity instanceof ISummonedCreature) || ((ISummonedCreature) targetEntity).getCaster() instanceof IMob) {
-                        ((EntityLiving)targetEntity).setAttackTarget(entity);
-                    }
-                }
-            }
+            tauntEnemies(entity, getRadiusForAmplifier(entity.getActivePotionEffect(WNGPotions.TAUNT).getAmplifier()), false);
         }
     }
 }

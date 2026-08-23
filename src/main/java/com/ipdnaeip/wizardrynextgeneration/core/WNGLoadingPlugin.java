@@ -1,3 +1,4 @@
+/*
 package com.ipdnaeip.wizardrynextgeneration.core;
 
 import net.minecraftforge.common.ForgeVersion;
@@ -44,22 +45,13 @@ public class WNGLoadingPlugin implements IFMLLoadingPlugin, IEarlyMixinLoader {
 	@Override
 	public List<String> getMixinConfigs() {
 		List<String> configs = new ArrayList<>();
-		// CLIENT ONLY
-		if (isClient) {
-			configs.add("wizardrynextgeneration.minecraft.client.mixins.json");
-		}
-		// COMMON
 		configs.add("wizardrynextgeneration.minecraft.mixins.json");
 		return configs;
 	}
 
 	@Override
 	public boolean shouldMixinConfigQueue(String mixinConfig) {
-		if (isClient) {
-			if (mixinConfig.equals("wizardrynextgeneration.minecraft.client.mixins.json")) {
-				return true;
-			}
-		}
 		return true;
 	}
 }
+*/

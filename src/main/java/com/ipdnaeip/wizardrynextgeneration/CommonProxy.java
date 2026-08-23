@@ -1,13 +1,13 @@
 package com.ipdnaeip.wizardrynextgeneration;
 
-import com.ipdnaeip.wizardrynextgeneration.packet.s2c.PacketPhotosynthesis;
+import com.ipdnaeip.wizardrynextgeneration.network.s2c.S2CPacketPhotosynthesis;
 
 public class CommonProxy {
 
     public CommonProxy() {
     }
 
-    public void handlePhotosynthesisPacket(PacketPhotosynthesis.Message message) {}
+    public void handlePhotosynthesisPacket(S2CPacketPhotosynthesis.Message message) {}
     public void registerParticles() {
     }
 

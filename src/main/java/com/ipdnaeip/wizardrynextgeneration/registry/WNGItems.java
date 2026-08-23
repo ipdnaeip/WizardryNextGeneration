@@ -39,7 +39,6 @@ public final class WNGItems {
     public static final Item ENCHANTABLE_CHARM = new ItemEnchantableArtefact(ItemArtefact.Type.CHARM);
     public static final Item ENCHANTABLE_HEAD = new ItemEnchantableArtefact(ItemArtefact.Type.HEAD);
     public static final Item ENCHANTABLE_RING = new ItemEnchantableArtefact(ItemArtefact.Type.RING);
-    public static final Item ENCHANTABLE_TRINKET = new ItemEnchantableArtefact(ItemArtefact.Type.TRINKET);
     public static final Item SCROLL_WNG = new ItemScroll();
     public static final Item SPELL_BOOK_WNG = new ItemWNGSpellBook();
     public static final Item SPELL_ENCYCLOPEDIA = new ItemSpellEncyclopedia();
@@ -154,7 +153,6 @@ public final class WNGItems {
         registerItem(registry, "enchantable_charm", ENCHANTABLE_CHARM);
         registerItem(registry, "enchantable_head", ENCHANTABLE_HEAD);
         registerItem(registry, "enchantable_ring", ENCHANTABLE_RING);
-        registerItem(registry, "enchantable_trinket", ENCHANTABLE_TRINKET);
         registerItem(registry, "scroll_wng", SCROLL_WNG);
         registerItem(registry, "spell_book_wng", SPELL_BOOK_WNG);
         registerItem(registry, "spell_encyclopedia", SPELL_ENCYCLOPEDIA);

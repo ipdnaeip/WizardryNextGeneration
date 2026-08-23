@@ -17,15 +17,16 @@ import javax.annotation.Nullable;
 //most of the code was copied from Windanesz's ItemDailyArtefact
 public abstract class ItemCooldownArtefact extends ItemWNGArtefact {
 
-    public static final String CD_ARTEFACT_LAST_TIME_ACTIVATED = WNGUtils.registerTag("cd_artefact_last_time_activated");
-    public long cooldown;
+    public static final String LAST_TIME_ACTIVATED = WNGUtils.registerTag("last_time_activated");
+    public static final String COOLDOWN = WNGUtils.registerTag("last_time_activated");
+    int cooldown;
 
     public ItemCooldownArtefact(EnumRarity rarity, Type type) {
         super(rarity, type);
     }
 
     //24000 is a full day
-    public void setCooldown(long cooldown) {
+    public void setCooldown(int cooldown) {
         this.cooldown = cooldown;
     }
 
@@ -42,17 +43,14 @@ public abstract class ItemCooldownArtefact extends ItemWNGArtefact {
         });
     }
 
-    public boolean isReady(World world, ItemStack stack) {
-        if (world != null && !stack.isEmpty() && stack.hasTagCompound() && stack.getTagCompound().hasKey(CD_ARTEFACT_LAST_TIME_ACTIVATED)) {
+    public static boolean isReady(World world, ItemStack stack) {
+        if (world != null && !stack.isEmpty() && stack.hasTagCompound()) {
             long currentWorldTime = world.getTotalWorldTime();
-            long lastAccess = stack.getTagCompound().getLong(CD_ARTEFACT_LAST_TIME_ACTIVATED);
-            return isCooldownReset(lastAccess, currentWorldTime);
+            long lastAccess = stack.getTagCompound().getLong(LAST_TIME_ACTIVATED);
+            int cooldown = stack.getTagCompound().getInteger(COOLDOWN);
+            return currentWorldTime >= lastAccess + cooldown;
         }
         return true;
-    }
-
-    public boolean isCooldownReset(long startTime, long endTime) {
-        return (endTime - startTime) >= cooldown;
     }
 
     public void performAction(EntityPlayer player, ItemStack stack) {
@@ -65,13 +63,17 @@ public abstract class ItemCooldownArtefact extends ItemWNGArtefact {
     public abstract void action(EntityPlayer player, ItemStack stack);
 
     public static void setLastTimeActivated(ItemStack stack, long currentTime) {
+        if (!(stack.getItem() instanceof ItemCooldownArtefact)) {
+            return;
+        }
         NBTTagCompound nbt;
         if (stack.hasTagCompound()) {
             nbt = stack.getTagCompound();
         } else {
             nbt = new NBTTagCompound();
         }
-        nbt.setLong(CD_ARTEFACT_LAST_TIME_ACTIVATED, currentTime);
+        nbt.setLong(LAST_TIME_ACTIVATED, currentTime);
+        nbt.setInteger(COOLDOWN, ((ItemCooldownArtefact)stack.getItem()).cooldown);
         stack.setTagCompound(nbt);
     }
 
