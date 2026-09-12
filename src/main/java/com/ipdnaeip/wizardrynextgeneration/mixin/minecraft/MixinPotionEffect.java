@@ -24,8 +24,7 @@ public abstract class MixinPotionEffect implements AccessorPotionEffect {
 
     @Shadow private int amplifier;
 
-    //Replace this with an event that checks if the belt is equipped then adds +1 duration to all spells
-    @Inject(method = "onUpdate", at = @At("HEAD"))
+/*    @Inject(method = "onUpdate", at = @At("HEAD"))
     private void onUpdate(EntityLivingBase entityLivingBase, CallbackInfoReturnable<Boolean> info) {
         if (entityLivingBase instanceof EntityPlayer) {
             EntityPlayer player = (EntityPlayer)entityLivingBase;
@@ -41,5 +40,6 @@ public abstract class MixinPotionEffect implements AccessorPotionEffect {
                 }
             }
         }
-    }
+    }*/
+
 }

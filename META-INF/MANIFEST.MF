@@ -1,7 +1,0 @@
-Manifest-Version: 1.0
-FMLAT: META-INF/accesstransformer.cfg
-MixinConfigs: wizardrynextgeneration.minecraft.mixins.json,wizardrynextg
- eneration.ebwizardry.mixins.json
-MixinConnector: com.ipdnaeip.wizardrynextgeneration.core.WNGMixinConnect
- or
-

@@ -182,7 +182,7 @@ jar {
             attributeMap['FMLAT'] = propertyString('access_transformer_locations')
         }
         attributeMap['MixinConfigs'] = 'wizardrynextgeneration.minecraft.mixins.json,wizardrynextgeneration.ebwizardry.mixins.json'
-        attributeMap['MixinConnector'] = 'com.ipdnaeip.wizardrynextgeneration.core.WNGMixinConnector'
+        //attributeMap['MixinConnector'] = 'com.ipdnaeip.wizardrynextgeneration.core.WNGMixinConnector'
         attributes(attributeMap)
     }
     from(provider { configurations.embed.collect { it.isDirectory() ? it : zipTree(it) } })

@@ -28,7 +28,7 @@ public class PotionTaunt extends PotionMagicEffect {
         List<EntityLiving> tauntedEntities = EntityUtils.getEntitiesWithinRadius(radius, taunter.posX, taunter.posY, taunter.posZ, taunter.world, EntityLiving.class);
         for (EntityLiving tauntedEntity : tauntedEntities) {
             if (forceAttack || tauntedEntity.getAttackTarget() == null) {
-                if (AllyDesignationSystem.isValidTarget(tauntedEntity, taunter) && EntitySelectors.CAN_AI_TARGET.test(tauntedEntity)) {
+                if (AllyDesignationSystem.isValidTarget(tauntedEntity, taunter) && EntitySelectors.CAN_AI_TARGET.test(tauntedEntity) && tauntedEntity.canEntityBeSeen(taunter)) {
                     tauntedEntity.setAttackTarget(taunter);
                 }
             }

@@ -11,7 +11,6 @@ public class ItemCharmHorn extends ItemCooldownArtefact {
     public ItemCharmHorn(EnumRarity rarity, Type type) {
         super(rarity, type);
         this.setCooldown(24000);
-        this.addReadinessPropertyOverride();
     }
 
     public void action(EntityPlayer player, ItemStack stack) {

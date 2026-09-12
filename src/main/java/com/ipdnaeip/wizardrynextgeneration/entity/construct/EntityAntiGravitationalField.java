@@ -35,7 +35,7 @@ public class EntityAntiGravitationalField extends EntityScaledConstruct {
             targets.removeIf(target -> target == this);
             for (Entity target : targets) {
                 if (target instanceof EntityLivingBase) {
-                    ((EntityLivingBase)target).addPotionEffect(new PotionEffect(MobEffects.LEVITATION, 10, SpellBuff.getStandardBonusAmplifier(damageMultiplier)));
+                    ((EntityLivingBase)target).addPotionEffect(new PotionEffect(MobEffects.LEVITATION, 1, SpellBuff.getStandardBonusAmplifier(damageMultiplier), true, true));
                 }
                 else {
                     target.motionY += 0.05D * damageMultiplier;

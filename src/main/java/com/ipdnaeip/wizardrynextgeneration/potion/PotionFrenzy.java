@@ -32,7 +32,7 @@ public class PotionFrenzy extends PotionMagicEffect {
                 List<EntityLivingBase> targets = EntityUtils.getLivingWithinRadius(8 + (4 * attacker.getActivePotionEffect(WNGPotions.FRENZY).getAmplifier()), attacker.posX, attacker.posY, attacker.posZ, attacker.world);
                 targets.sort(WNGUtils.compareClosestEntity(attacker));
                 for (EntityLivingBase target : targets) {
-                    if (target != attacker && EntitySelectors.CAN_AI_TARGET.test(target)) {
+                    if (target != attacker && EntitySelectors.CAN_AI_TARGET.test(target) && entity.canEntityBeSeen(target)) {
                         attacker.setAttackTarget(target);
                         break;
                     }

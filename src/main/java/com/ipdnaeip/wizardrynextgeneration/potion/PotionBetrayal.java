@@ -31,7 +31,7 @@ public class PotionBetrayal extends PotionMagicEffect {
                 List<EntityLivingBase> targets = EntityUtils.getLivingWithinRadius(8 + (4 * entityLiving.getActivePotionEffect(WNGPotions.BETRAYAL).getAmplifier()), entityLiving.posX, entityLiving.posY, entityLiving.posZ, entityLiving.world);
                 targets.sort(WNGUtils.compareClosestEntity(entityLiving));
                 for (EntityLivingBase targetEntity : targets) {
-                    if (targetEntity != entityLiving && entityLiving instanceof IMob && targetEntity instanceof IMob) {
+                    if (targetEntity != entityLiving && entityLiving instanceof IMob && targetEntity instanceof IMob && entityLiving.canEntityBeSeen(targetEntity)) {
                         entityLiving.setAttackTarget(targetEntity);
                         break;
                     }

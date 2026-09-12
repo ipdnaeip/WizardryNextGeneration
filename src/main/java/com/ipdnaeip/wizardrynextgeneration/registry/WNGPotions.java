@@ -14,6 +14,7 @@ import net.minecraftforge.registries.IForgeRegistry;
 @Mod.EventBusSubscriber
 public class WNGPotions {
 
+    public static final Potion ACROBATICS = new PotionAcrobatics().setBeneficial();
     public static final Potion ANIMAL_ALLEGIANCE = new PotionAnimalAllegiance().setBeneficial();
     public static final Potion BETRAYAL = new PotionBetrayal();
     public static final Potion BLEED = new PotionBleed();
@@ -63,6 +64,7 @@ public class WNGPotions {
 
         IForgeRegistry<Potion> registry = event.getRegistry();
 
+        registerPotion(registry, "acrobatics", ACROBATICS);
         registerPotion(registry, "animal_allegiance", ANIMAL_ALLEGIANCE);
         registerPotion(registry, "betrayal", BETRAYAL);
         registerPotion(registry, "bleed", BLEED);

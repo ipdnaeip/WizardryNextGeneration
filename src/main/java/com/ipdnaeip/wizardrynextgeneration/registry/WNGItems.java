@@ -43,7 +43,7 @@ public final class WNGItems {
     public static final Item SPELL_BOOK_WNG = new ItemWNGSpellBook();
     public static final Item SPELL_ENCYCLOPEDIA = new ItemSpellEncyclopedia();
     public static final Item UPGRADE_CHARGEUP = new ItemChargeupWandUpgrade();
-    public static final Item UPGRADE_LOOTING = new ItemLootingWandUpgrade();
+    public static final Item UPGRADE_LOOTING = new ItemWNGWandUpgrade();
     public static final Item UPGRADE_MOVEMENT = new ItemMovementWandUpgrade();
 
     //amulet

@@ -41,7 +41,7 @@ public class EntityNapalm extends EntityLivingScaledConstruct {
             for (EntityLivingBase target : targets) {
                 if (isValidTarget(target)) {
                     if (!target.isPotionActive(WNGPotions.NAPALM)) {
-                        target.addPotionEffect(new PotionEffect(WNGPotions.NAPALM, WNGSpells.NAPALM.getProperty(Spell.EFFECT_DURATION).intValue(), SpellBuff.getStandardBonusAmplifier(damageMultiplier)));
+                        target.addPotionEffect(new PotionEffect(WNGPotions.NAPALM, WNGSpells.NAPALM.getProperty(Spell.EFFECT_DURATION).intValue(), SpellBuff.getStandardBonusAmplifier(this.damageMultiplier)));
                     }
                     if (target.isBurning()) {
                         this.burningEntity = true;

@@ -1,3 +1,4 @@
+/*
 package com.ipdnaeip.wizardrynextgeneration.core;
 
 import net.minecraftforge.common.ForgeVersion;
@@ -35,3 +36,4 @@ public class WNGCoreMod implements IFMLLoadingPlugin {
 	}
 
 }
+*/

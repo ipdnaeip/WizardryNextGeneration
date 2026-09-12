@@ -20,19 +20,34 @@ public class ItemAmuletMoon extends ItemCooldownArtefact {
     public ItemAmuletMoon(EnumRarity rarity, Type type) {
         super(rarity, type);
         this.setCooldown(24000);
-        this.addReadinessPropertyOverride();
     }
 
+    @Override
+    public boolean areAdditionalConditionsMet(World world, ItemStack stack) {
+        if (stack.hasTagCompound()) {
+			return stack.getTagCompound().getBoolean(AMULET_MOON_FULL_MOON);
+		}
+        return false;
+    }
+
+    @Override
     public void action(EntityPlayer player, ItemStack stack) {
         player.setHealth(1F);
         player.clearActivePotions();
         player.addPotionEffect(new PotionEffect(MobEffects.ABSORPTION, 100, 1));
         player.addPotionEffect(new PotionEffect(MobEffects.REGENERATION, 900, 1));
         player.world.playSound(player, player.getPosition(), SoundEvents.ITEM_TOTEM_USE, SoundCategory.BLOCKS, 1F, 0F);
-        setHasBeenFullMoon(stack, false);
+        setFullMoon(stack, false);
     }
 
-    public static void setHasBeenFullMoon(ItemStack stack, boolean fullMoon) {
+    public static boolean hasFullMoon(ItemStack stack) {
+        if (stack.hasTagCompound()) {
+            return stack.getTagCompound().getBoolean(AMULET_MOON_FULL_MOON);
+        }
+        return false;
+    }
+
+    public static void setFullMoon(ItemStack stack, boolean fullMoon) {
         NBTTagCompound nbt;
         if (stack.hasTagCompound()) {
             nbt = stack.getTagCompound();

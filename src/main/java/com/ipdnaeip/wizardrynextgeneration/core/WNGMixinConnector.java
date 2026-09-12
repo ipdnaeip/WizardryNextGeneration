@@ -1,3 +1,4 @@
+/*
 package com.ipdnaeip.wizardrynextgeneration.core;
 
 import net.minecraftforge.fml.common.Loader;
@@ -15,3 +16,4 @@ public class WNGMixinConnector implements IMixinConnector {
 	}
 
 }
+*/

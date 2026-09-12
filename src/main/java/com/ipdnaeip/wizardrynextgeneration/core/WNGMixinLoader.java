@@ -1,4 +1,3 @@
-/*
 package com.ipdnaeip.wizardrynextgeneration.core;
 
 import electroblob.wizardry.Wizardry;
@@ -25,4 +24,4 @@ public class WNGMixinLoader implements ILateMixinLoader {
 		}
 		return true;
 	}
-}*/
+}

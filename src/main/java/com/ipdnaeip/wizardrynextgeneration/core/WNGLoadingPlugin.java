@@ -1,4 +1,3 @@
-/*
 package com.ipdnaeip.wizardrynextgeneration.core;
 
 import net.minecraftforge.common.ForgeVersion;
@@ -54,4 +53,3 @@ public class WNGLoadingPlugin implements IFMLLoadingPlugin, IEarlyMixinLoader {
 		return true;
 	}
 }
-*/

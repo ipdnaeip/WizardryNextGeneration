@@ -25,7 +25,7 @@ public class ItemCharmBloodstone extends ItemWNGArtefact implements IWorkbenchIt
 
     public static final String BLOODSTONE_IS_ACTIVE = WNGUtils.registerTag("bloodstone_is_active");
     public static final int MAX_MANA = 1000;
-    public static final int TICKS_INBETWEEN = 100;
+    public static final int TICKS_IN_BETWEEN = 100;
     public static final int CHARGE_PER_USE = 5;
     public static final int ACTIVE_COST_MULTIPLIER = 2;
     public static final int ACTIVE_TIME_MULTIPLIER = 2;

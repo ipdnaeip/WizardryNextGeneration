@@ -26,27 +26,4 @@ public class PotionCleansingFlames extends PotionMagicEffect implements ICustomP
         ParticleBuilder.create(ParticleBuilder.Type.MAGIC_FIRE).pos(x, y, z).clr(255, 200, 60).time(10).spawn(world);
     }
 
-    @SubscribeEvent
-    public static void onLivingUpdateEvent(LivingEvent.LivingUpdateEvent event) {
-        EntityLivingBase entity = event.getEntityLiving();
-        if (entity.isPotionActive(WNGPotions.CLEANSING_FLAMES)) {
-            if (entity.isBurning()) {
-                entity.extinguish();
-            }
-            if (entity.ticksExisted % 20 == 0) {
-                entity.getEntityWorld().playSound(null, entity.getPosition(), SoundEvents.ENTITY_BLAZE_BURN, SoundCategory.PLAYERS, 0.5F, entity.getEntityWorld().rand.nextFloat() * 0.2F + 0.9F);
-            }
-            if (entity.ticksExisted % (20 / (entity.getActivePotionEffect(WNGPotions.CLEANSING_FLAMES).getAmplifier() + 1)) == 0)  {
-                entity.heal(0.5F);
-            }
-        }
-    }
-
-    @SubscribeEvent
-    public static void onLivingAttackEvent(LivingAttackEvent event) {
-        if (event.getEntityLiving().isPotionActive(WNGPotions.CLEANSING_FLAMES) && event.getSource().isFireDamage()) {
-            event.setCanceled(true);
-        }
-    }
-
 }

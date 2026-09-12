@@ -34,11 +34,12 @@ item.wizardrynextgeneration:upgrade_movement.desc=Upgrades the movement speed wh
 
 item.wizardrynextgeneration:amulet_moon.name=Lunar Amulet
 item.wizardrynextgeneration:amulet_moon.desc=The lunar blessing prevents your next death. Recharges every full moon while equipped
+item.wizardrynextgeneration:amulet_moon.seenmoon=Your lunar amulet has experienced a full moon
 
   #belt
 
 item.wizardrynextgeneration:belt_potion.name=Potion Belt of the Crone
-item.wizardrynextgeneration:belt_potion.desc=Uses mana to extend the duration of your buff spells permanently
+item.wizardrynextgeneration:belt_potion.desc=Consumes mana to extend the duration of new positive potion effects by up to 50%
 
   #body
 
@@ -130,6 +131,7 @@ entity.wizardrynextgeneration:piercing_mass.name=Magic
 
 #potion
 
+potion.wizardrynextgeneration:acrobatics=Acrobatics
 potion.wizardrynextgeneration:animal_allegiance=Animal Allegiance
 potion.wizardrynextgeneration:betrayal=Betrayal
 potion.wizardrynextgeneration:bleed=Bleed
@@ -279,7 +281,9 @@ spell.wizardrynextgeneration:divine_shield.desc=Become immune to the next instan
 spell.wizardrynextgeneration:domesticate=Domesticate
 spell.wizardrynextgeneration:domesticate.desc=Have an animal follow you.
 spell.wizardrynextgeneration:domesticate.following=%1$s is following you
+spell.wizardrynextgeneration:domesticate.following_other=%1$s is following another player
 spell.wizardrynextgeneration:domesticate.no_longer_following=%1$s is no longer following you
+spell.wizardrynextgeneration:domesticate.not_animal=%1$s is not a domesticatable animal
 spell.wizardrynextgeneration:enchant_cauldron=Enchant Cauldron
 spell.wizardrynextgeneration:enchant_cauldron.desc=Enchant a cauldron to never run out of water.
 spell.wizardrynextgeneration:equality=Equality

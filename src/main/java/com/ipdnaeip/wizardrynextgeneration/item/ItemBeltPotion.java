@@ -14,7 +14,7 @@ import net.minecraft.item.ItemStack;
 
 public class ItemBeltPotion extends ItemWNGArtefact implements IWorkbenchItem, IManaStoringItem {
 
-    public static final int MAX_MANA = 1000;
+    public static final int MAX_MANA = 5000;
 
     public ItemBeltPotion(EnumRarity rarity, ItemArtefact.Type type) {
         super(rarity, type);

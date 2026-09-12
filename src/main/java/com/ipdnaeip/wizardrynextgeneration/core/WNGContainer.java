@@ -1,4 +1,3 @@
-/*
 package com.ipdnaeip.wizardrynextgeneration.core;
 
 import com.google.common.eventbus.EventBus;
@@ -22,4 +21,4 @@ public class WNGContainer extends DummyModContainer {
 		bus.register(this);
 		return true;
 	}
-}*/
+}

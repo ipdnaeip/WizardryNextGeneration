@@ -10,6 +10,7 @@ import electroblob.wizardry.util.SpellModifiers;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.ai.EntityAITasks;
 import net.minecraft.entity.passive.EntityAnimal;
@@ -19,7 +20,6 @@ import net.minecraft.tileentity.TileEntityDispenser;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
-import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.Mod;
 
@@ -30,23 +30,34 @@ import javax.annotation.Nullable;
 @Mod.EventBusSubscriber
 public class Domesticate extends SpellRay {
 
+    public static final String DOMESTICATE_CASTER = WNGUtils.registerTag("domesticate_caster");
+
     public Domesticate() {
         super(WizardryNextGeneration.MODID, "domesticate", SpellActions.SUMMON, false);
     }
 
     @Override
     protected boolean onEntityHit(World world, Entity target, Vec3d hit, @Nullable EntityLivingBase caster, Vec3d origin, int ticksInUse, SpellModifiers modifiers) {
-        if (caster instanceof EntityPlayer && target instanceof EntityAnimal) {
-            EntityPlayer player = (EntityPlayer) caster;
-            EntityAnimal animal = (EntityAnimal) target;
-            if (isAlreadyFollowing(animal)) {
-                endAlliance(player, animal);
-                WNGUtils.sendMessage(player, "spell." + WizardryNextGeneration.MODID + ":domesticate.no_longer_following", false, animal.getDisplayName());
-            }
-            else {
-                allyWithAnimal(player, animal);
-                WNGUtils.sendMessage(player, "spell." + WizardryNextGeneration.MODID + ":domesticate.following", false, animal.getDisplayName());
-                return true;
+        if (caster instanceof EntityPlayer) {
+            EntityPlayer player = (EntityPlayer)caster;
+            if (target instanceof EntityAnimal) {
+                EntityAnimal animal = (EntityAnimal)target;
+                if (!animal.getEntityData().hasKey(DOMESTICATE_CASTER)) {
+                    animal.getEntityData().setUniqueId(DOMESTICATE_CASTER, player.getUniqueID());
+                    addFollowTask(animal);
+                    WNGUtils.sendMessage(player, "spell." + WizardryNextGeneration.MODID + ":domesticate.following", false, animal.getDisplayName());
+                    return true;
+                } else if (animal.getEntityData().getUniqueId(DOMESTICATE_CASTER) == player.getUniqueID()) {
+                    removeFollowTask(animal);
+                    WNGUtils.sendMessage(player, "spell." + WizardryNextGeneration.MODID + ":domesticate.no_longer_following", false, animal.getDisplayName());
+                    return false;
+                } else {
+                    WNGUtils.sendMessage(player, "spell." + WizardryNextGeneration.MODID + ":domesticate.following_other", false, animal.getDisplayName());
+                    return false;
+                }
+            } else {
+                WNGUtils.sendMessage(player, "spell." + WizardryNextGeneration.MODID + ":domesticate.not_animal", false, target.getDisplayName());
+                return false;
             }
         }
         return false;
@@ -72,28 +83,19 @@ public class Domesticate extends SpellRay {
         return false;
     }
 
-    private static void endAlliance(EntityPlayer player, EntityAnimal animal) {
+    public static void addFollowTask(EntityAnimal animal) {
+        EntityAIAnimalFollowPlayer task = new EntityAIAnimalFollowPlayer(animal, 1f, 3, (float)animal.getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).getAttributeValue());
+        animal.tasks.addTask(2, task);
+    }
+
+    public static void removeFollowTask(EntityAnimal animal) {
+        animal.getEntityData().removeTag(DOMESTICATE_CASTER);
         for (EntityAITasks.EntityAITaskEntry entityaitasks$entityaitaskentry : animal.tasks.taskEntries) {
             EntityAIBase entityAIBase = entityaitasks$entityaitaskentry.action;
             if (entityAIBase instanceof EntityAIAnimalFollowPlayer) {
                 animal.tasks.removeTask(entityAIBase);
             }
         }
-    }
-
-    private static void allyWithAnimal(EntityPlayer player, EntityAnimal animal) {
-        EntityAIAnimalFollowPlayer task = new EntityAIAnimalFollowPlayer(animal, 1f, 3, 10, player);
-        animal.tasks.addTask(2, task);
-    }
-
-    private static boolean isAlreadyFollowing(EntityAnimal animal) {
-        for (EntityAITasks.EntityAITaskEntry entityaitasks$entityaitaskentry : animal.tasks.taskEntries) {
-            EntityAIBase entityAIBase = entityaitasks$entityaitaskentry.action;
-            if (entityAIBase instanceof EntityAIAnimalFollowPlayer) {
-                return true;
-            }
-        }
-        return false;
     }
 
     @Override

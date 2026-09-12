@@ -36,7 +36,7 @@ public class EntityGravitationalField extends EntityScaledConstruct {
             targets.removeIf(target -> target == this);
             for (Entity target : targets) {
                 if (target instanceof EntityLivingBase) {
-                    ((EntityLivingBase)target).addPotionEffect(new PotionEffect(WNGPotions.GRAVITY, 10, SpellBuff.getStandardBonusAmplifier(damageMultiplier)));
+                    ((EntityLivingBase)target).addPotionEffect(new PotionEffect(WNGPotions.GRAVITY, 1, SpellBuff.getStandardBonusAmplifier(damageMultiplier), true, true));
                 }
                 else {
                     target.motionY -= Math.pow(0.025, damageMultiplier);

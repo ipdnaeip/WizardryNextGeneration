@@ -18,8 +18,7 @@ public class Settings {
     //Overrides the blacklist and hard coded denials
     public Set<ResourceLocation> bleedEffectWhitelist = Sets.newHashSet(toResourceLocations(generalSettings.bleed_effect_whitelist));
     public Set<ResourceLocation> bleedEffectBlacklist = Sets.newHashSet(toResourceLocations(generalSettings.bleed_effect_blacklist));
-    //public ResourceLocation[] bleedEffectWhitelist = toResourceLocations(generalSettings.bleed_effect_whitelist);
-    //public ResourceLocation[] bleedEffectBlacklist = toResourceLocations(generalSettings.bleed_effect_blacklist);
+
 
     @SuppressWarnings("unused")
     @Mod.EventBusSubscriber(modid = WizardryNextGeneration.MODID)
@@ -48,6 +47,7 @@ public class Settings {
         public String[] bleed_effect_blacklist = {"minecraft:armor_stand"};
 
     }
+
     @Config.Name("Spell Settings")
     @Config.LangKey("settings.wizardrynextgeneration:spell_settings")
     public static SpellSettings spellSettings = new SpellSettings();

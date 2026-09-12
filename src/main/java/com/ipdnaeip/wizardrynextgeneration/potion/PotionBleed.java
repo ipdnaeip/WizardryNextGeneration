@@ -42,22 +42,4 @@ public class PotionBleed extends PotionMagicEffect {
         }
     }
 
-    @SubscribeEvent
-    public static void onPotionApplicableEvent(PotionEvent.PotionApplicableEvent event) {
-        if (event.getPotionEffect().getPotion() == WNGPotions.BLEED) {
-            if (event.getEntityLiving().isEntityUndead() || event.getEntityLiving() instanceof EntityGolem || Arrays.asList(WizardryNextGeneration.settings.bleedEffectBlacklist).contains(EntityList.getKey(event.getEntityLiving().getClass())) && !Arrays.asList(WizardryNextGeneration.settings.bleedEffectWhitelist).contains(EntityList.getKey(event.getEntityLiving().getClass()))) {
-                event.setResult(Event.Result.DENY);
-            }
-        }
-    }
-
-    @SubscribeEvent
-    public static void onLivingHealEvent(LivingHealEvent event) {
-        EntityLivingBase entity = event.getEntityLiving();
-        if (entity.isPotionActive(WNGPotions.BLEED) && !((AccessorEntityLivingBase)entity).wizardrynextgeneration$isNaturalHeal()) {
-            entity.removePotionEffect(WNGPotions.BLEED);
-        }
-        ((AccessorEntityLivingBase)entity).wizardrynextgeneration$setNaturalHeal(false);
-    }
-
 }

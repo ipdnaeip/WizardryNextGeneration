@@ -50,10 +50,12 @@ import net.minecraft.item.Item;
 
 public class SolarWinds extends SpellBuff {
 
-    //SpellBuff should check if a potion is applicable before applying via dispenser
+    public static final String SPEED = "speed";
+    public static final String ACCELERATION = "acceleration";
 
     public SolarWinds() {
         super(WizardryNextGeneration.MODID, "solar_winds", 1f, 0.706f, 0.196f, () -> WNGPotions.SOLAR_WINDS);
+        this.addProperties(SPEED, ACCELERATION);
     }
 
     @Override
