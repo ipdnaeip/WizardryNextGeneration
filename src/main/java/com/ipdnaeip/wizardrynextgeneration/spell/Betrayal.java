@@ -19,7 +19,7 @@ public class Betrayal extends SpellBarrage {
     public Betrayal() {
         super(WizardryNextGeneration.MODID, "betrayal", SpellActions.POINT, false);
         this.soundValues(1F, 0.1F, 0.1F);
-        this.addProperties(EFFECT_RADIUS, EFFECT_STRENGTH, EFFECT_DURATION);
+        this.addProperties(EFFECT_STRENGTH, EFFECT_DURATION);
     }
 
     @Override

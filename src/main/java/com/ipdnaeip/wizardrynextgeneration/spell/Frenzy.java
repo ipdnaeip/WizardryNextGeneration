@@ -18,7 +18,7 @@ public class Frenzy extends SpellBarrage {
     public Frenzy() {
         super(WizardryNextGeneration.MODID, "frenzy", SpellActions.POINT, false);
         this.soundValues(1F, 0.1F, 0.1F);
-        this.addProperties(EFFECT_RADIUS, EFFECT_DURATION);
+        this.addProperties(EFFECT_DURATION);
     }
 
     @Override

@@ -19,7 +19,7 @@ import org.apache.logging.log4j.Logger;
 
 import java.io.File;
 
-@Mod(modid = WizardryNextGeneration.MODID, name = WizardryNextGeneration.NAME, version = WizardryNextGeneration.VERSION)
+@Mod(modid = WizardryNextGeneration.MODID, name = WizardryNextGeneration.NAME, version = WizardryNextGeneration.VERSION, dependencies = "required-after:ebwizardry")
 public class WizardryNextGeneration
 {
     public static final String MODID = "wizardrynextgeneration";
